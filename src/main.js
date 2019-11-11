@@ -7,6 +7,10 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
 import $ from 'jquery'
 
+// import AreaSelect from '@/components/AreaSelect'
+// Vue.use(AreaSelect) // 引用自定义组件
+// Vue.component('area-select', AreaSelect) // 初始化组件
+
 import Video from 'video.js'
 import 'video.js/dist/video-js.css'
 
@@ -19,6 +23,9 @@ Vue.use($)
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  components: {
+    App,
+    // AreaSelect
+  },
   template: '<App/>'
 })
