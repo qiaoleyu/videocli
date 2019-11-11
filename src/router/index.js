@@ -3,6 +3,9 @@ import Router from 'vue-router'
 import index from '@/components/index'
 import videoplay from '@/components/videoplay'
 import video from '@/components/video'
+import uploadVideo from '@/components/uploadVideo'
+import updatePassword from '@/components/updatePassword'
+import userDetial from '@/components/userDetial'
 
 Vue.use(Router)
 
@@ -20,6 +23,18 @@ export default new Router({
       path: '/video',
       name: 'video',
       component: video
+    },{
+      path: '/uploadVideo',
+      name: 'uploadVideo',
+      component: uploadVideo
+    },{
+      path: '/updatePassword',
+      name: 'updatePassword',
+      component: updatePassword
+    },{
+      path: '/userDetial',
+      name: 'userDetial',
+      component: userDetial
     }
   ]
 })

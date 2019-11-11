@@ -14,7 +14,7 @@
           <el-col :span="10" :offset="2">
             <div class="grid-content " style="height: 80px;font-size: 16px;border: solid 1px orangered;border-radius: 10px">
               <div class="grid-content " style="height: 60px;font-size: 16px;float: left;">
-                <el-image src="../static/img/bala1.jpg" style="height: 80px;width:150px;border-radius: 3px"></el-image>
+                <el-image src="../static/img/bala2.jpg" style="height: 80px;width:150px;border-radius: 3px"></el-image>
               </div>
               <div id="sy" class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
                    @mousemove="over(1)"
@@ -22,7 +22,7 @@
                    :style="active"
 
               >
-                <router-link type="info" :to="{name:'index'}" style="color:black;"><a>首页</a></router-link>
+                <router-link type="info" :to="{name:'/'}" style="color:black;"><a>首页</a></router-link>
               </div>
               <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
                    @mousemove="over(2)"
@@ -147,7 +147,7 @@
                 <!--<canvas  id="canvasBarrage"></canvas>-->
                 <video id="example-video" width=100% height=500 style="margin: auto" class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
                  <source
-                   src="https://huyi-gajia.oss-cn-beijing.aliyuncs.com/file/2019-11-09/d30b6657b28b45d18b909c0b9c9271ee-day05.mp4"
+                   src="https://candy-jing.oss-cn-beijing.aliyuncs.com/01.mp4"
                    type="video/mp4">
                   <template>
                     <el-select v-model="value" placeholder="倍速">
@@ -457,12 +457,14 @@
   };
   setInterval(move,200)
   function move() {
-    var spanArray = $('box').children;
 
+      var spanArray = $('box').children;
       for (var i = 0; i < spanArray.length; i++) {
 
         spanArray[i].style.left = parseInt(spanArray[i].style.left) - spanArray[i].speed + 'px';
         if((parseInt(spanArray[i].style.left)- spanArray[i].speed)<0){
+          clearInterval(stopImg)
+//          spanArray[i].hidden;
           spanArray[i].style.left==0;
           spanArray[i].speed==0;
       }
@@ -630,6 +632,25 @@
          }
        },
 //      倍速播放
+
+      //      个人中心-完善信息
+      toUser:function () {
+        if (this.userId!=null) {
+          this.$router.push("/userDetial")
+        }else {
+          this.$message.error('还没登录哦，请登录后再试');
+          this.$router.push("/userLogin")
+        }
+      },
+//      修改密码
+      toModify:function () {
+        if (this.userId!=null) {
+          this.$router.push("/updatePassword")
+        }else {
+          this.$message.error('还没登录哦，请登录后再试');
+          this.$router.push("/userLogin")
+        }
+      },
 
   }
 }
