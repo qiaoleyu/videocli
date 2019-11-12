@@ -3,9 +3,11 @@
     <!--<h1>{{ msg }}</h1>-->
     <el-container >
       <!--导航栏-->
-      <el-header style="height: 80px">
-        <div style="width: 100%;margin: auto">
-        <el-row :gutter="10">
+      <el-header style="height: 140px">
+        <div style="width: 100%;margin: auto;">
+        <el-row :gutter="10" >
+          <!--style="background-color: gainsboro;"-->
+
           <!--<el-col :span="4">-->
             <!--<div class="grid-content " style="height: 60px;font-size: 16px">-->
               <!--<el-image src="http://pxx4c7852.bkt.clouddn.com/logo2%20%281%29.jpg" style="height: 60px;width:150px;border-radius: 3px"></el-image>-->
@@ -14,7 +16,9 @@
           <el-col :span="10" :offset="2">
             <div class="grid-content " style="height: 80px;font-size: 16px;border: solid 1px orangered;border-radius: 10px">
               <div class="grid-content " style="height: 60px;font-size: 16px;float: left;">
-                <el-image src="../static/img/bala2.jpg" style="height: 80px;width:150px;border-radius: 3px"></el-image>
+                <router-link :to="{name:'index'}">
+                  <el-image src="../static/img/bala2.jpg" style="height: 80px;width:150px;border-radius: 3px" title="首页"></el-image>
+                </router-link>
               </div>
               <div id="sy" class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
                    @mousemove="over(1)"
@@ -22,7 +26,7 @@
                    :style="active"
 
               >
-                <router-link type="info" :to="{name:'index'}" style="color:black;"><a>首页</a></router-link>
+                <router-link type="info" :to="{name:'index'}" style="color:black;" ><a>首页</a></router-link>
               </div>
               <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
                    @mousemove="over(2)"
@@ -87,18 +91,21 @@
               </el-dropdown>
             </div>
           </el-col>
-          <el-col :span="6">
-            <div class="grid-content " style="height: 80px">
-              <!--搜索-->
-              <el-input ref="searchName" type="text" style="width: 75%;margin: auto;margin-top: 10px" placeholder="请输入内容"
-                        v-model="input"
-              />
-              <el-button type="primary" icon="el-icon-search" plain @click="search()"></el-button>
-            </div>
-          </el-col>
+
           <!--<el-col :span="4"><div class="grid-content bg-purple"></div></el-col>-->
-          <el-col :span="5" :offset="1">
+          <el-col :span="8" :offset="4">
             <div class="grid-content " style="height: 80px;margin-top: 10px">
+              <!--VIP-->
+              <div class="grid-content " style="height: 60px;width:50px;float: left"
+                   @mousemove="over(11)"
+                   @mouseleave="leave(11)"
+                   :style="j"
+              >
+                 <span type="info" style="color:black;cursor: pointer;margin-right: 10px">
+                  <a  type="info" @click="toPay()" style="font-size: 20px" title="VIP">VIP</a>
+                </span>
+              </div>
+              <!--历史-->
               <div class="grid-content " style="height: 60px;float: left"
                    @mousemove="over(5)"
                    @mouseleave="leave(5)"
@@ -106,15 +113,16 @@
               >
                 <span type="info" style="color:black;cursor: pointer;margin-right: 10px" ><a @click="logout()" class="el-icon-pie-chart" :size="50">历史</a></span>
               </div>
+              <!--登录-->
               <div class="grid-content " style="height: 60px;width:50px;float: left"
                    @mousemove="over(6)"
                    @mouseleave="leave(6)"
                    :style="e"
               >
-                <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.uid==null" ><a class="el-icon-user">登录</a></router-link>
-                <span style="color:black;" v-if="this.uid!=null"><a>{{users.uname}}</a></span>
+                <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.userId==null" ><a class="el-icon-user" >登录</a></router-link>
+                <span style="color:black;" v-if="this.usrId!=null"><a>{{user.userName}}</a></span>
               </div>
-
+              <!--注册-->
               <div class="grid-content " style="height: 60px;width:50px;float: left"
                    @mousemove="over(7)"
                    @mouseleave="leave(7)"
@@ -122,7 +130,7 @@
               >
                 <router-link type="info" :to="{name:'userRegist'}" style="color:black"><a>注册</a></router-link>
               </div>
-
+              <!--退出-->
               <div class="grid-content " style="height: 60px;width:50px;float: left"
                    @mousemove="over(8)"
                    @mouseleave="leave(8)"
@@ -133,6 +141,17 @@
             </div>
           </el-col>
         </el-row>
+          <el-row :gutter="10">
+            <el-col :span="14" :offset="5">
+              <div class="grid-content " style="height: 60px">
+                <!--搜索-->
+                <el-input ref="searchName" type="text" style="width: 75%;margin: auto;margin-top: 10px" placeholder="想搜索点什么呢~^_^"
+                          v-model="input"
+                />
+                <el-button type="primary" icon="el-icon-search" style="width: 100px" plain @click="search()"></el-button>
+              </div>
+            </el-col>
+          </el-row>
         </div>
       </el-header>
 
@@ -195,7 +214,7 @@
                  :style="i"
             >
                  <span type="info" style="color:black;cursor: pointer;margin-top:20px">
-                  <a class="el-icon-circle-plus" type="info" @click="toUpload()" style="font-size: 30px" title="发布视频"></a>
+                  <a class="el-icon-circle-plus-outline" type="primary" @click="toUpload()" style="font-size: 30px" title="发布视频"></a>
                 </span>
             </div>
           </el-col>
@@ -903,6 +922,8 @@
         f:'',
         g:'',
         h:'',
+        i:'',
+        j:'',
         user:{
 //            userId:null,
           userTell:'',
@@ -939,7 +960,9 @@
               this.g='background-color: orangered;border-radius: 0px 10px 0px 10px';
             }if(x==9){
               this.h='background-color: orangered;border-radius: 0px 10px 0px 10px';
-            }
+            }if(x==11){
+            this.j='background-color: orangered;border-radius: 0px 10px 0px 10px';
+          }
         },
       leave:function (x) {
         if(x==1){
@@ -960,6 +983,8 @@
           this.g='';
         }if(x==9){
           this.h='';
+        }if(x==11){
+          this.j='';
         }
       },
 //      上传视频

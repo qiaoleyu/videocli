@@ -14,7 +14,7 @@
             <el-col :span="10" :offset="2">
               <div class="grid-content " style="height: 80px;font-size: 16px;border: solid 1px orangered;border-radius: 10px">
                 <div class="grid-content " style="height: 60px;font-size: 16px;float: left;">
-                  <el-image src="../static/img/bala2.jpg" style="height: 80px;width:150px;border-radius: 3px"></el-image>
+                  <router-link :to="{name:'index'}"><el-image src="../static/img/bala2.jpg" style="height: 80px;width:150px;border-radius: 3px"></el-image></router-link>
                 </div>
                 <div id="sy" class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
                      @mousemove="over(1)"

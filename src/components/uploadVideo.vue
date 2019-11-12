@@ -151,7 +151,7 @@
              <el-form-item label="视频：">
                <el-upload
                  class="avatar-uploader"
-                 action="https://jsonplaceholder.typicode.com/posts/"
+                 action="api/upload"
                  :on-change="handleChange"
                  :on-remove="handleRemove"
                  :file-list="fileList"
@@ -166,29 +166,48 @@
                </el-upload>
              </el-form-item>
 
-             <el-form-item label="视频封面图：">
+             <el-form-item label="视频封面：">
                <el-upload
-                 action="https://jsonplaceholder.typicode.com/posts/"
-                 list-type="picture-card"
-                 :on-preview="handlePictureCardPreview"
-                 :on-remove="handleRemove"
+                 class="avatar-uploader"
+                 action="api/upload"
+                 :show-file-list="false"
                  :on-success="handleAvatarSuccess"
                  :before-upload="beforeAvatarUpload"
                  title="视频封面"
                >
-                 <i class="el-icon-plus"></i>
+                 <img v-if="video.videoPic" :src="video.videoPic" name="videoPic" width="80px" height="80px" class="avatar">
+                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                </el-upload>
-               <el-dialog :visible.sync="dialogVisible">
-                 <img width="100%" :src="dialogImageUrl" alt="">
-               </el-dialog>
-
              </el-form-item>
+             <!--<el-form-item label="视频封面图：">-->
+               <!--<el-upload-->
+                 <!--action="https://jsonplaceholder.typicode.com/posts/"-->
+                 <!--list-type="picture-card"-->
+                 <!--:on-preview="handlePictureCardPreview"-->
+                 <!--:on-remove="handleRemove"-->
+                 <!--:on-success="handleAvatarSuccess"-->
+                 <!--:before-upload="beforeAvatarUpload"-->
+                 <!--title="视频封面"-->
+               <!--&gt;-->
+                 <!--<i class="el-icon-plus"></i>-->
+               <!--</el-upload>-->
+               <!--<el-dialog :visible.sync="dialogVisible">-->
+                 <!--<img width="100%" :src="dialogImageUrl" alt="">-->
+               <!--</el-dialog>-->
 
+             <!--</el-form-item>-->
              <el-form-item label="视频名称：" prop="videoName">
                <el-input name="videoName" v-model="video.videoName" ></el-input>
-
-               <!--<el-radio v-model="video.usex" :label="true" name="usex">男</el-radio>-->
-               <!--<el-radio v-model="users.usex" :label="false" name="usex">女</el-radio>-->
+             </el-form-item>
+             <el-form-item label="视频类别：" prop="typeName">
+               <el-select v-model="type.typeName" placeholder="请选择" style="width: 100%">
+                 <el-option
+                   v-for="item in videoKinds"
+                   :key="item.typeId"
+                   :label="item.typeName"
+                   :value="item.typeId">
+                 </el-option>
+               </el-select>
              </el-form-item>
              <!--<el-form-item label="注册时间:">-->
                <!--<el-date-picker name="createTime" v-model="user.createTime" type="date" placeholder="选择日期" style="width: 400px"></el-date-picker>-->
@@ -196,9 +215,9 @@
              <el-form-item label="视频简介：" prop="videoInfo">
                <el-input name="videoInfo" v-model="video.videoInfo" ></el-input>
              </el-form-item>
-             <div style="width: 200px;margin: auto;height: 40px;margin-left: 200px">
-               <el-button type="primary" round plain style="height: 40px" plain @click="uploadVideo()">上传</el-button>
-               <el-button type="primary" round plain style="height: 40px" plain @click="backIndex()">返回</el-button>
+             <div style="width: 400px;margin: auto;height: 40px;margin-left: 120px">
+               <el-button type="primary" round plain style="height: 40px;width:40%;float: left"  plain @click="uploadVideo()">上传</el-button>
+               <el-button type="primary" round plain style="height: 40px;width:40%;float: left" plain @click="backIndex()">返回</el-button>
              </div>
            </el-form>
 
@@ -256,14 +275,20 @@
           return callback();
         }
       };
+      var checkVideoUrl = (rule, value, callback) => {
+        if (!value) {
+          return callback(new Error('视频文件不能为空'));
+        }else{
+          return callback();
+        }
+      };
       return {
+        videoKinds: [],
         fileList: [{
           name: '',
           url: ''
         }],
           videoUrl:'',
-        dialogImageUrl: '',
-        dialogVisible: false,
         input:'',
         msg: 'Welcome video index',
         active:'',
@@ -275,6 +300,10 @@
         f:'',
         g:'',
         h:'',
+        type:{
+          typeId:1,
+          typeName:'直播'
+        },
         video:{
           userId:1,
           videoName:'',
@@ -288,6 +317,7 @@
           videoName: [{ validator: checkVideoName, trigger: 'blur' }],
           videoPic: [{ validator: checkVideoPic, trigger: 'blur' }],
           videoInfo:[{ validator: checkVideoInfo, trigger: 'blur' }],
+          videoUrl:[{ validator: checkVideoUrl, trigger: 'blur' }],
         }
       }
     },
@@ -339,7 +369,7 @@
       },
 //      视频上传
       handleAvatarVideoSuccess(res1, file) {
-        this.videoUrl = res1;
+        this.user.videoUrl = res1;
 //          URL.createObjectURL(file.raw);
       },
       beforeAvatarVideoUpload(file) {
@@ -355,24 +385,23 @@
         }
         return isMP4 && isLt400M;
       },
-//      handleChange(file, fileList) {
-//        this.fileList = fileList.slice(-3);
+      //      handleChange(file, fileList) {
+      //        this.fileList = fileList.slice(-3);
+      //      },
+//      handleRemove(file, fileList) {
+//        console.log(file, fileList);
 //      },
-      handleRemove(file, fileList) {
-        console.log(file, fileList);
-      },
-      handlePictureCardPreview(file) {
-        this.dialogImageUrl = file.url;
-        this.dialogVisible = true;
-      },
-      //      图片上传
+//      handlePictureCardPreview(file) {
+//        this.dialogImageUrl = file.url;
+//        this.dialogVisible = true;
+//      },
+      //图片上传
       handleAvatarSuccess(res, file) {
-        this.imageUrl = res;
-//          URL.createObjectURL(file.raw);
+        this.user.videoPic = res;
       },
       beforeAvatarUpload(file) {
         const isJPG = file.type === 'image/jpeg';
-//        小于60M的视频
+        //小于60M的视频
         const isLt2M = file.size / 1024 / 1024 < 2;
 
         if (!isJPG) {

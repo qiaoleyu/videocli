@@ -7,6 +7,8 @@ import uploadVideo from '@/components/uploadVideo'
 import updatePassword from '@/components/updatePassword'
 import userDetial from '@/components/userDetial'
 import userLogin from '@/components/userLogin'
+import userRegist from '@/components/userRegist'
+import searchVideo from '@/components/searchVideo'
 
 Vue.use(Router)
 
@@ -40,6 +42,14 @@ export default new Router({
       path: '/userLogin',
       name: 'userLogin',
       component: userLogin
+    },{
+      path: '/userRegist',
+      name: 'userRegist',
+      component: userRegist
+    },{
+      path: '/searchVideo',
+      name: 'searchVideo',
+      component: searchVideo
     }
   ]
 })
