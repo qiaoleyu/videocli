@@ -6,6 +6,7 @@ import video from '@/components/video'
 import uploadVideo from '@/components/uploadVideo'
 import updatePassword from '@/components/updatePassword'
 import userDetial from '@/components/userDetial'
+import userLogin from '@/components/userLogin'
 
 Vue.use(Router)
 
@@ -35,6 +36,10 @@ export default new Router({
       path: '/userDetial',
       name: 'userDetial',
       component: userDetial
+    },{
+      path: '/userLogin',
+      name: 'userLogin',
+      component: userLogin
     }
   ]
 })

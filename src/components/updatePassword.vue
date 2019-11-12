@@ -142,10 +142,10 @@
 
         <div style="width: 80%;height:300px;margin: auto;margin-top: 60px">
           <el-form :model="user" status-icon :rules="rules" ref="user" class="demo-ruleForm" label-width="100px" style="width: 500px;margin: auto;height: 80px;line-height: 80px;text-align: left">
-            <el-form-item label="设置新密码" prop="userPassword" style="text-align: left;margin-bottom: 40px">
+            <el-form-item label="设置新密码：" prop="userPassword" style="text-align: left;margin-bottom: 40px">
               <el-input type="password" v-model="user.userPassword" name="userPassword" autocomplete="off" placeholder="请设置密码"></el-input>
             </el-form-item>
-            <el-form-item label="确认新密码" prop="checkPass" style="text-align: left;margin-bottom: 40px">
+            <el-form-item label="确认新密码：" prop="checkPass" style="text-align: left;margin-bottom: 40px">
               <el-input type="password" v-model="user.checkPass" autocomplete="off"  placeholder="请输入确认密码"></el-input>
             </el-form-item>
             <el-from-item>

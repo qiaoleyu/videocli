@@ -1030,6 +1030,7 @@
     text-align: center;
     /*line-height: 160px;*/
     margin-bottom: 10px;
+    overflow: hidden;
 
   }
 

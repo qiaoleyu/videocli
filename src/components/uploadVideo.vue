@@ -142,43 +142,49 @@
 
         <!--分类展示-->
        <el-row :gutter="10">
-         <el-col :span="12" style="margin: auto;width: 90%;margin-top: 40px">
+         <el-col :span="12" style="margin: auto;width: 100%;margin-top: 40px">
 
            <el-form label-width="100px" :model="video" status-icon :rules="rules" ref="video" style="width: 500px;margin: auto;height: 80px;line-height: 80px;text-align: left">
-             <el-form-item label="发布人:" prop="videoUsername">
+             <el-form-item label="发布人：" prop="videoUsername">
                <el-input class="arrow" name="videoUsername"  v-model="video.videoUsername"></el-input>
              </el-form-item>
-             <el-form-item label="视频:">
+             <el-form-item label="视频：">
                <el-upload
                  class="avatar-uploader"
                  action="https://jsonplaceholder.typicode.com/posts/"
-                 :show-file-list="false"
+                 :on-change="handleChange"
+                 :on-remove="handleRemove"
+                 :file-list="fileList"
                  :on-success="handleAvatarVideoSuccess"
                  :before-upload="beforeAvatarVideoUpload"
                  title="发布视频"
-                 prop="videoUrl"
                >
-                 <img v-if="videoUrl" :src="videoUrl" class="avatar"  >
+                 <!--:show-file-list="false"-->
+                  <!--:on-preview="handlePictureCardPreview"-->
+                 <img v-if="video.videoUrl" :src="video.videoUrl" class="avatar"  >
                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                </el-upload>
              </el-form-item>
 
-             <el-form-item label="视频封面图:">
+             <el-form-item label="视频封面图：">
                <el-upload
-                 class="avatar-uploader"
                  action="https://jsonplaceholder.typicode.com/posts/"
-                 :show-file-list="false"
+                 list-type="picture-card"
+                 :on-preview="handlePictureCardPreview"
+                 :on-remove="handleRemove"
                  :on-success="handleAvatarSuccess"
                  :before-upload="beforeAvatarUpload"
                  title="视频封面"
-                 prop="videoPic "
                >
-                   <img v-if="imageUrl" :src="imageUrl" class="avatar" >
-                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                 <i class="el-icon-plus"></i>
                </el-upload>
+               <el-dialog :visible.sync="dialogVisible">
+                 <img width="100%" :src="dialogImageUrl" alt="">
+               </el-dialog>
+
              </el-form-item>
 
-             <el-form-item label="视频名称:" prop="videoName">
+             <el-form-item label="视频名称：" prop="videoName">
                <el-input name="videoName" v-model="video.videoName" ></el-input>
 
                <!--<el-radio v-model="video.usex" :label="true" name="usex">男</el-radio>-->
@@ -187,7 +193,7 @@
              <!--<el-form-item label="注册时间:">-->
                <!--<el-date-picker name="createTime" v-model="user.createTime" type="date" placeholder="选择日期" style="width: 400px"></el-date-picker>-->
              <!--</el-form-item>-->
-             <el-form-item label="视频简介:" prop="videoInfo">
+             <el-form-item label="视频简介：" prop="videoInfo">
                <el-input name="videoInfo" v-model="video.videoInfo" ></el-input>
              </el-form-item>
              <div style="width: 200px;margin: auto;height: 40px;margin-left: 200px">
@@ -251,8 +257,13 @@
         }
       };
       return {
+        fileList: [{
+          name: '',
+          url: ''
+        }],
           videoUrl:'',
-        imageUrl: '',
+        dialogImageUrl: '',
+        dialogVisible: false,
         input:'',
         msg: 'Welcome video index',
         active:'',
@@ -269,7 +280,8 @@
           videoName:'',
           videoPic:'',
           videoInfo:'',
-          videoUsername:''
+          videoUsername:'',
+          videoUrl:''
         },
         rules:{
           videoUsername: [{ validator: checkVideoUsername, trigger: 'blur' }],
@@ -343,7 +355,17 @@
         }
         return isMP4 && isLt400M;
       },
-      //      视频上传
+//      handleChange(file, fileList) {
+//        this.fileList = fileList.slice(-3);
+//      },
+      handleRemove(file, fileList) {
+        console.log(file, fileList);
+      },
+      handlePictureCardPreview(file) {
+        this.dialogImageUrl = file.url;
+        this.dialogVisible = true;
+      },
+      //      图片上传
       handleAvatarSuccess(res, file) {
         this.imageUrl = res;
 //          URL.createObjectURL(file.raw);

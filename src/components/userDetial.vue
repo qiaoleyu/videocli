@@ -150,19 +150,20 @@
            </div>-->
 
           <el-form :model="user" status-icon :rules="rules" ref="user" label-width="100px" style="width: 500px;margin: auto;height: 80px;line-height: 80px;text-align: left">
-            <el-form-item label="用户名:" prop="userName">
+            <el-form-item label="用户名：" prop="userName">
               <el-input class="arrow" name="userName" v-model="user.userName" disabled></el-input>
             </el-form-item>
-            <el-form-item label="头像:">
+            <el-form-item label="头像：">
               <el-upload
-                class="avatar-uploader"
-                action="api/shop-user/upload"
-                :show-file-list="false"
+                action="https://jsonplaceholder.typicode.com/posts/"
+                list-type="picture-card"
+                :on-preview="handlePictureCardPreview"
+                :on-remove="handleRemove"
                 :on-success="handleAvatarSuccess"
                 :before-upload="beforeAvatarUpload"
+                title="用户图像"
               >
-                <el-avatar v-if="userPic" :src="user.userPic" name="userPic" width="80px" height="80px" class="avatar"></el-avatar>
-                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                <i class="el-icon-plus"></i>
               </el-upload>
             </el-form-item>
             <!--<el-form-item label="性别:">-->
@@ -173,13 +174,13 @@
             <!--<el-form-item label="注册时间:" prop="userUptime">-->
               <!--<el-date-picker name="userUptime" v-model="user.userUptime" type="date" placeholder="选择日期" style="width: 400px"></el-date-picker>-->
             <!--</el-form-item>-->
-            <el-form-item label="联系方式:" prop="userTell">
+            <el-form-item label="联系方式：" prop="userTell">
               <el-input name="userTell" v-model="user.userTell" ></el-input>
             </el-form-item>
-            <el-form-item label="邮箱账号:" prop="userEmail">
+            <el-form-item label="邮箱账号：" prop="userEmail">
               <el-input name="userEmail" v-model="user.userEmail"></el-input>
             </el-form-item>
-            <el-form-item label="真实姓名:" prop="userRealname">
+            <el-form-item label="真实姓名：" prop="userRealname">
               <el-input name="userRealname" v-model="user.userRealname">
               </el-input>
             </el-form-item>
@@ -265,6 +266,8 @@
       };
       return {
           videoUrl:'',
+        dialogImageUrl: '',
+        dialogVisible: false,
         imageUrl: '',
         input:'',
         msg: 'Welcome video index',
@@ -382,7 +385,33 @@
           }
         })
       },
-//      返回主页（首页）
+      //图片上传
+      handleRemove(file, fileList) {
+        console.log(file, fileList);
+      },
+      handlePictureCardPreview(file) {
+        this.dialogImageUrl = file.url;
+        this.dialogVisible = true;
+      },
+
+      handleAvatarSuccess(res, file) {
+        this.imageUrl = res;
+      //URL.createObjectURL(file.raw);
+      },
+      beforeAvatarUpload(file) {
+        const isJPG = file.type === 'image/jpeg';
+      //小于60M的视频
+        const isLt2M = file.size / 1024 / 1024 < 2;
+
+        if (!isJPG) {
+          this.$message.error('上传封面只能是 JPG 格式!');
+        }
+        if (!isLt2M) {
+          this.$message.error('上传封面大小不能超过 2MB!');
+        }
+        return isJPG && isLt2M;
+      },
+      //返回主页（首页）
       backIndex:function () {
         this.$router.push("/")
       },
