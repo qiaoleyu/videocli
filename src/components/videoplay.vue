@@ -22,7 +22,7 @@
                    :style="active"
 
               >
-                <router-link type="info" :to="{name:'index'}" style="color:black;"><a>首页</a></router-link>
+                <router-link type="info" :to="{name:'index'}" style="color:black;"><a style="cursor: pointer">首页</a></router-link>
               </div>
               <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
                    @mousemove="over(2)"
@@ -38,7 +38,7 @@
                      :style="h"
                 >
                   <span class="el-dropdown-link">
-                    <a>个人中心</a><i class="el-icon-arrow-down el-icon--left"></i>
+                    <a style="cursor: pointer">个人中心</a><i class="el-icon-arrow-down el-icon--left"></i>
                   </span>
                   <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item><a @click="toUser()">完善信息</a></el-dropdown-item>
@@ -55,7 +55,7 @@
                        @mouseleave="leave(3)"
                        :style="b"
                   >
-                    <a>赛事</a><i class="el-icon-arrow-down el-icon--left"></i>
+                    <a style="cursor: pointer">赛事</a><i class="el-icon-arrow-down el-icon--left"></i>
                   </div>
                 </span>
                   <el-dropdown-menu slot="dropdown" style="width:240px;">
@@ -74,7 +74,7 @@
                      :style="c"
                 >
                 <span class="el-dropdown-link">
-                  <a>视频</a><i class="el-icon-arrow-down el-icon--left"></i>
+                  <a style="cursor: pointer">视频</a><i class="el-icon-arrow-down el-icon--left"></i>
                 </span>
                   <el-dropdown-menu slot="dropdown" style="width:240px;">
                     <el-dropdown-item>1</el-dropdown-item>
@@ -166,17 +166,17 @@
                  <source
                    src="https://candy-jing.oss-cn-beijing.aliyuncs.com/01.mp4"
                    type="video/mp4">
-                  <template>
-                    <el-select v-model="value" placeholder="倍速">
-                      <el-option
-                        id="selRate"
-                        v-for="item in options"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value">
-                      </el-option>
-                    </el-select>
-                  </template>
+                  <!--<template>-->
+                    <!--<el-select v-model="value" placeholder="倍速">-->
+                      <!--<el-option-->
+                        <!--id="selRate"-->
+                        <!--v-for="item in options"-->
+                        <!--:key="item.value"-->
+                        <!--:label="item.label"-->
+                        <!--:value="item.value">-->
+                      <!--</el-option>-->
+                    <!--</el-select>-->
+                  <!--</template>-->
                   <!--<source-->
                     <!---->
                   <!--&gt;-->
@@ -220,8 +220,10 @@
                     <!--inactive-text="关闭"-->
                   </el-switch>
                 </el-tooltip>
+
                 <!--弹幕（飘屏设置）-->
-                <div id="box" class="box" style="width:100%;float: left;margin: auto"></div>
+                <!--<div id="box" class="box" style="width:100%;float: left;margin: auto"></div>-->
+
               </div>
 
 
@@ -308,7 +310,15 @@
                     <div style="width:150px;font-size: 25px;font-weight: bolder;margin-left: 10px;background-color: black;float: left;text-align: center">
                       <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
                       </el-menu>
-                      <el-avatar  src="../static/img/bala2.jpg" :size="60"></el-avatar>
+                      <el-popover
+                        placement="top-start"
+                        title="标题"
+                        width="200"
+                        trigger="hover"
+                        content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
+                        <!--<el-button slot="reference">hover 激活</el-button>-->
+                        <el-avatar slot="reference" src="../static/img/bala2.jpg" :size="60"></el-avatar>
+                      </el-popover>
                     </div>
                     <div style="float: left;text-align: left;font-size: 20px;line-height: 60px">
 
@@ -440,54 +450,26 @@
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
   import ElInput from "../../node_modules/element-ui/packages/input/src/input";
 
-//  function send() {
-//
-//    var word = this.input1;
-//    alert(word)
-//    var span = document.createElement('span');
-//    var top = parseInt(Math.random() * 500) - 20;
-//    var color1 = parseInt(Math.random() * 256);
-//    var color2 = parseInt(Math.random() * 256);
-//    var color3 = parseInt(Math.random() * 256);
-//    var color = "rgb(" + color1 + "," + color2 + "," + color3 + ")";
-//    top = top < 0 ? 0 : top;
-//    span.style.position = 'absolute';
-//    span.style.top = top + "px";
-//    span.style.color = color;
-//    span.style.left = '800px';
-//    span.style.whiteSpace = 'nowrap';
-//    var nub = (Math.random() * 10) + 1;
-//    span.setAttribute('speed', nub);
-//    span.speed = nub;
-//    span.innerHTML = word;
-//    $('box').appendChild(span);
-//    this.input1 = "";
+//  弹幕
+//  function $(str)  {
+//    return document.getElementById(str);
 //  };
+//  setInterval(move,200)
 //  function move() {
-//    var spanArray = $('box').children;
-//    for (var i = 0; i < spanArray.length; i++) {
-//      spanArray[i].style.left = parseInt(spanArray[i].style.left) - spanArray[i].speed + 'px';
+//
+//      var spanArray = $('box').children;
+//      for (var i = 0; i < spanArray.length; i++) {
+//
+//        spanArray[i].style.left = parseInt(spanArray[i].style.left) - spanArray[i].speed + 'px';
+////        if((parseInt(spanArray[i].style.left)- spanArray[i].speed)<0){
+////          clearInterval(stopImg)
+////          spanArray[i].hidden;
+//          spanArray[i].style.left==0;
+//          spanArray[i].speed==0;
+////      }
 //    }
-//  };
-  function $(str)  {
-    return document.getElementById(str);
-  };
-  setInterval(move,200)
-  function move() {
-
-      var spanArray = $('box').children;
-      for (var i = 0; i < spanArray.length; i++) {
-
-        spanArray[i].style.left = parseInt(spanArray[i].style.left) - spanArray[i].speed + 'px';
-//        if((parseInt(spanArray[i].style.left)- spanArray[i].speed)<0){
-//          clearInterval(stopImg)
-//          spanArray[i].hidden;
-          spanArray[i].style.left==0;
-          spanArray[i].speed==0;
-//      }
-    }
-
-  }
+//
+//  }
   export default {
     components: {
       ElInput,
@@ -496,12 +478,13 @@
     name: 'index',
     data () {
       return {
+        visible: false,
         activeIndex: '1',
           input:'',
         input1:'',
-        users:{
-              uid:1,
-          uname:''
+        user:{
+              userId:1,
+          userName:''
         },
         msg: 'Welcome video index',
         active:'',
@@ -524,28 +507,29 @@
         player:'',
         index:1,
 //        倍速
-        options: [
-          {
-            value: '0.5',
-            label: '0.5'
-          },{
-            value: '1',
-            label: '1.0'
-          },{
-            value: '1.25',
-            label: '1.25'
-          },{
-            value: '1.5',
-            label: '1.5'
-          },{
-            value: '2',
-            label: '2.0'
-          }
-        ]
+//        options: [
+//          {
+//            value: '0.5',
+//            label: '0.5'
+//          },{
+//            value: '1',
+//            label: '1.0'
+//          },{
+//            value: '1.25',
+//            label: '1.25'
+//          },{
+//            value: '1.5',
+//            label: '1.5'
+//          },{
+//            value: '2',
+//            label: '2.0'
+//          }
+//        ]
       }
     },
     mounted(){
-      var player = videojs('example-video');
+//      var player = videojs('example-video');
+
       //      倍速播放
 //      var player = videojs("example-video").setup({
 //        title: "倍速播放",
@@ -623,37 +607,37 @@
       handleCurrentChange(val) {
         console.log('当前页: ${val}');
       },
+
 //      弹幕
-
-       send:function(){
-         var word = this.input1;
-//         alert(word)
-         var length=word.length;//huoqu wenben de changdu
-         var span = document.createElement('span');
-         var top = parseInt(Math.random() * 500) - 20;
-         var color1 = parseInt(Math.random() * 256);
-         var color2 = parseInt(Math.random() * 256);
-         var color3 = parseInt(Math.random() * 256);
-         var color = "rgb(" + color1 + "," + color2 + "," + color3 + ")";
-         top = top < 0 ? 0 : top;
-         span.style.position = 'absolute';
-         span.style.top = top + "px";
-         span.style.color = color;
-         span.style.left = '800px';
-         span.style.whiteSpace = 'nowrap';
-         var nub = (Math.random() * 10) + 1;
-         span.setAttribute('speed', nub);
-         span.speed = nub;
-         span.innerHTML = word;
-//          alert($('box'))
-
-         $('box').appendChild(span);
-         this.input1= "";
-//         if (span.offsetLeft < -length * random * 16) {
-//           clearInterval(timer);
-//           mainContent.removeChild(span);
-//         }
-       },
+//       send:function(){
+//         var word = this.input1;
+////         alert(word)
+//         var length=word.length;//huoqu wenben de changdu
+//         var span = document.createElement('span');
+//         var top = parseInt(Math.random() * 500) - 20;
+//         var color1 = parseInt(Math.random() * 256);
+//         var color2 = parseInt(Math.random() * 256);
+//         var color3 = parseInt(Math.random() * 256);
+//         var color = "rgb(" + color1 + "," + color2 + "," + color3 + ")";
+//         top = top < 0 ? 0 : top;
+//         span.style.position = 'absolute';
+//         span.style.top = top + "px";
+//         span.style.color = color;
+//         span.style.left = '800px';
+//         span.style.whiteSpace = 'nowrap';
+//         var nub = (Math.random() * 10) + 1;
+//         span.setAttribute('speed', nub);
+//         span.speed = nub;
+//         span.innerHTML = word;
+////          alert($('box'))
+//
+//         $('box').appendChild(span);
+//         this.input1= "";
+////         if (span.offsetLeft < -length * random * 16) {
+////           clearInterval(timer);
+////           mainContent.removeChild(span);
+////         }
+//       },
 //      倍速播放
 
       //      个人中心-完善信息
@@ -674,6 +658,12 @@
           this.$router.push("/userLogin")
         }
       },
+      avatarmove(){
+
+      },
+      avatarleave(){
+
+      }
 
   }
 }

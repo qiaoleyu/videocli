@@ -38,7 +38,7 @@
                        :style="h"
                   >
                   <span class="el-dropdown-link">
-                    <a>个人中心</a><i class="el-icon-arrow-down el-icon--left"></i>
+                    <a style="cursor: pointer">个人中心</a><i class="el-icon-arrow-down el-icon--left"></i>
                   </span>
                     <el-dropdown-menu slot="dropdown">
                       <el-dropdown-item><a @click="toUser()">完善信息</a></el-dropdown-item>
@@ -55,7 +55,7 @@
                        @mouseleave="leave(3)"
                        :style="b"
                   >
-                    <a>赛事</a><i class="el-icon-arrow-down el-icon--left"></i>
+                    <a style="cursor: pointer">赛事</a><i class="el-icon-arrow-down el-icon--left"></i>
                   </div>
                 </span>
                   <el-dropdown-menu slot="dropdown" style="width:240px;">
@@ -74,7 +74,7 @@
                        :style="c"
                   >
                 <span class="el-dropdown-link">
-                  <a>视频</a><i class="el-icon-arrow-down el-icon--left"></i>
+                  <a style="cursor: pointer">视频</a><i class="el-icon-arrow-down el-icon--left"></i>
                 </span>
                     <el-dropdown-menu slot="dropdown" style="width:240px;">
                       <el-dropdown-item>1</el-dropdown-item>
