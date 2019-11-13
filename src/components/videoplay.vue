@@ -259,7 +259,7 @@
                             <el-col :span="3">
                               <div style="float: left;">
                                 <el-button icon="el-icon-thumb" type="warning" circle plain style="font-size: 8px"></el-button>
-
+                                <sapn>12</sapn>
                               </div>
                             </el-col>
                             <el-col :span="3">
