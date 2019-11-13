@@ -41,7 +41,7 @@
                     <a style="cursor: pointer">个人中心</a><i class="el-icon-arrow-down el-icon--left"></i>
                   </span>
                     <el-dropdown-menu slot="dropdown">
-                      <el-dropdown-item><a @click="toUser()">完善信息</a></el-dropdown-item>
+                      <el-dropdown-item><a @click="toUser()">完善资料</a></el-dropdown-item>
                       <el-dropdown-item><a @click="toModify()">修改密码</a></el-dropdown-item>
                     </el-dropdown-menu>
                   </div>
