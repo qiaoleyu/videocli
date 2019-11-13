@@ -234,10 +234,40 @@
                     <!--评论信息-->
                     <el-row :gutter="10" style="margin-top: 20px">
                       <el-col :span="20" :offset="4">
-                        <div style="width:99%;font-size: 25px;font-weight: bolder;margin-left: 10px;background-color: black;float: left;text-align: center">
+                        <div style="width:99%;font-size: 16px;font-weight: bolder;margin-left: 10px;background-color: black;float: left;text-align: center">
                           <!--遍历评论信息-->
-                          <span>用户名</span>
 
+                          <el-row :gutter="10" style="margin-top: 20px">
+                            <el-col :span="2">
+                              <div style="float: left;">
+                                <el-avatar slot="reference" src="../static/img/bala2.jpg" :size="30"></el-avatar>
+                              </div>
+                            </el-col>
+                            <el-col :span="2">
+                              <div style="float: left;">
+                                <span>用户名</span>
+                              </div>
+                            </el-col>
+                          </el-row>
+
+                          <el-row :gutter="10" style="margin-top: 20px">
+                            <el-col :span="3">
+                              <div style="float: left;">
+                                <span >date</span>
+                              </div>
+                            </el-col>
+                            <el-col :span="3">
+                              <div style="float: left;">
+                                <el-button icon="el-icon-thumb" type="warning" circle plain style="font-size: 8px"></el-button>
+
+                              </div>
+                            </el-col>
+                            <el-col :span="3">
+                              <div style="float: left;">
+                                <el-button @click="onMessage()">回复</el-button>
+                              </div>
+                            </el-col>
+                          </el-row>
                         </div>
                       </el-col>
                     </el-row>
@@ -487,11 +517,13 @@
 ////         }
 //       },
 //      倍速播放
-      avatarmove(){
-
-      },
-      avatarleave(){
-
+      onMessage(){
+        if (this.userId!=null) {
+          this.$router.push("/userMessage")
+        }else {
+          this.$message.error('还没登录哦，请登录后再试');
+          this.$router.push("/userLogin")
+        }
       }
 
   }
@@ -608,6 +640,14 @@
 
   .el-carousel__item:nth-child(2n+1) {
     background-color: #d3dce6;
+  }
+  .note{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top:0;
+    left: 0;
+    overflow-y: auto;
   }
 </style>
 

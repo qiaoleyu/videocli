@@ -2,7 +2,7 @@
   <div id="app">
     <!--<img src="./assets/logo.png">-->
     <!--导航栏-->
-    <el-header v-show="(path ==='/'||path==='/videoplay'||path==='/searchVideo'||path==='/uploadVideo'||path==='/updatePassword'||path==='/userDetial')" style="height: 80px">
+    <el-header v-show="(path ==='/'||path==='/videoplay'||path==='/userMessage'||path==='/searchVideo'||path==='/uploadVideo'||path==='/updatePassword'||path==='/userDetial')" style="height: 80px">
       <div style="width: 100%;margin: auto">
         <el-row :gutter="10">
           <!--<el-col :span="4">-->
@@ -42,6 +42,7 @@
                   <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item><a @click="toUser()">完善资料</a></el-dropdown-item>
                     <el-dropdown-item><a @click="toModify()">修改密码</a></el-dropdown-item>
+                    <el-dropdown-item><a @click="toMessage()">信息中心</a></el-dropdown-item>
                   </el-dropdown-menu>
                 </div>
               </el-dropdown>
@@ -231,7 +232,7 @@ export default {
         this.$router.push("/userLogin")
       }
     },
-//      修改密码
+    //修改密码
     toModify:function () {
       if (this.userId!=null) {
         this.$router.push("/updatePassword")
@@ -240,12 +241,14 @@ export default {
         this.$router.push("/userLogin")
       }
     },
-    avatarmove(){
-
+    toMessage(){
+      if (this.userId!=null) {
+        this.$router.push("/userMessage")
+      }else {
+        this.$message.error('还没登录哦，请登录后再试');
+        this.$router.push("/userLogin")
+      }
     },
-    avatarleave(){
-
-    }
   }
 }
 </script>
