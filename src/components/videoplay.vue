@@ -3,141 +3,8 @@
     <!--<h1>{{ msg }}</h1>-->
     <el-container >
       <!--导航栏-->
-      <el-header style="height: 140px">
+      <el-header style="height: 40px">
         <div style="width: 100%;margin: auto">
-        <el-row :gutter="10">
-          <!--<el-col :span="4">-->
-            <!--<div class="grid-content " style="height: 60px;font-size: 16px">-->
-              <!--<el-image src="http://pxx4c7852.bkt.clouddn.com/logo2%20%281%29.jpg" style="height: 60px;width:150px;border-radius: 3px"></el-image>-->
-            <!--</div>-->
-          <!--</el-col>-->
-          <el-col :span="10" :offset="2">
-            <div class="grid-content " style="height: 80px;font-size: 16px;border: solid 1px orangered;border-radius: 10px">
-              <div class="grid-content " style="height: 60px;font-size: 16px;float: left;">
-                <router-link :to="{name:'index'}"><el-image src="../static/img/bala2.jpg" style="height: 80px;width:150px;border-radius: 3px" title="返回首页"></el-image></router-link>
-              </div>
-              <div id="sy" class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
-                   @mousemove="over(1)"
-                   @mouseleave="leave(1)"
-                   :style="active"
-
-              >
-                <router-link type="info" :to="{name:'index'}" style="color:black;"><a>首页</a></router-link>
-              </div>
-              <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
-                   @mousemove="over(2)"
-                   @mouseleave="leave(2)"
-                   :style="a"
-              >
-                <a @click="toOrders()" style="cursor: pointer">直播</a>
-              </div>
-              <el-dropdown>
-                <div class="grid-content " style="height:60px;font-size: 16px;float: left;margin-top: 10px"
-                     @mousemove="over(9)"
-                     @mouseleave="leave(9)"
-                     :style="h"
-                >
-                  <span class="el-dropdown-link">
-                    <a>个人中心</a><i class="el-icon-arrow-down el-icon--left"></i>
-                  </span>
-                  <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item><a @click="toUser()">完善信息</a></el-dropdown-item>
-                    <el-dropdown-item><a @click="toModify()">修改密码</a></el-dropdown-item>
-                  </el-dropdown-menu>
-                </div>
-              </el-dropdown>
-
-              <el-dropdown>
-
-                <span class="el-dropdown-link">
-                  <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;top: 10px"
-                       @mousemove="over(3)"
-                       @mouseleave="leave(3)"
-                       :style="b"
-                  >
-                    <a>赛事</a><i class="el-icon-arrow-down el-icon--left"></i>
-                  </div>
-                </span>
-                  <el-dropdown-menu slot="dropdown" style="width:240px;">
-                    <el-dropdown-item>1</el-dropdown-item>
-                    <el-dropdown-item>2</el-dropdown-item>
-                    <el-dropdown-item>3</el-dropdown-item>
-                    <el-dropdown-item>4</el-dropdown-item>
-                    <el-dropdown-item>5</el-dropdown-item>
-                  </el-dropdown-menu>
-
-              </el-dropdown>
-              <el-dropdown>
-                <div class="grid-content " style="height: 60px;font-size: 16px;float: left"
-                     @mousemove="over(4)"
-                     @mouseleave="leave(4)"
-                     :style="c"
-                >
-                <span class="el-dropdown-link">
-                  <a>视频</a><i class="el-icon-arrow-down el-icon--left"></i>
-                </span>
-                  <el-dropdown-menu slot="dropdown" style="width:240px;">
-                    <el-dropdown-item>1</el-dropdown-item>
-                    <el-dropdown-item>2</el-dropdown-item>
-                    <el-dropdown-item>3</el-dropdown-item>
-                    <el-dropdown-item>4</el-dropdown-item>
-                    <el-dropdown-item>5</el-dropdown-item>
-                  </el-dropdown-menu>
-                </div>
-              </el-dropdown>
-            </div>
-          </el-col>
-
-          <!--<el-col :span="4"><div class="grid-content bg-purple"></div></el-col>-->
-          <el-col :span="8" :offset="4">
-            <div class="grid-content " style="height: 80px;margin-top: 10px">
-
-              <!--VIP-->
-              <div class="grid-content " style="height: 60px;width:50px;float: left"
-                   @mousemove="over(11)"
-                   @mouseleave="leave(11)"
-                   :style="j"
-              >
-                 <span type="info" style="color:black;cursor: pointer;margin-right: 10px">
-                  <a  type="info" @click="toPay()" style="font-size: 20px" title="VIP">VIP</a>
-                </span>
-              </div>
-              <!--历史-->
-              <div class="grid-content " style="height: 60px;float: left"
-                   @mousemove="over(5)"
-                   @mouseleave="leave(5)"
-                   :style="d"
-              >
-                <span type="info" style="color:black;cursor: pointer;margin-right: 10px" ><a @click="logout()" class="el-icon-pie-chart" :size="50">历史</a></span>
-              </div>
-              <!--登录-->
-              <div class="grid-content " style="height: 60px;width:50px;float: left"
-                   @mousemove="over(6)"
-                   @mouseleave="leave(6)"
-                   :style="e"
-              >
-                <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.userId==null" ><a class="el-icon-user">登录</a></router-link>
-                <span style="color:black;" v-if="this.userId!=null"><a>{{user.userName}}</a></span>
-              </div>
-              <!--注册-->
-              <div class="grid-content " style="height: 60px;width:50px;float: left"
-                   @mousemove="over(7)"
-                   @mouseleave="leave(7)"
-                   :style="f"
-              >
-                <router-link type="info" :to="{name:'userRegist'}" style="color:black"><a>注册</a></router-link>
-              </div>
-              <!--退出-->
-              <div class="grid-content " style="height: 60px;width:50px;float: left"
-                   @mousemove="over(8)"
-                   @mouseleave="leave(8)"
-                   :style="g"
-              >
-                <span type="info" style="color:black;cursor: pointer"><a @click="logout()">退出</a></span>
-              </div>
-            </div>
-          </el-col>
-        </el-row>
           <!--搜索-->
           <el-row :gutter="10">
             <el-col :span="14" :offset="5">
@@ -166,17 +33,17 @@
                  <source
                    src="https://candy-jing.oss-cn-beijing.aliyuncs.com/01.mp4"
                    type="video/mp4">
-                  <template>
-                    <el-select v-model="value" placeholder="倍速">
-                      <el-option
-                        id="selRate"
-                        v-for="item in options"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value">
-                      </el-option>
-                    </el-select>
-                  </template>
+                  <!--<template>-->
+                    <!--<el-select v-model="value" placeholder="倍速">-->
+                      <!--<el-option-->
+                        <!--id="selRate"-->
+                        <!--v-for="item in options"-->
+                        <!--:key="item.value"-->
+                        <!--:label="item.label"-->
+                        <!--:value="item.value">-->
+                      <!--</el-option>-->
+                    <!--</el-select>-->
+                  <!--</template>-->
                   <!--<source-->
                     <!---->
                   <!--&gt;-->
@@ -220,8 +87,10 @@
                     <!--inactive-text="关闭"-->
                   </el-switch>
                 </el-tooltip>
+
                 <!--弹幕（飘屏设置）-->
-                <div id="box" class="box" style="width:100%;float: left;margin: auto"></div>
+                <!--<div id="box" class="box" style="width:100%;float: left;margin: auto"></div>-->
+
               </div>
 
 
@@ -308,7 +177,53 @@
                     <div style="width:150px;font-size: 25px;font-weight: bolder;margin-left: 10px;background-color: black;float: left;text-align: center">
                       <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
                       </el-menu>
-                      <el-avatar  src="../static/img/bala2.jpg" :size="60"></el-avatar>
+                      <el-popover
+                        placement="top-start"
+                        width="300"
+                        trigger="hover"
+                        >
+                        <!--title="标题"-->
+                        <!--content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"-->
+                        <!--<el-button slot="reference">hover 激活</el-button>-->
+                        <el-row :gutter="10">
+                          <el-col :span="24">
+                            <div style="float: left;">
+                              <el-image src="../static/img/yh1.jpg" style="width: 100%"></el-image>
+                            </div>
+                          </el-col>
+                          <el-col :span="10" :offset="2" style="height:60px;line-height: 60px">
+                            <div style="float: left;">
+                              <el-avatar src="../static/img/bala2.jpg" :size="60"></el-avatar>
+                            </div>
+                          </el-col>
+                          <el-col :span="12" style="height:60px;line-height: 60px">
+                            <div style="float: left;">
+                              <span>用户名</span>
+                            </div>
+                          </el-col>
+                          <el-col :span="18" :offset="6" style="font-size: 12px">
+                            <div style="float: left;margin-right: 20px;width: 40%">
+                              <span style="float: left">关注：</span>
+                              <span style="float: left">3</span>
+                            </div>
+                            <div style="float: left;width: 40%">
+                              <span style="float: left">粉丝：</span>
+                              <span style="float: left">13</span>
+                            </div>
+                          </el-col>
+                          <el-col :span="12"  style="font-size: 12px;margin-top: 20px">
+                            <div style="float: left;width: 100%">
+                              <el-button type="primary" style="width: 100%" plain  @click="guanzhu()">+关注</el-button>
+                            </div>
+                          </el-col>
+                          <el-col :span="12"  style="font-size: 12px;margin-top: 20px">
+                            <div style="float: left;width: 100%">
+                              <el-button type="primary" style="width: 100%" plain @click="send()">发信息</el-button>
+                            </div>
+                          </el-col>
+                        </el-row>
+                        <el-avatar slot="reference" src="../static/img/bala2.jpg" :size="60"></el-avatar>
+                      </el-popover>
                     </div>
                     <div style="float: left;text-align: left;font-size: 20px;line-height: 60px">
 
@@ -319,10 +234,40 @@
                     <!--评论信息-->
                     <el-row :gutter="10" style="margin-top: 20px">
                       <el-col :span="20" :offset="4">
-                        <div style="width:99%;font-size: 25px;font-weight: bolder;margin-left: 10px;background-color: black;float: left;text-align: center">
+                        <div style="width:99%;font-size: 16px;font-weight: bolder;margin-left: 10px;background-color: beige;float: left;text-align: center">
                           <!--遍历评论信息-->
-                          <span>用户名</span>
 
+                          <el-row :gutter="10" style="margin-top: 20px">
+                            <el-col :span="2">
+                              <div style="float: left;">
+                                <el-avatar slot="reference" src="../static/img/bala2.jpg" :size="30"></el-avatar>
+                              </div>
+                            </el-col>
+                            <el-col :span="2">
+                              <div style="float: left;">
+                                <span>用户名</span>
+                              </div>
+                            </el-col>
+                          </el-row>
+
+                          <el-row :gutter="10" style="margin-top: 20px">
+                            <el-col :span="3">
+                              <div style="float: left;">
+                                <span >date</span>
+                              </div>
+                            </el-col>
+                            <el-col :span="3">
+                              <div style="float: left;">
+                                <el-button icon="el-icon-thumb" type="warning" circle plain style="font-size: 8px"></el-button>
+                                <sapn>12</sapn>
+                              </div>
+                            </el-col>
+                            <el-col :span="3">
+                              <div style="float: left;">
+                                <a @click="onMessage" style="cursor: pointer;">回复</a>
+                              </div>
+                            </el-col>
+                          </el-row>
                         </div>
                       </el-col>
                     </el-row>
@@ -440,54 +385,26 @@
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
   import ElInput from "../../node_modules/element-ui/packages/input/src/input";
 
-//  function send() {
-//
-//    var word = this.input1;
-//    alert(word)
-//    var span = document.createElement('span');
-//    var top = parseInt(Math.random() * 500) - 20;
-//    var color1 = parseInt(Math.random() * 256);
-//    var color2 = parseInt(Math.random() * 256);
-//    var color3 = parseInt(Math.random() * 256);
-//    var color = "rgb(" + color1 + "," + color2 + "," + color3 + ")";
-//    top = top < 0 ? 0 : top;
-//    span.style.position = 'absolute';
-//    span.style.top = top + "px";
-//    span.style.color = color;
-//    span.style.left = '800px';
-//    span.style.whiteSpace = 'nowrap';
-//    var nub = (Math.random() * 10) + 1;
-//    span.setAttribute('speed', nub);
-//    span.speed = nub;
-//    span.innerHTML = word;
-//    $('box').appendChild(span);
-//    this.input1 = "";
+//  弹幕
+//  function $(str)  {
+//    return document.getElementById(str);
 //  };
+//  setInterval(move,200)
 //  function move() {
-//    var spanArray = $('box').children;
-//    for (var i = 0; i < spanArray.length; i++) {
-//      spanArray[i].style.left = parseInt(spanArray[i].style.left) - spanArray[i].speed + 'px';
+//
+//      var spanArray = $('box').children;
+//      for (var i = 0; i < spanArray.length; i++) {
+//
+//        spanArray[i].style.left = parseInt(spanArray[i].style.left) - spanArray[i].speed + 'px';
+////        if((parseInt(spanArray[i].style.left)- spanArray[i].speed)<0){
+////          clearInterval(stopImg)
+////          spanArray[i].hidden;
+//          spanArray[i].style.left==0;
+//          spanArray[i].speed==0;
+////      }
 //    }
-//  };
-  function $(str)  {
-    return document.getElementById(str);
-  };
-  setInterval(move,200)
-  function move() {
-
-      var spanArray = $('box').children;
-      for (var i = 0; i < spanArray.length; i++) {
-
-        spanArray[i].style.left = parseInt(spanArray[i].style.left) - spanArray[i].speed + 'px';
-//        if((parseInt(spanArray[i].style.left)- spanArray[i].speed)<0){
-//          clearInterval(stopImg)
-//          spanArray[i].hidden;
-          spanArray[i].style.left==0;
-          spanArray[i].speed==0;
-//      }
-    }
-
-  }
+//
+//  }
   export default {
     components: {
       ElInput,
@@ -496,25 +413,15 @@
     name: 'index',
     data () {
       return {
+        visible: false,
         activeIndex: '1',
           input:'',
         input1:'',
-        users:{
-              uid:1,
-          uname:''
+        user:{
+              userId:1,
+          userName:''
         },
         msg: 'Welcome video index',
-        active:'',
-        a:'',
-        b:'',
-        c:'',
-        d:'',
-        e:'',
-        f:'',
-        g:'',
-        h:'',
-        i:'',
-        j:'',
         value1:'',
 //        评分
         value2: null,
@@ -524,28 +431,29 @@
         player:'',
         index:1,
 //        倍速
-        options: [
-          {
-            value: '0.5',
-            label: '0.5'
-          },{
-            value: '1',
-            label: '1.0'
-          },{
-            value: '1.25',
-            label: '1.25'
-          },{
-            value: '1.5',
-            label: '1.5'
-          },{
-            value: '2',
-            label: '2.0'
-          }
-        ]
+//        options: [
+//          {
+//            value: '0.5',
+//            label: '0.5'
+//          },{
+//            value: '1',
+//            label: '1.0'
+//          },{
+//            value: '1.25',
+//            label: '1.25'
+//          },{
+//            value: '1.5',
+//            label: '1.5'
+//          },{
+//            value: '2',
+//            label: '2.0'
+//          }
+//        ]
       }
     },
     mounted(){
-      var player = videojs('example-video');
+//      var player = videojs('example-video');
+
       //      倍速播放
 //      var player = videojs("example-video").setup({
 //        title: "倍速播放",
@@ -570,52 +478,6 @@
 
     },
     methods:{
-        over:function (x) {
-            if(x==1){
-              this.active='background-color: orangered;border-radius: 0px 10px 0px 10px';
-            } if(x==2){
-              this.a='background-color: orangered;border-radius: 0px 10px 0px 10px';
-            } if(x==3){
-              this.b='background-color: orangered;border-radius: 0px 10px 0px 10px';
-            } if(x==4){
-              this.c='background-color: orangered;border-radius: 0px 10px 0px 10px';
-            } if(x==5){
-              this.d='background-color: orangered;border-radius: 0px 10px 0px 10px';
-            } if(x==6){
-              this.e='background-color: orangered;border-radius: 0px 10px 0px 10px';
-            } if(x==7){
-              this.f='background-color: orangered;border-radius: 0px 10px 0px 10px';
-            } if(x==8){
-              this.g='background-color: orangered;border-radius: 0px 10px 0px 10px';
-            }if(x==9){
-              this.h='background-color: orangered;border-radius: 0px 10px 0px 10px';
-            }if(x==11){
-            this.j='background-color: orangered;border-radius: 0px 10px 0px 10px';
-          }
-        },
-      leave:function (x) {
-        if(x==1){
-          this.active='';
-        } if(x==2){
-          this.a='';
-        } if(x==3){
-          this.b='';
-        } if(x==4){
-          this.c='';
-        } if(x==5){
-          this.d='';
-        } if(x==6){
-          this.e='';
-        } if(x==7){
-          this.f='';
-        } if(x==8){
-          this.g='';
-        }if(x==9){
-          this.h='';
-        }if(x==11){
-          this.j='';
-        }
-      },
 //      分页
       handleSizeChange(val) {
         console.log('每页 ${val} 条');
@@ -623,57 +485,66 @@
       handleCurrentChange(val) {
         console.log('当前页: ${val}');
       },
+
 //      弹幕
-
-       send:function(){
-         var word = this.input1;
-//         alert(word)
-         var length=word.length;//huoqu wenben de changdu
-         var span = document.createElement('span');
-         var top = parseInt(Math.random() * 500) - 20;
-         var color1 = parseInt(Math.random() * 256);
-         var color2 = parseInt(Math.random() * 256);
-         var color3 = parseInt(Math.random() * 256);
-         var color = "rgb(" + color1 + "," + color2 + "," + color3 + ")";
-         top = top < 0 ? 0 : top;
-         span.style.position = 'absolute';
-         span.style.top = top + "px";
-         span.style.color = color;
-         span.style.left = '800px';
-         span.style.whiteSpace = 'nowrap';
-         var nub = (Math.random() * 10) + 1;
-         span.setAttribute('speed', nub);
-         span.speed = nub;
-         span.innerHTML = word;
-//          alert($('box'))
-
-         $('box').appendChild(span);
-         this.input1= "";
-//         if (span.offsetLeft < -length * random * 16) {
-//           clearInterval(timer);
-//           mainContent.removeChild(span);
-//         }
-       },
+//       send:function(){
+//         var word = this.input1;
+////         alert(word)
+//         var length=word.length;//huoqu wenben de changdu
+//         var span = document.createElement('span');
+//         var top = parseInt(Math.random() * 500) - 20;
+//         var color1 = parseInt(Math.random() * 256);
+//         var color2 = parseInt(Math.random() * 256);
+//         var color3 = parseInt(Math.random() * 256);
+//         var color = "rgb(" + color1 + "," + color2 + "," + color3 + ")";
+//         top = top < 0 ? 0 : top;
+//         span.style.position = 'absolute';
+//         span.style.top = top + "px";
+//         span.style.color = color;
+//         span.style.left = '800px';
+//         span.style.whiteSpace = 'nowrap';
+//         var nub = (Math.random() * 10) + 1;
+//         span.setAttribute('speed', nub);
+//         span.speed = nub;
+//         span.innerHTML = word;
+////          alert($('box'))
+//
+//         $('box').appendChild(span);
+//         this.input1= "";
+////         if (span.offsetLeft < -length * random * 16) {
+////           clearInterval(timer);
+////           mainContent.removeChild(span);
+////         }
+//       },
 //      倍速播放
-
-      //      个人中心-完善信息
-      toUser:function () {
+      //私聊
+      send(){
         if (this.userId!=null) {
-          this.$router.push("/userDetial")
+          this.$router.push("/userMessage")
         }else {
           this.$message.error('还没登录哦，请登录后再试');
           this.$router.push("/userLogin")
         }
       },
-//      修改密码
-      toModify:function () {
-        if (this.userId!=null) {
-          this.$router.push("/updatePassword")
-        }else {
-          this.$message.error('还没登录哦，请登录后再试');
-          this.$router.push("/userLogin")
-        }
-      },
+      //回复
+      onMessage() {
+        this.$prompt('请输入回复信息', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+//          inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
+//          inputErrorMessage: '邮箱格式不正确'
+        }).then(({ value }) => {
+          this.$message({
+            type: 'success',
+            message: '您回复的信息是: ' + value
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消输入'
+          });
+        });
+      }
 
   }
 }
@@ -789,6 +660,14 @@
 
   .el-carousel__item:nth-child(2n+1) {
     background-color: #d3dce6;
+  }
+  .note{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top:0;
+    left: 0;
+    overflow-y: auto;
   }
 </style>
 

@@ -9,6 +9,9 @@ import userDetial from '@/components/userDetial'
 import userLogin from '@/components/userLogin'
 import userRegist from '@/components/userRegist'
 import searchVideo from '@/components/searchVideo'
+import identifyCode from '@/components/identifyCode'
+import sidentify from '@/components/sidentify'
+import userMessage from '@/components/userMessage'
 
 Vue.use(Router)
 
@@ -50,6 +53,18 @@ export default new Router({
       path: '/searchVideo',
       name: 'searchVideo',
       component: searchVideo
+    },{
+      path: '/identifyCode',
+      name: 'identifyCode',
+      component: identifyCode
+    },{
+      path: '/sidentify',
+      name: 'sidentify',
+      component: sidentify
+    },{
+      path: '/userMessage',
+      name: 'userMessage',
+      component: userMessage
     }
   ]
 })
