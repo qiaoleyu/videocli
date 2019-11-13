@@ -3,23 +3,26 @@
       <el-container style="height: 600px;width: 90%;margin: auto; border: 1px solid #eee">
         <!--<el-aside width="200px" style="background-color: rgb(238, 241, 246)">-->
         <el-aside class="app-side app-side-left"
-                  style="width: inherit;line-height: inherit;background-color: inherit" >
+                  style="width: 20%;line-height: inherit;background-color: inherit" >
           <el-menu
             router
             class="el-menu-vertical-demo"
           >
             <template v-for="route in $router.options.routes" v-if="route.children && route.children.length">
               <template v-for="item in route.children" >
+                <el-badge :value="7" class="item" type="primary" style="margin-top: 20px">
                 <el-menu-item
                   :key="route.path + '/' + item.path"
                   :index="item.path"
+                  active-text-color="#ffd04b"
                 >
-                  <i class="el-icon-menu"></i>
+                  <i class="el-icon-chat-dot-round"></i>
                   <span slot="title">{{ item.name }}</span>
                 </el-menu-item>
+                </el-badge>
               </template>
             </template>
-            <el-badge :value="12" class="item" type="primary" style="margin-top: 20px">
+            <el-badge :value="10" class="item" type="primary" style="margin-top: 20px">
               <el-menu-item index="1" style="height: 20%">
                 <i class="el-icon-message"></i>
                 <span slot="title">评论</span>
@@ -33,22 +36,15 @@
               </el-menu-item>
             </el-badge>
 
-            <el-badge :value="8" class="item" type="primary">
+            <el-badge :value="5" class="item" type="primary">
               <el-menu-item index="3" style="height: 20%">
-                <i class="el-icon-chat-dot-round"></i>
-                  <span slot="title" >私聊</span>
-              </el-menu-item>
-            </el-badge>
-
-            <el-badge :value="6" class="item" type="primary">
-              <el-menu-item index="4" style="height: 20%">
                 <i class="el-icon-folder-opened"></i>
                 <span slot="title">收藏</span>
               </el-menu-item>
             </el-badge>
 
             <el-badge :value="6" class="item" type="warning">
-              <el-menu-item index="5" style="height: 20%">
+              <el-menu-item index="4" style="height: 20%">
                 <i class="el-icon-upload"></i>
                 <span slot="title">发布</span>
               </el-menu-item>
@@ -108,7 +104,7 @@
   }
 
   .el-main {
-    background-color: #FDFFF4;
+    /*background-color: #FDFFF4;*/
     /*background-color: #E9EEF3;*/
     color: #333;
     text-align: center;
@@ -169,6 +165,7 @@
 
     },
     methods:{
+
     }
   }
 </script>
