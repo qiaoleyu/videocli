@@ -312,11 +312,49 @@
                       </el-menu>
                       <el-popover
                         placement="top-start"
-                        title="标题"
-                        width="200"
+                        width="300"
                         trigger="hover"
-                        content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
+                        >
+                        <!--title="标题"-->
+                        <!--content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"-->
                         <!--<el-button slot="reference">hover 激活</el-button>-->
+                        <el-row :gutter="10">
+                          <el-col :span="24">
+                            <div style="float: left;">
+                              <el-image src="../static/img/yh1.jpg" style="width: 100%"></el-image>
+                            </div>
+                          </el-col>
+                          <el-col :span="10" :offset="2" style="height:60px;line-height: 60px">
+                            <div style="float: left;">
+                              <el-avatar src="../static/img/bala2.jpg" :size="60"></el-avatar>
+                            </div>
+                          </el-col>
+                          <el-col :span="12" style="height:60px;line-height: 60px">
+                            <div style="float: left;">
+                              <span>用户名</span>
+                            </div>
+                          </el-col>
+                          <el-col :span="18" :offset="6" style="font-size: 12px">
+                            <div style="float: left;margin-right: 20px;width: 40%">
+                              <span style="float: left">关注：</span>
+                              <span style="float: left">3</span>
+                            </div>
+                            <div style="float: left;width: 40%">
+                              <span style="float: left">粉丝：</span>
+                              <span style="float: left">13</span>
+                            </div>
+                          </el-col>
+                          <el-col :span="12"  style="font-size: 12px;margin-top: 20px">
+                            <div style="float: left;width: 100%">
+                              <el-button type="primary" style="width: 100%" plain  @click="guanzhu()">+关注</el-button>
+                            </div>
+                          </el-col>
+                          <el-col :span="12"  style="font-size: 12px;margin-top: 20px">
+                            <div style="float: left;width: 100%">
+                              <el-button type="primary" style="width: 100%" plain @click="send()">发信息</el-button>
+                            </div>
+                          </el-col>
+                        </el-row>
                         <el-avatar slot="reference" src="../static/img/bala2.jpg" :size="60"></el-avatar>
                       </el-popover>
                     </div>
