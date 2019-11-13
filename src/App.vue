@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="note">
     <!--<img src="./assets/logo.png">-->
     <!--导航栏-->
     <el-header v-show="(path ==='/'||path==='/videoplay'||path==='/userMessage'||path==='/searchVideo'||path==='/uploadVideo'||path==='/updatePassword'||path==='/userDetial')" style="height: 80px">
@@ -354,5 +354,13 @@ export default {
   }
   .body{
     font-family: 楷体;
+  }
+  .note{
+    /*position: absolute;*/
+    height: 100%;
+    width: 100%;
+    top:0;
+    left: 0;
+    /*overflow-y: auto;*/
   }
 </style>

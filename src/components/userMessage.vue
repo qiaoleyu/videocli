@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 100%;margin: auto" class="note">
+  <div style="width: 100%;margin: auto" class="hello">
       <el-container style="height: 600px;width: 90%;margin: auto; border: 1px solid #eee">
         <!--<el-aside width="200px" style="background-color: rgb(238, 241, 246)">-->
         <el-aside class="app-side app-side-left"
