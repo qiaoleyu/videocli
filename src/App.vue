@@ -2,7 +2,7 @@
   <div id="app">
     <!--<img src="./assets/logo.png">-->
     <!--导航栏-->
-    <el-header style="height: 140px">
+    <el-header v-show="(path ==='/'||path==='/videoplay'||path==='/searchVideo'||path==='/uploadVideo'||path==='/updatePassword'||path==='/userDetial')" style="height: 80px">
       <div style="width: 100%;margin: auto">
         <el-row :gutter="10">
           <!--<el-col :span="4">-->
@@ -137,18 +137,6 @@
             </div>
           </el-col>
         </el-row>
-        <!--搜索-->
-        <el-row :gutter="10">
-          <el-col :span="14" :offset="5">
-            <div class="grid-content " style="height: 60px">
-              <!--搜索-->
-              <el-input ref="searchName" type="text" style="width: 75%;margin: auto;margin-top: 10px" placeholder="想搜索点什么呢~^_^"
-                        v-model="input"
-              />
-              <el-button type="primary" icon="el-icon-search" style="width: 100px" plain @click="search()"></el-button>
-            </div>
-          </el-col>
-        </el-row>
       </div>
     </el-header>
     <router-view/>
@@ -157,11 +145,177 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data(){
+      return{
+        path:'',
+        active:'',
+        a:'',
+        b:'',
+        c:'',
+        d:'',
+        e:'',
+        f:'',
+        g:'',
+        h:'',
+        i:'',
+        j:'',
+        user:{
+          userId:1,
+          userName:''
+        },
+      }
+  },
+  mounted() {
+    this.path = this.$route.path;
+    // console.log(this.$route.path)
+  },
+  watch:{
+    $route(to,from){
+      this.path = to.path
+    }
+  },
+  methods:{
+    over:function (x) {
+      if(x==1){
+        this.active='background-color: orangered;border-radius: 0px 10px 0px 10px';
+      } if(x==2){
+        this.a='background-color: orangered;border-radius: 0px 10px 0px 10px';
+      } if(x==3){
+        this.b='background-color: orangered;border-radius: 0px 10px 0px 10px';
+      } if(x==4){
+        this.c='background-color: orangered;border-radius: 0px 10px 0px 10px';
+      } if(x==5){
+        this.d='background-color: orangered;border-radius: 0px 10px 0px 10px';
+      } if(x==6){
+        this.e='background-color: orangered;border-radius: 0px 10px 0px 10px';
+      } if(x==7){
+        this.f='background-color: orangered;border-radius: 0px 10px 0px 10px';
+      } if(x==8){
+        this.g='background-color: orangered;border-radius: 0px 10px 0px 10px';
+      }if(x==9){
+        this.h='background-color: orangered;border-radius: 0px 10px 0px 10px';
+      }if(x==11){
+        this.j='background-color: orangered;border-radius: 0px 10px 0px 10px';
+      }
+    },
+    leave:function (x) {
+      if(x==1){
+        this.active='';
+      } if(x==2){
+        this.a='';
+      } if(x==3){
+        this.b='';
+      } if(x==4){
+        this.c='';
+      } if(x==5){
+        this.d='';
+      } if(x==6){
+        this.e='';
+      } if(x==7){
+        this.f='';
+      } if(x==8){
+        this.g='';
+      }if(x==9){
+        this.h='';
+      }if(x==11){
+        this.j='';
+      }
+    },
+    //      个人中心-完善信息
+    toUser:function () {
+      if (this.userId!=null) {
+        this.$router.push("/userDetial")
+      }else {
+        this.$message.error('还没登录哦，请登录后再试');
+        this.$router.push("/userLogin")
+      }
+    },
+//      修改密码
+    toModify:function () {
+      if (this.userId!=null) {
+        this.$router.push("/updatePassword")
+      }else {
+        this.$message.error('还没登录哦，请登录后再试');
+        this.$router.push("/userLogin")
+      }
+    },
+    avatarmove(){
+
+    },
+    avatarleave(){
+
+    }
+  }
 }
 </script>
 
 <style>
+  .el-header {
+    /*background-color: #B3C0D1;*/
+    /*color: #333;*/
+    text-align: center;
+    line-height: 60px;
+    margin-bottom: 10px;
+  }
+  body > .el-container {
+    margin-bottom: 40px;
+  }
+
+  .el-container:nth-child(5) .el-aside,
+  .el-container:nth-child(6) .el-aside {
+    line-height: 260px;
+  }
+
+  .el-container:nth-child(7) .el-aside {
+    line-height: 320px;
+  }
+
+  .el-dropdown-menu{
+    width: 120px;
+  }
+  .el-dropdown-item{
+    width: 100px;
+  }
+  .router-link{
+    color: black;
+    font-size: 14px;
+  }
+  .el-dropdown{
+    color: black;
+    font-size: 16px;
+    line-height: 60px;
+  }
+
+  .el-main{
+    overflow: inherit;
+  }
+  .el-row {
+  /*margin-bottom: 20px;*/
+  &:last-child {
+     margin-bottom: 0;
+   }
+  }
+  .el-col {
+    border-radius: 4px;
+  }
+  .bg-purple-dark {
+    background: #99a9bf;
+  }
+  .bg-purple {
+    background: #d3dce6;
+  }
+  .bg-purple-light {
+    background: #e5e9f2;
+  }
+  .grid-content {
+    border-radius: 4px;
+    min-height: 36px;
+  }
+  .row-bg {
+    padding: 10px 0;
+    background-color: #f9fafc;
+  }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -170,4 +324,32 @@ export default {
   color: #2c3e50;
   /*margin-top: 10px;*/
 }
+</style>
+
+<style scoped>
+  h1, h2 {
+    font-weight: normal;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  /*a {*/
+  /*color: #42b983;*/
+  /*}*/
+  a:link {
+    color: #000000;
+    text-decoration-line: none;
+
+  }
+  a:hover {
+    color: black;
+  }
+  .body{
+    font-family: 楷体;
+  }
 </style>
