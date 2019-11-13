@@ -161,12 +161,12 @@
                   </el-col>
                   <el-col :span="14">
                     <div style="height: 80px;font-size: 25px;font-weight: bolder;margin-left: 10px;line-height: 80px">
-                      <input type="text" style="height: 80px;width: 100%;font-size: 18px" />
+                      <input v-model="com.commentContent" type="text" style="height: 80px;width: 100%;font-size: 18px" />
                     </div>
                   </el-col>
                   <el-col :span="6">
                     <div style="height: 80px;font-size: 25px;font-weight: bolder;margin-left: 10px;line-height: 80px;text-align: center">
-                      <el-button style="height: 80px;width: 80%;font-size: 20px;font-weight: bolder;" plain type="primary">发表评论</el-button>
+                      <el-button style="height: 80px;width: 80%;font-size: 20px;font-weight: bolder;" plain type="primary" @click="save">发表评论</el-button>
                     </div>
                   </el-col>
                 </el-row>
@@ -225,51 +225,67 @@
                         <el-avatar slot="reference" src="../static/img/bala2.jpg" :size="60"></el-avatar>
                       </el-popover>
                     </div>
-                    <div style="float: left;text-align: left;font-size: 20px;line-height: 60px">
+                    <div style="float: left;text-align: left;font-size: 20px;line-height: 60px;margin-right: 40px">
 
                       <span>用户名</span>
 
                     </div>
+                    <div style="float: left;text-align: left;font-size: 20px;line-height: 60px">
+
+                      <span>评论标题</span>
+
+                    </div>
 
                     <!--评论信息-->
+
                     <el-row :gutter="10" style="margin-top: 20px">
+
                       <el-col :span="20" :offset="4">
-                        <div style="width:99%;font-size: 16px;font-weight: bolder;margin-left: 10px;background-color: beige;float: left;text-align: center">
+
+                        <div v-for="(item,index) in comments" style="width:99%;font-size: 16px;font-weight: bolder;margin-left: 10px;background-color: beige;float: left;text-align: center">
                           <!--遍历评论信息-->
 
                           <el-row :gutter="10" style="margin-top: 20px">
                             <el-col :span="2">
                               <div style="float: left;">
-                                <el-avatar slot="reference" src="../static/img/bala2.jpg" :size="30"></el-avatar>
+                                <el-avatar slot="reference" src="item.userPic" :size="30"></el-avatar>
                               </div>
                             </el-col>
                             <el-col :span="2">
                               <div style="float: left;">
-                                <span>用户名</span>
+                                <span>{{item.userName}}</span>
+                              </div>
+                            </el-col>
+                            <el-col :span="8">
+                              <div style="float: left;">
+                                <span>{{item.commentContent}}</span>
                               </div>
                             </el-col>
                           </el-row>
 
-                          <el-row :gutter="10" style="margin-top: 20px">
+                          <el-row :gutter="10" >
                             <el-col :span="3">
                               <div style="float: left;">
-                                <span >date</span>
+                                <span >{{item.commentTime}}</span>
                               </div>
                             </el-col>
                             <el-col :span="3">
                               <div style="float: left;">
-                                <el-button icon="el-icon-thumb" type="warning" circle plain style="font-size: 8px"></el-button>
-                                <sapn>12</sapn>
+                                <el-badge :value="item.commentCount" class="item" type="primary">
+                                  <el-button icon="el-icon-thumb" type="warning" circle plain style="font-size: 8px" @click="like(index)"></el-button>
+                                </el-badge>
+                                  <!--<sapn>{{item.commentCount}}</sapn>-->
                               </div>
                             </el-col>
                             <el-col :span="3">
                               <div style="float: left;">
-                                <a @click="onMessage" style="cursor: pointer;">回复</a>
+                                <a @click="onMessage" style="cursor: pointer">回复</a>
                               </div>
                             </el-col>
                           </el-row>
                         </div>
                       </el-col>
+
                     </el-row>
 
                     <!--分页-->
@@ -421,6 +437,18 @@
               userId:1,
           userName:''
         },
+        comments:[],
+        com:{
+          videoId:1,
+          episodeId:'',
+          userId:2,
+          userName:'gh',
+          userPic:'',
+          commentContent:'',
+          commentRid:0,
+          commentTime:'',
+          commentCount:''
+        },
         msg: 'Welcome video index',
         value1:'',
 //        评分
@@ -452,6 +480,8 @@
       }
     },
     mounted(){
+      this.findAll();
+      this.findByCommentId();
 //      var player = videojs('example-video');
 
       //      倍速播放
@@ -478,6 +508,47 @@
 
     },
     methods:{
+
+      findAll:function () {
+        axios.get("api/findAllComment").then(res=>{
+          if (res.data!=null){
+            this.comments=res.data;
+            console.log(this.comments)
+          }else {
+            alert("暂无评论")
+          }
+        })
+      },
+      findByCommentId:function (commentId) {
+        axios.get("api/").then(res=>{
+
+        })
+      },
+
+      save:function () {
+        this.com.commentRid=1;
+
+        console.log(this.com)
+        axios.post("api/saveComment",this.com).then(res=>{
+            this.com.commentContent='';
+          if (res.data!=null){
+            alert("success")
+            this.findAll();
+          }else {
+            alert("fail")
+          }
+        })
+      },
+
+      delete:function (commentId) {
+        this.findAll();
+      },
+
+//      点赞
+      like:function (index) {
+        this.comments[index].commentCount= this.comments[index].commentCount+1;
+      },
+
 //      分页
       handleSizeChange(val) {
         console.log('每页 ${val} 条');
