@@ -234,7 +234,7 @@
                     <!--评论信息-->
                     <el-row :gutter="10" style="margin-top: 20px">
                       <el-col :span="20" :offset="4">
-                        <div style="width:99%;font-size: 16px;font-weight: bolder;margin-left: 10px;background-color: black;float: left;text-align: center">
+                        <div style="width:99%;font-size: 16px;font-weight: bolder;margin-left: 10px;background-color: beige;float: left;text-align: center">
                           <!--遍历评论信息-->
 
                           <el-row :gutter="10" style="margin-top: 20px">
@@ -264,7 +264,7 @@
                             </el-col>
                             <el-col :span="3">
                               <div style="float: left;">
-                                <el-button @click="onMessage()">回复</el-button>
+                                <a @click="onMessage" style="cursor: pointer;">回复</a>
                               </div>
                             </el-col>
                           </el-row>
@@ -517,13 +517,33 @@
 ////         }
 //       },
 //      倍速播放
-      onMessage(){
+      //私聊
+      send(){
         if (this.userId!=null) {
           this.$router.push("/userMessage")
         }else {
           this.$message.error('还没登录哦，请登录后再试');
           this.$router.push("/userLogin")
         }
+      },
+      //回复
+      onMessage() {
+        this.$prompt('请输入回复信息', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+//          inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
+//          inputErrorMessage: '邮箱格式不正确'
+        }).then(({ value }) => {
+          this.$message({
+            type: 'success',
+            message: '您回复的信息是: ' + value
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消输入'
+          });
+        });
       }
 
   }
