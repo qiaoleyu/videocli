@@ -23,7 +23,7 @@
              <el-form-item label="视频：">
                <el-upload
                  class="avatar-uploader"
-                 action="api/upload"
+                 action="api/uploadVideo"
                  :on-change="handleChange"
                  :on-remove="handleRemove"
                  :file-list="fileList"
@@ -33,6 +33,7 @@
                >
                  <!--:show-file-list="false"-->
                   <!--:on-preview="handlePictureCardPreview"-->
+                   <!--type="application/x-mpegURL"-->
                  <img v-if="video.videoUrl" :src="video.videoUrl" class="avatar"  >
                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                </el-upload>
@@ -41,7 +42,7 @@
              <el-form-item label="视频封面：">
                <el-upload
                  class="avatar-uploader"
-                 action="api/upload"
+                 action="api/uploadVideoPic"
                  :show-file-list="false"
                  :on-success="handleAvatarSuccess"
                  :before-upload="beforeAvatarUpload"
@@ -71,8 +72,8 @@
              <el-form-item label="视频名称：" prop="videoName">
                <el-input name="videoName" v-model="video.videoName" ></el-input>
              </el-form-item>
-             <el-form-item label="视频类别：" prop="typeName">
-               <el-select v-model="type.typeName" placeholder="请选择" style="width: 100%">
+             <el-form-item label="视频类别：" prop="typeId">
+               <el-select v-model="video.typeId" placeholder="请选择" style="width: 100%">
                  <el-option
                    v-for="item in videoKinds"
                    :key="item.typeId"
@@ -177,6 +178,7 @@
           typeName:'直播'
         },
         video:{
+            typeId:'',
           userId:1,
           videoName:'',
           videoPic:'',
@@ -194,12 +196,15 @@
       }
     },
     mounted(){
-
+        var url="api/findAllTypes"
+      axios.get(url).then(res=>{
+          this.videoKinds=res.data
+      })
     },
     methods:{
 //      视频上传
       handleAvatarVideoSuccess(res1, file) {
-        this.user.videoUrl = res1;
+        this.video.videoUrl = res1;
 //          URL.createObjectURL(file.raw);
       },
       beforeAvatarVideoUpload(file) {
@@ -227,7 +232,7 @@
 //      },
       //图片上传
       handleAvatarSuccess(res, file) {
-        this.user.videoPic = res;
+        this.video.videoPic = res;
       },
       beforeAvatarUpload(file) {
         const isJPG = file.type === 'image/jpeg';
@@ -249,8 +254,8 @@
       uploadVideo:function () {
         this.$refs['video'].validate((valid) => {
           if (valid) {
-            axios.post("api/uploadVideo", this.video).then(res => {
-              if (res.data == "success") {
+            axios.post("api/addVideo", this.video).then(res => {
+              if (res.data.equals("1")) {
                 //                alert("修改成功")
                 this.$message({
                   message: '上传视频成功',
