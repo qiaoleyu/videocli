@@ -3,7 +3,7 @@
     <!--<h1>{{ msg }}</h1>-->
     <el-container >
       <!--导航栏-->
-      <el-header style="height: 40px">
+      <el-header style="height: 40px;margin-top: 80px">
         <div style="width: 100%;margin: auto;">
           <el-row :gutter="10">
             <el-col :span="14" :offset="5">
@@ -814,7 +814,7 @@
           fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
           sources: [{
             type: "video/mp4", // 类型
-            src:"http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4" // url地址
+            src: 'http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4' // url地址
           }],
           poster: '../static/img/bala.jpg', // 封面地址
           notSupportedMessage: '此视频暂无法播放，请稍后再试', // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
@@ -830,6 +830,7 @@
           input:'',
         msg: 'Welcome video index',
         active:'',
+        activeIndex: '1',
         a:'',
         b:'',
         c:'',
@@ -840,8 +841,13 @@
         h:'',
         i:'',
         j:'',
+        user:{
+          userId:'',
+          userName:''
+        },
       }
     },
+
     methods:{
         over:function (x) {
             if(x==1){
@@ -891,7 +897,7 @@
       },
 //      上传视频
       toUpload:function(){
-        if (this.userId!=null) {
+        if (this.user.userId!=null) {
           this.$router.push("/uploadVideo")
         }else {
           this.$message.error('还没登录哦，请登录后再试');
@@ -899,59 +905,59 @@
         }
       },
 //      个人中心-完善信息
-      toUser:function () {
+      /*toUser:function () {
         if (this.userId!=null) {
           this.$router.push("/userDetial")
         }else {
           this.$message.error('还没登录哦，请登录后再试');
           this.$router.push("/userLogin")
         }
-      },
+      },*/
 //      修改密码
-      toModify:function () {
+      /*toModify:function () {
         if (this.userId!=null) {
           this.$router.push("/updatePassword")
         }else {
           this.$message.error('还没登录哦，请登录后再试');
           this.$router.push("/userLogin")
         }
-      },
+      },*/
 
 
 
       // 播放回调
       onPlayerPlay(player) {
-        console.log('player play!', player)
+//        console.log('player play!', player)
       },
 
       // 暂停回调
       onPlayerPause(player) {
-        console.log('player pause!', player)
+//        console.log('player pause!', player)
       },
 
       // 视频播完回调
       onPlayerEnded($event) {
-        console.log(player)
+//        console.log(player)
       },
 
       // DOM元素上的readyState更改导致播放停止
       onPlayerWaiting($event) {
-        console.log(player)
+//        console.log(player)
       },
 
       // 已开始播放回调
       onPlayerPlaying($event) {
-        console.log(player)
+//        console.log(player)
       },
 
       // 当播放器在当前播放位置下载数据时触发
       onPlayerLoadeddata($event) {
-        console.log(player)
+//        console.log(player)
       },
 
       // 当前播放位置发生变化时触发。
       onPlayerTimeupdate($event) {
-        console.log(player)
+//        console.log(player)
       },
 
       //媒体的readyState为HAVE_FUTURE_DATA或更高
@@ -966,12 +972,12 @@
 
       //播放状态改变回调
       playerStateChanged(playerCurrentState) {
-        console.log('player current update state', playerCurrentState)
+//        console.log('player current update state', playerCurrentState)
       },
 
       //将侦听器绑定到组件的就绪状态。与事件监听器的不同之处在于，如果ready事件已经发生，它将立即触发该函数。。
       playerReadied(player) {
-        console.log('example player 1 readied', player);
+//        console.log('example player 1 readied', player);
       }
 
 
@@ -1120,6 +1126,14 @@
     /*height: 178px;*/
     /*display: block;*/
   /*}*/
+  .note{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top:0;
+    left: 0;
+    overflow-y: auto;
+  }
 </style>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

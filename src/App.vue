@@ -2,7 +2,7 @@
   <div id="app" class="note">
     <!--<img src="./assets/logo.png">-->
     <!--导航栏-->
-    <el-header v-show="(path ==='/'||path==='/videoplay'||path==='/moreMessage'||path==='/userMessage'||path==='/searchVideo'||path==='/uploadVideo'||path==='/updatePassword'||path==='/userDetial')" style="height: 80px">
+    <el-header v-show="(path ==='/'||path==='/videoplay'||path==='/moreMessage'||path==='/userMessage'||path==='/searchVideo'||path==='/uploadVideo'||path==='/updatePassword'||path==='/userDetial')" style="height: 80px;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;opacity: 0.9" class="header">
       <div style="width: 100%;margin: auto">
         <el-row :gutter="10">
           <!--<el-col :span="4">-->
@@ -11,9 +11,9 @@
           <!--</div>-->
           <!--</el-col>-->
           <el-col :span="10" :offset="2">
-            <div class="grid-content " style="height: 80px;font-size: 16px;border: solid 1px orangered;border-radius: 10px">
+            <div class="grid-content " style="height: 80px;font-size: 16px;">
               <div class="grid-content " style="height: 60px;font-size: 16px;float: left;">
-                <router-link :to="{name:'index'}"><el-image src="../static/img/bala2.jpg" style="height: 80px;width:150px;border-radius: 3px" title="返回首页"></el-image></router-link>
+                <router-link :to="{name:'index'}"><img src="../static/img/bala2.gif" style="height: 80px;width:150px;border-radius: 3px" title="返回首页"></img></router-link>
               </div>
               <div id="sy" class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
                    @mousemove="over(1)"
@@ -297,6 +297,10 @@ export default {
         this.j='';
       }
     },
+    //直播(跳转到直播页面)
+    toOrders:function(){
+
+    },
     //支付
     payfor:function(){
       if (this.user.userId!=null) {
@@ -452,4 +456,7 @@ export default {
     left: 0;
     /*overflow-y: auto;*/
   }
+  /*设置头部（公共部分）悬浮样式*/
+  .header{ position:fixed; margin-top:0; width:99%;margin: auto ;z-index:9999; }
+  /*.body{ position:relative; padding-top:119px; width:100%; }*/
 </style>

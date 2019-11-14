@@ -8,17 +8,16 @@
         <!--</div>-->
       <!--</el-header>-->
 
-
-      <el-main style="width: 90%;margin: auto">
+      <el-main style="width: 90%;margin: auto;margin-top: 60px">
 
 
         <div style="width: 80%;height:300px;margin: auto;margin-top: 60px">
           <el-form :model="user" status-icon :rules="rules" ref="user" class="demo-ruleForm" label-width="100px" style="width: 500px;margin: auto;height: 80px;line-height: 80px;text-align: left">
             <el-form-item label="设置新密码：" prop="userPassword" style="text-align: left;margin-bottom: 40px">
-              <el-input type="password" v-model="user.userPassword" name="userPassword" autocomplete="off" placeholder="请设置密码"></el-input>
+              <el-input type="password" v-model="user.userPassword" name="userPassword" autocomplete="off" placeholder="请设置新密码"></el-input>
             </el-form-item>
             <el-form-item label="确认新密码：" prop="checkPass" style="text-align: left;margin-bottom: 40px">
-              <el-input type="password" v-model="user.checkPass" autocomplete="off"  placeholder="请输入确认密码"></el-input>
+              <el-input type="password" v-model="user.checkPass" autocomplete="off"  placeholder="请输入确认新密码"></el-input>
             </el-form-item>
             <el-from-item>
               <div style="margin: auto;height: 40px;margin-left: 100px">
@@ -54,14 +53,14 @@
 //        非空验证
       var checkUserPassword = (rule, value, callback) => {
         if (!value) {
-          return callback(new Error('发布人不能为空'));
+          return callback(new Error('新密码不能为空'));
         }else{
           return callback();
         }
       };
       var checkPass = (rule, value, callback) => {
         if (value === '') {
-          callback(new Error('请再次输入密码'));
+          callback(new Error('请再次输入新密码'));
         } else if (value !== this.user.userPassword) {
           callback(new Error('两次输入密码不一致!'));
         } else {

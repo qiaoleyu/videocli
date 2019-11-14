@@ -1,9 +1,9 @@
 <template>
   <div style="width: 100%;margin: auto" class="hello">
-      <el-container style="height: 600px;width: 90%;margin: auto; border: 1px solid #eee">
+      <el-container style="height: 600px;width: 90%;margin: auto; border: 1px solid #eee;margin-top: 100px">
         <!--<el-aside width="200px" style="background-color: rgb(238, 241, 246)">-->
         <el-aside class="app-side app-side-left"
-                  style="width: 20%;line-height: inherit;background-color: inherit" >
+                  style="width: 20%;line-height: inherit;background-color: inherit;" >
           <el-menu
             router
             class="el-menu-vertical-demo"

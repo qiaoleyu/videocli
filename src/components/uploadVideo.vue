@@ -9,14 +9,14 @@
       <!--</el-header>-->
 
 
-      <el-main style="width: 90%;margin: auto">
+      <el-main style="width: 90%;margin: auto;margin-top:80px ">
 
 
         <!--分类展示-->
        <el-row :gutter="10">
          <el-col :span="12" style="margin: auto;width: 100%;margin-top: 40px">
 
-           <el-form label-width="100px" :model="video" status-icon :rules="rules" ref="video" style="width: 500px;margin: auto;height: 80px;line-height: 80px;text-align: left">
+           <el-form label-width="100px" :model="video" status-icon :rules="rules" ref="video" style="width: 500px;margin: auto;text-align: left">
              <el-form-item label="发布人：" prop="videoUsername">
                <el-input class="arrow" name="videoUsername"  v-model="video.videoUsername"></el-input>
              </el-form-item>
@@ -113,7 +113,6 @@
   import axios from 'axios';
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
-  import Cookies from 'js-cookie'
   export default {
     components: {
       ElButton,
@@ -312,7 +311,7 @@
     /*background-color: #E9EEF3;*/
     color: #333;
     text-align: center;
-    height: 600px;
+    /*height: 600px;*/
     /*line-height: 160px;*/
     margin-bottom: 10px;
 
@@ -375,22 +374,6 @@
     background-color: #f9fafc;
   }
 
-  /*轮播图*/
-  .el-carousel__item h3 {
-    color: #475669;
-    font-size: 14px;
-    opacity: 0.75;
-    line-height: 700px;
-    margin: 0;
-  }
-
-  .el-carousel__item:nth-child(2n) {
-    background-color: #99a9bf;
-  }
-
-  .el-carousel__item:nth-child(2n+1) {
-    background-color: #d3dce6;
-  }
 
   /*视频上传*/
   .avatar-uploader .el-upload {

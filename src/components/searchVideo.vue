@@ -3,7 +3,7 @@
     <!--<h1>{{ msg }}</h1>-->
     <el-container >
       <!--导航栏-->
-      <el-header style="height: 40px">
+      <el-header style="height: 40px;margin-top: 80px">
         <div style="width: 100%;margin: auto;">
           <el-row :gutter="10">
             <el-col :span="14" :offset="5">
@@ -512,6 +512,15 @@
     /*height: 178px;*/
     /*display: block;*/
   /*}*/
+
+  .note{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top:0;
+    left: 0;
+    overflow-y: auto;
+  }
 </style>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
