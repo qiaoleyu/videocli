@@ -852,7 +852,18 @@
       }
     },
     mounted(){
-
+      var userId=Cookies.get('userId');
+      //alert(userId)
+      console.log(userId)
+      this.userId=userId;
+      if (this.userId!=''){
+        axios.get("api/findUserByUserId/"+this.userId).then(res=>{
+          this.user=res.data;
+        })
+      }else {
+        alert("请登录")
+        this.$router.push("/userLogin")
+      }
     },
     methods:{
         over:function (x) {
