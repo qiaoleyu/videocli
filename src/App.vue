@@ -171,8 +171,10 @@
                    @mouseleave="leave(6)"
                    :style="e"
               >
-                <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.userId==null" ><a class="el-icon-user">登录</a></router-link>
-                <span style="color:black;" v-if="this.userId!=null"><a>{{user.userName}}</a></span>
+                <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.user.userId==null" ><a class="el-icon-user" >登录</a></router-link>
+                <span style="color:black;" v-if="this.user.userId!=null"><a>{{user.userName}}</a></span>
+               <!-- <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.userId==null" ><a class="el-icon-user">登录</a></router-link>
+                <span style="color:black;" v-if="this.userId!=null"><a>{{user.userName}}</a></span>-->
               </div>
               <!--注册-->
               <div class="grid-content " style="height: 60px;width:50px;float: left"
@@ -200,6 +202,8 @@
 </template>
 
 <script>
+  import Cookies from 'js-cookie'
+  import axios from 'axios';
 export default {
   name: 'App',
   data(){
@@ -217,7 +221,7 @@ export default {
         i:'',
         j:'',
         user:{
-          userId:1,
+          userId:'',
           userName:''
         },
       }
@@ -225,6 +229,19 @@ export default {
   mounted() {
     this.path = this.$route.path;
     // console.log(this.$route.path)
+
+    var userId=Cookies.get('userId');
+    this.user.userId=userId;
+    //alert(this.user.userId)
+    if (this.user.userId!=''){
+      axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
+        this.user=res.data;
+        //console(this.user)
+      })
+    }else {
+      alert("请登录")
+      this.$router.push("/userLogin")
+    }
   },
   watch:{
     $route(to,from){
@@ -289,16 +306,16 @@ export default {
     },
     //      个人中心-完善信息
     toUser:function () {
-      if (this.userId!=null) {
+      //if (this.user.userId!=null) {
         this.$router.push("/userDetial")
-      }else {
+      /*}else {
         this.$message.error('还没登录哦，请登录后再试');
         this.$router.push("/userLogin")
-      }
+      }*/
     },
     //修改密码
     toModify:function () {
-      if (this.userId!=null) {
+      if (this.user.userId!=null) {
         this.$router.push("/updatePassword")
       }else {
         this.$message.error('还没登录哦，请登录后再试');
@@ -306,7 +323,7 @@ export default {
       }
     },
     toMessage(){
-      if (this.userId!=null) {
+      if (this.user.userId!=null) {
         this.$router.push("/userMessage")
       }else {
         this.$message.error('还没登录哦，请登录后再试');

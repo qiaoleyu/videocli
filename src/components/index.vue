@@ -842,32 +842,12 @@
         i:'',
         j:'',
         user:{
-            userId:'',
-          userTell:'',
-          userHobby:'',
-//          userInfo:'',
-          userRealname:'',
-          userEmail:'',
-          userPic:'',
+          userId:'',
           userName:''
-
         },
       }
     },
-    mounted(){
-      var userId=Cookies.get('userId');
-      //alert(userId)
-      console.log(userId)
-      this.userId=userId;
-      if (this.userId!=''){
-        axios.get("api/findUserByUserId/"+this.userId).then(res=>{
-          this.user=res.data;
-        })
-      }else {
-        alert("请登录")
-        this.$router.push("/userLogin")
-      }
-    },
+
     methods:{
         over:function (x) {
             if(x==1){
@@ -917,7 +897,7 @@
       },
 //      上传视频
       toUpload:function(){
-        if (this.userId!=null) {
+        if (this.user.userId!=null) {
           this.$router.push("/uploadVideo")
         }else {
           this.$message.error('还没登录哦，请登录后再试');
