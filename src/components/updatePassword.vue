@@ -43,6 +43,8 @@
   import axios from 'axios';
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
+  import Cookies from 'js-cookie'
+
   export default {
     components: {
       ElButton,
@@ -72,9 +74,12 @@
         input:'',
         msg: 'Welcome video index',
         user:{
+          userId:'',
+          userName:'',
           userPassword:'',
           checkPass:''
         },
+
         rules:{
           userPassword: [{ validator: checkUserPassword, trigger: 'blur' }],
           checkPass: [{ validator: checkPass, trigger: 'blur' }],
@@ -83,10 +88,12 @@
     },
     mounted(){
       var userId=Cookies.get('userId');
-      this.userId=userId;
-      if (this.userId!=''){
-        axios.get("api/findUserByUserId/"+this.userId).then(res=>{
-          this.user=res.data;
+      //alert(userId)
+      this.user.userId=userId;
+      if (this.user.userId!=''){
+        axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
+          this.user.userName=res.data.userName;
+          //alert(this.user.userName)
         })
       }else {
         alert("请登录")

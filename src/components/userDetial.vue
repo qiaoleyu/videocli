@@ -194,7 +194,8 @@
       var userId=Cookies.get('userId');
       //alert(userId)
       this.user.userId=userId;
-      if (this.user.userId!=''){
+      //alert(this.user.userId)
+      if (this.user.userId!=null){
         axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
           this.user=res.data;
         })
