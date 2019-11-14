@@ -203,104 +203,106 @@
                 <!--用户信息-->
                 <el-row :gutter="10" style="margin-top: 20px">
                   <el-col :span="24">
-                    <div style="width:150px;font-size: 25px;font-weight: bolder;margin-left: 10px;background-color: black;float: left;text-align: center">
-                      <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
-                      </el-menu>
-                      <el-popover
-                        placement="top-start"
-                        width="300"
-                        trigger="hover"
-                        >
-                        <!--title="标题"-->
-                        <!--content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"-->
-                        <!--<el-button slot="reference">hover 激活</el-button>-->
-                        <el-row :gutter="10">
-                          <el-col :span="24">
-                            <div style="float: left;">
-                              <el-image src="../static/img/yh1.jpg" style="width: 100%"></el-image>
-                            </div>
-                          </el-col>
-                          <el-col :span="10" :offset="2" style="height:60px;line-height: 60px">
-                            <div style="float: left;">
-                              <el-avatar src="../static/img/bala2.jpg" :size="60"></el-avatar>
-                            </div>
-                          </el-col>
-                          <el-col :span="12" style="height:60px;line-height: 60px">
-                            <div style="float: left;">
-                              <span>用户名</span>
-                            </div>
-                          </el-col>
-                          <el-col :span="18" :offset="6" style="font-size: 12px">
-                            <div style="float: left;margin-right: 20px;width: 40%">
-                              <span style="float: left">关注：</span>
-                              <span style="float: left">3</span>
-                            </div>
-                            <div style="float: left;width: 40%">
-                              <span style="float: left">粉丝：</span>
-                              <span style="float: left">13</span>
-                            </div>
-                          </el-col>
-                          <el-col :span="12"  style="font-size: 12px;margin-top: 20px">
-                            <div style="float: left;width: 100%">
-                              <el-button type="primary" style="width: 100%" plain  @click="guanzhu()">+关注</el-button>
-                            </div>
-                          </el-col>
-                          <el-col :span="12"  style="font-size: 12px;margin-top: 20px">
-                            <div style="float: left;width: 100%">
-                              <el-button type="primary" style="width: 100%" plain @click="send()">发信息</el-button>
-                            </div>
-                          </el-col>
-                        </el-row>
-                        <el-avatar slot="reference" src="../static/img/bala2.jpg" :size="60"></el-avatar>
-                      </el-popover>
-                    </div>
-                    <div style="float: left;text-align: left;font-size: 20px;line-height: 60px">
-
-                      <span>用户名</span>
-
-                    </div>
-
-                    <!--评论信息-->
-                    <el-row :gutter="10" style="margin-top: 20px">
-                      <el-col :span="20" :offset="4">
-                        <div style="width:99%;font-size: 16px;font-weight: bolder;margin-left: 10px;background-color: beige;float: left;text-align: center">
-                          <!--遍历评论信息-->
-
-                          <el-row :gutter="10" style="margin-top: 20px">
-                            <el-col :span="2">
+                    <!--遍历评论信息-->
+                    <div v-for="">
+                      <div style="width:150px;font-size: 25px;font-weight: bolder;margin-left: 10px;background-color: black;float: left;text-align: center">
+                        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
+                        </el-menu>
+                        <el-popover
+                          placement="top-start"
+                          width="300"
+                          trigger="hover"
+                          >
+                          <!--title="标题"-->
+                          <!--content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"-->
+                          <!--<el-button slot="reference">hover 激活</el-button>-->
+                          <el-row :gutter="10">
+                            <el-col :span="24">
                               <div style="float: left;">
-                                <el-avatar slot="reference" src="../static/img/bala2.jpg" :size="30"></el-avatar>
+                                <el-image src="../static/img/yh1.jpg" style="width: 100%"></el-image>
                               </div>
                             </el-col>
-                            <el-col :span="2">
+                            <el-col :span="10" :offset="2" style="height:60px;line-height: 60px">
+                              <div style="float: left;">
+                                <el-avatar src="../static/img/bala2.jpg" :size="60"></el-avatar>
+                              </div>
+                            </el-col>
+                            <el-col :span="12" style="height:60px;line-height: 60px">
                               <div style="float: left;">
                                 <span>用户名</span>
                               </div>
                             </el-col>
+                            <el-col :span="18" :offset="6" style="font-size: 12px">
+                              <div style="float: left;margin-right: 20px;width: 40%">
+                                <span style="float: left">关注：</span>
+                                <span style="float: left">3</span>
+                              </div>
+                              <div style="float: left;width: 40%">
+                                <span style="float: left">粉丝：</span>
+                                <span style="float: left">13</span>
+                              </div>
+                            </el-col>
+                            <el-col :span="12"  style="font-size: 12px;margin-top: 20px">
+                              <div style="float: left;width: 100%">
+                                <el-button type="primary" style="width: 100%" plain  @click="guanzhu()">+关注</el-button>
+                              </div>
+                            </el-col>
+                            <el-col :span="12"  style="font-size: 12px;margin-top: 20px">
+                              <div style="float: left;width: 100%">
+                                <el-button type="primary" style="width: 100%" plain @click="send()">发信息</el-button>
+                              </div>
+                            </el-col>
                           </el-row>
+                          <el-avatar slot="reference" src="../static/img/bala2.jpg" :size="60"></el-avatar>
+                        </el-popover>
+                      </div>
+                      <div style="float: left;text-align: left;font-size: 20px;line-height: 60px">
 
-                          <el-row :gutter="10" style="height: 20px">
-                            <el-col :span="3">
-                              <div style="float: left;">
-                                <span >date</span>
-                              </div>
-                            </el-col>
-                            <el-col :span="3">
-                              <div style="float: left;">
-                                <el-button icon="el-icon-thumb" type="warning" circle plain style="font-size: 8px"></el-button>
-                                <sapn>12</sapn>
-                              </div>
-                            </el-col>
-                            <el-col :span="3">
-                              <div style="float: left;">
-                                <a @click="onMessage" style="cursor: pointer;">回复</a>
-                              </div>
-                            </el-col>
-                          </el-row>
-                        </div>
-                      </el-col>
-                    </el-row>
+                        <span>用户名</span>
 
+                      </div>
+
+                      <!--评论信息-->
+                      <el-row :gutter="10" style="margin-top: 20px">
+                        <el-col :span="20" :offset="4">
+                          <div v-for="(item,index) in comments" style="width:99%;font-size: 16px;font-weight: bolder;margin-left: 10px;background-color: beige;float: left;text-align: center">
+                            <!--遍历评论信息-->
+
+                            <el-row :gutter="10" style="margin-top: 20px">
+                              <el-col :span="2">
+                                <div style="float: left;">
+                                  <el-avatar slot="reference" src="item.userPic" :size="30"></el-avatar>
+                                </div>
+                              </el-col>
+                              <el-col :span="2">
+                                <div style="float: left;">
+                                  <span>{{item.userName}}</span>
+                                </div>
+                              </el-col>
+                            </el-row>
+
+                            <el-row :gutter="10" style="height: 20px">
+                              <el-col :span="3">
+                                <div style="float: left;">
+                                  <span >{{item.commentTime}}</span>
+                                </div>
+                              </el-col>
+                              <el-col :span="3">
+                                <div style="float: left;">
+                                  <el-button icon="el-icon-thumb" type="warning" circle plain style="font-size: 8px"></el-button>
+                                  <sapn>{{item.commentContent}}</sapn>
+                                </div>
+                              </el-col>
+                              <el-col :span="3">
+                                <div style="float: left;">
+                                  <a @click="replyMessage" style="cursor: pointer;">回复</a>
+                                </div>
+                              </el-col>
+                            </el-row>
+                          </div>
+                        </el-col>
+                      </el-row>
+                    </div>
                     <!--分页-->
                     <el-row :gutter="10" style="margin-top: 20px">
                       <el-col :span="24">
@@ -471,7 +473,7 @@
         com:{
           videoId:1,
           episodeId:'',
-          userId:2,
+          userId:'',
           userName:'gh',
           userPic:'',
           commentContent:'',
@@ -484,10 +486,10 @@
         activeIndex: '1',
           input:'',
         input1:'',
-        user:{
+        /*user:{
               userId:'',
           userName:''
-        },
+        },*/
         msg: 'Welcome video index',
         value1:'',
 //        评分
@@ -532,7 +534,7 @@
     },
     mounted(){
         this.barrage.videoId=this.$route.params.id;
-        this.user.userId=Cookies.get('userId');
+        this.com.userId=Cookies.get('userId');
       this.findAll();
       this.findByCommentId();
 //      var player = video('example-video');
@@ -593,7 +595,7 @@
 //      倍速播放
       //私聊
       send(){
-        if (this.userId!=null) {
+        if (this.com.userId!=null) {
           this.$router.push("/userMessage")
         }else {
           this.$message.error('还没登录哦，请登录后再试');
@@ -601,7 +603,7 @@
         }
       },
       //回复
-      /*onMessage() {
+      replyMessage() {
         this.$prompt('请输入回复信息', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
@@ -618,7 +620,7 @@
             message: '取消输入'
           });
         });
-      },*/
+      },
 
 //      //注册画中画按钮
 //      createMyButton () {
