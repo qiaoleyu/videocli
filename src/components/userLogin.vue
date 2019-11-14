@@ -29,22 +29,15 @@
           <el-col :span="12" >
             <NoButtonHeader></NoButtonHeader>
             <el-card class="box-card" style="background-color: #FDFFF4">
-            <el-form :model="user" status-icon :rules="rules" ref="user" label-width="20%" style="width: 80%;margin: auto;margin-top: 10%" >
+            <el-form :model="users" status-icon :rules="rules" ref="users" label-width="20%" style="width: 80%;margin: auto;margin-top: 10%" >
               <el-row :gutter="10">
                 <el-col :span="24">
-                <el-form-item label="账号：" prop="userName" style="font-size:25px;text-align: left;font-weight: bolder">
-                  <el-input type="text" name="userName" v-model="user.userName" style="width: 340px" placeholder="昵称/邮箱/手机号"></el-input>
+                <el-form-item label="账号：" prop="loginName" style="font-size:25px;text-align: left;font-weight: bolder">
+                  <el-input type="text" name="loginName" v-model="users.loginName" style="width: 340px" placeholder="昵称/邮箱/手机号"></el-input>
                 </el-form-item><br>
-                <el-form-item label="密码：" prop="userPassword" style="font-size:25px;text-align: left;font-weight: bolder" show-password>
-                  <el-input type="userPassword" name="userPassword" v-model="user.userPassword" style="width: 340px" placeholder="请输入密码"></el-input>
+                <el-form-item label="密码：" prop="password" style="font-size:25px;text-align: left;font-weight: bolder" show-password>
+                  <el-input type="password" name="password" v-model="users.password" style="width: 340px" placeholder="请输入密码"></el-input>
                 </el-form-item><br>
-                  <el-form-item label="验证码：" prop="usrcode" style="font-size:25px;text-align: left;font-weight: bolder" show-password>
-                      <el-input type="text" class="ip1" placeholder="验证码,区分大小写" style="width:50%;float: left" name="usrcode" v-model="user.usrcode"></el-input>
-                      <div id="code" style="float: left"><img src="pic" id="pic" style="width: 40%;margin-left: 20px"/></div>
-                      <span class="err"></span>
-                    <a href="" onclick="return refresh()">看不清楚</a>
-                  </el-form-item><br>
-
                 </el-col>
               </el-row>
               <el-row :gutter="10">
@@ -226,10 +219,15 @@
 <script>
   import axios from 'axios'
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
-//  import Cookies from 'js-cookie'
+  import ElForm from "../../node_modules/element-ui/packages/form/src/form";
+  import ElFormItem from "../../node_modules/element-ui/packages/form/src/form-item";
+  import Cookies from 'js-cookie'
 
   export default {
-    components: {ElImage},
+    components: {
+      ElFormItem,
+      ElForm,
+      ElImage},
     data () {
       var checkUserName = (rule, value, callback) => {
         if (!value) {
@@ -244,47 +242,42 @@
         } else{
           return callback();
         }
-
       };
-      var checkUsrcode = (rule, value, callback) => {
+      /*var checkUsrcode = (rule, value, callback) => {
         if (value === '') {
           callback(new Error('验证码不能为空'));
         } else{
           return callback();
         }
-
-      };
+      };*/
       return {
         msg: '登录',
-
-        user:{
+        users:{
           userId:'',
-          userName:'',
-          userPassword:'',
-          usrcode:'',
+          loginName:'',
+          password:'',
+          //usrcode:'',
         },
 
         rules: {
-          userName: [{ validator: checkUserName, trigger: 'blur' }],
-          userPassword: [{ validator: validatePass, trigger: 'blur' }],
-          usrcode:[{ validator: checkUsrcode, trigger: 'blur' }],
+          loginName: [{ validator: checkUserName, trigger: 'blur' }],
+          password: [{ validator: validatePass, trigger: 'blur' }],
+          //usrcode:[{ validator: checkUsrcode, trigger: 'blur' }],
         }
       }
     },
     methods: {
       login:function () {
-        this.$refs['user'].validate((valid) => {
+        this.$refs['users'].validate((valid) => {
           if (valid) {
-            axios.post("api/userLogin", {userName: this.user.userName, userPassword: this.user.userPassword}).then(res => {
+            axios.post("api/userLogin", {loginName: this.users.loginName, password: this.users.password}).then(res => {
               var msg = res.data;
               //接收后端返回来的数据
-              if (res.data == 'success') {
-                axios.post("api/findUserByName/" + this.user.userName).then(res => {
+              if (msg == 'success') {
+                axios.post("api/findUserByName/" + this.users.loginName).then(res => {
                   this.users = res.data;
                   //cookie设置失效时间
-//                  var millisecond = new Date().getTime();
-//                  var expiresTime = new Date(millisecond + 60 * 1000 * 30 );
-//                  Cookies.set('userId', this.user.userId, {expires:expiresTime, path: '/'});
+                  Cookies.set("userId", this.users.userId, {expires: 7, path: '/'});
                   this.$message({
                     message: '登录成功，欢迎操作其他业务！',
                     type: 'success'
@@ -309,7 +302,14 @@
       },
       toCheck:function () {
         this.$router.push('checkUser')
-      }
+      },
+
+
+
+
+    },
+    mounted(){
+
     }
   }
 </script>
@@ -337,4 +337,7 @@
   a:hover{
     color: red;
   }
+
+
+
 </style>

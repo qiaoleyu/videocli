@@ -111,8 +111,8 @@
                      @mouseleave="leave(6)"
                      :style="e"
                 >
-                  <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.uid==null" ><a class="el-icon-user">登录</a></router-link>
-                  <span style="color:black;" v-if="this.uid!=null"><a>{{users.uname}}</a></span>
+                  <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.userId==null" ><a class="el-icon-user">登录</a></router-link>
+                  <span style="color:black;" v-if="this.userId!=null"><a>{{user.userName}}</a></span>
                 </div>
 
                 <div class="grid-content " style="height: 60px;width:50px;float: left"
@@ -142,6 +142,8 @@
   import axios from 'axios';
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
+  import Cookies from 'js-cookie';
+
   export default {
     components: {
       ElButton,
@@ -162,7 +164,7 @@
         g:'',
         h:'',
         user:{
-//            userId:null,
+          userId:null,
           userTell:'',
           userHobby:'',
 //          userInfo:'',
@@ -170,12 +172,22 @@
           userEmail:'',
           userPic:'',
           userName:''
-
         },
       }
     },
     mounted(){
-
+      var userId=Cookies.get('userId');
+      //alert(userId)
+      console.log(userId)
+      this.userId=userId;
+      if (this.userId!=''){
+        axios.get("api/findUserByUserId/"+this.userId).then(res=>{
+          this.user=res.data;
+        })
+      }else {
+        alert("请登录")
+        this.$router.push("/userLogin")
+      }
     },
     methods:{
       over:function (x) {

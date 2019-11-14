@@ -141,8 +141,8 @@
 
 
         <div style="width: 80%;height:300px;margin: auto;margin-top: 60px">
-          <el-form :model="user" status-icon :rules="rules" ref="user" class="demo-ruleForm" label-width="100px" style="width: 500px;margin: auto;height: 80px;line-height: 80px;text-align: left">
-            <el-form-item label="设置新密码：" prop="userPassword" style="text-align: left;margin-bottom: 40px">
+          <el-form :model="user" status-icon :rules="rules" ref="user" class="demo-ruleForm" label-width="100px" style="width: 500px;margin: auto;height: 80px;line-height: 80px;text-align: left" >
+            <el-form-item label="设置新密码：" prop="userPassword" style="text-align: left;margin-bottom: 40px" >
               <el-input type="password" v-model="user.userPassword" name="userPassword" autocomplete="off" placeholder="请设置密码"></el-input>
             </el-form-item>
             <el-form-item label="确认新密码：" prop="checkPass" style="text-align: left;margin-bottom: 40px">
@@ -171,6 +171,9 @@
   import axios from 'axios';
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
+  import Cookies from 'js-cookie';
+
+
   export default {
     components: {
       ElButton,
@@ -219,7 +222,16 @@
       }
     },
     mounted(){
-
+      var userId=Cookies.get('userId');
+      this.userId=userId;
+      if (this.userId!=''){
+        axios.get("api/findUserByUserId/"+this.userId).then(res=>{
+          this.user=res.data;
+        })
+      }else {
+        alert("请登录")
+        this.$router.push("/userLogin")
+      }
     },
     methods:{
       over:function (x) {
@@ -264,7 +276,7 @@
           this.h='';
         }
       },
-//      个人中心-完善信息
+/*//      个人中心-完善信息
       toUser:function () {
         if (this.userId!=null) {
           this.$router.push("/userDetial")
@@ -272,7 +284,7 @@
           this.$message.error('还没登录哦，请登录后再试');
           this.$router.push("/userLogin")
         }
-      },
+      },*/
       updatePass:function () {
         this.$refs['user'].validate((valid) => {
           if (valid) {
