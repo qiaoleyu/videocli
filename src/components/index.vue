@@ -922,7 +922,11 @@
           this.$router.push("/userLogin")
         }
       },*/
-
+      search:function () {
+        var searchName=this.$refs.searchName.value
+        //alert(searchName)
+        this.$router.push('/searchVideo/'+searchName)
+      },
 
 
       // 播放回调

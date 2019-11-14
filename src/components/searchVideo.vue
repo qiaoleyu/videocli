@@ -22,67 +22,67 @@
 
       <el-main style="width: 90%;margin: auto">
         <!--分类展示-->
-        <el-row :gutter="10">
-          <el-col :span="24" style="font-size: 14px;margin-bottom: 20px">
+        <!--<el-row :gutter="10">-->
+          <!--<el-col :span="24" style="font-size: 14px;margin-bottom: 20px">-->
 
-            <!--遍历视频类别-->
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <a href="/">
-                <span class="el-icon-s-home" style="float: left;width: 100%;"></span>
-                <span style="float: left;width: 100%;">首页</span>
-              </a>
-            </div>
+            <!--&lt;!&ndash;遍历视频类别&ndash;&gt;-->
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<a href="/">-->
+                <!--<span class="el-icon-s-home" style="float: left;width: 100%;"></span>-->
+                <!--<span style="float: left;width: 100%;">首页</span>-->
+              <!--</a>-->
+            <!--</div>-->
 
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">番剧</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">国创</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">音乐</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">舞蹈</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">游戏</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">科技</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">数码</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">生活</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">时尚</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">娱乐</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">影视</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">直播</a></span>
-            </div>
-            <div style="float: left;width: 100px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <el-image src="../static/img/bala2.jpg" style="float: left;width: 100%;"></el-image>
-            </div>
-            <div class="grid-content " style="height: 60px;width:50px;float: left"
-                 @mousemove="over(10)"
-                 @mouseleave="leave(10)"
-                 :style="i"
-            >
-                 <span type="info" style="color:black;cursor: pointer;margin-top:20px">
-                  <a class="el-icon-circle-plus-outline" type="primary" @click="toUpload()" style="font-size: 30px" title="发布视频"></a>
-                </span>
-            </div>
-          </el-col>
-        </el-row>
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<span style="float: left;width: 100%;"><a href="/">番剧</a></span>-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<span style="float: left;width: 100%;"><a href="/">国创</a></span>-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<span style="float: left;width: 100%;"><a href="/">音乐</a></span>-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<span style="float: left;width: 100%;"><a href="/">舞蹈</a></span>-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<span style="float: left;width: 100%;"><a href="/">游戏</a></span>-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<span style="float: left;width: 100%;"><a href="/">科技</a></span>-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<span style="float: left;width: 100%;"><a href="/">数码</a></span>-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<span style="float: left;width: 100%;"><a href="/">生活</a></span>-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<span style="float: left;width: 100%;"><a href="/">时尚</a></span>-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<span style="float: left;width: 100%;"><a href="/">娱乐</a></span>-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<span style="float: left;width: 100%;"><a href="/">影视</a></span>-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<span style="float: left;width: 100%;"><a href="/">直播</a></span>-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 100px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<el-image src="../static/img/bala2.jpg" style="float: left;width: 100%;"></el-image>-->
+            <!--</div>-->
+            <!--<div class="grid-content " style="height: 60px;width:50px;float: left"-->
+                 <!--@mousemove="over(10)"-->
+                 <!--@mouseleave="leave(10)"-->
+                 <!--:style="i"-->
+            <!--&gt;-->
+                 <!--<span type="info" style="color:black;cursor: pointer;margin-top:20px">-->
+                  <!--<a class="el-icon-circle-plus-outline" type="primary" @click="toUpload()" style="font-size: 30px" title="发布视频"></a>-->
+                <!--</span>-->
+            <!--</div>-->
+          <!--</el-col>-->
+        <!--</el-row>-->
 
         <!--更多-->
         <el-row>
@@ -153,100 +153,156 @@
               </div>
             </div>
           </el-col>
+          <el-col :span="6">
+            <div style="height: 120px;background-color: orangered;margin-bottom: 10px">
+              <div style="height: 120px;">
+                <!--<router-link :to=""><img src="../static/img/bala2.jpg" style="width:310px;height: 310px"></router-link>-->
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div style="height: 120px;background-color: orangered;margin-bottom: 10px">
+              <div style="height: 120px;">
+                <!--<router-link :to=""><img src="../static/img/bala2.jpg" style="width:310px;height: 310px"></router-link>-->
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div style="height: 120px;background-color: orangered;margin-bottom: 10px">
+              <div style="height: 120px;">
+                <!--<router-link :to=""><img src="../static/img/bala2.jpg" style="width:310px;height: 310px"></router-link>-->
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div style="height: 120px;background-color: orangered;margin-bottom: 10px">
+              <div style="height: 120px;">
+                <!--<router-link :to=""><img src="../static/img/bala2.jpg" style="width:310px;height: 310px"></router-link>-->
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div style="height: 120px;background-color: orangered;margin-bottom: 10px">
+              <div style="height: 120px;">
+                <!--<router-link :to=""><img src="../static/img/bala2.jpg" style="width:310px;height: 310px"></router-link>-->
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div style="height: 120px;background-color: orangered;margin-bottom: 10px">
+              <div style="height: 120px;">
+                <!--<router-link :to=""><img src="../static/img/bala2.jpg" style="width:310px;height: 310px"></router-link>-->
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div style="height: 120px;background-color: orangered;margin-bottom: 10px">
+              <div style="height: 120px;">
+                <!--<router-link :to=""><img src="../static/img/bala2.jpg" style="width:310px;height: 310px"></router-link>-->
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div style="height: 120px;background-color: orangered;margin-bottom: 10px">
+              <div style="height: 120px;">
+                <!--<router-link :to=""><img src="../static/img/bala2.jpg" style="width:310px;height: 310px"></router-link>-->
+              </div>
+            </div>
+          </el-col>
         </el-row>
 
 
         <!--视频分类-特别推荐-->
-        <el-row :gutter="10">
-          <el-col :span="18">
+        <!--<el-row :gutter="10">-->
+          <!--<el-col :span="18">-->
 
-            <el-row :gutter="10">
-              <el-col :span="12">
-                <!--background-color: #d3dce6;-->
-                <div style="width:150px;height: 40px;float:left;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 20px">
-                  <div style="height: 40px;float: left;width: 40px;margin-right: 10px">
-                    <el-image src="../static/img/tuijian.jpg" style="width: 40px;height: 40px;cursor: pointer" title="特别推荐"></el-image>
-                  </div>
-                  <div style="height: 40px;float: left;">
-                    <span>特别推荐</span>
-                  </div>
-                </div>
-                <div style="height: 40px;float:left;font-size: 18px;font-weight: bolder;text-align: center;line-height: 40px">
-                  <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
-                    <el-menu-item index="1">最新动态</el-menu-item>
-                    <el-menu-item index="2">最新投稿</el-menu-item>
-                  </el-menu>
-                </div>
+            <!--<el-row :gutter="10">-->
+              <!--<el-col :span="12">-->
+                <!--&lt;!&ndash;background-color: #d3dce6;&ndash;&gt;-->
+                <!--<div style="width:150px;height: 40px;float:left;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 20px">-->
+                  <!--<div style="height: 40px;float: left;width: 40px;margin-right: 10px">-->
+                    <!--<el-image src="../static/img/tuijian.jpg" style="width: 40px;height: 40px;cursor: pointer" title="特别推荐"></el-image>-->
+                  <!--</div>-->
+                  <!--<div style="height: 40px;float: left;">-->
+                    <!--<span>特别推荐</span>-->
+                  <!--</div>-->
+                <!--</div>-->
+                <!--<div style="height: 40px;float:left;font-size: 18px;font-weight: bolder;text-align: center;line-height: 40px">-->
+                  <!--<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">-->
+                    <!--<el-menu-item index="1">最新动态</el-menu-item>-->
+                    <!--<el-menu-item index="2">最新投稿</el-menu-item>-->
+                  <!--</el-menu>-->
+                <!--</div>-->
 
-              </el-col>
-              <!--更多-->
-              <el-col :span="6" :offset="6">
-                <div class="grid-content" style="line-height: 40px;float: right;">
-                  <el-tooltip content="更多" placement="bottom" effect="light">
-                    <el-button class="el-icon-arrow-right" plain @click="next()"></el-button>
-                  </el-tooltip>
-                </div>
-              </el-col>
-            </el-row>
+              <!--</el-col>-->
+              <!--&lt;!&ndash;更多&ndash;&gt;-->
+              <!--<el-col :span="6" :offset="6">-->
+                <!--<div class="grid-content" style="line-height: 40px;float: right;">-->
+                  <!--<el-tooltip content="更多" placement="bottom" effect="light">-->
+                    <!--<el-button class="el-icon-arrow-right" plain @click="next()"></el-button>-->
+                  <!--</el-tooltip>-->
+                <!--</div>-->
+              <!--</el-col>-->
+            <!--</el-row>-->
 
-            <el-row :gutter="10">
-              <!--遍历特别推荐-->
-              <el-col :span="6">
-                <div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>
-              </el-col>
-              <el-col :span="6">
-                <div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>
-              </el-col>
-              <el-col :span="6">
-                <div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>
-              </el-col>
-              <el-col :span="6">
-                <div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>
-              </el-col>
-              <el-col :span="6">
-                <div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>
-              </el-col>
-              <el-col :span="6">
-                <div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>
-              </el-col>
-              <el-col :span="6">
-                <div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>
-              </el-col>
-              <el-col :span="6">
-                <div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>
-              </el-col>
-            </el-row>
+            <!--<el-row :gutter="10">-->
+              <!--&lt;!&ndash;遍历特别推荐&ndash;&gt;-->
+              <!--<el-col :span="6">-->
+                <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>-->
+              <!--</el-col>-->
+              <!--<el-col :span="6">-->
+                <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>-->
+              <!--</el-col>-->
+              <!--<el-col :span="6">-->
+                <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>-->
+              <!--</el-col>-->
+              <!--<el-col :span="6">-->
+                <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>-->
+              <!--</el-col>-->
+              <!--<el-col :span="6">-->
+                <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>-->
+              <!--</el-col>-->
+              <!--<el-col :span="6">-->
+                <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>-->
+              <!--</el-col>-->
+              <!--<el-col :span="6">-->
+                <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>-->
+              <!--</el-col>-->
+              <!--<el-col :span="6">-->
+                <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>-->
+              <!--</el-col>-->
+            <!--</el-row>-->
 
-          </el-col>
+          <!--</el-col>-->
 
-          <el-col :span="6" >
+          <!--<el-col :span="6" >-->
 
-            <el-row :gutter="10">
+            <!--<el-row :gutter="10">-->
 
-              <el-col :span="6">
-                <div style="width:150px;height: 40px;float:left;background-color: #d3dce6;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 16px">
-                  排 行
-                </div>
+              <!--<el-col :span="6">-->
+                <!--<div style="width:150px;height: 40px;float:left;background-color: #d3dce6;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 16px">-->
+                  <!--排 行-->
+                <!--</div>-->
 
-              </el-col>
-              <!--更多-->
-              <el-col :span="6" :offset="12">
-                <div class="grid-content" style="line-height: 40px;float: right;">
-                  <el-tooltip content="更多" placement="bottom" effect="light">
-                    <el-button class="el-icon-arrow-right" plain @click="next()"></el-button>
-                  </el-tooltip>
-                </div>
-              </el-col>
+              <!--</el-col>-->
+              <!--&lt;!&ndash;更多&ndash;&gt;-->
+              <!--<el-col :span="6" :offset="12">-->
+                <!--<div class="grid-content" style="line-height: 40px;float: right;">-->
+                  <!--<el-tooltip content="更多" placement="bottom" effect="light">-->
+                    <!--<el-button class="el-icon-arrow-right" plain @click="next()"></el-button>-->
+                  <!--</el-tooltip>-->
+                <!--</div>-->
+              <!--</el-col>-->
 
 
-              <el-col :span="24">
-                <!--遍历排行-->
-                <div style="height: 260px;background-color: orangered"> </div>
-              </el-col>
-            </el-row>
+              <!--<el-col :span="24">-->
+                <!--&lt;!&ndash;遍历排行&ndash;&gt;-->
+                <!--<div style="height: 260px;background-color: orangered"> </div>-->
+              <!--</el-col>-->
+            <!--</el-row>-->
 
-          </el-col>
-        </el-row>
+          <!--</el-col>-->
+        <!--</el-row>-->
 
       </el-main>
 
