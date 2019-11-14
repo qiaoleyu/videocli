@@ -263,18 +263,18 @@
                     <!--评论信息-->
                     <el-row :gutter="10" style="margin-top: 20px">
                       <el-col :span="20" :offset="4">
-                        <div style="width:99%;font-size: 16px;font-weight: bolder;margin-left: 10px;background-color: beige;float: left;text-align: center">
+                        <div v-for="(item,index) in comments" style="width:99%;font-size: 16px;font-weight: bolder;margin-left: 10px;background-color: beige;float: left;text-align: center">
                           <!--遍历评论信息-->
 
                           <el-row :gutter="10" style="margin-top: 20px">
                             <el-col :span="2">
                               <div style="float: left;">
-                                <el-avatar slot="reference" src="../static/img/bala2.jpg" :size="30"></el-avatar>
+                                <el-avatar slot="reference" src="item.userPic" :size="30"></el-avatar>
                               </div>
                             </el-col>
                             <el-col :span="2">
                               <div style="float: left;">
-                                <span>用户名</span>
+                                <span>{{item.userName}}</span>
                               </div>
                             </el-col>
                           </el-row>
@@ -282,18 +282,18 @@
                           <el-row :gutter="10" style="height: 20px">
                             <el-col :span="3">
                               <div style="float: left;">
-                                <span >date</span>
+                                <span >{{item.commentTime}}</span>
                               </div>
                             </el-col>
                             <el-col :span="3">
                               <div style="float: left;">
                                 <el-button icon="el-icon-thumb" type="warning" circle plain style="font-size: 8px"></el-button>
-                                <sapn>12</sapn>
+                                <sapn>{{item.commentContent}}</sapn>
                               </div>
                             </el-col>
                             <el-col :span="3">
                               <div style="float: left;">
-                                <a @click="onMessage" style="cursor: pointer;">回复</a>
+                                <a @click="replyMessage" style="cursor: pointer;">回复</a>
                               </div>
                             </el-col>
                           </el-row>
@@ -471,7 +471,7 @@
         com:{
           videoId:1,
           episodeId:'',
-          userId:2,
+          userId:'',
           userName:'gh',
           userPic:'',
           commentContent:'',
@@ -484,10 +484,10 @@
         activeIndex: '1',
           input:'',
         input1:'',
-        user:{
+        /*user:{
               userId:'',
           userName:''
-        },
+        },*/
         msg: 'Welcome video index',
         value1:'',
 //        评分
@@ -532,7 +532,7 @@
     },
     mounted(){
         this.barrage.videoId=this.$route.params.id;
-        this.user.userId=Cookies.get('userId');
+        this.com.userId=Cookies.get('userId');
       this.findAll();
       this.findByCommentId();
 //      var player = video('example-video');
@@ -593,7 +593,7 @@
 //      倍速播放
       //私聊
       send(){
-        if (this.userId!=null) {
+        if (this.com.userId!=null) {
           this.$router.push("/userMessage")
         }else {
           this.$message.error('还没登录哦，请登录后再试');
@@ -601,7 +601,7 @@
         }
       },
       //回复
-      /*onMessage() {
+      replyMessage() {
         this.$prompt('请输入回复信息', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
@@ -618,7 +618,7 @@
             message: '取消输入'
           });
         });
-      },*/
+      },
 
 //      //注册画中画按钮
 //      createMyButton () {
