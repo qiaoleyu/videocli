@@ -44,14 +44,22 @@
             <!--<el-form-item label="注册时间:" prop="userUptime">-->
               <!--<el-date-picker name="userUptime" v-model="user.userUptime" type="date" placeholder="选择日期" style="width: 400px"></el-date-picker>-->
             <!--</el-form-item>-->
-            <el-form-item label="联系方式：" prop="userTell">
-              <el-input name="userTell" v-model="user.userTell" ></el-input>
+            <el-form-item label="联系方式：" prop="userTell" >
+              <el-input name="userTell" v-model="user.userTell" disabled></el-input>
             </el-form-item>
-            <el-form-item label="邮箱账号：" prop="userEmail">
-              <el-input name="userEmail" v-model="user.userEmail"></el-input>
+            <el-form-item label="邮箱账号：" prop="userEmail" >
+              <el-input name="userEmail" v-model="user.userEmail" disabled></el-input>
             </el-form-item>
             <el-form-item label="真实姓名：" prop="userRealname">
               <el-input name="userRealname" v-model="user.userRealname">
+              </el-input>
+            </el-form-item>
+            <el-form-item label="爱好：" prop="userHobby">
+              <el-input name="userHobby" v-model="user.userHobby">
+              </el-input>
+            </el-form-item>
+            <el-form-item type="Date" label="注册时间：" prop="userUptime" >
+              <el-input name="userUptime" v-model="user.userUptime" disabled>
               </el-input>
             </el-form-item>
 
@@ -85,6 +93,8 @@
   import axios from 'axios';
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
+  import Cookies from 'js-cookie'
+
   export default {
     components: {
       ElButton,
@@ -134,6 +144,13 @@
           return callback();
         }
       };
+      var checkUserUptime = (rule, value, callback) => {
+        if (!value) {
+          return callback(new Error('注册时间不能为空'));
+        }else{
+          return callback();
+        }
+      };
       return {
           videoUrl:'',
         dialogImageUrl: '',
@@ -151,28 +168,40 @@
         g:'',
         h:'',
         user:{
+          userId:'',
           userTell:'',
           userHobby:'',
-//          userInfo:'',
+          //userInfo:'',
           userRealname:'',
           userEmail:'',
           userPic:'',
-          userName:''
+          userName:'',
+          userUptime:'',
 
         },
         rules:{
           userName: [{ validator: checkUserName, trigger: 'blur' }],
           userRealname: [{ validator: checkUserRealname, trigger: 'blur' }],
+          userUptime: [{ validator: checkUserUptime, trigger: 'blur' }],
           userHobby:[{ validator: checkUserHobby, trigger: 'blur' }],
           userEmail:[{ validator: checkUserEmail, trigger: 'blur' }],
           userPic:[{ validator: checkUserPic, trigger: 'blur' }],
           userTell:[{ validator: checkUserTell, trigger: 'blur' }],
-//          userInfo:[{ validator: checkUserInfo, trigger: 'blur' }],
+          // userInfo:[{ validator: checkUserInfo, trigger: 'blur' }],
         }
       }
     },
     mounted(){
-
+      var userId=Cookies.get('userId');
+      this.userId=userId;
+      if (this.userId!=''){
+        axios.get("api/findUserByUserId/"+this.userId).then(res=>{
+          this.user=res.data;
+        })
+      }else {
+        alert("请登录")
+        this.$router.push("/userLogin")
+      }
     },
     methods:{
       over:function (x) {
@@ -217,9 +246,9 @@
           this.h='';
         }
       },
-//      个人中心-完善信息
+/*//      个人中心-完善信息
       toUser:function () {
-        if (this.uid!=null) {
+        if (this.user.userId!=null) {
           this.$router.push("/userDetial")
         }else {
           this.$message.error('还没登录哦，请登录后再试');
@@ -228,13 +257,13 @@
       },
 //      修改密码
       toModify:function () {
-        if (this.uid!=null) {
+        if (this.user.userId!=null) {
           this.$router.push("/updatePassword")
         }else {
           this.$message.error('还没登录哦，请登录后再试');
           this.$router.push("/userLogin")
         }
-      },
+      },*/
       updateUsers:function () {
         this.$refs['user'].validate((valid) => {
           if (valid) {
@@ -247,7 +276,8 @@
                 });
                 this.$router.push('/')
               } else {
-                alert(res.data)
+                //alert(res.data)
+                alert("修改失败")
               }
             })
           }else{
