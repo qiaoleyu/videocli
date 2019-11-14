@@ -362,46 +362,6 @@
       </el-main>
 
       <el-footer>
-        <!--&lt;!&ndash;dan'mu&ndash;&gt;-->
-        <!--<div id="container" class="container">-->
-        <!--</div>-->
-        <!--<div class="input-box">-->
-          <!--&lt;!&ndash;限制用户输入的文字长度，尽量避免用户输入的内容长度超过屏幕的宽度&ndash;&gt;-->
-          <!--<input type="text" maxlength="20" placeholder="说点什么吧~">-->
-          <!--<button id="btn" class="btn">发送</button>-->
-        <!--</div>-->
-
-
-        <!--bottom-->
-        <!--<el-row>-->
-          <!--<el-col :span="24"  class="bg-purple">-->
-            <!--<div style="height: 170px;line-height: 170px;font-size: 13px;text-align: center;float: left;width: 10%">-->
-              <!--<el-image src="../static/img/hz.jpg"></el-image>-->
-            <!--</div>-->
-            <!--<div style="height: 170px;line-height: 25px;font-size: 13px;text-align: center;float: left;width: 90%">-->
-              <!--<ul>-->
-                <!--<li>-->
-                  <!--<a href="">广播电视节目制作经营许可证：（沪）字第1248号|网络文化经营许可证：沪网文【2016】2296-134号|信息网络传播视听节目许可证：0910417</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                  <!--<a href="">互联网ICP备案：沪ICP备13002172号-3沪ICP证：沪B2-20100043 |违法不良信息举报邮箱：help@bilibili.com |违法不良信息举报电话：4000233233转3 | 营业执照</a>-->
-                <!--</li><br>-->
-                <!--<li>-->
-                  <!--<a href="">上海互联网举报中心 | 12318全国文化市场举报网站 | 沪公网安备31011002002436号 | 儿童色情信息举报专区</a>-->
-                <!--</li><br>-->
-                <!--<li>-->
-                  <!--<a href="">网上有害信息举报专区：中国互联网违法和不良信息举报中心</a>-->
-                <!--</li><br>-->
-                <!--<li>-->
-                  <!--<a href="">亲爱的市民朋友，上海警方反诈劝阻电话“962110”系专门针对避免您财产被骗受损而设，请您一旦收到来电，立即接听。</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                  <!--<a href="">公司名称：上海宽娱数码科技有限公司|公司地址：上海市杨浦区政立路485号|电话：021-25099888</a>-->
-                <!--</li>-->
-              <!--</ul>-->
-            <!--</div>-->
-          <!--</el-col>-->
-        <!--</el-row>-->
 
       </el-footer>
     </el-container>
@@ -488,51 +448,10 @@
         currentPage: 1,
         player:'',
         index:1,
-//        倍速
-//        options: [
-//          {
-//            value: '0.5',
-//            label: '0.5'
-//          },{
-//            value: '1',
-//            label: '1.0'
-//          },{
-//            value: '1.25',
-//            label: '1.25'
-//          },{
-//            value: '1.5',
-//            label: '1.5'
-//          },{
-//            value: '2',
-//            label: '2.0'
-//          }
-//        ]
       }
     },
     mounted(){
 //      var player = video('example-video');
-
-      //      倍速播放
-//      var player = videojs("example-video").setup({
-//        title: "倍速播放",
-//        file: "https://huyi-gajia.oss-cn-beijing.aliyuncs.com/file/2019-11-09/d30b6657b28b45d18b909c0b9c9271ee-day05.mp4", // 播放地址
-//        playRate: true, // 默认h5播放器有倍速功能，如不需要，可以设置为false
-//        // 可配置倍速值数组，格式如下所示
-//        playRateConfig: [
-//          {label: "×1"},
-//          {label: "×2"},
-//          {label: "×3"},
-//          {label: "×4"},
-//        ],
-//        autostart: true,
-//        stretching: "uniform",
-//        repeat: false,
-//        volume: 100,
-//        controls: true,
-//        starttime: 0,
-//        primary: "html5",
-//        ak: "xxxxxxxxxxxxxxxx"// 公有云平台注册即可获得accessKey
-//      });
 
     },
     methods:{
@@ -603,33 +522,6 @@
           });
         });
       },
-
-//      //注册画中画按钮
-//      createMyButton () {
-//        let Button = videojs.getComponent('Button')
-//        let myButton = videojs.extend(Button, {
-//          constructor: function (player, options) {
-//            Button.apply(this, arguments)
-//            this.addClass('fullscreen-enter')
-//          },
-//          handleClick: () => {
-//            // 绑定点击事件
-//          },
-//          buildCSSClass: function () {
-//            return 'vjs-icon-custombutton vjs-control vjs-button'
-//          }
-//        })
-//
-//        //注册
-//        videojs.registerComponent('myButton', myButton)
-//
-//        this.$nextTick(() => {
-//          // 添加到controlBar中
-//          this.$refs.videoPlayer1.player.getChild('controlBar').addChild('myButton')
-//        })
-//      },
-
-
       // 播放回调
       onPlayerPlay(player) {
         console.log('player play!', player)

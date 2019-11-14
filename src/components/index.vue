@@ -794,7 +794,7 @@
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
   import Cookies from 'js-cookie'
-  
+
   export default {
     components: {
       ElButton,
@@ -830,6 +830,7 @@
           input:'',
         msg: 'Welcome video index',
         active:'',
+        activeIndex: '1',
         a:'',
         b:'',
         c:'',
