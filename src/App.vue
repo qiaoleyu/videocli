@@ -339,7 +339,7 @@ export default {
     logout:function () {
       Cookies.remove('userId'); // fail!
       Cookies.remove('userId', { path: '/' });
-      this.user.userName='Hi,请登录'
+      this.user.userName='登录'
       this.$router.go(0)
     },
   }
