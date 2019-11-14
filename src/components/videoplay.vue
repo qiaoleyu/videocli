@@ -204,7 +204,7 @@
                 <el-row :gutter="10" style="margin-top: 20px">
                   <el-col :span="24">
                     <!--遍历评论信息-->
-                    <div>
+                    <div v-for="">
                       <div style="width:150px;font-size: 25px;font-weight: bolder;margin-left: 10px;background-color: black;float: left;text-align: center">
                         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
                         </el-menu>
