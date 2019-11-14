@@ -13,7 +13,7 @@
           <el-col :span="10" :offset="2">
             <div class="grid-content " style="height: 80px;font-size: 16px;">
               <div class="grid-content " style="height: 60px;font-size: 16px;float: left;">
-                <router-link :to="{name:'index'}"><el-image src="../static/img/bala2.gif" style="height: 80px;width:150px;border-radius: 3px" title="返回首页"></el-image></router-link>
+                <router-link :to="{name:'index'}"><img src="../static/img/bala2.gif" style="height: 80px;width:150px;border-radius: 3px" title="返回首页"></img></router-link>
               </div>
               <div id="sy" class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
                    @mousemove="over(1)"

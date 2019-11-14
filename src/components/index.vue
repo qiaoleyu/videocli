@@ -111,7 +111,7 @@
                                   @ready="playerReadied"
                     >
                       <source
-                        src="https://candy-jing.oss-cn-beijing.aliyuncs.com/01.mp4"
+                        src="http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4"
                         type="video/mp4">
                       >
                     </video-player>
@@ -814,7 +814,7 @@
           fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
           sources: [{
             type: "video/mp4", // 类型
-            src: 'https://candy-jing.oss-cn-beijing.aliyuncs.com/01.mp4' // url地址
+            src: 'http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4' // url地址
           }],
           poster: '../static/img/bala.jpg', // 封面地址
           notSupportedMessage: '此视频暂无法播放，请稍后再试', // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
