@@ -9,7 +9,7 @@
       <!--</el-header>-->
 
 
-      <el-main style="width: 90%;margin: auto">
+      <el-main style="width: 90%;margin: auto;margin-top:80px ">
 
 
         <!--分类展示-->

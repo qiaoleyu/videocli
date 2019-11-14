@@ -8,7 +8,7 @@
         <!--</div>-->
       <!--</el-header>-->
 
-      <el-main style="width: 90%;margin: auto">
+      <el-main style="width: 90%;margin: auto;margin-top: 60px">
 
         <div style="width: 80%;margin: auto;margin-top: 50px">
           <!-- <div style="width: 500px;margin: auto;height: 80px;line-height: 80px;text-align: right">
@@ -45,10 +45,10 @@
               <!--<el-date-picker name="userUptime" v-model="user.userUptime" type="date" placeholder="选择日期" style="width: 400px"></el-date-picker>-->
             <!--</el-form-item>-->
             <el-form-item label="联系方式：" prop="userTell" >
-              <el-input name="userTell" v-model="user.userTell" disabled></el-input>
+              <el-input name="userTell" v-model="user.userTell"></el-input>
             </el-form-item>
             <el-form-item label="邮箱账号：" prop="userEmail" >
-              <el-input name="userEmail" v-model="user.userEmail" disabled></el-input>
+              <el-input name="userEmail" v-model="user.userEmail"></el-input>
             </el-form-item>
             <el-form-item label="真实姓名：" prop="userRealname">
               <el-input name="userRealname" v-model="user.userRealname">
@@ -70,10 +70,15 @@
             <!--<el-form-item label="用户信息:" prop="userInfo">-->
               <!--<el-input name="userInfo" v-model="user.userInfo" type="date"  style="width: 400px"></el-input>-->
             <!--</el-form-item>-->
-
-            <div style="width: 200px;margin: auto;height: 40px;margin-left: 200px">
-              <el-button type="primary" round plain style="height: 40px" plain @click="updateUsers()">确认</el-button>
-              <el-button type="primary" round plain style="height: 40px" plain @click="backIndex()">返回</el-button>
+            <el-row :gutter="10">
+              <el-col :span="8" :offset="5">
+                <el-button type="primary" round plain style="height: 40px;width:100%" plain @click="updateUsers()">确认</el-button>
+              </el-col>
+              <el-col :span="8" >
+                <el-button type="primary" round plain style="height: 40px;width:100%" plain @click="backIndex()">返回</el-button>
+              </el-col>
+            </el-row>
+            <div style="margin: auto;height: 40px;">
             </div>
           </el-form>
 
@@ -354,7 +359,7 @@
     /*background-color: #E9EEF3;*/
     color: #333;
     text-align: center;
-    height: 600px;
+    /*height: 600px;*/
     /*line-height: 160px;*/
     margin-bottom: 10px;
 

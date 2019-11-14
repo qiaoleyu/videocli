@@ -3,7 +3,7 @@
     <!--<h1>{{ msg }}</h1>-->
     <el-container >
       <!--导航栏-->
-      <el-header style="height: 40px">
+      <el-header style="height: 40px;margin-top: 80px">
         <div style="width: 100%;margin: auto">
           <!--搜索-->
           <el-row :gutter="10">
