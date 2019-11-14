@@ -840,8 +840,13 @@
         h:'',
         i:'',
         j:'',
+        user:{
+          userId:'',
+          userName:''
+        },
       }
     },
+
     methods:{
         over:function (x) {
             if(x==1){
@@ -891,7 +896,7 @@
       },
 //      上传视频
       toUpload:function(){
-        if (this.userId!=null) {
+        if (this.user.userId!=null) {
           this.$router.push("/uploadVideo")
         }else {
           this.$message.error('还没登录哦，请登录后再试');
