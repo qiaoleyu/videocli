@@ -2,7 +2,7 @@
   <div id="app" class="note">
     <!--<img src="./assets/logo.png">-->
     <!--导航栏-->
-    <el-header v-show="(path ==='/'||path==='/videoplay'||path==='/userMessage'||path==='/searchVideo'||path==='/uploadVideo'||path==='/updatePassword'||path==='/userDetial')" style="height: 80px">
+    <el-header v-show="(path ==='/'||path==='/videoplay'||path==='/moreMessage'||path==='/userMessage'||path==='/searchVideo'||path==='/uploadVideo'||path==='/updatePassword'||path==='/userDetial')" style="height: 80px">
       <div style="width: 100%;margin: auto">
         <el-row :gutter="10">
           <!--<el-col :span="4">-->
@@ -99,7 +99,54 @@
                    :style="j"
               >
                  <span type="info" style="color:black;cursor: pointer;margin-right: 10px">
-                  <a  type="info" @click="toPay()" style="font-size: 20px" title="VIP">VIP</a>
+                    <el-popover
+                      placement="top-start"
+                      width="300"
+                      trigger="hover"
+                    >
+                        <!--title="标题"-->
+                      <!--content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"-->
+                      <!--<el-button slot="reference">hover 激活</el-button>-->
+                        <el-row :gutter="10">
+                          <el-col :span="24">
+                            <div style="float: left;text-align: left;font-weight: bolder;font-size: 16px;margin-bottom: 20px">
+                              <span>会员充值：</span>
+                            </div>
+                          </el-col>
+                          <el-col :span="8">
+                            <div style="float: left;text-align: center">
+                              <el-image src="../static/img/yue.jpg" style="width: 100%;height: 120px;cursor: pointer" title="20元/月，普通会员"></el-image>
+                              <span style="color:red">$</span>
+                              <span style="color:red">20</span>
+                              <span>元/月</span>
+                            </div>
+                          </el-col>
+                          <el-col :span="8">
+                            <div style="float: left;text-align: center">
+                              <el-image src="../static/img/nian.jpg" style="width: 100%;height: 120px;cursor: pointer" title="120元/年，普通会员"></el-image>
+                              <span style="color:red">$</span>
+                              <span style="color:red">120</span>
+                              <span>元/年</span>
+                            </div>
+                          </el-col>
+                          <el-col :span="8">
+                            <div style="float: left;text-align: center">
+                              <el-image src="../static/img/huiyuan.jpg" style="width: 100%;height: 120px;cursor: pointer" title="150元/年，超级会员"></el-image>
+                              <span style="color:red">$</span>
+                              <span style="color:red">150</span>
+                              <span >元/年</span>
+
+                            </div>
+                          </el-col>
+                          <el-col :span="18" :offset="3" style="font-size: 12px;margin-top: 20px">
+                            <div style="float: left;width: 100%">
+                              <el-button type="primary" style="width: 100%" plain  @click="guanzhu()">+充值</el-button>
+                            </div>
+                          </el-col>
+                        </el-row>
+                      <a  type="info" slot="reference" @click="toPay()" style="font-size: 20px" title="VIP">VIP</a>
+                      </el-popover>
+
                 </span>
               </div>
               <!--历史-->

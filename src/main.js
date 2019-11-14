@@ -11,10 +11,15 @@ import $ from 'jquery'
 // Vue.use(AreaSelect) // 引用自定义组件
 // Vue.component('area-select', AreaSelect) // 初始化组件
 
-import Video from 'video.js'
-import 'video.js/dist/video-js.css'
+// import Video from 'video.js'
+// import 'video.js/dist/video-js.css'
 
-Vue.prototype.$video = Video
+import VideoPlayer from 'vue-video-player'
+import 'vue-video-player/src/custom-theme.css'
+import 'video.js/dist/video-js.css'
+Vue.use(VideoPlayer)
+
+// Vue.prototype.$video = Video
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 Vue.use($)
