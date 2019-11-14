@@ -227,8 +227,10 @@ export default {
       }
   },
   mounted() {
+
     this.path = this.$route.path;
     // console.log(this.$route.path)
+
 
     var userId=Cookies.get('userId');
     this.user.userId=userId;
@@ -301,8 +303,8 @@ export default {
     },
     //支付
     payfor:function(){
-      if (this.userId!=null) {
-        this.$router.push("/userDetial")
+      if (this.user.userId!=null) {
+
       }else {
         this.$message.error('还没登录哦，请登录后再试');
         this.$router.push("/userLogin")
@@ -310,12 +312,12 @@ export default {
     },
     //      个人中心-完善信息
     toUser:function () {
-      //if (this.user.userId!=null) {
+      if (this.user.userId!=null) {
         this.$router.push("/userDetial")
-      /*}else {
+      }else {
         this.$message.error('还没登录哦，请登录后再试');
         this.$router.push("/userLogin")
-      }*/
+      }
     },
     //修改密码
     toModify:function () {
@@ -333,6 +335,12 @@ export default {
         this.$message.error('还没登录哦，请登录后再试');
         this.$router.push("/userLogin")
       }
+    },
+    logout:function () {
+      Cookies.remove('userId'); // fail!
+      Cookies.remove('userId', { path: '/' });
+      this.user.userName='登录'
+      this.$router.go(0)
     },
   }
 }
