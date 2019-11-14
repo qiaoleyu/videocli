@@ -3,8 +3,8 @@
     <!--<h1>{{ msg }}</h1>-->
     <el-container >
       <!--导航栏-->
-      <el-header style="height: 40px">
-        <div style="width: 100%;margin: auto">
+      <el-header style="height: 40px;margin-top: 80px">
+        <div style="width: 100%;margin: auto;">
           <!--搜索-->
           <el-row :gutter="10">
             <el-col :span="14" :offset="5">
@@ -537,28 +537,6 @@
       this.findByCommentId();
 //      var player = video('example-video');
 
-      //      倍速播放
-//      var player = videojs("example-video").setup({
-//        title: "倍速播放",
-//        file: "https://huyi-gajia.oss-cn-beijing.aliyuncs.com/file/2019-11-09/d30b6657b28b45d18b909c0b9c9271ee-day05.mp4", // 播放地址
-//        playRate: true, // 默认h5播放器有倍速功能，如不需要，可以设置为false
-//        // 可配置倍速值数组，格式如下所示
-//        playRateConfig: [
-//          {label: "×1"},
-//          {label: "×2"},
-//          {label: "×3"},
-//          {label: "×4"},
-//        ],
-//        autostart: true,
-//        stretching: "uniform",
-//        repeat: false,
-//        volume: 100,
-//        controls: true,
-//        starttime: 0,
-//        primary: "html5",
-//        ak: "xxxxxxxxxxxxxxxx"// 公有云平台注册即可获得accessKey
-//      });
-
     },
     methods:{
 
@@ -573,8 +551,6 @@
               }
           })
         },
-
-
 
 //      分页
       handleSizeChange(val) {
