@@ -3,7 +3,7 @@
     <!--<h1>{{ msg }}</h1>-->
     <el-container >
       <!--导航栏-->
-      <el-header style="height: 40px;margin-top: 80px">
+      <el-header style="height: 40px">
         <div style="width: 100%;margin: auto">
           <!--搜索-->
           <el-row :gutter="10">
@@ -362,6 +362,46 @@
       </el-main>
 
       <el-footer>
+        <!--&lt;!&ndash;dan'mu&ndash;&gt;-->
+        <!--<div id="container" class="container">-->
+        <!--</div>-->
+        <!--<div class="input-box">-->
+          <!--&lt;!&ndash;限制用户输入的文字长度，尽量避免用户输入的内容长度超过屏幕的宽度&ndash;&gt;-->
+          <!--<input type="text" maxlength="20" placeholder="说点什么吧~">-->
+          <!--<button id="btn" class="btn">发送</button>-->
+        <!--</div>-->
+
+
+        <!--bottom-->
+        <!--<el-row>-->
+          <!--<el-col :span="24"  class="bg-purple">-->
+            <!--<div style="height: 170px;line-height: 170px;font-size: 13px;text-align: center;float: left;width: 10%">-->
+              <!--<el-image src="../static/img/hz.jpg"></el-image>-->
+            <!--</div>-->
+            <!--<div style="height: 170px;line-height: 25px;font-size: 13px;text-align: center;float: left;width: 90%">-->
+              <!--<ul>-->
+                <!--<li>-->
+                  <!--<a href="">广播电视节目制作经营许可证：（沪）字第1248号|网络文化经营许可证：沪网文【2016】2296-134号|信息网络传播视听节目许可证：0910417</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                  <!--<a href="">互联网ICP备案：沪ICP备13002172号-3沪ICP证：沪B2-20100043 |违法不良信息举报邮箱：help@bilibili.com |违法不良信息举报电话：4000233233转3 | 营业执照</a>-->
+                <!--</li><br>-->
+                <!--<li>-->
+                  <!--<a href="">上海互联网举报中心 | 12318全国文化市场举报网站 | 沪公网安备31011002002436号 | 儿童色情信息举报专区</a>-->
+                <!--</li><br>-->
+                <!--<li>-->
+                  <!--<a href="">网上有害信息举报专区：中国互联网违法和不良信息举报中心</a>-->
+                <!--</li><br>-->
+                <!--<li>-->
+                  <!--<a href="">亲爱的市民朋友，上海警方反诈劝阻电话“962110”系专门针对避免您财产被骗受损而设，请您一旦收到来电，立即接听。</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                  <!--<a href="">公司名称：上海宽娱数码科技有限公司|公司地址：上海市杨浦区政立路485号|电话：021-25099888</a>-->
+                <!--</li>-->
+              <!--</ul>-->
+            <!--</div>-->
+          <!--</el-col>-->
+        <!--</el-row>-->
 
       </el-footer>
     </el-container>
@@ -374,7 +414,7 @@
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
   import ElInput from "../../node_modules/element-ui/packages/input/src/input";
   import $ from 'jquery';
-
+  import Cookies from 'js-cookie'
 
   //  弹幕
 //  function $(str)  {
@@ -427,7 +467,16 @@
           },
         },
 
-
+        comments:[],
+        com:{
+          videoId:1,
+          episodeId:'',
+          userId:2,
+          userName:'gh',
+          userPic:'',
+          commentContent:'',
+          commentRid:0,
+        },
 
 
 
@@ -436,7 +485,7 @@
           input:'',
         input1:'',
         user:{
-              userId:1,
+              userId:'',
           userName:''
         },
         msg: 'Welcome video index',
@@ -448,13 +497,85 @@
         currentPage: 1,
         player:'',
         index:1,
+//        倍速
+//        options: [
+//          {
+//            value: '0.5',
+//            label: '0.5'
+//          },{
+//            value: '1',
+//            label: '1.0'
+//          },{
+//            value: '1.25',
+//            label: '1.25'
+//          },{
+//            value: '1.5',
+//            label: '1.5'
+//          },{
+//            value: '2',
+//            label: '2.0'
+//          }
+//        ]
+
+        userName: "", // 用户名
+        websocket: null, // WebSocket对象
+        videoId: "", // 对方频道号==>视频id
+        messageList: [], // 消息列表
+        messageValue: "", // 弹幕消息内容
+        barrage:{
+          videoId:'',
+          videoTime:'', //视频当前播放时间
+          userId:'',
+        }
+
       }
     },
     mounted(){
+        this.barrage.videoId=this.$route.params.id;
+        this.user.userId=Cookies.get('userId');
+      this.findAll();
+      this.findByCommentId();
 //      var player = video('example-video');
+
+      //      倍速播放
+//      var player = videojs("example-video").setup({
+//        title: "倍速播放",
+//        file: "https://huyi-gajia.oss-cn-beijing.aliyuncs.com/file/2019-11-09/d30b6657b28b45d18b909c0b9c9271ee-day05.mp4", // 播放地址
+//        playRate: true, // 默认h5播放器有倍速功能，如不需要，可以设置为false
+//        // 可配置倍速值数组，格式如下所示
+//        playRateConfig: [
+//          {label: "×1"},
+//          {label: "×2"},
+//          {label: "×3"},
+//          {label: "×4"},
+//        ],
+//        autostart: true,
+//        stretching: "uniform",
+//        repeat: false,
+//        volume: 100,
+//        controls: true,
+//        starttime: 0,
+//        primary: "html5",
+//        ak: "xxxxxxxxxxxxxxxx"// 公有云平台注册即可获得accessKey
+//      });
 
     },
     methods:{
+
+        /*发送弹幕方法中调用该方法*/
+        save:function () {
+          this.barrage.userId=this.user.userId;
+          axios.post("api/saveBarrage",this.barrage).then(res=>{
+              if (res.data!=null){
+                  alert("success")
+              }else {
+                  alert("fail")
+              }
+          })
+        },
+
+
+
 //      分页
       handleSizeChange(val) {
         console.log('每页 ${val} 条');
@@ -504,7 +625,7 @@
         }
       },
       //回复
-      onMessage() {
+      /*onMessage() {
         this.$prompt('请输入回复信息', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
@@ -521,40 +642,78 @@
             message: '取消输入'
           });
         });
-      },
+      },*/
+
+//      //注册画中画按钮
+//      createMyButton () {
+//        let Button = videojs.getComponent('Button')
+//        let myButton = videojs.extend(Button, {
+//          constructor: function (player, options) {
+//            Button.apply(this, arguments)
+//            this.addClass('fullscreen-enter')
+//          },
+//          handleClick: () => {
+//            // 绑定点击事件
+//          },
+//          buildCSSClass: function () {
+//            return 'vjs-icon-custombutton vjs-control vjs-button'
+//          }
+//        })
+//
+//        //注册
+//        videojs.registerComponent('myButton', myButton)
+//
+//        this.$nextTick(() => {
+//          // 添加到controlBar中
+//          this.$refs.videoPlayer1.player.getChild('controlBar').addChild('myButton')
+//        })
+//      },
+
+
       // 播放回调
       onPlayerPlay(player) {
-        console.log('player play!', player)
+        //console.log('player play!', player)
       },
 
       // 暂停回调
       onPlayerPause(player) {
-        console.log('player pause!', player)
+        //console.log('player pause!', player)
+        /*视频暂停，定时器暂停，websocket连接*/
+        this.websocket.close();
       },
 
       // 视频播完回调
       onPlayerEnded($event) {
-        console.log(player)
+        //console.log($event)
       },
 
       // DOM元素上的readyState更改导致播放停止
       onPlayerWaiting($event) {
-        console.log(player)
+       // console.log($event)
       },
 
       // 已开始播放回调
       onPlayerPlaying($event) {
-        console.log(player)
+        //console.log($event)
+        /*开始播放则定时器启动，websocket连接，向后台请求弹幕数据*/
+        this.conectWebSocket();
+        if (this.timer){
+          clearInterval(this.timer);
+        } else {
+          this.timer=setInterval(()=>{
+            this.sendMessage();
+          },1000)
+        }
       },
 
       // 当播放器在当前播放位置下载数据时触发
       onPlayerLoadeddata($event) {
-        console.log(player)
+        //console.log($event)
       },
 
       // 当前播放位置发生变化时触发。
       onPlayerTimeupdate($event) {
-        console.log(player)
+        this.barrage.videoTime=($event.cache_.currentTime).toFixed();
       },
 
       //媒体的readyState为HAVE_FUTURE_DATA或更高
@@ -569,16 +728,118 @@
 
       //播放状态改变回调
       playerStateChanged(playerCurrentState) {
-        console.log('player current update state', playerCurrentState)
+        //console.log('player current update state', playerCurrentState)
       },
 
       //将侦听器绑定到组件的就绪状态。与事件监听器的不同之处在于，如果ready事件已经发生，它将立即触发该函数。。
       playerReadied(player) {
-        console.log('example player 1 readied', player);
-      }
+        //console.log('example player 1 readied', player);
+      },
+
+      findBarrage:function () {
+        axios.get("api/")
+      },
+
+      conectWebSocket: function() {
+        console.log("建立连接");
+
+          //判断当前浏览器是否支持WebSocket
+          if ("WebSocket" in window) {
+            this.websocket = new WebSocket(
+                /*根据视频id建立连接*/
+              "ws://localhost:8080/websocket/" + this.videoId
+            );
+          } else {
+            alert("不支持建立socket连接");
+          }
+          //连接发生错误的回调方法
+          this.websocket.onerror = function() {
+
+          };
+          //连接成功建立的回调方法
+          this.websocket.onopen = function(event) {
+
+          };
+          //接收到消息的回调方法
+          var that = this;
+          this.websocket.onmessage = function(event) {
+            var object = eval("(" + event.data + ")");
+            console.log(object);
+            console.log("接收到的消息："+object.msg);
+            if (object.type == 0) {
+              // 提示连接成功
+              console.log("连接成功");
+              that.showInfo(object.people, object.videoId);
+            }
+            if (object.type == 1) {
+              //显示消息
+              console.log("接受消息");
+              that.messageList.push(object);
+            }
+          };
+          //连接关闭的回调方法
+          this.websocket.onclose = function() {};
+          //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+          window.onbeforeunload = function() {
+            this.websocket.close();
+          };
+      },
+      // 发送消息
+      sendMessage: function() {
+        var socketMsg = { msg: this.barrage.videoTime, toUser: this.videoId };
+        /*if (this.videoId == "") {
+          //群聊.
+          socketMsg.type = 0;
+        } else {*/
+          //单聊.
+          socketMsg.type = 1;
+//        }
+        this.websocket.send(JSON.stringify(socketMsg));
+      },
+      showInfo: function(people, videoId) {
+        this.$notify({
+          title: "当前在线人数：" + people,
+          message: "您的频道号：" + videoId,
+          duration: 0
+        });
+      },
 
 
+      /*评论*/
+      findAll:function () {
+        axios.get("api/findAllComment").then(res=>{
+          if (res.data!=null){
+            this.comments=res.data;
+            console.log(this.comments)
+          }else {
+            alert("暂无评论")
+          }
+        })
+      },
+      findByCommentId:function (commentId) {
+        axios.get("api/").then(res=>{
+
+        })
+      },
+
+      save:function () {
+        this.com.commentRid=2;
+        console.log(this.com)
+        axios.post("api/saveComment",this.com).then(res=>{
+          if (res.data!=null){
+            alert("success")
+            this.findAll();
+          }else {
+            alert("fail")
+          }
+        })
+      },
+
+      delete:function (commentId) {
+        this.findAll();
+      },
     }
+
 }
 </script>
 
