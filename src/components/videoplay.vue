@@ -604,8 +604,30 @@
         });
       },
 
-
-
+//      //注册画中画按钮
+//      createMyButton () {
+//        let Button = videojs.getComponent('Button')
+//        let myButton = videojs.extend(Button, {
+//          constructor: function (player, options) {
+//            Button.apply(this, arguments)
+//            this.addClass('fullscreen-enter')
+//          },
+//          handleClick: () => {
+//            // 绑定点击事件
+//          },
+//          buildCSSClass: function () {
+//            return 'vjs-icon-custombutton vjs-control vjs-button'
+//          }
+//        })
+//
+//        //注册
+//        videojs.registerComponent('myButton', myButton)
+//
+//        this.$nextTick(() => {
+//          // 添加到controlBar中
+//          this.$refs.videoPlayer1.player.getChild('controlBar').addChild('myButton')
+//        })
+//      },
 
 
       // 播放回调

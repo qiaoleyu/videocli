@@ -114,16 +114,22 @@
                             </div>
                           </el-col>
                           <el-col :span="8">
+
                             <div style="float: left;text-align: center">
-                              <el-image src="../static/img/yue.jpg" style="width: 100%;height: 120px;cursor: pointer" title="20元/月，普通会员"></el-image>
+                              <el-card style="height: 120px;width: 100%;cursor: pointer">
+                                <el-image src="../static/img/yue.jpg" style="width: 100%;height:100%" title="20元/月，普通会员"></el-image>
+                             </el-card>
                               <span style="color:red">$</span>
                               <span style="color:red">20</span>
                               <span>元/月</span>
                             </div>
+
                           </el-col>
                           <el-col :span="8">
                             <div style="float: left;text-align: center">
-                              <el-image src="../static/img/nian.jpg" style="width: 100%;height: 120px;cursor: pointer" title="120元/年，普通会员"></el-image>
+                              <el-card style="height: 120px;width: 100%;cursor: pointer">
+                                <el-image src="../static/img/nian.jpg" style="width: 100%;height: 100%" title="120元/年，普通会员"></el-image>
+                              </el-card>
                               <span style="color:red">$</span>
                               <span style="color:red">120</span>
                               <span>元/年</span>
@@ -131,7 +137,9 @@
                           </el-col>
                           <el-col :span="8">
                             <div style="float: left;text-align: center">
-                              <el-image src="../static/img/huiyuan.jpg" style="width: 100%;height: 120px;cursor: pointer" title="150元/年，超级会员"></el-image>
+                              <el-card style="height: 120px;width: 100%;cursor: pointer">
+                                <el-image src="../static/img/huiyuan.jpg" style="width: 100%;height: 100%" title="150元/年，超级会员"></el-image>
+                              </el-card>
                               <span style="color:red">$</span>
                               <span style="color:red">150</span>
                               <span >元/年</span>
@@ -140,7 +148,7 @@
                           </el-col>
                           <el-col :span="18" :offset="3" style="font-size: 12px;margin-top: 20px">
                             <div style="float: left;width: 100%">
-                              <el-button type="primary" style="width: 100%" plain  @click="guanzhu()">+充值</el-button>
+                              <el-button type="primary" style="width: 100%" plain  @click="payfor()">充值</el-button>
                             </div>
                           </el-col>
                         </el-row>
@@ -286,6 +294,15 @@ export default {
         this.h='';
       }if(x==11){
         this.j='';
+      }
+    },
+    //支付
+    payfor:function(){
+      if (this.userId!=null) {
+        this.$router.push("/userDetial")
+      }else {
+        this.$message.error('还没登录哦，请登录后再试');
+        this.$router.push("/userLogin")
       }
     },
     //      个人中心-完善信息
