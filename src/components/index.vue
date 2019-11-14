@@ -905,59 +905,59 @@
         }
       },
 //      个人中心-完善信息
-      toUser:function () {
+      /*toUser:function () {
         if (this.userId!=null) {
           this.$router.push("/userDetial")
         }else {
           this.$message.error('还没登录哦，请登录后再试');
           this.$router.push("/userLogin")
         }
-      },
+      },*/
 //      修改密码
-      toModify:function () {
+      /*toModify:function () {
         if (this.userId!=null) {
           this.$router.push("/updatePassword")
         }else {
           this.$message.error('还没登录哦，请登录后再试');
           this.$router.push("/userLogin")
         }
-      },
+      },*/
 
 
 
       // 播放回调
       onPlayerPlay(player) {
-        console.log('player play!', player)
+//        console.log('player play!', player)
       },
 
       // 暂停回调
       onPlayerPause(player) {
-        console.log('player pause!', player)
+//        console.log('player pause!', player)
       },
 
       // 视频播完回调
       onPlayerEnded($event) {
-        console.log(player)
+//        console.log(player)
       },
 
       // DOM元素上的readyState更改导致播放停止
       onPlayerWaiting($event) {
-        console.log(player)
+//        console.log(player)
       },
 
       // 已开始播放回调
       onPlayerPlaying($event) {
-        console.log(player)
+//        console.log(player)
       },
 
       // 当播放器在当前播放位置下载数据时触发
       onPlayerLoadeddata($event) {
-        console.log(player)
+//        console.log(player)
       },
 
       // 当前播放位置发生变化时触发。
       onPlayerTimeupdate($event) {
-        console.log(player)
+//        console.log(player)
       },
 
       //媒体的readyState为HAVE_FUTURE_DATA或更高
@@ -972,12 +972,12 @@
 
       //播放状态改变回调
       playerStateChanged(playerCurrentState) {
-        console.log('player current update state', playerCurrentState)
+//        console.log('player current update state', playerCurrentState)
       },
 
       //将侦听器绑定到组件的就绪状态。与事件监听器的不同之处在于，如果ready事件已经发生，它将立即触发该函数。。
       playerReadied(player) {
-        console.log('example player 1 readied', player);
+//        console.log('example player 1 readied', player);
       }
 
 
