@@ -114,16 +114,22 @@
                             </div>
                           </el-col>
                           <el-col :span="8">
+
                             <div style="float: left;text-align: center">
-                              <el-image src="../static/img/yue.jpg" style="width: 100%;height: 120px;cursor: pointer" title="20元/月，普通会员"></el-image>
+                              <el-card style="height: 120px;width: 100%;cursor: pointer">
+                                <el-image src="../static/img/yue.jpg" style="width: 100%;height:100%" title="20元/月，普通会员"></el-image>
+                             </el-card>
                               <span style="color:red">$</span>
                               <span style="color:red">20</span>
                               <span>元/月</span>
                             </div>
+
                           </el-col>
                           <el-col :span="8">
                             <div style="float: left;text-align: center">
-                              <el-image src="../static/img/nian.jpg" style="width: 100%;height: 120px;cursor: pointer" title="120元/年，普通会员"></el-image>
+                              <el-card style="height: 120px;width: 100%;cursor: pointer">
+                                <el-image src="../static/img/nian.jpg" style="width: 100%;height: 100%" title="120元/年，普通会员"></el-image>
+                              </el-card>
                               <span style="color:red">$</span>
                               <span style="color:red">120</span>
                               <span>元/年</span>
@@ -131,7 +137,9 @@
                           </el-col>
                           <el-col :span="8">
                             <div style="float: left;text-align: center">
-                              <el-image src="../static/img/huiyuan.jpg" style="width: 100%;height: 120px;cursor: pointer" title="150元/年，超级会员"></el-image>
+                              <el-card style="height: 120px;width: 100%;cursor: pointer">
+                                <el-image src="../static/img/huiyuan.jpg" style="width: 100%;height: 100%" title="150元/年，超级会员"></el-image>
+                              </el-card>
                               <span style="color:red">$</span>
                               <span style="color:red">150</span>
                               <span >元/年</span>
@@ -140,7 +148,7 @@
                           </el-col>
                           <el-col :span="18" :offset="3" style="font-size: 12px;margin-top: 20px">
                             <div style="float: left;width: 100%">
-                              <el-button type="primary" style="width: 100%" plain  @click="guanzhu()">+充值</el-button>
+                              <el-button type="primary" style="width: 100%" plain  @click="payfor()">充值</el-button>
                             </div>
                           </el-col>
                         </el-row>
@@ -163,8 +171,10 @@
                    @mouseleave="leave(6)"
                    :style="e"
               >
-                <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.userId==null" ><a class="el-icon-user">登录</a></router-link>
-                <span style="color:black;" v-if="this.userId!=null"><a>{{user.userName}}</a></span>
+                <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.user.userId==null" ><a class="el-icon-user" >登录</a></router-link>
+                <span style="color:black;" v-if="this.user.userId!=null"><a>{{user.userName}}</a></span>
+               <!-- <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.userId==null" ><a class="el-icon-user">登录</a></router-link>
+                <span style="color:black;" v-if="this.userId!=null"><a>{{user.userName}}</a></span>-->
               </div>
               <!--注册-->
               <div class="grid-content " style="height: 60px;width:50px;float: left"
@@ -192,6 +202,8 @@
 </template>
 
 <script>
+  import Cookies from 'js-cookie'
+  import axios from 'axios';
 export default {
   name: 'App',
   data(){
@@ -209,7 +221,7 @@ export default {
         i:'',
         j:'',
         user:{
-          userId:1,
+          userId:'',
           userName:''
         },
       }
@@ -217,6 +229,19 @@ export default {
   mounted() {
     this.path = this.$route.path;
     // console.log(this.$route.path)
+
+    var userId=Cookies.get('userId');
+    this.user.userId=userId;
+    //alert(this.user.userId)
+    if (this.user.userId!=''){
+      axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
+        this.user=res.data;
+        //console(this.user)
+      })
+    }else {
+      alert("请登录")
+      this.$router.push("/userLogin")
+    }
   },
   watch:{
     $route(to,from){
@@ -270,8 +295,8 @@ export default {
         this.j='';
       }
     },
-    //      个人中心-完善信息
-    toUser:function () {
+    //支付
+    payfor:function(){
       if (this.userId!=null) {
         this.$router.push("/userDetial")
       }else {
@@ -279,9 +304,18 @@ export default {
         this.$router.push("/userLogin")
       }
     },
+    //      个人中心-完善信息
+    toUser:function () {
+      //if (this.user.userId!=null) {
+        this.$router.push("/userDetial")
+      /*}else {
+        this.$message.error('还没登录哦，请登录后再试');
+        this.$router.push("/userLogin")
+      }*/
+    },
     //修改密码
     toModify:function () {
-      if (this.userId!=null) {
+      if (this.user.userId!=null) {
         this.$router.push("/updatePassword")
       }else {
         this.$message.error('还没登录哦，请登录后再试');
@@ -289,7 +323,7 @@ export default {
       }
     },
     toMessage(){
-      if (this.userId!=null) {
+      if (this.user.userId!=null) {
         this.$router.push("/userMessage")
       }else {
         this.$message.error('还没登录哦，请登录后再试');
