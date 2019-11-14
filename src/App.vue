@@ -231,13 +231,12 @@ export default {
     // console.log(this.$route.path)
 
     var userId=Cookies.get('userId');
-
     this.user.userId=userId;
-    alert(this.user.userId)
+    //alert(this.user.userId)
     if (this.user.userId!=''){
       axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
         this.user=res.data;
-        console(this.user)
+        //console(this.user)
       })
     }else {
       alert("请登录")

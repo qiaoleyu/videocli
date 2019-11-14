@@ -192,7 +192,7 @@
     },
     mounted(){
       var userId=Cookies.get('userId');
-      alert(userId)
+      //alert(userId)
       this.user.userId=userId;
       if (this.user.userId!=''){
         axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
