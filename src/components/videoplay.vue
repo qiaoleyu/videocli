@@ -414,7 +414,7 @@
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
   import ElInput from "../../node_modules/element-ui/packages/input/src/input";
   import $ from 'jquery';
-
+  import Cookies from 'js-cookie'
 
   //  弹幕
 //  function $(str)  {
@@ -467,7 +467,16 @@
           },
         },
 
-
+        comments:[],
+        com:{
+          videoId:1,
+          episodeId:'',
+          userId:2,
+          userName:'gh',
+          userPic:'',
+          commentContent:'',
+          commentRid:0,
+        },
 
 
 
@@ -476,7 +485,7 @@
           input:'',
         input1:'',
         user:{
-              userId:1,
+              userId:'',
           userName:''
         },
         msg: 'Welcome video index',
@@ -507,9 +516,25 @@
 //            label: '2.0'
 //          }
 //        ]
+
+        userName: "", // 用户名
+        websocket: null, // WebSocket对象
+        videoId: "", // 对方频道号==>视频id
+        messageList: [], // 消息列表
+        messageValue: "", // 弹幕消息内容
+        barrage:{
+          videoId:'',
+          videoTime:'', //视频当前播放时间
+          userId:'',
+        }
+
       }
     },
     mounted(){
+        this.barrage.videoId=this.$route.params.id;
+        this.user.userId=Cookies.get('userId');
+      this.findAll();
+      this.findByCommentId();
 //      var player = video('example-video');
 
       //      倍速播放
@@ -536,6 +561,21 @@
 
     },
     methods:{
+
+        /*发送弹幕方法中调用该方法*/
+        save:function () {
+          this.barrage.userId=this.user.userId;
+          axios.post("api/saveBarrage",this.barrage).then(res=>{
+              if (res.data!=null){
+                  alert("success")
+              }else {
+                  alert("fail")
+              }
+          })
+        },
+
+
+
 //      分页
       handleSizeChange(val) {
         console.log('每页 ${val} 条');
@@ -585,7 +625,7 @@
         }
       },
       //回复
-      onMessage() {
+      /*onMessage() {
         this.$prompt('请输入回复信息', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
@@ -602,7 +642,7 @@
             message: '取消输入'
           });
         });
-      },
+      },*/
 
 //      //注册画中画按钮
 //      createMyButton () {
@@ -632,37 +672,48 @@
 
       // 播放回调
       onPlayerPlay(player) {
-        console.log('player play!', player)
+        //console.log('player play!', player)
       },
 
       // 暂停回调
       onPlayerPause(player) {
-        console.log('player pause!', player)
+        //console.log('player pause!', player)
+        /*视频暂停，定时器暂停，websocket连接*/
+        this.websocket.close();
       },
 
       // 视频播完回调
       onPlayerEnded($event) {
-        console.log(player)
+        //console.log($event)
       },
 
       // DOM元素上的readyState更改导致播放停止
       onPlayerWaiting($event) {
-        console.log(player)
+       // console.log($event)
       },
 
       // 已开始播放回调
       onPlayerPlaying($event) {
-        console.log(player)
+        //console.log($event)
+        /*开始播放则定时器启动，websocket连接，向后台请求弹幕数据*/
+        this.conectWebSocket();
+        if (this.timer){
+          clearInterval(this.timer);
+        } else {
+          this.timer=setInterval(()=>{
+            this.sendMessage();
+          },1000)
+        }
       },
 
       // 当播放器在当前播放位置下载数据时触发
       onPlayerLoadeddata($event) {
-        console.log(player)
+        //console.log($event)
       },
 
       // 当前播放位置发生变化时触发。
       onPlayerTimeupdate($event) {
-        console.log(player)
+        this.barrage.videoTime=($event.cache_.currentTime).toFixed();
       },
 
       //媒体的readyState为HAVE_FUTURE_DATA或更高
@@ -677,16 +728,118 @@
 
       //播放状态改变回调
       playerStateChanged(playerCurrentState) {
-        console.log('player current update state', playerCurrentState)
+        //console.log('player current update state', playerCurrentState)
       },
 
       //将侦听器绑定到组件的就绪状态。与事件监听器的不同之处在于，如果ready事件已经发生，它将立即触发该函数。。
       playerReadied(player) {
-        console.log('example player 1 readied', player);
-      }
+        //console.log('example player 1 readied', player);
+      },
+
+      findBarrage:function () {
+        axios.get("api/")
+      },
+
+      conectWebSocket: function() {
+        console.log("建立连接");
+
+          //判断当前浏览器是否支持WebSocket
+          if ("WebSocket" in window) {
+            this.websocket = new WebSocket(
+                /*根据视频id建立连接*/
+              "ws://localhost:8080/websocket/" + this.videoId
+            );
+          } else {
+            alert("不支持建立socket连接");
+          }
+          //连接发生错误的回调方法
+          this.websocket.onerror = function() {
+
+          };
+          //连接成功建立的回调方法
+          this.websocket.onopen = function(event) {
+
+          };
+          //接收到消息的回调方法
+          var that = this;
+          this.websocket.onmessage = function(event) {
+            var object = eval("(" + event.data + ")");
+            console.log(object);
+            console.log("接收到的消息："+object.msg);
+            if (object.type == 0) {
+              // 提示连接成功
+              console.log("连接成功");
+              that.showInfo(object.people, object.videoId);
+            }
+            if (object.type == 1) {
+              //显示消息
+              console.log("接受消息");
+              that.messageList.push(object);
+            }
+          };
+          //连接关闭的回调方法
+          this.websocket.onclose = function() {};
+          //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+          window.onbeforeunload = function() {
+            this.websocket.close();
+          };
+      },
+      // 发送消息
+      sendMessage: function() {
+        var socketMsg = { msg: this.barrage.videoTime, toUser: this.videoId };
+        /*if (this.videoId == "") {
+          //群聊.
+          socketMsg.type = 0;
+        } else {*/
+          //单聊.
+          socketMsg.type = 1;
+//        }
+        this.websocket.send(JSON.stringify(socketMsg));
+      },
+      showInfo: function(people, videoId) {
+        this.$notify({
+          title: "当前在线人数：" + people,
+          message: "您的频道号：" + videoId,
+          duration: 0
+        });
+      },
 
 
+      /*评论*/
+      findAll:function () {
+        axios.get("api/findAllComment").then(res=>{
+          if (res.data!=null){
+            this.comments=res.data;
+            console.log(this.comments)
+          }else {
+            alert("暂无评论")
+          }
+        })
+      },
+      findByCommentId:function (commentId) {
+        axios.get("api/").then(res=>{
+
+        })
+      },
+
+      save:function () {
+        this.com.commentRid=2;
+        console.log(this.com)
+        axios.post("api/saveComment",this.com).then(res=>{
+          if (res.data!=null){
+            alert("success")
+            this.findAll();
+          }else {
+            alert("fail")
+          }
+        })
+      },
+
+      delete:function (commentId) {
+        this.findAll();
+      },
     }
+
 }
 </script>
 
