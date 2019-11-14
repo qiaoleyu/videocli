@@ -3,144 +3,8 @@
     <!--<h1>{{ msg }}</h1>-->
     <el-container >
       <!--导航栏-->
-      <el-header style="height: 140px">
+      <el-header style="height: 40px">
         <div style="width: 100%;margin: auto;">
-        <el-row :gutter="10" >
-          <!--style="background-color: gainsboro;"-->
-
-          <!--<el-col :span="4">-->
-            <!--<div class="grid-content " style="height: 60px;font-size: 16px">-->
-              <!--<el-image src="http://pxx4c7852.bkt.clouddn.com/logo2%20%281%29.jpg" style="height: 60px;width:150px;border-radius: 3px"></el-image>-->
-            <!--</div>-->
-          <!--</el-col>-->
-          <el-col :span="10" :offset="2">
-            <div class="grid-content " style="height: 80px;font-size: 16px;border: solid 1px orangered;border-radius: 10px">
-              <div class="grid-content " style="height: 60px;font-size: 16px;float: left;">
-                <router-link :to="{name:'index'}">
-                  <el-image src="../static/img/bala2.jpg" style="height: 80px;width:150px;border-radius: 3px" title="首页"></el-image>
-                </router-link>
-              </div>
-              <div id="sy" class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
-                   @mousemove="over(1)"
-                   @mouseleave="leave(1)"
-                   :style="active"
-
-              >
-                <router-link type="info" :to="{name:'index'}" style="color:black;" ><a>首页</a></router-link>
-              </div>
-              <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
-                   @mousemove="over(2)"
-                   @mouseleave="leave(2)"
-                   :style="a"
-              >
-                <a @click="toOrders()" style="cursor: pointer">直播</a>
-              </div>
-              <el-dropdown>
-                <div class="grid-content " style="height:60px;font-size: 16px;float: left;margin-top: 10px"
-                     @mousemove="over(9)"
-                     @mouseleave="leave(9)"
-                     :style="h"
-                >
-                  <span class="el-dropdown-link">
-                    <a>个人中心</a><i class="el-icon-arrow-down el-icon--left"></i>
-                  </span>
-                  <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item><a @click="toUser()">完善信息</a></el-dropdown-item>
-                    <el-dropdown-item><a @click="toModify()">修改密码</a></el-dropdown-item>
-                  </el-dropdown-menu>
-                </div>
-              </el-dropdown>
-
-              <el-dropdown>
-
-                <span class="el-dropdown-link">
-                  <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;top: 10px"
-                       @mousemove="over(3)"
-                       @mouseleave="leave(3)"
-                       :style="b"
-                  >
-                    <a>赛事</a><i class="el-icon-arrow-down el-icon--left"></i>
-                  </div>
-                </span>
-                  <el-dropdown-menu slot="dropdown" style="width:240px;">
-                    <el-dropdown-item>1</el-dropdown-item>
-                    <el-dropdown-item>2</el-dropdown-item>
-                    <el-dropdown-item>3</el-dropdown-item>
-                    <el-dropdown-item>4</el-dropdown-item>
-                    <el-dropdown-item>5</el-dropdown-item>
-                  </el-dropdown-menu>
-
-              </el-dropdown>
-              <el-dropdown>
-                <div class="grid-content " style="height: 60px;font-size: 16px;float: left"
-                     @mousemove="over(4)"
-                     @mouseleave="leave(4)"
-                     :style="c"
-                >
-                <span class="el-dropdown-link">
-                  <a>视频</a><i class="el-icon-arrow-down el-icon--left"></i>
-                </span>
-                  <el-dropdown-menu slot="dropdown" style="width:240px;">
-                    <el-dropdown-item>1</el-dropdown-item>
-                    <el-dropdown-item>2</el-dropdown-item>
-                    <el-dropdown-item>3</el-dropdown-item>
-                    <el-dropdown-item>4</el-dropdown-item>
-                    <el-dropdown-item>5</el-dropdown-item>
-                  </el-dropdown-menu>
-                </div>
-              </el-dropdown>
-            </div>
-          </el-col>
-
-          <!--<el-col :span="4"><div class="grid-content bg-purple"></div></el-col>-->
-          <el-col :span="8" :offset="4">
-            <div class="grid-content " style="height: 80px;margin-top: 10px">
-              <!--VIP-->
-              <div class="grid-content " style="height: 60px;width:50px;float: left"
-                   @mousemove="over(11)"
-                   @mouseleave="leave(11)"
-                   :style="j"
-              >
-                 <span type="info" style="color:black;cursor: pointer;margin-right: 10px">
-                  <a  type="info" @click="toPay()" style="font-size: 20px" title="VIP">VIP</a>
-                </span>
-              </div>
-              <!--历史-->
-              <div class="grid-content " style="height: 60px;float: left"
-                   @mousemove="over(5)"
-                   @mouseleave="leave(5)"
-                   :style="d"
-              >
-                <span type="info" style="color:black;cursor: pointer;margin-right: 10px" ><a @click="logout()" class="el-icon-pie-chart" :size="50">历史</a></span>
-              </div>
-              <!--登录-->
-              <div class="grid-content " style="height: 60px;width:50px;float: left"
-                   @mousemove="over(6)"
-                   @mouseleave="leave(6)"
-                   :style="e"
-              >
-                <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.user.userId==null" ><a class="el-icon-user" >登录</a></router-link>
-                <span style="color:black;" v-if="this.user.userId!=null"><a>{{user.userName}}</a></span>
-              </div>
-              <!--注册-->
-              <div class="grid-content " style="height: 60px;width:50px;float: left"
-                   @mousemove="over(7)"
-                   @mouseleave="leave(7)"
-                   :style="f"
-              >
-                <router-link type="info" :to="{name:'userRegist'}" style="color:black"><a>注册</a></router-link>
-              </div>
-              <!--退出-->
-              <div class="grid-content " style="height: 60px;width:50px;float: left"
-                   @mousemove="over(8)"
-                   @mouseleave="leave(8)"
-                   :style="g"
-              >
-                <span type="info" style="color:black;cursor: pointer"><a @click="logout()">退出</a></span>
-              </div>
-            </div>
-          </el-col>
-        </el-row>
           <el-row :gutter="10">
             <el-col :span="14" :offset="5">
               <div class="grid-content " style="height: 60px">
@@ -230,13 +94,39 @@
                 <el-carousel :interval="5000" type="card" height="300px" width="800px">
                   <el-carousel-item v-for="item in 4" :key="item">
 
-                    <video id=example-video width=90% height=300 style="margin:auto" class="video-js vjs-default-skin vjs-big-play-centered" controls title="王者荣耀播主视频">
+                      <video-player class="video-player vjs-custom-skin"
+                                  ref="videoPlayer"
+                                  :playsinline="true"
+                                  :options="playerOptions"
+                                  @play="onPlayerPlay($event)"
+                                  @pause="onPlayerPause($event)"
+                                  @ended="onPlayerEnded($event)"
+                                  @waiting="onPlayerWaiting($event)"
+                                  @playing="onPlayerPlaying($event)"
+                                  @loadeddata="onPlayerLoadeddata($event)"
+                                  @timeupdate="onPlayerTimeupdate($event)"
+                                  @canplay="onPlayerCanplay($event)"
+                                  @canplaythrough="onPlayerCanplaythrough($event)"
+                                  @statechanged="playerStateChanged($event)"
+                                  @ready="playerReadied"
+                    >
                       <source
                         src="https://candy-jing.oss-cn-beijing.aliyuncs.com/01.mp4"
-                        type="video/mp4"
+                        type="video/mp4">
                       >
-                      <!--type="application/x-mpegURL"-->
-                    </video>
+                    </video-player>
+
+
+
+
+
+                    <!--<video id=example-video width=90% height=300 style="margin:auto" class="video-js vjs-default-skin vjs-big-play-centered" controls title="王者荣耀播主视频">-->
+                      <!--<source-->
+                        <!--src="https://candy-jing.oss-cn-beijing.aliyuncs.com/01.mp4"-->
+                        <!--type="video/mp4"-->
+                      <!--&gt;-->
+                      <!--&lt;!&ndash;type="application/x-mpegURL"&ndash;&gt;-->
+                    <!--</video>-->
                   </el-carousel-item>
                 </el-carousel>
 
@@ -903,8 +793,6 @@
   import axios from 'axios';
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
-  import Cookies from 'js-cookie'
-
   export default {
     components: {
       ElButton,
@@ -912,6 +800,30 @@
     name: 'index',
     data () {
       return {
+
+        playerOptions: {
+          playbackRates: [0.5, 1.0, 1.5, 2.0], // 可选的播放速度
+          autoplay: false, // 如果为true,浏览器准备好时开始回放。
+          muted: false, // 默认情况下将会消除任何音频。
+          loop: false, // 是否视频一结束就重新开始。
+          preload: 'auto', // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
+          language: 'zh-CN',
+          aspectRatio: '16:9', // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
+          fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
+          sources: [{
+            type: "video/mp4", // 类型
+            src: 'https://candy-jing.oss-cn-beijing.aliyuncs.com/01.mp4' // url地址
+          }],
+          poster: '../static/img/bala.jpg', // 封面地址
+          notSupportedMessage: '此视频暂无法播放，请稍后再试', // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
+          controlBar: {
+            timeDivider: true, // 当前时间和持续时间的分隔符
+            durationDisplay: true, // 显示持续时间
+            remainingTimeDisplay: false, // 是否显示剩余时间功能
+            fullscreenToggle: true // 是否显示全屏按钮
+          },
+        },
+
         imageUrl: '',
           input:'',
         msg: 'Welcome video index',
@@ -927,7 +839,7 @@
         i:'',
         j:'',
         user:{
-          userId:'',
+            userId:'',
           userTell:'',
           userHobby:'',
 //          userInfo:'',
@@ -935,22 +847,12 @@
           userEmail:'',
           userPic:'',
           userName:''
+
         },
       }
     },
     mounted(){
-      var userId=Cookies.get('userId');
-      //alert(userId)
-      console.log(userId)
-      this.userId=userId;
-      if (this.userId!=''){
-        axios.get("api/findUserByUserId/"+this.userId).then(res=>{
-          this.user=res.data;
-        })
-      }else {
-        alert("请登录")
-        this.$router.push("/userLogin")
-      }
+
     },
     methods:{
         over:function (x) {
@@ -1010,13 +912,12 @@
       },
 //      个人中心-完善信息
       toUser:function () {
-        //alert(this.user.userId)
         if (this.userId!=null) {
-         this.$router.push("/userDetial")
-         }else {
-         this.$message.error('还没登录哦，请登录后再试');
-         this.$router.push("/userLogin")
-         }
+          this.$router.push("/userDetial")
+        }else {
+          this.$message.error('还没登录哦，请登录后再试');
+          this.$router.push("/userLogin")
+        }
       },
 //      修改密码
       toModify:function () {
@@ -1027,6 +928,67 @@
           this.$router.push("/userLogin")
         }
       },
+
+
+
+      // 播放回调
+      onPlayerPlay(player) {
+        console.log('player play!', player)
+      },
+
+      // 暂停回调
+      onPlayerPause(player) {
+        console.log('player pause!', player)
+      },
+
+      // 视频播完回调
+      onPlayerEnded($event) {
+        console.log(player)
+      },
+
+      // DOM元素上的readyState更改导致播放停止
+      onPlayerWaiting($event) {
+        console.log(player)
+      },
+
+      // 已开始播放回调
+      onPlayerPlaying($event) {
+        console.log(player)
+      },
+
+      // 当播放器在当前播放位置下载数据时触发
+      onPlayerLoadeddata($event) {
+        console.log(player)
+      },
+
+      // 当前播放位置发生变化时触发。
+      onPlayerTimeupdate($event) {
+        console.log(player)
+      },
+
+      //媒体的readyState为HAVE_FUTURE_DATA或更高
+      onPlayerCanplay(player) {
+        // console.log('player Canplay!', player)
+      },
+
+      //媒体的readyState为HAVE_ENOUGH_DATA或更高。这意味着可以在不缓冲的情况下播放整个媒体文件。
+      onPlayerCanplaythrough(player) {
+        // console.log('player Canplaythrough!', player)
+      },
+
+      //播放状态改变回调
+      playerStateChanged(playerCurrentState) {
+        console.log('player current update state', playerCurrentState)
+      },
+
+      //将侦听器绑定到组件的就绪状态。与事件监听器的不同之处在于，如果ready事件已经发生，它将立即触发该函数。。
+      playerReadied(player) {
+        console.log('example player 1 readied', player);
+      }
+
+
+
+
     }
 }
 </script>

@@ -9,6 +9,8 @@ import userDetial from '@/components/userDetial'
 import userLogin from '@/components/userLogin'
 import userRegist from '@/components/userRegist'
 import searchVideo from '@/components/searchVideo'
+import userMessage from '@/components/userMessage'
+import moreMessage from '@/components/moreMessage'
 
 Vue.use(Router)
 
@@ -50,6 +52,18 @@ export default new Router({
       path: '/searchVideo',
       name: 'searchVideo',
       component: searchVideo
+    },{
+      path: '/userMessage',
+      name: 'userMessage',
+      component: userMessage,
+      children: [
+        {path: '/moreMessage', name: '私聊', component: moreMessage}
+      ]
     }
+    // },{
+    // path: '/moreMessage',
+    //   name: 'moreMessage',
+    //   component: moreMessage
+    // }
   ]
 })
