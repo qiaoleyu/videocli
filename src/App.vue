@@ -295,6 +295,10 @@ export default {
         this.j='';
       }
     },
+    //直播(跳转到直播页面)
+    toOrders:function(){
+
+    },
     //支付
     payfor:function(){
       if (this.userId!=null) {
