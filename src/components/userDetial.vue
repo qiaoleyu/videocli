@@ -177,7 +177,6 @@
           userPic:'',
           userName:'',
           userUptime:'',
-
         },
         rules:{
           userName: [{ validator: checkUserName, trigger: 'blur' }],
@@ -193,9 +192,10 @@
     },
     mounted(){
       var userId=Cookies.get('userId');
-      this.userId=userId;
-      if (this.userId!=''){
-        axios.get("api/findUserByUserId/"+this.userId).then(res=>{
+      alert(userId)
+      this.user.userId=userId;
+      if (this.user.userId!=''){
+        axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
           this.user=res.data;
         })
       }else {

@@ -794,7 +794,7 @@
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
   import Cookies from 'js-cookie'
-  
+
   export default {
     components: {
       ElButton,
@@ -840,31 +840,6 @@
         h:'',
         i:'',
         j:'',
-        user:{
-            userId:'',
-          userTell:'',
-          userHobby:'',
-//          userInfo:'',
-          userRealname:'',
-          userEmail:'',
-          userPic:'',
-          userName:''
-
-        },
-      }
-    },
-    mounted(){
-      var userId=Cookies.get('userId');
-      //alert(userId)
-      console.log(userId)
-      this.userId=userId;
-      if (this.userId!=''){
-        axios.get("api/findUserByUserId/"+this.userId).then(res=>{
-          this.user=res.data;
-        })
-      }else {
-        alert("请登录")
-        this.$router.push("/userLogin")
       }
     },
     methods:{

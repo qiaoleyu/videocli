@@ -282,6 +282,8 @@
                     message: '登录成功，欢迎操作其他业务！',
                     type: 'success'
                   });
+                  /*var userId=Cookies.get('userId');
+                  alert(userId)*/
                   this.$router.push("/");
                 })
               } else if(res.data=="field"){
