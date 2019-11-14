@@ -57,7 +57,7 @@ export default new Router({
       name: 'userMessage',
       component: userMessage,
       children: [
-        {path: '/moreMessage', name: '私聊', component: moreMessage}
+        {path: '/moreMessage/:userId', name: '私聊', component: moreMessage}
       ]
     }
     // },{

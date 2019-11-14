@@ -203,7 +203,7 @@
                 <!--用户信息-->
                 <el-row :gutter="10" style="margin-top: 20px">
                   <el-col :span="24">
-                      <div style="width:150px;font-size: 25px;font-weight: bolder;margin-left: 10px;background-color: black;float: left;text-align: center">
+                     <!-- <div style="width:150px;font-size: 25px;font-weight: bolder;margin-left: 10px;background-color: black;float: left;text-align: center">
                         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
                         </el-menu>
                         <el-popover
@@ -211,9 +211,9 @@
                           width="300"
                           trigger="hover"
                           >
-                          <!--title="标题"-->
-                          <!--content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"-->
-                          <!--<el-button slot="reference">hover 激活</el-button>-->
+                          &lt;!&ndash;title="标题"&ndash;&gt;
+                          &lt;!&ndash;content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"&ndash;&gt;
+                          &lt;!&ndash;<el-button slot="reference">hover 激活</el-button>&ndash;&gt;
                           <el-row :gutter="10">
                             <el-col :span="24">
                               <div style="float: left;">
@@ -247,7 +247,7 @@
                             </el-col>
                             <el-col :span="12"  style="font-size: 12px;margin-top: 20px">
                               <div style="float: left;width: 100%">
-                                <el-button type="primary" style="width: 100%" plain @click="send()">发信息</el-button>
+                                <el-button type="primary" style="width: 100%" plain @click="toUserMsg()">发信息</el-button>
                               </div>
                             </el-col>
                           </el-row>
@@ -259,11 +259,11 @@
                         <span>用户名</span>
 
                       </div>
+-->
 
                       <!--评论信息-->
                       <el-row :gutter="10" style="margin-top: 20px">
-                        <el-col :span="24">
-                        <!--<el-col :span="20" :offset="4">-->
+                        <el-col :span="20" :offset="4">
                           <div v-for="(item,index) in comments" style="width:99%;font-size: 16px;font-weight: bolder;margin-left: 10px;background-color: beige;float: left;text-align: center">
                             <!--遍历评论信息-->
 
@@ -291,7 +291,7 @@
                                       </el-col>
                                       <el-col :span="12" style="height:60px;line-height: 60px">
                                         <div style="float: left;">
-                                          <span>用户名</span>
+                                          <span>{{item.userName}}</span>
                                         </div>
                                       </el-col>
                                       <el-col :span="18" :offset="6" style="font-size: 12px">
@@ -311,7 +311,7 @@
                                       </el-col>
                                       <el-col :span="12"  style="font-size: 12px;margin-top: 20px">
                                         <div style="float: left;width: 100%">
-                                          <el-button type="primary" style="width: 100%" plain @click="send()">发信息</el-button>
+                                          <el-button type="primary" style="width: 100%" plain><router-link :to="{path:'/moreMessage/'+item.userId}">发信息</router-link></el-button>
                                         </div>
                                       </el-col>
                                     </el-row>
@@ -335,8 +335,8 @@
                               </el-col>
                               <el-col :span="3">
                                 <div style="float: left;">
-                                  <el-button icon="el-icon-thumb" type="warning" circle plain style="font-size: 8px"></el-button>
-                                  <sapn>{{item.commentContent}}</sapn>
+                                  <el-button @click="like(index)" icon="el-icon-thumb" type="warning" circle plain style="font-size: 8px"></el-button>
+                                  <sapn>{{item.commentCount}}</sapn>
                                 </div>
                               </el-col>
                               <el-col :span="3">
@@ -348,6 +348,7 @@
                           </div>
                         </el-col>
                       </el-row>
+
                     <!--分页-->
                     <el-row :gutter="10" style="margin-top: 20px">
                       <el-col :span="24">
@@ -519,13 +520,18 @@
           videoId:1,
           episodeId:'',
           userId:'',
-          userName:'gh',
+          userName:'',
           userPic:'',
           commentContent:'',
           commentRid:0,
+          commentCount:0
         },
 
-
+        user:{
+          userId:'',
+          userName:'',
+          userPic:'',
+        },
 
       visible: false,
         activeIndex: '1',
@@ -580,8 +586,12 @@
     mounted(){
         this.barrage.videoId=this.$route.params.id;
         this.com.userId=Cookies.get('userId');
+        axios.get("api/findUserByUserId/"+this.com.userId).then(res=>{
+            this.user=res.data;
+            console.log(this.user)
+        })
       this.findAll();
-      this.findByCommentId();
+//      this.findByCommentId();
 //      var player = video('example-video');
 
     },
@@ -759,9 +769,6 @@
         //console.log('example player 1 readied', player);
       },
 
-      findBarrage:function () {
-        axios.get("api/")
-      },
 
       conectWebSocket: function() {
         console.log("建立连接");
@@ -833,17 +840,29 @@
         axios.get("api/findAllComment").then(res=>{
           if (res.data!=null){
             this.comments=res.data;
-            console.log(this.comments)
+//            console.log(this.comments)
           }else {
             alert("暂无评论")
           }
         })
       },
-      findByCommentId:function (commentId) {
+      /*点赞*/
+      like:function (index) {
+          this.com=this.comments[index];
+
+          this.com.commentCount=this.com.commentCount+1;
+        axios.post("api/updateComment",this.com).then(res=>{
+          if (res.data!=null){
+//              alert("success")
+          }
+        })
+      },
+
+     /* findByCommentId:function (commentId) {
         axios.get("api/").then(res=>{
 
         })
-      },
+      },*/
 
       save:function () {
         this.com.commentRid=2;
@@ -858,9 +877,14 @@
         })
       },
 
-      delete:function (commentId) {
+      /*delete:function (commentId) {
+          axios.get
         this.findAll();
-      },
+      },*/
+
+      /*toUserMsg:function (index) {
+        this.$router.push('/moreMessage/'+this.comments[index].userId)
+      }*/
     }
 
 }
