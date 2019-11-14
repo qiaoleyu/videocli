@@ -64,11 +64,25 @@
         websocket: null, // WebSocket对象
         aisle: "", // 对方频道号
         messageList: [], // 消息列表
-        messageValue: "" // 消息内容
+        messageValue: "" ,// 消息内容
+        user:{
+
+        },
+        user2:{
+
+        },
+        toUser:''  //对方id
       };
     },
     mounted(){
-      this.conectWebSocket()
+      this.conectWebSocket();
+      this.toUser=this.$route.params.userId;  //对方id
+      console.log(this.toUser)
+      this.user.userId=Cookies.get('userId');
+      axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
+        this.user=res.data;
+        console.log(this.user)
+      })
     },
     methods: {
       conectWebSocket: function() {
