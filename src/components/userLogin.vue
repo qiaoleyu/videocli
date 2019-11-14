@@ -20,8 +20,8 @@
             <hr>
           </el-col>
         </el-row>
-        <el-row :gutter="10">
-          <el-col :span="12"style="font-size: 14px;height:460px;margin-bottom: 20px;border-right: solid 2px #d3dce6">
+        <el-row :gutter="10" style="height:460px;">
+          <el-col :span="12"style="font-size: 14px;height:100%;margin-bottom: 20px;border-right: solid 2px #d3dce6">
             <!--<el-card class="box-card" style="background-color: #FDFFF4">-->
               <el-image src="../static/img/girl3.jpeg" style="height: 460px;width: 100%;font-size: 25px" title="欢迎来到bala视频网站"></el-image>
             <!--</el-card>-->
@@ -49,7 +49,7 @@
                 </el-col>
               </el-row>
               <el-row :gutter="10">
-                <el-col :span="18" :offset="3">
+                <el-col :span="18" :offset="3" style="margin-top: 15%">
                   <el-button type="primary" style="width: 28%" plain @click="login()">确认</el-button>
                   <el-button type="primary" style="width: 28%" plain @click="toinsetUser()">注册</el-button>
                   <el-button type="primary" style="width: 28%" plain @click="resetForm('user')">重置</el-button>
@@ -58,18 +58,18 @@
               <el-row :gutter="10">
                 <el-col :span="18" :offset="3">
                   <a href="" >
-                    <div style="width:40px;margin-top: 10px;float:left;margin-left: 10px">
+                    <div style="width:40px;margin-top: 20px;float:left;margin-left: 10px">
                       <el-image src="../static/img/qq.jpg" title="QQ"></el-image>
                     </div>
-                    <div style="width:40px;margin-top: 10px;float:left;line-height: 20px;margin-right: 30px">
+                    <div style="width:40px;margin-top: 20px;float:left;line-height: 20px;margin-right: 30px">
                       <span >QQ</span>
                     </div>
                   </a>
                   <a href="">
-                    <div style="width:40px;margin-top: 10px;float:left">
+                    <div style="width:40px;margin-top: 20px;float:left">
                       <el-image src="../static/img/weixin1.jpg" title="微信"></el-image>
                     </div>
-                    <div style="width:40px;margin-top: 10px;float:left">
+                    <div style="width:40px;margin-top: 20px;float:left">
                       <span>微信</span>
                     </div>
                   </a>
