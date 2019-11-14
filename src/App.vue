@@ -279,8 +279,13 @@ export default {
       }
     },
     //支付
-    payfor(){
-
+    payfor:function(){
+      if (this.userId!=null) {
+        this.$router.push("/userDetial")
+      }else {
+        this.$message.error('还没登录哦，请登录后再试');
+        this.$router.push("/userLogin")
+      }
     },
     //      个人中心-完善信息
     toUser:function () {
