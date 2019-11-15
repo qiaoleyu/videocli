@@ -460,12 +460,13 @@
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
   import ElInput from "../../node_modules/element-ui/packages/input/src/input";
+  import $ from 'jquery';
   import Cookies from 'js-cookie'
 
   //弹幕
-  function $(str)  {
+  /*function $(str)  {
     return document.getElementById(str);
-  };
+  };*/
   setInterval(move,200)
   function move() {
 
@@ -618,7 +619,7 @@
       },
 
       //弹幕
-       send(){
+       send:function(){
          var word = this.input1;
 //         alert(word)
          var length=word.length;//huoqu wenben de changdu

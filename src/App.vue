@@ -101,7 +101,7 @@
                  <span type="info" style="color:black;cursor: pointer;margin-right: 10px">
                     <el-popover
                       placement="top-start"
-                      width="300"
+                      width="400"
                       trigger="hover"
                     >
                         <!--title="标题"-->
@@ -119,31 +119,30 @@
                               <el-card style="height: 120px;width: 100%;cursor: pointer">
                                 <el-image src="../static/img/yue.jpg" style="width: 100%;height:100%" title="20元/月，普通会员"></el-image>
                              </el-card>
-                              <span style="color:red">$</span>
-                              <span style="color:red">20</span>
-                              <span>元/月</span>
+                              <el-radio-group v-model="radio1">
+                                <el-radio-button label="$20元/月"></el-radio-button>
+                              </el-radio-group>
                             </div>
 
                           </el-col>
                           <el-col :span="8">
                             <div style="float: left;text-align: center">
                               <el-card style="height: 120px;width: 100%;cursor: pointer">
-                                <el-image src="../static/img/nian.jpg" style="width: 100%;height: 100%" title="120元/年，普通会员"></el-image>
+                                <el-image src="../static/img/nian.jpg" style="width: 100%;height: 100%" title="50元/季，普通会员"></el-image>
                               </el-card>
-                              <span style="color:red">$</span>
-                              <span style="color:red">120</span>
-                              <span>元/年</span>
+                              <el-radio-group v-model="radio1">
+                                <el-radio-button label="$50元/季"></el-radio-button>
+                              </el-radio-group>
                             </div>
                           </el-col>
                           <el-col :span="8">
                             <div style="float: left;text-align: center">
                               <el-card style="height: 120px;width: 100%;cursor: pointer">
-                                <el-image src="../static/img/huiyuan.jpg" style="width: 100%;height: 100%" title="150元/年，超级会员"></el-image>
+                                <el-image src="../static/img/huiyuan.jpg" style="width: 100%;height: 100%" title="200元/年，普通会员"></el-image>
                               </el-card>
-                              <span style="color:red">$</span>
-                              <span style="color:red">150</span>
-                              <span >元/年</span>
-
+                              <el-radio-group v-model="radio1">
+                                <el-radio-button label="$200元/年"></el-radio-button>
+                              </el-radio-group>
                             </div>
                           </el-col>
                           <el-col :span="18" :offset="3" style="font-size: 12px;margin-top: 20px">
@@ -157,6 +156,28 @@
 
                 </span>
               </div>
+
+              <!--用户充值-->
+              <div class="grid-content " style="height: 60px;float: left"
+                   @mousemove="over(12)"
+                   @mouseleave="leave(12)"
+                   :style="m"
+              >
+                <el-dropdown>
+                  <span class="el-dropdown-link">
+                    用户充值<i class="el-icon-arrow-down el-icon--right"></i>
+                  </span>
+                  <el-dropdown-menu slot="dropdown" style="width: 120px">
+                    <el-dropdown-item>
+                      <el-button type="text" @click="WeChatPay" style="width: 100%">微信充值</el-button>
+                    </el-dropdown-item>
+                    <el-dropdown-item divided="true">
+                      <el-button type="text" @click="aliPay" style="width: 100%">支付宝充值</el-button>
+                    </el-dropdown-item>
+                  </el-dropdown-menu>
+                </el-dropdown>
+              </div>
+
               <!--历史-->
               <div class="grid-content " style="height: 60px;float: left"
                    @mousemove="over(5)"
@@ -173,8 +194,6 @@
               >
                 <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.user.userId==null" ><a class="el-icon-user" >登录</a></router-link>
                 <span style="color:black;" v-if="this.user.userId!=null"><a>{{user.userName}}</a></span>
-               <!-- <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.userId==null" ><a class="el-icon-user">登录</a></router-link>
-                <span style="color:black;" v-if="this.userId!=null"><a>{{user.userName}}</a></span>-->
               </div>
               <!--注册-->
               <div class="grid-content " style="height: 60px;width:50px;float: left"
@@ -202,8 +221,9 @@
 </template>
 
 <script>
-  import Cookies from 'js-cookie'
+  import Cookies from 'js-cookie';
   import axios from 'axios';
+  import swal from 'sweetalert'
 export default {
   name: 'App',
   data(){
@@ -220,10 +240,17 @@ export default {
         h:'',
         i:'',
         j:'',
+        m:'',
         user:{
           userId:'',
           userName:''
         },
+        radio1: '$20元/月',
+
+        pay:{
+          userId:'',
+          rechargeMoney:'',
+        }
       }
   },
   mounted() {
@@ -238,6 +265,7 @@ export default {
     if (this.user.userId!=''){
       axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
         this.user=res.data;
+        //alert(this.user.userId)
         //console(this.user)
       })
     }else {
@@ -272,6 +300,8 @@ export default {
         this.h='background-color: orangered;border-radius: 0px 10px 0px 10px';
       }if(x==11){
         this.j='background-color: orangered;border-radius: 0px 10px 0px 10px';
+      }if(x==12){
+        this.m='background-color: orangered;border-radius: 0px 10px 0px 10px';
       }
     },
     leave:function (x) {
@@ -295,16 +325,88 @@ export default {
         this.h='';
       }if(x==11){
         this.j='';
+      }if(x==12){
+        this.m='';
       }
     },
     //直播(跳转到直播页面)
     toOrders:function(){
 
     },
-    //支付
+    /*//微信充值
+    WeChatPay() {
+      if (this.user.userId!=null) {
+        this.$prompt('请输入需要充值的金额', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          inputPattern:"" ,
+          inputErrorMessage: '充值金额格式不正确'
+        }).then(({ value }) => {
+          swal({
+            text: "充值的金额:"+value,
+            icon: "success",
+            button: "确定",
+          });
+        }).catch(() => {
+          swal({
+            text: "取消充值",
+            icon: "info",
+            button: "确定",
+          });
+        });
+      }else {
+        this.$message.error('还没登录哦，请登录后再试');
+        this.$router.push("/userLogin")
+      }
+    },*/
+    //支付宝支付
+    aliPay() {
+      if (this.user.userId!=null) {
+        this.$prompt('请输入需要充值的金额', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          inputPattern:"" ,
+          inputErrorMessage: '充值金额格式不正确'
+        }).then(({ value }) => {
+          swal({
+            text: "充值的金额:"+value,
+            icon: "success",
+            button: "确定",
+          });
+          axios.post("api/aliPay/"+this.user.userId+"/"+value).then(res => {
+              alert(111)
+            this.$router.replace({path:'/applyText',query:{htmls:res.data}})
+          })
+        }).catch(() => {
+          swal({
+            text: "取消充值",
+            icon: "info",
+            button: "确定",
+          });
+        });
+      }else {
+        this.$message.error('还没登录哦，请登录后再试');
+        this.$router.push("/userLogin")
+      }
+    },
+    //用户充值会员
     payfor:function(){
       if (this.user.userId!=null) {
-
+        this.pay.userId=this.user.userId;
+        if(this.radio1=="$20元/月"){
+          this.pay.rechargeMoney=20;
+        }
+        if(this.radio1=="$50元/季"){
+          this.pay.rechargeMoney=50;
+        }
+        if(this.radio1=="$200元/年"){
+          this.pay.rechargeMoney=200;
+        }
+        //alert(this.pay.userId)
+        //alert(this.pay.rechargeMoney)
+        axios.post("api/userRecharge",this.pay).then(res => {
+          this.$router.replace({path:'/applyText',query:{htmls:res.data}})
+        })
       }else {
         this.$message.error('还没登录哦，请登录后再试');
         this.$router.push("/userLogin")
@@ -347,6 +449,16 @@ export default {
 </script>
 
 <style>
+
+  .el-dropdown-link {
+    cursor: pointer;
+    color: black;
+  }
+  .el-icon-arrow-down {
+    font-size: 20px;
+  }
+
+
   .el-header {
     /*background-color: #B3C0D1;*/
     /*color: #333;*/
@@ -423,6 +535,10 @@ export default {
 </style>
 
 <style scoped>
+
+
+
+
   h1, h2 {
     font-weight: normal;
   }
