@@ -560,7 +560,7 @@ export default {
 
   }
   a:hover {
-    color: red;
+    color: black;
   }
   .body{
     font-family: 楷体;
