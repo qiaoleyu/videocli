@@ -109,12 +109,22 @@
                       <!--<el-button slot="reference">hover 激活</el-button>-->
                         <el-row :gutter="10">
                           <el-col :span="24">
-                            <div style="float: left;text-align: left;font-weight: bolder;font-size: 16px;margin-bottom: 20px">
-                              <span>会员充值：</span>
-                            </div>
+                            <h2>请选择支付方式</h2>
+                          </el-col>
+                          <el-col :span="12">
+                            <el-radio-group v-model="radio2">
+                              <el-radio-button label="账户余额支付"></el-radio-button>
+                            </el-radio-group>
+                          </el-col>
+                          <el-col :span="12">
+                            <el-radio-group v-model="radio2">
+                              <el-radio-button label="支付宝支付"></el-radio-button>
+                            </el-radio-group>
+                          </el-col>
+                          <el-col :span="24">
+                            <h2>请选择会员充值期限</h2>
                           </el-col>
                           <el-col :span="8">
-
                             <div style="float: left;text-align: center">
                               <el-card style="height: 120px;width: 100%;cursor: pointer">
                                 <el-image src="../static/img/yue.jpg" style="width: 100%;height:100%" title="20元/月，普通会员"></el-image>
@@ -151,7 +161,7 @@
                             </div>
                           </el-col>
                         </el-row>
-                      <a  type="info" slot="reference" @click="toPay()" style="font-size: 20px" title="VIP">VIP</a>
+                      <a  type="info" slot="reference" style="font-size: 20px" title="VIP">VIP</a>
                       </el-popover>
 
                 </span>
@@ -224,7 +234,9 @@
   import Cookies from 'js-cookie';
   import axios from 'axios';
   import swal from 'sweetalert'
+  import ElCol from "element-ui/packages/col/src/col";
 export default {
+  components: {ElCol},
   name: 'App',
   data(){
       return{
@@ -247,6 +259,7 @@ export default {
           userMoney:''
         },
         radio1: '$20元/月',
+        radio2: '账户余额支付',
         pay:{
           userId:'',
           rechargeVip:'',
@@ -261,12 +274,9 @@ export default {
 
     var userId=Cookies.get('userId');
     this.user.userId=userId;
-    //alert(this.user.userId)
     if (this.user.userId!=''){
       axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
         this.user=res.data;
-        //alert(this.user.userId)
-        //console(this.user)
       })
     }else {
       alert("请登录")
@@ -373,7 +383,7 @@ export default {
             icon: "success",
             button: "确定",
           });
-          axios.post("api/aliPay/"+this.user.userId+"/"+value).then(res => {
+          axios.post("api/aliPayPayForCount/"+this.user.userId+"/"+value).then(res => {
             this.$router.replace({path:'/applyText',query:{htmls:res.data}})
           })
         }).catch(() => {
@@ -390,9 +400,9 @@ export default {
     },
     //用户充值会员
     payForVip:function(){
-
       if (this.user.userId!=null) {
         this.pay.userId=this.user.userId;
+
         if(this.radio1=="$20元/月"){
           this.pay.rechargeVip=20;
         }
@@ -402,25 +412,32 @@ export default {
         if(this.radio1=="$200元/年"){
           this.pay.rechargeVip=200;
         }
-        //alert(this.pay.userId)
-        //alert(this.pay.rechargeMoney)
-        if(this.pay.rechargeVip>this.user.userMoney){
-          swal({
-            text: "你的账户余额不足，请前往充值中心充值",
-            icon: "info",
-            button: "确定",
-          });
-        }else {
 
+        if(this.radio2=="账户余额支付"){
+          if(this.pay.rechargeVip>this.user.userMoney){
+            swal({
+              text: "你的账户余额不足，请前往充值中心充值",
+              icon: "info",
+              button: "确定",
+            });
+          }else {
+            console.log(this.pay)
+            axios.post("api/countPayForVip",this.pay).then(res=>{
+              this.user=res.data;
+            })
+          }
         }
-        axios.post("api/userRecharge",this.pay).then(res => {
-          this.$router.replace({path:'/applyText',query:{htmls:res.data}})
-        })
+        if(this.radio2=="支付宝支付") {
+          axios.post("api/alipayPayForVip", this.pay).then(res => {
+            this.$router.replace({path: '/applyText', query: {htmls: res.data}})
+          })
+        }
       }else {
         this.$message.error('还没登录哦，请登录后再试');
         this.$router.push("/userLogin")
       }
     },
+
     //      个人中心-完善信息
     toUser:function () {
       if (this.user.userId!=null) {
