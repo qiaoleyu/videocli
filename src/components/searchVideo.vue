@@ -97,7 +97,7 @@
         <!--视频-->
         <el-row :gutter="10">
           <!--<el-col :span="4" v-for="" v-bind:key="">-->
-          <el-col :span="6">
+          <el-col :span="6" v-for="">
             <el-card style="height: 200px;margin-bottom: 10px;">
               <div style="height: 150px;float: left;width: 100%">
                 <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
@@ -141,7 +141,7 @@
                 </div>
                 <div style="width:15%;float:left">
                   <el-tooltip content="点赞" >
-                    <a  class="el-icon-star-off" plain style="font-size: 18px"></a>
+                    <a  class="el-icon-star-off" @click="like()" plain style="font-size: 18px"></a>
                   </el-tooltip>
                 </div>
                 <div style="width:15%;float:left">

@@ -37,7 +37,8 @@
                      :style="h"
                 >
                   <span class="el-dropdown-link">
-                    <a style="cursor: pointer">个人中心</a><i class="el-icon-arrow-down el-icon--left"></i>
+                    <a style="cursor: pointer">个人中心</a>
+                    <i class="el-icon-arrow-down el-icon--left"></i>
                   </span>
                   <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item><a @click="toUser()">完善资料</a></el-dropdown-item>
@@ -74,7 +75,8 @@
                      :style="c"
                 >
                 <span class="el-dropdown-link">
-                  <a style="cursor: pointer">视频</a><i class="el-icon-arrow-down el-icon--left"></i>
+                  <a style="cursor: pointer">视频</a>
+                  <i class="el-icon-arrow-down el-icon--left"></i>
                 </span>
                   <el-dropdown-menu slot="dropdown" style="width:240px;">
                     <el-dropdown-item>1</el-dropdown-item>
@@ -164,15 +166,18 @@
                    :style="m"
               >
                 <el-dropdown>
+                  <div>
                   <span class="el-dropdown-link" style="margin-right: 10px">
-                    充值<i class="el-icon-arrow-down el-icon--right"></i>
+                    <a>充值</a>
+                    <i class="el-icon-arrow-down el-icon--right"></i>
                   </span>
                   <el-dropdown-menu slot="dropdown" style="width:130px;">
                     <el-dropdown-item><a @click="WeChatPay()">微信充值</a></el-dropdown-item>
                     <el-dropdown-item><a @click="aliPay()" >支付宝充值</a></el-dropdown-item>
                   </el-dropdown-menu>
+                  </div>
                 </el-dropdown>
-              </div>
+            </div>
 
               <!--历史-->
               <div class="grid-content " style="height: 60px;float: left"
@@ -555,7 +560,7 @@ export default {
 
   }
   a:hover {
-    color: black;
+    color: red;
   }
   .body{
     font-family: 楷体;
