@@ -147,7 +147,7 @@
                           </el-col>
                           <el-col :span="18" :offset="3" style="font-size: 12px;margin-top: 20px">
                             <div style="float: left;width: 100%">
-                              <el-button type="primary" style="width: 100%" plain  @click="payfor()">充值</el-button>
+                              <el-button type="primary" style="width: 100%" plain  @click="payForVip()">充值</el-button>
                             </div>
                           </el-col>
                         </el-row>
@@ -165,7 +165,7 @@
               >
                 <el-dropdown>
                   <span class="el-dropdown-link">
-                    用户充值<i class="el-icon-arrow-down el-icon--right"></i>
+                    充值中心<i class="el-icon-arrow-down el-icon--right"></i>
                   </span>
                   <el-dropdown-menu slot="dropdown" style="width: 120px">
                     <el-dropdown-item>
@@ -243,13 +243,13 @@ export default {
         m:'',
         user:{
           userId:'',
-          userName:''
+          userName:'',
+          userMoney:''
         },
         radio1: '$20元/月',
-
         pay:{
           userId:'',
-          rechargeMoney:'',
+          rechargeVip:'',
         }
       }
   },
@@ -374,7 +374,6 @@ export default {
             button: "确定",
           });
           axios.post("api/aliPay/"+this.user.userId+"/"+value).then(res => {
-              alert(111)
             this.$router.replace({path:'/applyText',query:{htmls:res.data}})
           })
         }).catch(() => {
@@ -390,20 +389,30 @@ export default {
       }
     },
     //用户充值会员
-    payfor:function(){
+    payForVip:function(){
+
       if (this.user.userId!=null) {
         this.pay.userId=this.user.userId;
         if(this.radio1=="$20元/月"){
-          this.pay.rechargeMoney=20;
+          this.pay.rechargeVip=20;
         }
         if(this.radio1=="$50元/季"){
-          this.pay.rechargeMoney=50;
+          this.pay.rechargeVip=50;
         }
         if(this.radio1=="$200元/年"){
-          this.pay.rechargeMoney=200;
+          this.pay.rechargeVip=200;
         }
         //alert(this.pay.userId)
         //alert(this.pay.rechargeMoney)
+        if(this.pay.rechargeVip>this.user.userMoney){
+          swal({
+            text: "你的账户余额不足，请前往充值中心充值",
+            icon: "info",
+            button: "确定",
+          });
+        }else {
+
+        }
         axios.post("api/userRecharge",this.pay).then(res => {
           this.$router.replace({path:'/applyText',query:{htmls:res.data}})
         })
