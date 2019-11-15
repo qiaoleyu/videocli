@@ -463,10 +463,10 @@
   import $ from 'jquery';
   import Cookies from 'js-cookie'
 
-    弹幕
-  function $(str)  {
+  //弹幕
+  /*function $(str)  {
     return document.getElementById(str);
-  };
+  };*/
   setInterval(move,200)
   function move() {
 
