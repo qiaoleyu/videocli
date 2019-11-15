@@ -310,7 +310,7 @@
                                       </el-col>
                                       <el-col :span="12"  style="font-size: 12px;margin-top: 20px">
                                         <div style="float: left;width: 100%">
-                                          <el-button type="primary" style="width: 100%" plain><router-link :to="{path:'/moreMessage/'+item.userId}">发信息</router-link></el-button>
+                                          <el-button type="primary" style="width: 100%" plain><router-link :to="{name:'私聊',params:{toUserId:item.userId}}">发信息</router-link></el-button>
                                         </div>
                                       </el-col>
                                     </el-row>
