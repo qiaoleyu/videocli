@@ -19,7 +19,7 @@
              &lt;!&ndash;<div style="margin: 20px;"></div>&ndash;&gt;
            </div>-->
 
-          <el-form :model="user" status-icon :rules="rules" ref="user" label-width="100px" style="width: 500px;margin: auto;height: 80px;line-height: 80px;text-align: left">
+          <el-form :model="user" status-icon :rules="rules" ref="user" label-width="100px" style="width: 500px;margin: auto;text-align: left">
             <el-form-item label="用户名：" prop="userName">
               <el-input class="arrow" name="userName" v-model="user.userName" disabled></el-input>
             </el-form-item>
@@ -339,7 +339,7 @@
     /*background-color: #B3C0D1;*/
     /*color: #333;*/
     text-align: center;
-    line-height: 60px;
+    /*line-height: 60px;*/
     margin-bottom: 10px;
   }
   .el-footer {

@@ -175,5 +175,13 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
     padding: 5px;
   }
+  .note{
+    /*position: absolute;*/
+    height: 100%;
+    width: 100%;
+    top:0;
+    left: 0;
+    /*overflow-y: auto;*/
+  }
 </style>
 
