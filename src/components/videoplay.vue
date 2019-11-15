@@ -190,7 +190,7 @@
                 <el-row :gutter="10" style="margin-top: 20px">
                   <el-col :span="4">
                     <div style="height: 80px;font-size: 25px;font-weight: bolder;margin-left: 10px">
-                      <el-avatar  src="../static/img/bala2.jpg" :size="80"></el-avatar>
+                      <el-avatar  src="user.userPic" :size="80"></el-avatar>
                     </div>
                   </el-col>
                   <el-col :span="14">

@@ -131,10 +131,10 @@
 
                             <div style="float: left;text-align: center">
                               <el-card style="height: 120px;width: 100%;cursor: pointer">
-                                <el-image src="../static/img/yue.jpg" style="width: 100%;height:100%" title="20元/月，普通会员"></el-image>
+                                <el-image src="../static/img/yue.jpg" style="width: 100%;height:100%" title="15元/月，普通会员"></el-image>
                              </el-card>
                               <el-radio-group v-model="radio1">
-                                <el-radio-button label="$20元/月"></el-radio-button>
+                                <el-radio-button label="$15元/月"></el-radio-button>
                               </el-radio-group>
                             </div>
 
@@ -257,9 +257,10 @@ export default {
         user:{
           userId:'',
           userName:'',
-          userMoney:''
+          userMoney:'',
+          userStatue:''
         },
-        radio1: '$20元/月',
+        radio1: '$15元/月',
         radio2: '账户余额支付',
         pay:{
           userId:'',
@@ -407,40 +408,55 @@ export default {
       if (this.user.userId!=null) {
         this.pay.userId=this.user.userId;
 
-        if(this.radio1=="$20元/月"){
-          this.pay.rechargeMoney=20;
+        if(this.radio1=="$15元/月"){
+          this.pay.rechargeVip=15;
         }
         if(this.radio1=="$50元/季"){
-          this.pay.rechargeMoney=50;
+          this.pay.rechargeVip=50;
         }
         if(this.radio1=="$200元/年"){
-          this.pay.rechargeMoney=200;
+          this.pay.rechargeVip=200;
         }
+         if(this.user.userStatue==1){
+           swal({
+             text: "您已经是vip了",
+             icon: "warning",
+             button: "确定",
+           });
+         }else {
+           if(this.radio2=="账户余额支付"){
+             if(this.pay.rechargeVip>this.user.userMoney){
+               swal({
+                 text: "你的账户余额不足，请前往充值中心充值",
+                 icon: "info",
+                 button: "确定",
+               });
+             }else {
+               //console.log(this.pay)
+               axios.post("api/countPayForVip",this.pay).then(res=>{
+                 if(res.data!=null){
+                   swal({
+                     text: "充值成功",
+                     icon: "success",
+                     button: "确定",
+                   });
+                 }
+               })
+             }
+           }
+           if(this.radio2=="支付宝支付") {
+             axios.post("api/alipayPayForVip", this.pay).then(res => {
+               this.$router.replace({path: '/applyText', query: {htmls: res.data}})
+             })
+           }
 
-        if(this.radio2=="账户余额支付"){
-          if(this.pay.rechargeVip>this.user.userMoney){
-            swal({
-              text: "你的账户余额不足，请前往充值中心充值",
-              icon: "info",
-              button: "确定",
-            });
-          }else {
-            //console.log(this.pay)
-            axios.post("api/countPayForVip",this.pay).then(res=>{
-              this.user=res.data;
-            })
-          }
-        }
-        if(this.radio2=="支付宝支付") {
-          axios.post("api/alipayPayForVip", this.pay).then(res => {
-            this.$router.replace({path: '/applyText', query: {htmls: res.data}})
-          })
-        }
-      }else {
-        this.$message.error('还没登录哦，请登录后再试');
-        this.$router.push("/userLogin")
-      }
-    },
+         }
+
+  }else {
+    this.$message.error('还没登录哦，请登录后再试');
+    this.$router.push("/userLogin")
+  }
+  },
     //      个人中心-完善信息
     toUser:function () {
       if (this.user.userId!=null) {

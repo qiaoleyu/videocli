@@ -224,21 +224,21 @@
       <el-main style="width: 90%;margin: auto">
         <el-row :gutter="10">
           <el-col :span="14" :offset="5">
-            <div class="grid-content " style="height: 60px;margin-top: 20px">
-              <!--搜索-->
+           <!-- <div class="grid-content " style="height: 60px;margin-top: 20px">
+              &lt;!&ndash;搜索&ndash;&gt;
               <el-input ref="searchName" type="text" style="width: 75%;margin: auto;margin-top: 10px" placeholder="想搜索点什么呢~^_^"
                         v-model="input"
               />
               <el-button type="primary" icon="el-icon-search" style="width: 100px" plain @click="search()"></el-button>
-            </div>
+            </div>-->
           </el-col>
         </el-row>
         <el-row>
           <el-col :span="6" :offset="18">
             <div class="grid-content" style="line-height: 40px;float: right;">
-              <el-tooltip content="更多" placement="bottom" effect="light">
+             <!-- <el-tooltip content="更多" placement="bottom" effect="light">
                 <el-button class="el-icon-arrow-right" plain @click="next()"></el-button>
-              </el-tooltip>
+              </el-tooltip>-->
             </div>
           </el-col>
         </el-row>
@@ -264,17 +264,17 @@
                   {{video.idx_video_name}}
 
                 </div>
-                <div style="width:15%;float:left" @click="like()">
+                <div style="width:15%;float:left" @click="like(video.pk_video_id)">
                   <el-tooltip content="点赞" >
                     <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
                   </el-tooltip>
                 </div>
-                <div style="width:15%;float:left" @click="favorite()">
+                <div style="width:15%;float:left" @click="favorite(video.pk_video_id)">
                   <el-tooltip content="收藏" >
                     <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
                   </el-tooltip>
                 </div>
-                <div style="width:15%;float:left" @click="download()">
+                <div style="width:15%;float:left" @click="download(video.pk_video_id)">
                   <el-tooltip content="下载" >
                     <a class="el-icon-download" plain style="font-size: 18px"></a>
                   </el-tooltip>
@@ -445,10 +445,23 @@
           videoId:''
         },
         videos:[],
+        video:{
+          pk_video_id:''
+        }
       }
     },
     mounted(){
      this.user.userId=Cookies.get("userId")
+      if (this.user.userId!=''){
+        axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
+          this.user=res.data;
+          //alert(this.user.userId)
+          //console(this.user)
+        })
+      }else {
+        alert("请登录")
+        this.$router.push("/userLogin")
+      }
 
       var name=this.$route.params.searchName
       //alert(name)
@@ -465,70 +478,110 @@
         }
       })
     },
-    methods:{
-      over:function (x) {
-        if(x==1){
-          this.active='background-color: orangered;border-radius: 0px 10px 0px 10px';
-        } if(x==2){
-          this.a='background-color: orangered;border-radius: 0px 10px 0px 10px';
-        } if(x==3){
-          this.b='background-color: orangered;border-radius: 0px 10px 0px 10px';
-        } if(x==4){
-          this.c='background-color: orangered;border-radius: 0px 10px 0px 10px';
-        } if(x==5){
-          this.d='background-color: orangered;border-radius: 0px 10px 0px 10px';
-        } if(x==6){
-          this.e='background-color: orangered;border-radius: 0px 10px 0px 10px';
-        } if(x==7){
-          this.f='background-color: orangered;border-radius: 0px 10px 0px 10px';
-        } if(x==8){
-          this.g='background-color: orangered;border-radius: 0px 10px 0px 10px';
-        }if(x==9){
-          this.h='background-color: orangered;border-radius: 0px 10px 0px 10px';
-        }if(x==11){
-          this.j='background-color: orangered;border-radius: 0px 10px 0px 10px';
-        }if(x==12){
-          this.m='background-color: orangered;border-radius: 0px 10px 0px 10px';
+    methods: {
+      over: function (x) {
+        if (x == 1) {
+          this.active = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 2) {
+          this.a = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 3) {
+          this.b = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 4) {
+          this.c = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 5) {
+          this.d = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 6) {
+          this.e = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 7) {
+          this.f = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 8) {
+          this.g = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 9) {
+          this.h = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 11) {
+          this.j = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 12) {
+          this.m = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
         }
       },
-      leave:function (x) {
-        if(x==1){
-          this.active='';
-        } if(x==2){
-          this.a='';
-        } if(x==3){
-          this.b='';
-        } if(x==4){
-          this.c='';
-        } if(x==5){
-          this.d='';
-        } if(x==6){
-          this.e='';
-        } if(x==7){
-          this.f='';
-        } if(x==8){
-          this.g='';
-        }if(x==9){
-          this.h='';
-        }if(x==11){
-          this.j='';
-        }if(x==12){
-          this.m='';
+      leave: function (x) {
+        if (x == 1) {
+          this.active = '';
+        }
+        if (x == 2) {
+          this.a = '';
+        }
+        if (x == 3) {
+          this.b = '';
+        }
+        if (x == 4) {
+          this.c = '';
+        }
+        if (x == 5) {
+          this.d = '';
+        }
+        if (x == 6) {
+          this.e = '';
+        }
+        if (x == 7) {
+          this.f = '';
+        }
+        if (x == 8) {
+          this.g = '';
+        }
+        if (x == 9) {
+          this.h = '';
+        }
+        if (x == 11) {
+          this.j = '';
+        }
+        if (x == 12) {
+          this.m = '';
         }
       },
-      like:function () {
-       alert(this.user.userId)
-        var url="api/like/"+this.user.userId
+      like: function (id) {
+        //alert(id)
+        var url = "api/like/" + id
+        axios.get(url).then(res => {
+          if (res.data != null) {
+            swal({
+              text: "点赞成功！",
+              icon: "success",
+              button: "确定",
+            });
+          }
+        })
+      },
+      favorite: function (id) {
+        //alert(this.user.userId)
+        var userId=this.user.userId
+        var url="api/favorite/"+userId+"/"+id
         axios.get(url).then(res=>{
-            if(res.data!=null){
+            if(res.data=="1"){
               swal({
-                text: "点赞成功！",
+                text: "收藏成功！",
+                icon: "success",
+                button: "确定",
+              });
+            }else{
+              swal({
+                text: "您已经收藏过该视频了！",
                 icon: "info",
                 button: "确定",
               });
             }
         })
-      }
+      },
     },
     //直播(跳转到直播页面)
     toOrders:function(){
