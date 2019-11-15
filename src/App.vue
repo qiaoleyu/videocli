@@ -89,7 +89,7 @@
           </el-col>
 
           <!--<el-col :span="4"><div class="grid-content bg-purple"></div></el-col>-->
-          <el-col :span="8" :offset="4">
+          <el-col :span="8" :offset="3">
             <div class="grid-content " style="height: 80px;margin-top: 10px">
 
               <!--VIP-->
@@ -167,13 +167,9 @@
                   <span class="el-dropdown-link" style="margin-right: 10px">
                     充值<i class="el-icon-arrow-down el-icon--right"></i>
                   </span>
-                  <el-dropdown-menu slot="dropdown" style="width: 120px">
-                    <el-dropdown-item>
-                      <el-button type="text" @click="WeChatPay" style="width: 100%">微信充值</el-button>
-                    </el-dropdown-item>
-                    <el-dropdown-item divided="true">
-                      <el-button type="text" @click="aliPay" style="width: 100%">支付宝充值</el-button>
-                    </el-dropdown-item>
+                  <el-dropdown-menu slot="dropdown" style="width:130px;">
+                    <el-dropdown-item><a @click="WeChatPay()">微信充值</a></el-dropdown-item>
+                    <el-dropdown-item><a @click="aliPay()" >支付宝充值</a></el-dropdown-item>
                   </el-dropdown-menu>
                 </el-dropdown>
               </div>
