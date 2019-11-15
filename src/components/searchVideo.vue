@@ -264,17 +264,17 @@
                   {{video.idx_video_name}}
 
                 </div>
-                <div style="width:15%;float:left" @click="like()">
+                <div style="width:15%;float:left" @click="like(video.pk_video_id)">
                   <el-tooltip content="点赞" >
                     <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
                   </el-tooltip>
                 </div>
-                <div style="width:15%;float:left" @click="favorite()">
+                <div style="width:15%;float:left" @click="favorite(video.pk_video_id)">
                   <el-tooltip content="收藏" >
                     <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
                   </el-tooltip>
                 </div>
-                <div style="width:15%;float:left" @click="download()">
+                <div style="width:15%;float:left" @click="download(video.pk_video_id)">
                   <el-tooltip content="下载" >
                     <a  class="el-icon-download" plain style="font-size: 18px"></a>
                   </el-tooltip>
@@ -478,70 +478,110 @@
         }
       })
     },
-    methods:{
-      over:function (x) {
-        if(x==1){
-          this.active='background-color: orangered;border-radius: 0px 10px 0px 10px';
-        } if(x==2){
-          this.a='background-color: orangered;border-radius: 0px 10px 0px 10px';
-        } if(x==3){
-          this.b='background-color: orangered;border-radius: 0px 10px 0px 10px';
-        } if(x==4){
-          this.c='background-color: orangered;border-radius: 0px 10px 0px 10px';
-        } if(x==5){
-          this.d='background-color: orangered;border-radius: 0px 10px 0px 10px';
-        } if(x==6){
-          this.e='background-color: orangered;border-radius: 0px 10px 0px 10px';
-        } if(x==7){
-          this.f='background-color: orangered;border-radius: 0px 10px 0px 10px';
-        } if(x==8){
-          this.g='background-color: orangered;border-radius: 0px 10px 0px 10px';
-        }if(x==9){
-          this.h='background-color: orangered;border-radius: 0px 10px 0px 10px';
-        }if(x==11){
-          this.j='background-color: orangered;border-radius: 0px 10px 0px 10px';
-        }if(x==12){
-          this.m='background-color: orangered;border-radius: 0px 10px 0px 10px';
+    methods: {
+      over: function (x) {
+        if (x == 1) {
+          this.active = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 2) {
+          this.a = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 3) {
+          this.b = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 4) {
+          this.c = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 5) {
+          this.d = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 6) {
+          this.e = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 7) {
+          this.f = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 8) {
+          this.g = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 9) {
+          this.h = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 11) {
+          this.j = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 12) {
+          this.m = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
         }
       },
-      leave:function (x) {
-        if(x==1){
-          this.active='';
-        } if(x==2){
-          this.a='';
-        } if(x==3){
-          this.b='';
-        } if(x==4){
-          this.c='';
-        } if(x==5){
-          this.d='';
-        } if(x==6){
-          this.e='';
-        } if(x==7){
-          this.f='';
-        } if(x==8){
-          this.g='';
-        }if(x==9){
-          this.h='';
-        }if(x==11){
-          this.j='';
-        }if(x==12){
-          this.m='';
+      leave: function (x) {
+        if (x == 1) {
+          this.active = '';
+        }
+        if (x == 2) {
+          this.a = '';
+        }
+        if (x == 3) {
+          this.b = '';
+        }
+        if (x == 4) {
+          this.c = '';
+        }
+        if (x == 5) {
+          this.d = '';
+        }
+        if (x == 6) {
+          this.e = '';
+        }
+        if (x == 7) {
+          this.f = '';
+        }
+        if (x == 8) {
+          this.g = '';
+        }
+        if (x == 9) {
+          this.h = '';
+        }
+        if (x == 11) {
+          this.j = '';
+        }
+        if (x == 12) {
+          this.m = '';
         }
       },
-      like:function () {
-       alert(this.video.pk_video_id)
-       /* var url="api/like/"+
+      like: function (id) {
+        //alert(id)
+        var url = "api/like/" + id
+        axios.get(url).then(res => {
+          if (res.data != null) {
+            swal({
+              text: "点赞成功！",
+              icon: "success",
+              button: "确定",
+            });
+          }
+        })
+      },
+      favorite: function (id) {
+        //alert(this.user.userId)
+        var userId=this.user.userId
+        var url="api/favorite/"+userId+"/"+id
         axios.get(url).then(res=>{
-            if(res.data!=null){
+            if(res.data=="1"){
               swal({
-                text: "点赞成功！",
+                text: "收藏成功！",
+                icon: "success",
+                button: "确定",
+              });
+            }else{
+              swal({
+                text: "您已经收藏过该视频了！",
                 icon: "info",
                 button: "确定",
               });
             }
-        })*/
-      }
+        })
+      },
     },
     //直播(跳转到直播页面)
     toOrders:function(){
