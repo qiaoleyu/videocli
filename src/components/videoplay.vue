@@ -90,10 +90,10 @@
                 <!--/>-->
                 <el-input type="text" id="txt" style="height:32px;width:280px;margin-left: 40px"
                           placeholder="说点什么吧~^_^"
-                          v-model="input1"
+                          v-model="barrage.barrageContent"
                 />
 
-                <el-button @click="send()" style="height: 40px " plain>发送弹幕</el-button>
+                <el-button @click="sendBarrage()" style="height: 40px " plain>发送弹幕</el-button>
 
                 <el-tooltip content="点赞" placement="bottom" effect="light">
                   <el-button icon="el-icon-thumb" type="warning" circle plain style="margin-left: 60px;font-size: 18px"></el-button>
@@ -190,12 +190,12 @@
                   </el-col>
                   <el-col :span="14">
                     <div style="height: 80px;font-size: 25px;font-weight: bolder;margin-left: 10px;line-height: 80px">
-                      <input type="text" style="height: 80px;width: 100%;font-size: 18px" />
+                      <input v-model="com.commentContent" type="text" style="height: 80px;width: 100%;font-size: 18px" />
                     </div>
                   </el-col>
                   <el-col :span="6">
                     <div style="height: 80px;font-size: 25px;font-weight: bolder;margin-left: 10px;line-height: 80px;text-align: center">
-                      <el-button style="height: 80px;width: 80%;font-size: 20px;font-weight: bolder;" plain type="primary">发表评论</el-button>
+                      <el-button style="height: 80px;width: 80%;font-size: 20px;font-weight: bolder;" plain type="primary" @click="replyMessage">发表评论</el-button>
                     </div>
                   </el-col>
                 </el-row>
@@ -524,7 +524,8 @@
           userPic:'',
           commentContent:'',
           commentRid:0,
-          commentCount:0
+          commentCount:0,
+          commentTime:''
         },
 
         user:{
@@ -579,6 +580,7 @@
           videoId:'',
           videoTime:'', //视频当前播放时间
           userId:'',
+          barrageContent:'',
         }
 
       }
@@ -598,7 +600,7 @@
     methods:{
 
         /*发送弹幕方法中调用该方法*/
-        save:function () {
+      sendBarrage:function () {
           this.barrage.userId=this.user.userId;
           axios.post("api/saveBarrage",this.barrage).then(res=>{
               if (res.data!=null){
