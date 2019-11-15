@@ -224,21 +224,21 @@
       <el-main style="width: 90%;margin: auto">
         <el-row :gutter="10">
           <el-col :span="14" :offset="5">
-            <div class="grid-content " style="height: 60px;margin-top: 20px">
-              <!--搜索-->
+           <!-- <div class="grid-content " style="height: 60px;margin-top: 20px">
+              &lt;!&ndash;搜索&ndash;&gt;
               <el-input ref="searchName" type="text" style="width: 75%;margin: auto;margin-top: 10px" placeholder="想搜索点什么呢~^_^"
                         v-model="input"
               />
               <el-button type="primary" icon="el-icon-search" style="width: 100px" plain @click="search()"></el-button>
-            </div>
+            </div>-->
           </el-col>
         </el-row>
         <el-row>
           <el-col :span="6" :offset="18">
             <div class="grid-content" style="line-height: 40px;float: right;">
-              <el-tooltip content="更多" placement="bottom" effect="light">
+             <!-- <el-tooltip content="更多" placement="bottom" effect="light">
                 <el-button class="el-icon-arrow-right" plain @click="next()"></el-button>
-              </el-tooltip>
+              </el-tooltip>-->
             </div>
           </el-col>
         </el-row>
@@ -445,10 +445,23 @@
           videoId:''
         },
         videos:[],
+        video:{
+          pk_video_id:''
+        }
       }
     },
     mounted(){
      this.user.userId=Cookies.get("userId")
+      if (this.user.userId!=''){
+        axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
+          this.user=res.data;
+          //alert(this.user.userId)
+          //console(this.user)
+        })
+      }else {
+        alert("请登录")
+        this.$router.push("/userLogin")
+      }
 
       var name=this.$route.params.searchName
       //alert(name)
@@ -517,8 +530,8 @@
         }
       },
       like:function () {
-       alert(this.user.userId)
-        var url="api/like/"+this.user.userId
+       alert(this.video.pk_video_id)
+       /* var url="api/like/"+
         axios.get(url).then(res=>{
             if(res.data!=null){
               swal({
@@ -527,7 +540,7 @@
                 button: "确定",
               });
             }
-        })
+        })*/
       }
     },
     //直播(跳转到直播页面)
