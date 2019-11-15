@@ -259,7 +259,6 @@
                         <span>用户名</span>
 
                       </div>
--->
 
                       <!--评论信息-->
                       <el-row :gutter="10" style="margin-top: 20px">
@@ -894,6 +893,11 @@
 
 
 <style>
+  <!--视频样式-->
+  .vjs-poster{
+    /*background-repeat: no-repeat;*/
+    background-repeat: inherit;
+  }
   .el-image__error, .el-image__inner, .el-image__placeholder{
     height: inherit;
     width: inherit;
