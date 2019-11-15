@@ -164,8 +164,8 @@
                    :style="m"
               >
                 <el-dropdown>
-                  <span class="el-dropdown-link">
-                    用户充值<i class="el-icon-arrow-down el-icon--right"></i>
+                  <span class="el-dropdown-link" style="margin-right: 10px">
+                    充值<i class="el-icon-arrow-down el-icon--right"></i>
                   </span>
                   <el-dropdown-menu slot="dropdown" style="width: 120px">
                     <el-dropdown-item>
