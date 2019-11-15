@@ -1525,7 +1525,7 @@ a:link {
 
 }
 a:hover {
-  color: black;
+  color: red;
 }
   .body{
     font-family: 楷体;
