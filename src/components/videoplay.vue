@@ -479,7 +479,7 @@
 
         spanArray[i].style.left = parseInt(spanArray[i].style.left) - spanArray[i].speed + 'px';
         if((parseInt(spanArray[i].style.left)- spanArray[i].speed)<0){
-          clearInterval(stopImg)
+//          clearInterval(stopImg)
           spanArray[i].hidden;
           spanArray[i].style.left==0;
           spanArray[i].speed==0;
@@ -605,6 +605,9 @@
 //      var player = video('example-video');
 
     },
+    beforeDestroy() {//这个才有用
+      clearInterval(this.timer)
+    },
     methods:{
 
         /*发送弹幕方法中调用该方法*/
@@ -629,38 +632,68 @@
 
       //弹幕
       sendMsg:function (msg) {
-        var word = msg;
-//         alert(word)
-        var length=word.length;//huoqu wenben de changdu
-        var span = document.createElement('span');
-        var top = parseInt(Math.random() * 500) - 20;
-        var color1 = parseInt(Math.random() * 256);
-        var color2 = parseInt(Math.random() * 256);
-        var color3 = parseInt(Math.random() * 256);
-        var color = "rgb(" + color1 + "," + color2 + "," + color3 + ")";
-        top = top < 0 ? 0 : top;
-        span.style.position = 'absolute';
-        span.style.top = top + "px";
-        span.style.color = color;
-        span.style.left = '800px';
-        span.style.whiteSpace = 'nowrap';
-        span.style.fontSize='20px'
-        var nub = (Math.random() * 10) + 1;
-        span.setAttribute('speed', nub);
-        span.speed = nub;
-        span.innerHTML = word;
-//          alert($('box'))
+          for (var i=0;i<=msg.length;i++){
 
-        $('box').appendChild(span);
-        this.input1= "";
-        if (span.offsetLeft < -length * random * 16) {
-          clearInterval(timer);
-          mainContent.removeChild(span);
-        }
+            var word = msg[i];
+    //         alert(word)
+            var length=word.length;//huoqu wenben de changdu
+            var span = document.createElement('span');
+            var top = parseInt(Math.random() * 500) - 20;
+            var color1 = parseInt(Math.random() * 256);
+            var color2 = parseInt(Math.random() * 256);
+            var color3 = parseInt(Math.random() * 256);
+            var color = "rgb(" + color1 + "," + color2 + "," + color3 + ")";
+            top = top < 0 ? 0 : top;
+            span.style.position = 'absolute';
+            span.style.top = top + "px";
+            span.style.color = color;
+            span.style.left = '800px';
+            span.style.whiteSpace = 'nowrap';
+            span.style.fontSize='20px'
+            var nub = (Math.random() * 10) + 1;
+            span.setAttribute('speed', nub);
+            span.speed = nub;
+            span.innerHTML = word;
+    //          alert($('box'))
+            $('box').appendChild(span);
+          }
+
       },
 
-       sendBarrage:function(){
-         this.barrage.barrageContent=this.input1;;
+      sendMsg2:function (msg) {
+          var word = msg;
+          //         alert(word)
+          var length=word.length;//huoqu wenben de changdu
+          var span = document.createElement('span');
+          var top = parseInt(Math.random() * 500) - 20;
+          var color1 = parseInt(Math.random() * 256);
+          var color2 = parseInt(Math.random() * 256);
+          var color3 = parseInt(Math.random() * 256);
+          var color = "rgb(" + color1 + "," + color2 + "," + color3 + ")";
+          top = top < 0 ? 0 : top;
+          span.style.position = 'absolute';
+          span.style.top = top + "px";
+          span.style.color = color;
+          span.style.left = '800px';
+          span.style.whiteSpace = 'nowrap';
+          span.style.fontSize='20px'
+          var nub = (Math.random() * 10) + 1;
+          span.setAttribute('speed', nub);
+          span.speed = nub;
+          span.innerHTML = word;
+          //          alert($('box'))
+
+          $('box').appendChild(span);
+         this.input1= "";
+          if (span.offsetLeft < -length * random * 16) {
+            clearInterval(timer);
+            mainContent.removeChild(span);
+          }
+        },
+
+
+        sendBarrage:function(){
+         this.barrage.barrageContent=this.input1;
          this.barrage.userId=this.user.userId;
          axios.post("api/saveBarrage",this.barrage).then(res=>{
            if (res.data!=null){
@@ -671,11 +704,12 @@
            }
          })
 //         alert(word)
-         this.sendMsg(this.input1);
+         this.sendMsg2(this.barrage.barrageContent);
+
        },
 //      倍速播放
 
-      //私聊
+     /* //私聊  无用，勿解
       send:function(){
         if (this.com.userId!=null) {
           this.$router.push("/userMessage")
@@ -683,7 +717,7 @@
           this.$message.error('还没登录哦，请登录后再试');
           this.$router.push("/userLogin")
         }
-      },
+      },*/
       //回复
       replyMessage() {
         this.$prompt('请输入回复信息', '提示', {
@@ -748,8 +782,9 @@
       onPlayerPause(player) {
         //console.log('player pause!', player)
         /*视频暂停，定时器暂停，websocket连接*/
-       /* this.websocket.close();
-        clearInterval(this.timer);*/
+        this.websocket.close();
+        clearInterval(this.timer);
+//        beforeDestroy();
       },
 
       // 视频播完回调
@@ -762,13 +797,18 @@
       // DOM元素上的readyState更改导致播放停止
       onPlayerWaiting($event) {
        // console.log($event)
-//        this.websocket.close();
+        this.websocket.close();
 //        clearInterval(this.timer);
       },
 
       // 已开始播放回调
       onPlayerPlaying($event) {
         //console.log($event)
+        this.conectWebSocket();
+
+          this.timer=setInterval(()=>{
+            this.sendMessage();
+          },1000)
 
       },
 
@@ -832,6 +872,7 @@
             console.log(object);
             console.log("接收到的消息："+object.msg);
             this.messageList=object.msg;
+            console.log(this.messageList)
             if (object.type == 0) {
               // 提示连接成功
               console.log("连接成功");
@@ -843,8 +884,8 @@
               //显示消息
               console.log("接受消息");
               that.messageList.push(object);
-              that.sendMsg(object.msg);
-              document.getElementById('box').innerHTML += object.msg + '<br/>';
+              that.sendMsg(this.messageList);
+//              document.getElementById('box').innerHTML += object.msg + '<br/>';
             }
           };
           //连接关闭的回调方法
@@ -872,11 +913,11 @@
         this.websocket.send(JSON.stringify(socketMsg));
       },
       showInfo: function(people, aisle) {
-        this.$notify({
+        /*this.$notify({
           title: "当前在线人数：" + people,
           message: "您的频道号：" + aisle,
           duration: 0
-        });
+        });*/
         this.aisle=aisle;
       },
 
