@@ -37,7 +37,8 @@
                      :style="h"
                 >
                   <span class="el-dropdown-link">
-                    <a style="cursor: pointer">个人中心</a><i class="el-icon-arrow-down el-icon--left"></i>
+                    <a style="cursor: pointer">个人中心</a>
+                    <i class="el-icon-arrow-down el-icon--left"></i>
                   </span>
                   <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item><a @click="toUser()">完善资料</a></el-dropdown-item>
@@ -74,7 +75,8 @@
                      :style="c"
                 >
                 <span class="el-dropdown-link">
-                  <a style="cursor: pointer">视频</a><i class="el-icon-arrow-down el-icon--left"></i>
+                  <a style="cursor: pointer">视频</a>
+                  <i class="el-icon-arrow-down el-icon--left"></i>
                 </span>
                   <el-dropdown-menu slot="dropdown" style="width:240px;">
                     <el-dropdown-item>1</el-dropdown-item>
@@ -89,7 +91,7 @@
           </el-col>
 
           <!--<el-col :span="4"><div class="grid-content bg-purple"></div></el-col>-->
-          <el-col :span="8" :offset="4">
+          <el-col :span="8" :offset="3">
             <div class="grid-content " style="height: 80px;margin-top: 10px">
 
               <!--VIP-->
@@ -101,7 +103,7 @@
                  <span type="info" style="color:black;cursor: pointer;margin-right: 10px">
                     <el-popover
                       placement="top-start"
-                      width="300"
+                      width="400"
                       trigger="hover"
                     >
                         <!--title="标题"-->
@@ -109,9 +111,20 @@
                       <!--<el-button slot="reference">hover 激活</el-button>-->
                         <el-row :gutter="10">
                           <el-col :span="24">
-                            <div style="float: left;text-align: left;font-weight: bolder;font-size: 16px;margin-bottom: 20px">
-                              <span>会员充值：</span>
-                            </div>
+                            <h2>请选择支付方式</h2>
+                          </el-col>
+                          <el-col :span="12">
+                            <el-radio-group v-model="radio2">
+                              <el-radio-button label="账户余额支付"></el-radio-button>
+                            </el-radio-group>
+                          </el-col>
+                          <el-col :span="12">
+                            <el-radio-group v-model="radio2">
+                              <el-radio-button label="支付宝支付"></el-radio-button>
+                            </el-radio-group>
+                          </el-col>
+                          <el-col :span="24">
+                            <h2>请选择会员充值期限</h2>
                           </el-col>
                           <el-col :span="8">
 
@@ -119,44 +132,64 @@
                               <el-card style="height: 120px;width: 100%;cursor: pointer">
                                 <el-image src="../static/img/yue.jpg" style="width: 100%;height:100%" title="20元/月，普通会员"></el-image>
                              </el-card>
-                              <span style="color:red">$</span>
-                              <span style="color:red">20</span>
-                              <span>元/月</span>
+                              <el-radio-group v-model="radio1">
+                                <el-radio-button label="$20元/月"></el-radio-button>
+                              </el-radio-group>
                             </div>
 
                           </el-col>
                           <el-col :span="8">
                             <div style="float: left;text-align: center">
                               <el-card style="height: 120px;width: 100%;cursor: pointer">
-                                <el-image src="../static/img/nian.jpg" style="width: 100%;height: 100%" title="120元/年，普通会员"></el-image>
+                                <el-image src="../static/img/nian.jpg" style="width: 100%;height: 100%" title="50元/季，普通会员"></el-image>
                               </el-card>
-                              <span style="color:red">$</span>
-                              <span style="color:red">120</span>
-                              <span>元/年</span>
+                              <el-radio-group v-model="radio1">
+                                <el-radio-button label="$50元/季"></el-radio-button>
+                              </el-radio-group>
                             </div>
                           </el-col>
                           <el-col :span="8">
                             <div style="float: left;text-align: center">
                               <el-card style="height: 120px;width: 100%;cursor: pointer">
-                                <el-image src="../static/img/huiyuan.jpg" style="width: 100%;height: 100%" title="150元/年，超级会员"></el-image>
+                                <el-image src="../static/img/huiyuan.jpg" style="width: 100%;height: 100%" title="200元/年，普通会员"></el-image>
                               </el-card>
-                              <span style="color:red">$</span>
-                              <span style="color:red">150</span>
-                              <span >元/年</span>
-
+                              <el-radio-group v-model="radio1">
+                                <el-radio-button label="$200元/年"></el-radio-button>
+                              </el-radio-group>
                             </div>
                           </el-col>
                           <el-col :span="18" :offset="3" style="font-size: 12px;margin-top: 20px">
                             <div style="float: left;width: 100%">
-                              <el-button type="primary" style="width: 100%" plain  @click="payfor()">充值</el-button>
+                              <el-button type="primary" style="width: 100%" plain  @click="payForVip()">充值</el-button>
                             </div>
                           </el-col>
                         </el-row>
-                      <a  type="info" slot="reference" @click="toPay()" style="font-size: 20px" title="VIP">VIP</a>
+                      <a  type="info" slot="reference" style="font-size: 20px" title="VIP">VIP</a>
                       </el-popover>
 
                 </span>
               </div>
+
+              <!--用户充值-->
+              <div class="grid-content " style="height: 60px;float: left"
+                   @mousemove="over(12)"
+                   @mouseleave="leave(12)"
+                   :style="m"
+              >
+                <el-dropdown>
+                  <div>
+                  <span class="el-dropdown-link" style="margin-right: 10px">
+                    <a>充值</a>
+                    <i class="el-icon-arrow-down el-icon--right"></i>
+                  </span>
+                  <el-dropdown-menu slot="dropdown" style="width:130px;">
+                    <el-dropdown-item><a @click="WeChatPay()">微信充值</a></el-dropdown-item>
+                    <el-dropdown-item><a @click="aliPay()" >支付宝充值</a></el-dropdown-item>
+                  </el-dropdown-menu>
+                  </div>
+                </el-dropdown>
+            </div>
+
               <!--历史-->
               <div class="grid-content " style="height: 60px;float: left"
                    @mousemove="over(5)"
@@ -173,8 +206,6 @@
               >
                 <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.user.userId==null" ><a class="el-icon-user" >登录</a></router-link>
                 <span style="color:black;" v-if="this.user.userId!=null"><a>{{user.userName}}</a></span>
-               <!-- <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.userId==null" ><a class="el-icon-user">登录</a></router-link>
-                <span style="color:black;" v-if="this.userId!=null"><a>{{user.userName}}</a></span>-->
               </div>
               <!--注册-->
               <div class="grid-content " style="height: 60px;width:50px;float: left"
@@ -202,8 +233,9 @@
 </template>
 
 <script>
-  import Cookies from 'js-cookie'
+  import Cookies from 'js-cookie';
   import axios from 'axios';
+  import swal from 'sweetalert'
 export default {
   name: 'App',
   data(){
@@ -220,10 +252,18 @@ export default {
         h:'',
         i:'',
         j:'',
+        m:'',
         user:{
           userId:'',
-          userName:''
+          userName:'',
+          userMoney:''
         },
+        radio1: '$20元/月',
+        radio2: '账户余额支付',
+        pay:{
+          userId:'',
+          rechargeVip:'',
+        }
       }
   },
   mounted() {
@@ -238,6 +278,7 @@ export default {
     if (this.user.userId!=''){
       axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
         this.user=res.data;
+        //alert(this.user.userId)
         //console(this.user)
       })
     }else {
@@ -272,6 +313,8 @@ export default {
         this.h='background-color: orangered;border-radius: 0px 10px 0px 10px';
       }if(x==11){
         this.j='background-color: orangered;border-radius: 0px 10px 0px 10px';
+      }if(x==12){
+        this.m='background-color: orangered;border-radius: 0px 10px 0px 10px';
       }
     },
     leave:function (x) {
@@ -295,16 +338,103 @@ export default {
         this.h='';
       }if(x==11){
         this.j='';
+      }if(x==12){
+        this.m='';
       }
     },
     //直播(跳转到直播页面)
     toOrders:function(){
 
     },
-    //支付
-    payfor:function(){
+    /*//微信充值
+    WeChatPay() {
       if (this.user.userId!=null) {
+        this.$prompt('请输入需要充值的金额', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          inputPattern:"" ,
+          inputErrorMessage: '充值金额格式不正确'
+        }).then(({ value }) => {
+          swal({
+            text: "充值的金额:"+value,
+            icon: "success",
+            button: "确定",
+          });
+        }).catch(() => {
+          swal({
+            text: "取消充值",
+            icon: "info",
+            button: "确定",
+          });
+        });
+      }else {
+        this.$message.error('还没登录哦，请登录后再试');
+        this.$router.push("/userLogin")
+      }
+    },*/
+    //支付宝支付
+    aliPay() {
+      if (this.user.userId!=null) {
+        this.$prompt('请输入需要充值的金额', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          inputPattern:"" ,
+          inputErrorMessage: '充值金额格式不正确'
+        }).then(({ value }) => {
+          swal({
+            text: "充值的金额:"+value,
+            icon: "success",
+            button: "确定",
+          });
+          axios.post("api/aliPayPayForCount/"+this.user.userId+"/"+value).then(res => {
+            this.$router.replace({path:'/applyText',query:{htmls:res.data}})
+          })
+        }).catch(() => {
+          swal({
+            text: "取消充值",
+            icon: "info",
+            button: "确定",
+          });
+        });
+      }else {
+        this.$message.error('还没登录哦，请登录后再试');
+        this.$router.push("/userLogin")
+      }
+    },
+    //用户充值会员
+    payForVip:function(){
+      if (this.user.userId!=null) {
+        this.pay.userId=this.user.userId;
 
+        if(this.radio1=="$20元/月"){
+          this.pay.rechargeMoney=20;
+        }
+        if(this.radio1=="$50元/季"){
+          this.pay.rechargeMoney=50;
+        }
+        if(this.radio1=="$200元/年"){
+          this.pay.rechargeMoney=200;
+        }
+
+        if(this.radio2=="账户余额支付"){
+          if(this.pay.rechargeVip>this.user.userMoney){
+            swal({
+              text: "你的账户余额不足，请前往充值中心充值",
+              icon: "info",
+              button: "确定",
+            });
+          }else {
+            //console.log(this.pay)
+            axios.post("api/countPayForVip",this.pay).then(res=>{
+              this.user=res.data;
+            })
+          }
+        }
+        if(this.radio2=="支付宝支付") {
+          axios.post("api/alipayPayForVip", this.pay).then(res => {
+            this.$router.replace({path: '/applyText', query: {htmls: res.data}})
+          })
+        }
       }else {
         this.$message.error('还没登录哦，请登录后再试');
         this.$router.push("/userLogin")
@@ -347,6 +477,16 @@ export default {
 </script>
 
 <style>
+
+  .el-dropdown-link {
+    cursor: pointer;
+    color: black;
+  }
+  .el-icon-arrow-down {
+    font-size: 20px;
+  }
+
+
   .el-header {
     /*background-color: #B3C0D1;*/
     /*color: #333;*/
@@ -423,6 +563,10 @@ export default {
 </style>
 
 <style scoped>
+
+
+
+
   h1, h2 {
     font-weight: normal;
   }

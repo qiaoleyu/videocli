@@ -97,37 +97,104 @@
         <!--视频-->
         <el-row :gutter="10">
           <!--<el-col :span="4" v-for="" v-bind:key="">-->
+          <el-col :span="6" v-for="">
+            <el-card style="height: 200px;margin-bottom: 10px;">
+              <div style="height: 150px;float: left;width: 100%">
+                <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
-          <el-col :span="6">
-            <el-card style="height: 200px;margin-bottom: 10px;">
-              <div style="height: 150px;float: left;width: 100%">
-                <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
-                <video-player class="video-player vjs-custom-skin"
-                              ref="videoPlayer"
-                              :playsinline="true"
-                              :options="playerOptions"
-                              @play="onPlayerPlay($event)"
-                              @pause="onPlayerPause($event)"
-                              @ended="onPlayerEnded($event)"
-                              @waiting="onPlayerWaiting($event)"
-                              @playing="onPlayerPlaying($event)"
-                              @loadeddata="onPlayerLoadeddata($event)"
-                              @timeupdate="onPlayerTimeupdate($event)"
-                              @canplay="onPlayerCanplay($event)"
-                              @canplaythrough="onPlayerCanplaythrough($event)"
-                              @statechanged="playerStateChanged($event)"
-                              @ready="playerReadied"
-                >
-                  <!--<source-->
-                    <!--src="http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4"-->
-                    <!--type="video/mp4">-->
-                  <!--&gt;-->
-                </video-player>
+                <video  width=100%  style="margin: auto;height:130px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+                <source
+                src="http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4"
+                type="video/mp4">
+                <!--type="application/x-mpegURL"-->
+                </video>
+
+                <!--<video-player class="video-player vjs-custom-skin"-->
+                              <!--ref="videoPlayer"-->
+                              <!--:playsinline="true"-->
+                              <!--:options="playerOptions"-->
+                              <!--@play="onPlayerPlay($event)"-->
+                              <!--@pause="onPlayerPause($event)"-->
+                              <!--@ended="onPlayerEnded($event)"-->
+                              <!--@waiting="onPlayerWaiting($event)"-->
+                              <!--@playing="onPlayerPlaying($event)"-->
+                              <!--@loadeddata="onPlayerLoadeddata($event)"-->
+                              <!--@timeupdate="onPlayerTimeupdate($event)"-->
+                              <!--@canplay="onPlayerCanplay($event)"-->
+                              <!--@canplaythrough="onPlayerCanplaythrough($event)"-->
+                              <!--@statechanged="playerStateChanged($event)"-->
+                              <!--@ready="playerReadied"-->
+                <!--&gt;-->
+                  <!--&lt;!&ndash;<source&ndash;&gt;-->
+                  <!--&lt;!&ndash;src="http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4"&ndash;&gt;-->
+                  <!--&lt;!&ndash;type="video/mp4">&ndash;&gt;-->
+                  <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                <!--</video-player>-->
+
                 <!--</router-link>-->
                 <!--<router-link :to=""><img src="../static/img/bala2.jpg" style="width:310px;height: 310px"></router-link>-->
               </div>
               <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
-                              fsfsfsf
+                <div style="width:50%;float:left">
+                  <!--{{video.videoName}}-->
+                  dadada
+                </div>
+                <div style="width:15%;float:left">
+                  <el-tooltip content="点赞" >
+                    <a  class="el-icon-star-off" @click="like()" plain style="font-size: 18px"></a>
+                  </el-tooltip>
+                </div>
+                <div style="width:15%;float:left">
+                  <el-tooltip content="收藏" >
+                    <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
+                  </el-tooltip>
+                </div>
+                <div style="width:15%;float:left">
+                  <el-tooltip content="下载" >
+                    <a  class="el-icon-download" plain style="font-size: 18px"></a>
+                  </el-tooltip>
+                </div>
+              </div>
+
+            </el-card>
+          </el-col>
+          <el-col :span="6">
+            <el-card style="height: 200px;margin-bottom: 10px;">
+              <div style="height: 150px;float: left;width: 100%">
+                <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
+
+                <video  width=100%  style="margin: auto;height:130px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+                  <source
+                    src="http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4"
+                    type="video/mp4">
+                  <!--type="application/x-mpegURL"-->
+                </video>
+
+                <!--<video-player class="video-player vjs-custom-skin"-->
+                              <!--ref="videoPlayer"-->
+                              <!--:playsinline="true"-->
+                              <!--:options="playerOptions"-->
+                              <!--@play="onPlayerPlay($event)"-->
+                              <!--@pause="onPlayerPause($event)"-->
+                              <!--@ended="onPlayerEnded($event)"-->
+                              <!--@waiting="onPlayerWaiting($event)"-->
+                              <!--@playing="onPlayerPlaying($event)"-->
+                              <!--@loadeddata="onPlayerLoadeddata($event)"-->
+                              <!--@timeupdate="onPlayerTimeupdate($event)"-->
+                              <!--@canplay="onPlayerCanplay($event)"-->
+                              <!--@canplaythrough="onPlayerCanplaythrough($event)"-->
+                              <!--@statechanged="playerStateChanged($event)"-->
+                              <!--@ready="playerReadied"-->
+                <!--&gt;-->
+                  <!--&lt;!&ndash;<source&ndash;&gt;-->
+                    <!--&lt;!&ndash;src="http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4"&ndash;&gt;-->
+                    <!--&lt;!&ndash;type="video/mp4">&ndash;&gt;-->
+                  <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                <!--</video-player>-->
+                <!--</router-link>-->
+                <!--<router-link :to=""><img src="../static/img/bala2.jpg" style="width:310px;height: 310px"></router-link>-->
+              </div>
+              <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
                 <!--{{video.videoName}}-->
               </div>
             </el-card>
@@ -136,27 +203,35 @@
             <el-card style="height: 200px;margin-bottom: 10px;">
               <div style="height: 150px;float: left;width: 100%">
                 <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
-                <video-player class="video-player vjs-custom-skin"
-                              ref="videoPlayer"
-                              :playsinline="true"
-                              :options="playerOptions"
-                              @play="onPlayerPlay($event)"
-                              @pause="onPlayerPause($event)"
-                              @ended="onPlayerEnded($event)"
-                              @waiting="onPlayerWaiting($event)"
-                              @playing="onPlayerPlaying($event)"
-                              @loadeddata="onPlayerLoadeddata($event)"
-                              @timeupdate="onPlayerTimeupdate($event)"
-                              @canplay="onPlayerCanplay($event)"
-                              @canplaythrough="onPlayerCanplaythrough($event)"
-                              @statechanged="playerStateChanged($event)"
-                              @ready="playerReadied"
-                >
-                  <!--<source-->
-                  <!--src="http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4"-->
-                  <!--type="video/mp4">-->
-                  <!--&gt;-->
-                </video-player>
+
+                <video  width=100%  style="margin: auto;height:130px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+                  <source
+                    src="http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4"
+                    type="video/mp4">
+                  <!--type="application/x-mpegURL"-->
+                </video>
+
+                <!--<video-player class="video-player vjs-custom-skin"-->
+                              <!--ref="videoPlayer"-->
+                              <!--:playsinline="true"-->
+                              <!--:options="playerOptions"-->
+                              <!--@play="onPlayerPlay($event)"-->
+                              <!--@pause="onPlayerPause($event)"-->
+                              <!--@ended="onPlayerEnded($event)"-->
+                              <!--@waiting="onPlayerWaiting($event)"-->
+                              <!--@playing="onPlayerPlaying($event)"-->
+                              <!--@loadeddata="onPlayerLoadeddata($event)"-->
+                              <!--@timeupdate="onPlayerTimeupdate($event)"-->
+                              <!--@canplay="onPlayerCanplay($event)"-->
+                              <!--@canplaythrough="onPlayerCanplaythrough($event)"-->
+                              <!--@statechanged="playerStateChanged($event)"-->
+                              <!--@ready="playerReadied"-->
+                <!--&gt;-->
+                  <!--&lt;!&ndash;<source&ndash;&gt;-->
+                  <!--&lt;!&ndash;src="http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4"&ndash;&gt;-->
+                  <!--&lt;!&ndash;type="video/mp4">&ndash;&gt;-->
+                  <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                <!--</video-player>-->
                 <!--</router-link>-->
                 <!--<router-link :to=""><img src="../static/img/bala2.jpg" style="width:310px;height: 310px"></router-link>-->
               </div>
@@ -169,60 +244,35 @@
             <el-card style="height: 200px;margin-bottom: 10px;">
               <div style="height: 150px;float: left;width: 100%">
                 <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
-                <video-player class="video-player vjs-custom-skin"
-                              ref="videoPlayer"
-                              :playsinline="true"
-                              :options="playerOptions"
-                              @play="onPlayerPlay($event)"
-                              @pause="onPlayerPause($event)"
-                              @ended="onPlayerEnded($event)"
-                              @waiting="onPlayerWaiting($event)"
-                              @playing="onPlayerPlaying($event)"
-                              @loadeddata="onPlayerLoadeddata($event)"
-                              @timeupdate="onPlayerTimeupdate($event)"
-                              @canplay="onPlayerCanplay($event)"
-                              @canplaythrough="onPlayerCanplaythrough($event)"
-                              @statechanged="playerStateChanged($event)"
-                              @ready="playerReadied"
-                >
-                  <!--<source-->
-                  <!--src="http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4"-->
-                  <!--type="video/mp4">-->
-                  <!--&gt;-->
-                </video-player>
-                <!--</router-link>-->
-                <!--<router-link :to=""><img src="../static/img/bala2.jpg" style="width:310px;height: 310px"></router-link>-->
-              </div>
-              <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
-                <!--{{video.videoName}}-->
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :span="6">
-            <el-card style="height: 200px;margin-bottom: 10px;">
-              <div style="height: 150px;float: left;width: 100%">
-                <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
-                <video-player class="video-player vjs-custom-skin"
-                              ref="videoPlayer"
-                              :playsinline="true"
-                              :options="playerOptions"
-                              @play="onPlayerPlay($event)"
-                              @pause="onPlayerPause($event)"
-                              @ended="onPlayerEnded($event)"
-                              @waiting="onPlayerWaiting($event)"
-                              @playing="onPlayerPlaying($event)"
-                              @loadeddata="onPlayerLoadeddata($event)"
-                              @timeupdate="onPlayerTimeupdate($event)"
-                              @canplay="onPlayerCanplay($event)"
-                              @canplaythrough="onPlayerCanplaythrough($event)"
-                              @statechanged="playerStateChanged($event)"
-                              @ready="playerReadied"
-                >
-                  <!--<source-->
-                  <!--src="http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4"-->
-                  <!--type="video/mp4">-->
-                  <!--&gt;-->
-                </video-player>
+
+                <video  width=100%  style="margin: auto;height:130px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+                  <source
+                    src="http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4"
+                    type="video/mp4">
+                  <!--type="application/x-mpegURL"-->
+                </video>
+
+                <!--<video-player class="video-player vjs-custom-skin"-->
+                              <!--ref="videoPlayer"-->
+                              <!--:playsinline="true"-->
+                              <!--:options="playerOptions"-->
+                              <!--@play="onPlayerPlay($event)"-->
+                              <!--@pause="onPlayerPause($event)"-->
+                              <!--@ended="onPlayerEnded($event)"-->
+                              <!--@waiting="onPlayerWaiting($event)"-->
+                              <!--@playing="onPlayerPlaying($event)"-->
+                              <!--@loadeddata="onPlayerLoadeddata($event)"-->
+                              <!--@timeupdate="onPlayerTimeupdate($event)"-->
+                              <!--@canplay="onPlayerCanplay($event)"-->
+                              <!--@canplaythrough="onPlayerCanplaythrough($event)"-->
+                              <!--@statechanged="playerStateChanged($event)"-->
+                              <!--@ready="playerReadied"-->
+                <!--&gt;-->
+                  <!--&lt;!&ndash;<source&ndash;&gt;-->
+                  <!--&lt;!&ndash;src="http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4"&ndash;&gt;-->
+                  <!--&lt;!&ndash;type="video/mp4">&ndash;&gt;-->
+                  <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                <!--</video-player>-->
                 <!--</router-link>-->
                 <!--<router-link :to=""><img src="../static/img/bala2.jpg" style="width:310px;height: 310px"></router-link>-->
               </div>
