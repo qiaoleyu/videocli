@@ -151,7 +151,7 @@
                 </div>
                 <div style="width:15%;float:left">
                   <el-tooltip content="下载" >
-                    <a  class="el-icon-download" plain style="font-size: 18px"></a>
+                    <a class="el-icon-download" plain style="font-size: 18px"></a>
                   </el-tooltip>
                 </div>
               </div>
