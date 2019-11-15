@@ -118,7 +118,7 @@
                 </el-tooltip>
 
                 <!--弹幕（飘屏设置）-->
-                <!--<div id="box" class="box" style="width:100%;float: left;margin: auto"></div>-->
+                <div id="box" class="box" style="width:100%;float: left;margin: auto"></div>
 
               </div>
 
@@ -463,26 +463,26 @@
   import $ from 'jquery';
   import Cookies from 'js-cookie'
 
-  //  弹幕
-//  function $(str)  {
-//    return document.getElementById(str);
-//  };
-//  setInterval(move,200)
-//  function move() {
-//
-//      var spanArray = $('box').children;
-//      for (var i = 0; i < spanArray.length; i++) {
-//
-//        spanArray[i].style.left = parseInt(spanArray[i].style.left) - spanArray[i].speed + 'px';
-////        if((parseInt(spanArray[i].style.left)- spanArray[i].speed)<0){
-////          clearInterval(stopImg)
-////          spanArray[i].hidden;
-//          spanArray[i].style.left==0;
-//          spanArray[i].speed==0;
-////      }
-//    }
-//
-//  }
+    弹幕
+  function $(str)  {
+    return document.getElementById(str);
+  };
+  setInterval(move,200)
+  function move() {
+
+      var spanArray = $('box').children;
+      for (var i = 0; i < spanArray.length; i++) {
+
+        spanArray[i].style.left = parseInt(spanArray[i].style.left) - spanArray[i].speed + 'px';
+//        if((parseInt(spanArray[i].style.left)- spanArray[i].speed)<0){
+//          clearInterval(stopImg)
+//          spanArray[i].hidden;
+          spanArray[i].style.left==0;
+          spanArray[i].speed==0;
+//      }
+    }
+
+  };
   export default {
     components: {
       ElInput,
@@ -618,39 +618,40 @@
         console.log('当前页: ${val}');
       },
 
-//      弹幕
-//       send:function(){
-//         var word = this.input1;
-////         alert(word)
-//         var length=word.length;//huoqu wenben de changdu
-//         var span = document.createElement('span');
-//         var top = parseInt(Math.random() * 500) - 20;
-//         var color1 = parseInt(Math.random() * 256);
-//         var color2 = parseInt(Math.random() * 256);
-//         var color3 = parseInt(Math.random() * 256);
-//         var color = "rgb(" + color1 + "," + color2 + "," + color3 + ")";
-//         top = top < 0 ? 0 : top;
-//         span.style.position = 'absolute';
-//         span.style.top = top + "px";
-//         span.style.color = color;
-//         span.style.left = '800px';
-//         span.style.whiteSpace = 'nowrap';
-//         var nub = (Math.random() * 10) + 1;
-//         span.setAttribute('speed', nub);
-//         span.speed = nub;
-//         span.innerHTML = word;
-////          alert($('box'))
-//
-//         $('box').appendChild(span);
-//         this.input1= "";
-////         if (span.offsetLeft < -length * random * 16) {
-////           clearInterval(timer);
-////           mainContent.removeChild(span);
-////         }
-//       },
+      //弹幕
+       send:function(){
+         var word = this.input1;
+//         alert(word)
+         var length=word.length;//huoqu wenben de changdu
+         var span = document.createElement('span');
+         var top = parseInt(Math.random() * 500) - 20;
+         var color1 = parseInt(Math.random() * 256);
+         var color2 = parseInt(Math.random() * 256);
+         var color3 = parseInt(Math.random() * 256);
+         var color = "rgb(" + color1 + "," + color2 + "," + color3 + ")";
+         top = top < 0 ? 0 : top;
+         span.style.position = 'absolute';
+         span.style.top = top + "px";
+         span.style.color = color;
+         span.style.left = '800px';
+         span.style.whiteSpace = 'nowrap';
+         var nub = (Math.random() * 10) + 1;
+         span.setAttribute('speed', nub);
+         span.speed = nub;
+         span.innerHTML = word;
+//          alert($('box'))
+
+         $('box').appendChild(span);
+         this.input1= "";
+         if (span.offsetLeft < -length * random * 16) {
+           clearInterval(timer);
+           mainContent.removeChild(span);
+         }
+       },
 //      倍速播放
+
       //私聊
-      send(){
+      send:function(){
         if (this.com.userId!=null) {
           this.$router.push("/userMessage")
         }else {
