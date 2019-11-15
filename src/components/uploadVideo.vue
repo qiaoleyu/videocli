@@ -18,7 +18,7 @@
 
            <el-form label-width="100px" :model="video" status-icon :rules="rules" ref="video" style="width: 500px;margin: auto;text-align: left">
              <el-form-item label="发布人：" prop="videoUsername">
-               <el-input class="arrow" name="videoUsername"  v-model="video.videoUsername"></el-input>
+               <el-input class="arrow" name="videoUsername"  v-model="video.videoUsername" disabled></el-input>
              </el-form-item>
              <el-form-item label="视频：">
                <el-upload
@@ -113,6 +113,7 @@
   import axios from 'axios';
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
+  import Cookies from 'js-cookie'
   export default {
     components: {
       ElButton,
@@ -179,7 +180,7 @@
         },
         video:{
             typeId:'',
-          userId:1,
+          userId:'',
           videoName:'',
           videoPic:'',
           videoInfo:'',
@@ -196,10 +197,18 @@
       }
     },
     mounted(){
-        var url="api/findAllTypes"
-      axios.get(url).then(res=>{
-          this.videoKinds=res.data
-      })
+      var userId = Cookies.get('userId');
+      this.video.userId = userId;
+      if (this.video.userId != '') {
+        axios.get("api/findUserByUserId/" + this.video.userId).then(res => {
+          this.video.videoUsername = res.data.userName
+        })
+
+        var url = "api/findAllTypes"
+        axios.get(url).then(res => {
+          this.videoKinds = res.data
+        })
+      }
     },
     methods:{
 //      视频上传
@@ -255,7 +264,7 @@
         this.$refs['video'].validate((valid) => {
           if (valid) {
             axios.post("api/addVideo", this.video).then(res => {
-              if (res.data.equals("1")) {
+              if (res.data!=null) {
                 //                alert("修改成功")
                 this.$message({
                   message: '上传视频成功',
@@ -263,7 +272,7 @@
                 });
                 this.$router.push('/')
               } else {
-                alert(res.data)
+                alert("上传失败！")
               }
             })
           } else {

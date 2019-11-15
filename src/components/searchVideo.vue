@@ -22,67 +22,67 @@
 
       <el-main style="width: 90%;margin: auto">
         <!--分类展示-->
-        <el-row :gutter="10">
-          <el-col :span="24" style="font-size: 14px;margin-bottom: 20px">
+        <!--<el-row :gutter="10">-->
+          <!--<el-col :span="24" style="font-size: 14px;margin-bottom: 20px">-->
 
-            <!--遍历视频类别-->
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <a href="/">
-                <span class="el-icon-s-home" style="float: left;width: 100%;"></span>
-                <span style="float: left;width: 100%;">首页</span>
-              </a>
-            </div>
+            <!--&lt;!&ndash;遍历视频类别&ndash;&gt;-->
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<a href="/">-->
+                <!--<span class="el-icon-s-home" style="float: left;width: 100%;"></span>-->
+                <!--<span style="float: left;width: 100%;">首页</span>-->
+              <!--</a>-->
+            <!--</div>-->
 
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">番剧</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">国创</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">音乐</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">舞蹈</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">游戏</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">科技</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">数码</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">生活</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">时尚</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">娱乐</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">影视</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">直播</a></span>
-            </div>
-            <div style="float: left;width: 100px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <el-image src="../static/img/bala2.jpg" style="float: left;width: 100%;"></el-image>
-            </div>
-            <div class="grid-content " style="height: 60px;width:50px;float: left"
-                 @mousemove="over(10)"
-                 @mouseleave="leave(10)"
-                 :style="i"
-            >
-                 <span type="info" style="color:black;cursor: pointer;margin-top:20px">
-                  <a class="el-icon-circle-plus-outline" type="primary" @click="toUpload()" style="font-size: 30px" title="发布视频"></a>
-                </span>
-            </div>
-          </el-col>
-        </el-row>
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<span style="float: left;width: 100%;"><a href="/">番剧</a></span>-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<span style="float: left;width: 100%;"><a href="/">国创</a></span>-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<span style="float: left;width: 100%;"><a href="/">音乐</a></span>-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<span style="float: left;width: 100%;"><a href="/">舞蹈</a></span>-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<span style="float: left;width: 100%;"><a href="/">游戏</a></span>-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<span style="float: left;width: 100%;"><a href="/">科技</a></span>-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<span style="float: left;width: 100%;"><a href="/">数码</a></span>-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<span style="float: left;width: 100%;"><a href="/">生活</a></span>-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<span style="float: left;width: 100%;"><a href="/">时尚</a></span>-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<span style="float: left;width: 100%;"><a href="/">娱乐</a></span>-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<span style="float: left;width: 100%;"><a href="/">影视</a></span>-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<span style="float: left;width: 100%;"><a href="/">直播</a></span>-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 100px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">-->
+              <!--<el-image src="../static/img/bala2.jpg" style="float: left;width: 100%;"></el-image>-->
+            <!--</div>-->
+            <!--<div class="grid-content " style="height: 60px;width:50px;float: left"-->
+                 <!--@mousemove="over(10)"-->
+                 <!--@mouseleave="leave(10)"-->
+                 <!--:style="i"-->
+            <!--&gt;-->
+                 <!--<span type="info" style="color:black;cursor: pointer;margin-top:20px">-->
+                  <!--<a class="el-icon-circle-plus-outline" type="primary" @click="toUpload()" style="font-size: 30px" title="发布视频"></a>-->
+                <!--</span>-->
+            <!--</div>-->
+          <!--</el-col>-->
+        <!--</el-row>-->
 
         <!--更多-->
         <el-row>
@@ -97,33 +97,139 @@
         <!--视频-->
         <el-row :gutter="10">
           <!--<el-col :span="4" v-for="" v-bind:key="">-->
+
           <el-col :span="6">
-            <div style="height: 120px;background-color: orangered;margin-bottom: 10px;">
-              <div style="height: 120px;">
+            <el-card style="height: 200px;margin-bottom: 10px;">
+              <div style="height: 150px;float: left;width: 100%">
+                <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
+                <video-player class="video-player vjs-custom-skin"
+                              ref="videoPlayer"
+                              :playsinline="true"
+                              :options="playerOptions"
+                              @play="onPlayerPlay($event)"
+                              @pause="onPlayerPause($event)"
+                              @ended="onPlayerEnded($event)"
+                              @waiting="onPlayerWaiting($event)"
+                              @playing="onPlayerPlaying($event)"
+                              @loadeddata="onPlayerLoadeddata($event)"
+                              @timeupdate="onPlayerTimeupdate($event)"
+                              @canplay="onPlayerCanplay($event)"
+                              @canplaythrough="onPlayerCanplaythrough($event)"
+                              @statechanged="playerStateChanged($event)"
+                              @ready="playerReadied"
+                >
+                  <!--<source-->
+                    <!--src="http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4"-->
+                    <!--type="video/mp4">-->
+                  <!--&gt;-->
+                </video-player>
+                <!--</router-link>-->
                 <!--<router-link :to=""><img src="../static/img/bala2.jpg" style="width:310px;height: 310px"></router-link>-->
               </div>
-            </div>
+              <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
+                              fsfsfsf
+                <!--{{video.videoName}}-->
+              </div>
+            </el-card>
           </el-col>
           <el-col :span="6">
-            <div style="height: 120px;background-color: orangered;margin-bottom: 10px">
-              <div style="height: 120px;">
+            <el-card style="height: 200px;margin-bottom: 10px;">
+              <div style="height: 150px;float: left;width: 100%">
+                <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
+                <video-player class="video-player vjs-custom-skin"
+                              ref="videoPlayer"
+                              :playsinline="true"
+                              :options="playerOptions"
+                              @play="onPlayerPlay($event)"
+                              @pause="onPlayerPause($event)"
+                              @ended="onPlayerEnded($event)"
+                              @waiting="onPlayerWaiting($event)"
+                              @playing="onPlayerPlaying($event)"
+                              @loadeddata="onPlayerLoadeddata($event)"
+                              @timeupdate="onPlayerTimeupdate($event)"
+                              @canplay="onPlayerCanplay($event)"
+                              @canplaythrough="onPlayerCanplaythrough($event)"
+                              @statechanged="playerStateChanged($event)"
+                              @ready="playerReadied"
+                >
+                  <!--<source-->
+                  <!--src="http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4"-->
+                  <!--type="video/mp4">-->
+                  <!--&gt;-->
+                </video-player>
+                <!--</router-link>-->
                 <!--<router-link :to=""><img src="../static/img/bala2.jpg" style="width:310px;height: 310px"></router-link>-->
               </div>
-            </div>
+              <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
+                <!--{{video.videoName}}-->
+              </div>
+            </el-card>
           </el-col>
           <el-col :span="6">
-            <div style="height: 120px;background-color: orangered;margin-bottom: 10px">
-              <div style="height: 120px;">
+            <el-card style="height: 200px;margin-bottom: 10px;">
+              <div style="height: 150px;float: left;width: 100%">
+                <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
+                <video-player class="video-player vjs-custom-skin"
+                              ref="videoPlayer"
+                              :playsinline="true"
+                              :options="playerOptions"
+                              @play="onPlayerPlay($event)"
+                              @pause="onPlayerPause($event)"
+                              @ended="onPlayerEnded($event)"
+                              @waiting="onPlayerWaiting($event)"
+                              @playing="onPlayerPlaying($event)"
+                              @loadeddata="onPlayerLoadeddata($event)"
+                              @timeupdate="onPlayerTimeupdate($event)"
+                              @canplay="onPlayerCanplay($event)"
+                              @canplaythrough="onPlayerCanplaythrough($event)"
+                              @statechanged="playerStateChanged($event)"
+                              @ready="playerReadied"
+                >
+                  <!--<source-->
+                  <!--src="http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4"-->
+                  <!--type="video/mp4">-->
+                  <!--&gt;-->
+                </video-player>
+                <!--</router-link>-->
                 <!--<router-link :to=""><img src="../static/img/bala2.jpg" style="width:310px;height: 310px"></router-link>-->
               </div>
-            </div>
+              <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
+                <!--{{video.videoName}}-->
+              </div>
+            </el-card>
           </el-col>
           <el-col :span="6">
-            <div style="height: 120px;background-color: orangered;margin-bottom: 10px">
-              <div style="height: 120px;">
+            <el-card style="height: 200px;margin-bottom: 10px;">
+              <div style="height: 150px;float: left;width: 100%">
+                <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
+                <video-player class="video-player vjs-custom-skin"
+                              ref="videoPlayer"
+                              :playsinline="true"
+                              :options="playerOptions"
+                              @play="onPlayerPlay($event)"
+                              @pause="onPlayerPause($event)"
+                              @ended="onPlayerEnded($event)"
+                              @waiting="onPlayerWaiting($event)"
+                              @playing="onPlayerPlaying($event)"
+                              @loadeddata="onPlayerLoadeddata($event)"
+                              @timeupdate="onPlayerTimeupdate($event)"
+                              @canplay="onPlayerCanplay($event)"
+                              @canplaythrough="onPlayerCanplaythrough($event)"
+                              @statechanged="playerStateChanged($event)"
+                              @ready="playerReadied"
+                >
+                  <!--<source-->
+                  <!--src="http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4"-->
+                  <!--type="video/mp4">-->
+                  <!--&gt;-->
+                </video-player>
+                <!--</router-link>-->
                 <!--<router-link :to=""><img src="../static/img/bala2.jpg" style="width:310px;height: 310px"></router-link>-->
               </div>
-            </div>
+              <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
+                <!--{{video.videoName}}-->
+              </div>
+            </el-card>
           </el-col>
           <el-col :span="6">
             <div style="height: 120px;background-color: orangered;margin-bottom: 10px">
@@ -153,100 +259,156 @@
               </div>
             </div>
           </el-col>
+          <el-col :span="6">
+            <div style="height: 120px;background-color: orangered;margin-bottom: 10px">
+              <div style="height: 120px;">
+                <!--<router-link :to=""><img src="../static/img/bala2.jpg" style="width:310px;height: 310px"></router-link>-->
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div style="height: 120px;background-color: orangered;margin-bottom: 10px">
+              <div style="height: 120px;">
+                <!--<router-link :to=""><img src="../static/img/bala2.jpg" style="width:310px;height: 310px"></router-link>-->
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div style="height: 120px;background-color: orangered;margin-bottom: 10px">
+              <div style="height: 120px;">
+                <!--<router-link :to=""><img src="../static/img/bala2.jpg" style="width:310px;height: 310px"></router-link>-->
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div style="height: 120px;background-color: orangered;margin-bottom: 10px">
+              <div style="height: 120px;">
+                <!--<router-link :to=""><img src="../static/img/bala2.jpg" style="width:310px;height: 310px"></router-link>-->
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div style="height: 120px;background-color: orangered;margin-bottom: 10px">
+              <div style="height: 120px;">
+                <!--<router-link :to=""><img src="../static/img/bala2.jpg" style="width:310px;height: 310px"></router-link>-->
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div style="height: 120px;background-color: orangered;margin-bottom: 10px">
+              <div style="height: 120px;">
+                <!--<router-link :to=""><img src="../static/img/bala2.jpg" style="width:310px;height: 310px"></router-link>-->
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div style="height: 120px;background-color: orangered;margin-bottom: 10px">
+              <div style="height: 120px;">
+                <!--<router-link :to=""><img src="../static/img/bala2.jpg" style="width:310px;height: 310px"></router-link>-->
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div style="height: 120px;background-color: orangered;margin-bottom: 10px">
+              <div style="height: 120px;">
+                <!--<router-link :to=""><img src="../static/img/bala2.jpg" style="width:310px;height: 310px"></router-link>-->
+              </div>
+            </div>
+          </el-col>
         </el-row>
 
 
         <!--视频分类-特别推荐-->
-        <el-row :gutter="10">
-          <el-col :span="18">
+        <!--<el-row :gutter="10">-->
+          <!--<el-col :span="18">-->
 
-            <el-row :gutter="10">
-              <el-col :span="12">
-                <!--background-color: #d3dce6;-->
-                <div style="width:150px;height: 40px;float:left;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 20px">
-                  <div style="height: 40px;float: left;width: 40px;margin-right: 10px">
-                    <el-image src="../static/img/tuijian.jpg" style="width: 40px;height: 40px;cursor: pointer" title="特别推荐"></el-image>
-                  </div>
-                  <div style="height: 40px;float: left;">
-                    <span>特别推荐</span>
-                  </div>
-                </div>
-                <div style="height: 40px;float:left;font-size: 18px;font-weight: bolder;text-align: center;line-height: 40px">
-                  <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
-                    <el-menu-item index="1">最新动态</el-menu-item>
-                    <el-menu-item index="2">最新投稿</el-menu-item>
-                  </el-menu>
-                </div>
+            <!--<el-row :gutter="10">-->
+              <!--<el-col :span="12">-->
+                <!--&lt;!&ndash;background-color: #d3dce6;&ndash;&gt;-->
+                <!--<div style="width:150px;height: 40px;float:left;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 20px">-->
+                  <!--<div style="height: 40px;float: left;width: 40px;margin-right: 10px">-->
+                    <!--<el-image src="../static/img/tuijian.jpg" style="width: 40px;height: 40px;cursor: pointer" title="特别推荐"></el-image>-->
+                  <!--</div>-->
+                  <!--<div style="height: 40px;float: left;">-->
+                    <!--<span>特别推荐</span>-->
+                  <!--</div>-->
+                <!--</div>-->
+                <!--<div style="height: 40px;float:left;font-size: 18px;font-weight: bolder;text-align: center;line-height: 40px">-->
+                  <!--<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">-->
+                    <!--<el-menu-item index="1">最新动态</el-menu-item>-->
+                    <!--<el-menu-item index="2">最新投稿</el-menu-item>-->
+                  <!--</el-menu>-->
+                <!--</div>-->
 
-              </el-col>
-              <!--更多-->
-              <el-col :span="6" :offset="6">
-                <div class="grid-content" style="line-height: 40px;float: right;">
-                  <el-tooltip content="更多" placement="bottom" effect="light">
-                    <el-button class="el-icon-arrow-right" plain @click="next()"></el-button>
-                  </el-tooltip>
-                </div>
-              </el-col>
-            </el-row>
+              <!--</el-col>-->
+              <!--&lt;!&ndash;更多&ndash;&gt;-->
+              <!--<el-col :span="6" :offset="6">-->
+                <!--<div class="grid-content" style="line-height: 40px;float: right;">-->
+                  <!--<el-tooltip content="更多" placement="bottom" effect="light">-->
+                    <!--<el-button class="el-icon-arrow-right" plain @click="next()"></el-button>-->
+                  <!--</el-tooltip>-->
+                <!--</div>-->
+              <!--</el-col>-->
+            <!--</el-row>-->
 
-            <el-row :gutter="10">
-              <!--遍历特别推荐-->
-              <el-col :span="6">
-                <div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>
-              </el-col>
-              <el-col :span="6">
-                <div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>
-              </el-col>
-              <el-col :span="6">
-                <div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>
-              </el-col>
-              <el-col :span="6">
-                <div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>
-              </el-col>
-              <el-col :span="6">
-                <div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>
-              </el-col>
-              <el-col :span="6">
-                <div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>
-              </el-col>
-              <el-col :span="6">
-                <div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>
-              </el-col>
-              <el-col :span="6">
-                <div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>
-              </el-col>
-            </el-row>
+            <!--<el-row :gutter="10">-->
+              <!--&lt;!&ndash;遍历特别推荐&ndash;&gt;-->
+              <!--<el-col :span="6">-->
+                <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>-->
+              <!--</el-col>-->
+              <!--<el-col :span="6">-->
+                <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>-->
+              <!--</el-col>-->
+              <!--<el-col :span="6">-->
+                <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>-->
+              <!--</el-col>-->
+              <!--<el-col :span="6">-->
+                <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>-->
+              <!--</el-col>-->
+              <!--<el-col :span="6">-->
+                <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>-->
+              <!--</el-col>-->
+              <!--<el-col :span="6">-->
+                <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>-->
+              <!--</el-col>-->
+              <!--<el-col :span="6">-->
+                <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>-->
+              <!--</el-col>-->
+              <!--<el-col :span="6">-->
+                <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> </div>-->
+              <!--</el-col>-->
+            <!--</el-row>-->
 
-          </el-col>
+          <!--</el-col>-->
 
-          <el-col :span="6" >
+          <!--<el-col :span="6" >-->
 
-            <el-row :gutter="10">
+            <!--<el-row :gutter="10">-->
 
-              <el-col :span="6">
-                <div style="width:150px;height: 40px;float:left;background-color: #d3dce6;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 16px">
-                  排 行
-                </div>
+              <!--<el-col :span="6">-->
+                <!--<div style="width:150px;height: 40px;float:left;background-color: #d3dce6;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 16px">-->
+                  <!--排 行-->
+                <!--</div>-->
 
-              </el-col>
-              <!--更多-->
-              <el-col :span="6" :offset="12">
-                <div class="grid-content" style="line-height: 40px;float: right;">
-                  <el-tooltip content="更多" placement="bottom" effect="light">
-                    <el-button class="el-icon-arrow-right" plain @click="next()"></el-button>
-                  </el-tooltip>
-                </div>
-              </el-col>
+              <!--</el-col>-->
+              <!--&lt;!&ndash;更多&ndash;&gt;-->
+              <!--<el-col :span="6" :offset="12">-->
+                <!--<div class="grid-content" style="line-height: 40px;float: right;">-->
+                  <!--<el-tooltip content="更多" placement="bottom" effect="light">-->
+                    <!--<el-button class="el-icon-arrow-right" plain @click="next()"></el-button>-->
+                  <!--</el-tooltip>-->
+                <!--</div>-->
+              <!--</el-col>-->
 
 
-              <el-col :span="24">
-                <!--遍历排行-->
-                <div style="height: 260px;background-color: orangered"> </div>
-              </el-col>
-            </el-row>
+              <!--<el-col :span="24">-->
+                <!--&lt;!&ndash;遍历排行&ndash;&gt;-->
+                <!--<div style="height: 260px;background-color: orangered"> </div>-->
+              <!--</el-col>-->
+            <!--</el-row>-->
 
-          </el-col>
-        </el-row>
+          <!--</el-col>-->
+        <!--</el-row>-->
 
       </el-main>
 
@@ -348,6 +510,29 @@
     name: 'index',
     data () {
       return {
+        playerOptions: {
+          playbackRates: [0.5, 1.0, 1.5, 2.0], // 可选的播放速度
+          autoplay: false, // 如果为true,浏览器准备好时开始回放。
+          muted: false, // 默认情况下将会消除任何音频。
+          loop: false, // 是否视频一结束就重新开始。
+          preload: 'auto', // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
+          language: 'zh-CN',
+          aspectRatio: '16:9', // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
+          fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
+          sources: [{
+            type: "video/mp4", // 类型
+            src: 'http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4' // url地址
+          }],
+          poster: '../static/img/bala.jpg', // 封面地址
+          notSupportedMessage: '此视频暂无法播放，请稍后再试', // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
+          controlBar: {
+            timeDivider: true, // 当前时间和持续时间的分隔符
+            durationDisplay: true, // 显示持续时间
+            remainingTimeDisplay: false, // 是否显示剩余时间功能
+            fullscreenToggle: true // 是否显示全屏按钮
+          },
+        },
+
         imageUrl: '',
           input:'',
         msg: 'Welcome video index',
