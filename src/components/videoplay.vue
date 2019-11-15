@@ -460,29 +460,27 @@
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
   import ElInput from "../../node_modules/element-ui/packages/input/src/input";
-  import $ from 'jquery';
   import Cookies from 'js-cookie'
 
   //  弹幕
-//  function $(str)  {
-//    return document.getElementById(str);
-//  };
-//  setInterval(move,200)
-//  function move() {
-//
-//      var spanArray = $('box').children;
-//      for (var i = 0; i < spanArray.length; i++) {
-//
-//        spanArray[i].style.left = parseInt(spanArray[i].style.left) - spanArray[i].speed + 'px';
-////        if((parseInt(spanArray[i].style.left)- spanArray[i].speed)<0){
-////          clearInterval(stopImg)
-////          spanArray[i].hidden;
-//          spanArray[i].style.left==0;
-//          spanArray[i].speed==0;
-////      }
-//    }
-//
-//  }
+  function $(str)  {
+    return document.getElementById(str);
+  };
+  setInterval(move,200)
+  function move() {
+
+      var spanArray = $('box');
+      for (var i = 0; i < spanArray.length; i++) {
+
+        spanArray[i].style.left = parseInt(spanArray[i].style.left) - spanArray[i].speed + 'px';
+//        if((parseInt(spanArray[i].style.left)- spanArray[i].speed)<0){
+//          clearInterval(stopImg)
+//          spanArray[i].hidden;
+          spanArray[i].style.left==0;
+          spanArray[i].speed==0;
+//      }
+    }
+  }
   export default {
     components: {
       ElInput,
