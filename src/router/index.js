@@ -12,6 +12,7 @@ import searchVideo from '@/components/searchVideo'
 import userMessage from '@/components/userMessage'
 import moreMessage from '@/components/moreMessage'
 import applyText from '@/components/applyText'
+import videoDirect from '@/components/videoDirect'
 
 Vue.use(Router)
 
@@ -64,6 +65,10 @@ export default new Router({
       path: '/applyText',
       name: 'applyText',
       component: applyText
+    },{
+      path: '/videoDirect',
+      name: 'videoDirect',
+      component: videoDirect
     }
     // },{
     // path: '/moreMessage',

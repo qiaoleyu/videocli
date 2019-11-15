@@ -2,7 +2,7 @@
   <div id="app" class="note">
     <!--<img src="./assets/logo.png">-->
     <!--导航栏-->
-    <el-header v-show="(path ==='/'||path==='/videoplay'||path==='/moreMessage'||path==='/userMessage'||path==='/uploadVideo'||path==='/updatePassword'||path==='/userDetial')" style="height: 80px;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;opacity: 0.9" class="header">
+    <el-header v-show="(path ==='/'||path==='/videoplay'||path==='/moreMessage'||path==='/videoDirect'||path==='/userMessage'||path==='/uploadVideo'||path==='/updatePassword'||path==='/userDetial')" style="height: 80px;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;opacity: 0.9" class="header">
       <div style="width: 100%;margin: auto">
         <el-row :gutter="10">
           <!--<el-col :span="4">-->
@@ -28,7 +28,8 @@
                    @mouseleave="leave(2)"
                    :style="a"
               >
-                <a @click="toOrders()" style="cursor: pointer">直播</a>
+                <router-link type="info" :to="{name:'videoDirect'}" style="color:black;"><a style="cursor: pointer">直播</a></router-link>
+                <!--<a ></a>-->
               </div>
               <el-dropdown>
                 <div class="grid-content " style="height:60px;font-size: 16px;float: left;margin-top: 10px"
@@ -111,7 +112,7 @@
                       <!--<el-button slot="reference">hover 激活</el-button>-->
                         <el-row :gutter="10">
                           <el-col :span="24">
-                            <h2>请选择支付方式</h2>
+                            <h3>请选择支付方式</h3>
                           </el-col>
                           <el-col :span="12">
                             <el-radio-group v-model="radio2">
@@ -124,7 +125,7 @@
                             </el-radio-group>
                           </el-col>
                           <el-col :span="24">
-                            <h2>请选择会员充值期限</h2>
+                            <h3>请选择会员充值期限</h3>
                           </el-col>
                           <el-col :span="8">
 
@@ -164,7 +165,7 @@
                             </div>
                           </el-col>
                         </el-row>
-                      <a  type="info" slot="reference" style="font-size: 20px" title="VIP">VIP</a>
+                      <a  type="info" slot="reference" style="font-size: 16px" title="VIP">VIP</a>
                       </el-popover>
 
                 </span>
