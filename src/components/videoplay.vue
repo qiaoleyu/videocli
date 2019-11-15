@@ -477,8 +477,8 @@
 //        if((parseInt(spanArray[i].style.left)- spanArray[i].speed)<0){
 //          clearInterval(stopImg)
 //          spanArray[i].hidden;
-          spanArray[i].style.left==0;
-          spanArray[i].speed==0;
+//          spanArray[i].style.left==0;
+//          spanArray[i].speed==0;
 //      }
     }
 
