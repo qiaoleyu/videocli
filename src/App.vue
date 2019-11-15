@@ -101,7 +101,7 @@
                  <span type="info" style="color:black;cursor: pointer;margin-right: 10px">
                     <el-popover
                       placement="top-start"
-                      width="300"
+                      width="400"
                       trigger="hover"
                     >
                         <!--title="标题"-->
@@ -119,31 +119,30 @@
                               <el-card style="height: 120px;width: 100%;cursor: pointer">
                                 <el-image src="../static/img/yue.jpg" style="width: 100%;height:100%" title="20元/月，普通会员"></el-image>
                              </el-card>
-                              <span style="color:red">$</span>
-                              <span style="color:red">20</span>
-                              <span>元/月</span>
+                              <el-radio-group v-model="radio1">
+                                <el-radio-button label="$20元/月"></el-radio-button>
+                              </el-radio-group>
                             </div>
 
                           </el-col>
                           <el-col :span="8">
                             <div style="float: left;text-align: center">
                               <el-card style="height: 120px;width: 100%;cursor: pointer">
-                                <el-image src="../static/img/nian.jpg" style="width: 100%;height: 100%" title="120元/年，普通会员"></el-image>
+                                <el-image src="../static/img/nian.jpg" style="width: 100%;height: 100%" title="50元/季，普通会员"></el-image>
                               </el-card>
-                              <span style="color:red">$</span>
-                              <span style="color:red">120</span>
-                              <span>元/年</span>
+                              <el-radio-group v-model="radio1">
+                                <el-radio-button label="$50元/季"></el-radio-button>
+                              </el-radio-group>
                             </div>
                           </el-col>
                           <el-col :span="8">
                             <div style="float: left;text-align: center">
                               <el-card style="height: 120px;width: 100%;cursor: pointer">
-                                <el-image src="../static/img/huiyuan.jpg" style="width: 100%;height: 100%" title="150元/年，超级会员"></el-image>
+                                <el-image src="../static/img/huiyuan.jpg" style="width: 100%;height: 100%" title="200元/年，普通会员"></el-image>
                               </el-card>
-                              <span style="color:red">$</span>
-                              <span style="color:red">150</span>
-                              <span >元/年</span>
-
+                              <el-radio-group v-model="radio1">
+                                <el-radio-button label="$200元/年"></el-radio-button>
+                              </el-radio-group>
                             </div>
                           </el-col>
                           <el-col :span="18" :offset="3" style="font-size: 12px;margin-top: 20px">
@@ -173,8 +172,6 @@
               >
                 <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.user.userId==null" ><a class="el-icon-user" >登录</a></router-link>
                 <span style="color:black;" v-if="this.user.userId!=null"><a>{{user.userName}}</a></span>
-               <!-- <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.userId==null" ><a class="el-icon-user">登录</a></router-link>
-                <span style="color:black;" v-if="this.userId!=null"><a>{{user.userName}}</a></span>-->
               </div>
               <!--注册-->
               <div class="grid-content " style="height: 60px;width:50px;float: left"
@@ -224,6 +221,12 @@ export default {
           userId:'',
           userName:''
         },
+        radio1: '$20元/月',
+
+        pay:{
+          userId:'',
+          rechargeMoney:'',
+        }
       }
   },
   mounted() {
@@ -238,7 +241,6 @@ export default {
     if (this.user.userId!=''){
       axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
         this.user=res.data;
-        //console(this.user)
       })
     }else {
       alert("请登录")
@@ -304,7 +306,21 @@ export default {
     //支付
     payfor:function(){
       if (this.user.userId!=null) {
-
+        this.pay.userId=this.user.userId;
+        if(this.radio1=="$20元/月"){
+          this.pay.rechargeMoney=20;
+        }
+        if(this.radio1=="$50元/季"){
+          this.pay.rechargeMoney=50;
+        }
+        if(this.radio1=="$200元/年"){
+          this.pay.rechargeMoney=200;
+        }
+        //alert(this.pay.userId)
+        //alert(this.pay.rechargeMoney)
+        axios.post("api/userRecharge",this.pay).then(res => {
+          this.$router.replace({path:'/applyText',query:{htmls:res.data}})
+        })
       }else {
         this.$message.error('还没登录哦，请登录后再试');
         this.$router.push("/userLogin")

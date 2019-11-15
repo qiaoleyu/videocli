@@ -11,6 +11,7 @@ import userRegist from '@/components/userRegist'
 import searchVideo from '@/components/searchVideo'
 import userMessage from '@/components/userMessage'
 import moreMessage from '@/components/moreMessage'
+import applyText from '@/components/applyText'
 
 Vue.use(Router)
 
@@ -59,6 +60,10 @@ export default new Router({
       children: [
         {path: '/moreMessage', name: '私聊', component: moreMessage}
       ]
+    },{
+      path: '/applyText',
+      name: 'applyText',
+      component: applyText
     }
     // },{
     // path: '/moreMessage',
