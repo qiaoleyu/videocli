@@ -50,7 +50,7 @@ export default new Router({
       name: 'userRegist',
       component: userRegist
     },{
-      path: '/searchVideo',
+      path: '/searchVideo/:searchName',
       name: 'searchVideo',
       component: searchVideo
     },{

@@ -1284,6 +1284,9 @@
       },*/
       search:function () {
         var searchName=this.$refs.searchName.value
+        if(searchName==''||searchName==null){
+            searchName='null'
+        }
         //alert(searchName)
         this.$router.push('/searchVideo/'+searchName)
       },
