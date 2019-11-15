@@ -90,7 +90,7 @@
                 <!--/>-->
                 <el-input type="text" id="txt" style="height:32px;width:280px;margin-left: 40px"
                           placeholder="说点什么吧~^_^"
-                          v-model="barrage.barrageContent"
+                          v-model="input1"
                 />
 
                 <el-button @click="sendBarrage()" style="height: 40px " plain>发送弹幕</el-button>
@@ -118,7 +118,12 @@
                 </el-tooltip>
 
                 <!--弹幕（飘屏设置）-->
-                <div id="box" class="box" style="width:100%;float: left;margin: auto"></div>
+                <div id="box" class="box" style="width:100%;float: left;margin: auto">
+                  <!--<div v-for="(value,index) in messageList" :key="index">
+                    <span>{{value}}</span>
+                  </div>-->
+                  <div id="message_id"></div>
+                </div>
 
               </div>
 
@@ -460,13 +465,12 @@
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
   import ElInput from "../../node_modules/element-ui/packages/input/src/input";
-  import $ from 'jquery';
   import Cookies from 'js-cookie'
 
-  //弹幕
-  /*function $(str)  {
+//    弹幕
+  function $(str)  {
     return document.getElementById(str);
-  };*/
+  };
   setInterval(move,200)
   function move() {
 
@@ -474,12 +478,12 @@
       for (var i = 0; i < spanArray.length; i++) {
 
         spanArray[i].style.left = parseInt(spanArray[i].style.left) - spanArray[i].speed + 'px';
-//        if((parseInt(spanArray[i].style.left)- spanArray[i].speed)<0){
-//          clearInterval(stopImg)
-//          spanArray[i].hidden;
-//          spanArray[i].style.left==0;
-//          spanArray[i].speed==0;
-//      }
+        if((parseInt(spanArray[i].style.left)- spanArray[i].speed)<0){
+          clearInterval(stopImg)
+          spanArray[i].hidden;
+          spanArray[i].style.left==0;
+          spanArray[i].speed==0;
+      }
     }
 
   };
@@ -572,7 +576,7 @@
 
         userName: "", // 用户名
         websocket: null, // WebSocket对象
-        videoId: "", // 对方频道号==>视频id
+        aisle: "", // 对方频道号==>视频id
         messageList: [], // 消息列表
         messageValue: "", // 弹幕消息内容
         barrage:{
@@ -580,16 +584,21 @@
           videoTime:'', //视频当前播放时间
           userId:'',
           barrageContent:'',
+        },
+        video:{
+          videoId:'',
         }
 
       }
     },
     mounted(){
         this.barrage.videoId=this.$route.params.id;
+      this.barrage.videoId=1;   //待删
+      this.video.videoId=1;   //待删
         this.com.userId=Cookies.get('userId');
         axios.get("api/findUserByUserId/"+this.com.userId).then(res=>{
             this.user=res.data;
-            console.log(this.user)
+//            console.log(this.user)
         })
       this.findAll();
 //      this.findByCommentId();
@@ -599,16 +608,16 @@
     methods:{
 
         /*发送弹幕方法中调用该方法*/
-      sendBarrage:function () {
+      /*sendBarrage:function () {
           this.barrage.userId=this.user.userId;
           axios.post("api/saveBarrage",this.barrage).then(res=>{
               if (res.data!=null){
-                  alert("success")
+//                  alert("success")
               }else {
                   alert("fail")
               }
           })
-        },
+        },*/
 
 //      分页
       handleSizeChange(val) {
@@ -619,34 +628,50 @@
       },
 
       //弹幕
-       send:function(){
-         var word = this.input1;
+      sendMsg:function (msg) {
+        var word = msg;
 //         alert(word)
-         var length=word.length;//huoqu wenben de changdu
-         var span = document.createElement('span');
-         var top = parseInt(Math.random() * 500) - 20;
-         var color1 = parseInt(Math.random() * 256);
-         var color2 = parseInt(Math.random() * 256);
-         var color3 = parseInt(Math.random() * 256);
-         var color = "rgb(" + color1 + "," + color2 + "," + color3 + ")";
-         top = top < 0 ? 0 : top;
-         span.style.position = 'absolute';
-         span.style.top = top + "px";
-         span.style.color = color;
-         span.style.left = '800px';
-         span.style.whiteSpace = 'nowrap';
-         var nub = (Math.random() * 10) + 1;
-         span.setAttribute('speed', nub);
-         span.speed = nub;
-         span.innerHTML = word;
+        var length=word.length;//huoqu wenben de changdu
+        var span = document.createElement('span');
+        var top = parseInt(Math.random() * 500) - 20;
+        var color1 = parseInt(Math.random() * 256);
+        var color2 = parseInt(Math.random() * 256);
+        var color3 = parseInt(Math.random() * 256);
+        var color = "rgb(" + color1 + "," + color2 + "," + color3 + ")";
+        top = top < 0 ? 0 : top;
+        span.style.position = 'absolute';
+        span.style.top = top + "px";
+        span.style.color = color;
+        span.style.left = '800px';
+        span.style.whiteSpace = 'nowrap';
+        span.style.fontSize='20px'
+        var nub = (Math.random() * 10) + 1;
+        span.setAttribute('speed', nub);
+        span.speed = nub;
+        span.innerHTML = word;
 //          alert($('box'))
 
-         $('box').appendChild(span);
-         this.input1= "";
-         if (span.offsetLeft < -length * random * 16) {
-           clearInterval(timer);
-           mainContent.removeChild(span);
-         }
+        $('box').appendChild(span);
+        this.input1= "";
+        if (span.offsetLeft < -length * random * 16) {
+          clearInterval(timer);
+          mainContent.removeChild(span);
+        }
+      },
+
+       sendBarrage:function(){
+         this.barrage.barrageContent=this.input1;;
+         this.barrage.userId=this.user.userId;
+         axios.post("api/saveBarrage",this.barrage).then(res=>{
+           if (res.data!=null){
+               console.log(res.data)
+//                  alert("success")
+           }else {
+             alert("fail")
+           }
+         })
+//         alert(word)
+         this.sendMsg(this.input1);
        },
 //      倍速播放
 
@@ -708,28 +733,6 @@
       // 播放回调
       onPlayerPlay(player) {
         //console.log('player play!', player)
-      },
-
-      // 暂停回调
-      onPlayerPause(player) {
-        //console.log('player pause!', player)
-        /*视频暂停，定时器暂停，websocket连接*/
-        this.websocket.close();
-      },
-
-      // 视频播完回调
-      onPlayerEnded($event) {
-        //console.log($event)
-      },
-
-      // DOM元素上的readyState更改导致播放停止
-      onPlayerWaiting($event) {
-       // console.log($event)
-      },
-
-      // 已开始播放回调
-      onPlayerPlaying($event) {
-        //console.log($event)
         /*开始播放则定时器启动，websocket连接，向后台请求弹幕数据*/
         this.conectWebSocket();
         if (this.timer){
@@ -739,6 +742,34 @@
             this.sendMessage();
           },1000)
         }
+      },
+
+      // 暂停回调
+      onPlayerPause(player) {
+        //console.log('player pause!', player)
+        /*视频暂停，定时器暂停，websocket连接*/
+       /* this.websocket.close();
+        clearInterval(this.timer);*/
+      },
+
+      // 视频播完回调
+      onPlayerEnded($event) {
+        //console.log($event)
+        this.websocket.close();
+        clearInterval(this.timer);
+      },
+
+      // DOM元素上的readyState更改导致播放停止
+      onPlayerWaiting($event) {
+       // console.log($event)
+//        this.websocket.close();
+//        clearInterval(this.timer);
+      },
+
+      // 已开始播放回调
+      onPlayerPlaying($event) {
+        //console.log($event)
+
       },
 
       // 当播放器在当前播放位置下载数据时触发
@@ -779,8 +810,9 @@
           if ("WebSocket" in window) {
             this.websocket = new WebSocket(
                 /*根据视频id建立连接*/
-              "ws://localhost:8080/websocket/" + this.videoId
+              "ws://localhost:8082/websocket/" + this.video.videoId
             );
+
           } else {
             alert("不支持建立socket连接");
           }
@@ -795,30 +827,41 @@
           //接收到消息的回调方法
           var that = this;
           this.websocket.onmessage = function(event) {
+              console.log(event)
             var object = eval("(" + event.data + ")");
             console.log(object);
             console.log("接收到的消息："+object.msg);
+            this.messageList=object.msg;
             if (object.type == 0) {
               // 提示连接成功
               console.log("连接成功");
-              that.showInfo(object.people, object.videoId);
+              that.showInfo(object.people, object.aisle);
+//              this.aisle=object.aisle;
+//              alert(this.aisle)
             }
             if (object.type == 1) {
               //显示消息
               console.log("接受消息");
               that.messageList.push(object);
+              that.sendMsg(object.msg);
+              document.getElementById('box').innerHTML += object.msg + '<br/>';
             }
           };
           //连接关闭的回调方法
-          this.websocket.onclose = function() {};
+          this.websocket.onclose = function() {
+            clearInterval(this.timer);
+          };
           //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
           window.onbeforeunload = function() {
-            this.websocket.close();
+//            this.websocket.close();
+
           };
       },
+
+
       // 发送消息
       sendMessage: function() {
-        var socketMsg = { msg: this.barrage.videoTime, toUser: this.videoId };
+        var socketMsg = { msg: this.barrage.videoTime, toUser: this.aisle };
         /*if (this.videoId == "") {
           //群聊.
           socketMsg.type = 0;
@@ -828,12 +871,13 @@
 //        }
         this.websocket.send(JSON.stringify(socketMsg));
       },
-      showInfo: function(people, videoId) {
+      showInfo: function(people, aisle) {
         this.$notify({
           title: "当前在线人数：" + people,
-          message: "您的频道号：" + videoId,
+          message: "您的频道号：" + aisle,
           duration: 0
         });
+        this.aisle=aisle;
       },
 
 
