@@ -140,11 +140,12 @@
 </style>
 
 <script>
+
   import axios from 'axios'
   import ElFooter from "../../node_modules/element-ui/packages/footer/src/main";
   import ElRadioButton from "../../node_modules/element-ui/packages/radio/src/radio-button";
-//  import Cookies from 'js-cookie'
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
+  import Cookies from 'js-cookie'
 
   export default{
     components: {
@@ -155,10 +156,12 @@
       return{
         tabPosition: 'left',
         isCollapse: false,
-        adminName:'未登录'
+        adminName:'未登录',
+        userId:'',
+        toUserId:'',
       }
     },mounted(){
-
+      this.userId=Cookies.get('userId');
 //      this.adminName= Cookies.get('name');
 //      console.log(this.adminName)
 

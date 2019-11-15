@@ -57,6 +57,7 @@
 </template>
 
 <script>
+  import Cookies from 'js-cookie'
   export default {
     data() {
       return {
@@ -71,13 +72,13 @@
         user2:{
 
         },
-        toUser:''  //对方id
+        toUserId:''  //对方id
       };
     },
     mounted(){
       this.conectWebSocket();
-      this.toUser=this.$route.params.userId;  //对方id
-      console.log(this.toUser)
+      this.toUserId=this.$route.params.toUserId;  //对方id
+      console.log(this.toUserId)
       this.user.userId=Cookies.get('userId');
       axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
         this.user=res.data;
