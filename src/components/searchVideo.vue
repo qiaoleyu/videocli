@@ -222,6 +222,11 @@
 
 
       <el-main style="width: 90%;margin: auto">
+        <div v-if="img==''"></div>
+        <div v-else-if="img!=''">
+          <el-image :src="img" style="width: 40% ;margin: auto;margin-top: 100px;margin-bottom: 30px"></el-image>
+        </div>
+        <h1>{{this.msg}}</h1>
         <el-row :gutter="10">
           <el-col :span="14" :offset="5">
            <!-- <div class="grid-content " style="height: 60px;margin-top: 20px">
@@ -432,7 +437,7 @@
             fullscreenToggle: true // 是否显示全屏按钮
           },
         },
-
+        img:'http://pzwtcm79f.bkt.clouddn.com/666.gif',
         imageUrl: '',
           input:'',
         msg: '',
@@ -468,8 +473,10 @@
       var url="api/search/"+name
       axios.get(url).then(res=>{
         if(res.data!=''){
-          this.videos=res.data
+          this.videos=res.data;
+          this.img='';
          }else{
+          this.msg='不好意思，没有该视频!';
           swal({
             text: "不好意思，没有该视频！",
             icon: "info",
