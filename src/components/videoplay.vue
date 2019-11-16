@@ -632,6 +632,7 @@
         console.log('当前页: ${val}');
       },
 
+
       //弹幕
       sendMsg:function (msg) {
           for (var i=0;i<=msg.length;i++){
@@ -927,10 +928,12 @@
       /*评论
        *针对视频的评论
        */
+
       findAll:function () {
         axios.get("api/findAllComment").then(res=>{
           if (res.data!=null){
             this.comments=res.data;
+
 //            console.log(this.comments)
           }else {
             alert("暂无评论")
@@ -942,6 +945,7 @@
         axios.get("api/findAllComments2").then(res=>{
           if (res.data!=null){
             this.comments2=res.data;
+
             console.log(this.comments2)
           }else {
             alert("暂无评论")
