@@ -518,7 +518,8 @@
           },
         },
 
-        comments:[],
+        comments:[],  //针对视频的评论
+        comments2:[],  //针对评论的评论
         com:{
           videoId:1,
           episodeId:'',
@@ -601,6 +602,7 @@
 //            console.log(this.user)
         })
       this.findAll();
+      this.findAll2();
 //      this.findByCommentId();
 //      var player = video('example-video');
 
@@ -922,12 +924,25 @@
       },
 
 
-      /*评论*/
+      /*评论
+       *针对视频的评论
+       */
       findAll:function () {
         axios.get("api/findAllComment").then(res=>{
           if (res.data!=null){
             this.comments=res.data;
 //            console.log(this.comments)
+          }else {
+            alert("暂无评论")
+          }
+        })
+      },
+      //针对评论的评论
+      findAll2:function () {
+        axios.get("api/findAllComments2").then(res=>{
+          if (res.data!=null){
+            this.comments2=res.data;
+            console.log(this.comments2)
           }else {
             alert("暂无评论")
           }
