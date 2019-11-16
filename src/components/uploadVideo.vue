@@ -4,8 +4,8 @@
     <el-container >
       <!--导航栏-->
       <!--<el-header style="height: 80px">-->
-        <!--<div style="width: 100%;margin: auto">-->
-        <!--</div>-->
+      <!--<div style="width: 100%;margin: auto">-->
+      <!--</div>-->
       <!--</el-header>-->
 
 
@@ -13,90 +13,90 @@
 
 
         <!--分类展示-->
-       <el-row :gutter="10">
-         <el-col :span="12" style="margin: auto;width: 100%;margin-top: 40px">
+        <el-row :gutter="10">
+          <el-col :span="12" style="margin: auto;width: 100%;margin-top: 40px">
 
-           <el-form label-width="100px" :model="video" status-icon :rules="rules" ref="video" style="width: 500px;margin: auto;text-align: left">
-             <el-form-item label="发布人：" prop="videoUsername">
-               <el-input class="arrow" name="videoUsername"  v-model="video.videoUsername" disabled></el-input>
-             </el-form-item>
-             <el-form-item label="视频：">
-               <el-upload
-                 class="avatar-uploader"
-                 action="api/uploadVideo"
-                 :on-change="handleChange"
-                 :on-remove="handleRemove"
-                 :file-list="fileList"
-                 :on-success="handleAvatarVideoSuccess"
-                 :before-upload="beforeAvatarVideoUpload"
-                 title="发布视频"
-               >
-                 <!--:show-file-list="false"-->
+            <el-form label-width="100px" :model="video" status-icon :rules="rules" ref="video" style="width: 500px;margin: auto;text-align: left">
+              <el-form-item label="发布人：" prop="videoUsername">
+                <el-input class="arrow" name="videoUsername"  v-model="video.videoUsername" disabled></el-input>
+              </el-form-item>
+              <el-form-item label="视频：">
+                <el-upload
+                  class="avatar-uploader"
+                  action="api/uploadVideo"
+                  :on-change="handleChange"
+                  :on-remove="handleRemove"
+                  :file-list="fileList"
+                  :on-success="handleAvatarVideoSuccess"
+                  :before-upload="beforeAvatarVideoUpload"
+                  title="发布视频"
+                >
+                  <!--:show-file-list="false"-->
                   <!--:on-preview="handlePictureCardPreview"-->
-                   <!--type="application/x-mpegURL"-->
-                 <img v-if="video.videoUrl" :src="video.videoUrl" class="avatar"  >
-                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-               </el-upload>
-             </el-form-item>
+                  <!--type="application/x-mpegURL"-->
+                  <img v-if="video.videoUrl" :src="video.videoUrl" class="avatar"  >
+                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                </el-upload>
+              </el-form-item>
 
-             <el-form-item label="视频封面：">
-               <el-upload
-                 class="avatar-uploader"
-                 action="api/uploadVideoPic"
-                 :show-file-list="false"
-                 :on-success="handleAvatarSuccess"
-                 :before-upload="beforeAvatarUpload"
-                 title="视频封面"
-               >
-                 <img v-if="video.videoPic" :src="video.videoPic" name="videoPic" width="80px" height="80px" class="avatar">
-                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-               </el-upload>
-             </el-form-item>
-             <!--<el-form-item label="视频封面图：">-->
-               <!--<el-upload-->
-                 <!--action="https://jsonplaceholder.typicode.com/posts/"-->
-                 <!--list-type="picture-card"-->
-                 <!--:on-preview="handlePictureCardPreview"-->
-                 <!--:on-remove="handleRemove"-->
-                 <!--:on-success="handleAvatarSuccess"-->
-                 <!--:before-upload="beforeAvatarUpload"-->
-                 <!--title="视频封面"-->
-               <!--&gt;-->
-                 <!--<i class="el-icon-plus"></i>-->
-               <!--</el-upload>-->
-               <!--<el-dialog :visible.sync="dialogVisible">-->
-                 <!--<img width="100%" :src="dialogImageUrl" alt="">-->
-               <!--</el-dialog>-->
+              <el-form-item label="视频封面：">
+                <el-upload
+                  class="avatar-uploader"
+                  action="api/uploadVideoPic"
+                  :show-file-list="false"
+                  :on-success="handleAvatarSuccess"
+                  :before-upload="beforeAvatarUpload"
+                  title="视频封面"
+                >
+                  <img v-if="video.videoPic" :src="video.videoPic" name="videoPic" width="80px" height="80px" class="avatar">
+                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                </el-upload>
+              </el-form-item>
+              <!--<el-form-item label="视频封面图：">-->
+              <!--<el-upload-->
+              <!--action="https://jsonplaceholder.typicode.com/posts/"-->
+              <!--list-type="picture-card"-->
+              <!--:on-preview="handlePictureCardPreview"-->
+              <!--:on-remove="handleRemove"-->
+              <!--:on-success="handleAvatarSuccess"-->
+              <!--:before-upload="beforeAvatarUpload"-->
+              <!--title="视频封面"-->
+              <!--&gt;-->
+              <!--<i class="el-icon-plus"></i>-->
+              <!--</el-upload>-->
+              <!--<el-dialog :visible.sync="dialogVisible">-->
+              <!--<img width="100%" :src="dialogImageUrl" alt="">-->
+              <!--</el-dialog>-->
 
-             <!--</el-form-item>-->
-             <el-form-item label="视频名称：" prop="videoName">
-               <el-input name="videoName" v-model="video.videoName" ></el-input>
-             </el-form-item>
-             <el-form-item label="视频类别：" prop="typeId">
-               <el-select v-model="video.typeId" placeholder="请选择" style="width: 100%">
-                 <el-option
-                   v-for="item in videoKinds"
-                   :key="item.typeId"
-                   :label="item.typeName"
-                   :value="item.typeId">
-                 </el-option>
-               </el-select>
-             </el-form-item>
-             <!--<el-form-item label="注册时间:">-->
-               <!--<el-date-picker name="createTime" v-model="user.createTime" type="date" placeholder="选择日期" style="width: 400px"></el-date-picker>-->
-             <!--</el-form-item>-->
-             <el-form-item label="视频简介：" prop="videoInfo">
-               <el-input name="videoInfo" v-model="video.videoInfo" ></el-input>
-             </el-form-item>
-             <div style="width: 400px;margin: auto;height: 40px;margin-left: 120px">
-               <el-button type="primary" round plain style="height: 40px;width:40%;float: left"  plain @click="uploadVideo()">上传</el-button>
-               <el-button type="primary" round plain style="height: 40px;width:40%;float: left" plain @click="backIndex()">返回</el-button>
-             </div>
-           </el-form>
+              <!--</el-form-item>-->
+              <el-form-item label="视频名称：" prop="videoName">
+                <el-input name="videoName" v-model="video.videoName" ></el-input>
+              </el-form-item>
+              <el-form-item label="视频类别：" prop="typeId">
+                <el-select v-model="video.typeId" placeholder="请选择" style="width: 100%">
+                  <el-option
+                    v-for="item in videoKinds"
+                    :key="item.typeId"
+                    :label="item.typeName"
+                    :value="item.typeId">
+                  </el-option>
+                </el-select>
+              </el-form-item>
+              <!--<el-form-item label="注册时间:">-->
+              <!--<el-date-picker name="createTime" v-model="user.createTime" type="date" placeholder="选择日期" style="width: 400px"></el-date-picker>-->
+              <!--</el-form-item>-->
+              <el-form-item label="视频简介：" prop="videoInfo">
+                <el-input name="videoInfo" v-model="video.videoInfo" ></el-input>
+              </el-form-item>
+              <div style="width: 400px;margin: auto;height: 40px;margin-left: 120px">
+                <el-button type="primary" round plain style="height: 40px;width:40%;float: left"  plain @click="uploadVideo()">上传</el-button>
+                <el-button type="primary" round plain style="height: 40px;width:40%;float: left" plain @click="backIndex()">返回</el-button>
+              </div>
+            </el-form>
 
             <!--<el-input></el-input>-->
-         </el-col>
-       </el-row>
+          </el-col>
+        </el-row>
 
 
       </el-main>
@@ -114,6 +114,7 @@
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
   import Cookies from 'js-cookie'
+  import swal from 'sweetalert'
   export default {
     components: {
       ElButton,
@@ -162,7 +163,7 @@
           name: '',
           url: ''
         }],
-          videoUrl:'',
+        videoUrl:'',
         input:'',
         msg: 'Welcome video index',
         active:'',
@@ -179,7 +180,7 @@
           typeName:'直播'
         },
         video:{
-            typeId:'',
+          typeId:'',
           userId:'',
           videoName:'',
           videoPic:'',
@@ -199,17 +200,15 @@
     mounted(){
       var userId = Cookies.get('userId');
       this.video.userId = userId;
-      var url = "api/findAllTypes"
-      axios.get(url).then(res => {
-        this.videoKinds = res.data
-      })
       if (this.video.userId != '') {
         axios.get("api/findUserByUserId/" + this.video.userId).then(res => {
           this.video.videoUsername = res.data.userName
         })
-      }else {
-        this.$message.error('还没登录哟，请登录后再试');
-        this.$router.push("/userLogin")
+
+        var url = "api/findAllTypes"
+        axios.get(url).then(res => {
+          this.videoKinds = res.data
+        })
       }
     },
     methods:{
@@ -267,14 +266,18 @@
           if (valid) {
             axios.post("api/addVideo", this.video).then(res => {
               if (res.data!=null) {
-                //                alert("修改成功")
-                this.$message({
-                  message: '上传视频成功',
-                  type: 'success'
+                swal({
+                  text: "上传成功！",
+                  icon: "success",
+                  button: "确定",
                 });
                 this.$router.push('/')
               } else {
-                alert("上传失败！")
+                swal({
+                  text: "上传失败！",
+                  icon: "warning",
+                  button: "确定",
+                });
               }
             })
           } else {
