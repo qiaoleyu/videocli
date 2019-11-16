@@ -199,15 +199,17 @@
     mounted(){
       var userId = Cookies.get('userId');
       this.video.userId = userId;
+      var url = "api/findAllTypes"
+      axios.get(url).then(res => {
+        this.videoKinds = res.data
+      })
       if (this.video.userId != '') {
         axios.get("api/findUserByUserId/" + this.video.userId).then(res => {
           this.video.videoUsername = res.data.userName
         })
-
-        var url = "api/findAllTypes"
-        axios.get(url).then(res => {
-          this.videoKinds = res.data
-        })
+      }else {
+        this.$message.error('还没登录哟，请登录后再试');
+        this.$router.push("/userLogin")
       }
     },
     methods:{

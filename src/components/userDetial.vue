@@ -205,7 +205,7 @@
           this.user=res.data;
         })
       }else {
-        alert("请登录")
+        this.$message.error('还没登录哟，请登录后再试');
         this.$router.push("/userLogin")
       }
     },

@@ -286,6 +286,7 @@
                   alert(userId)*/
                   //
                   this.$router.push("/");
+                  this.$router.go(0);
                 })
               } else if(res.data=="field"){
                 this.$message.error("该账号未激活，请前往邮箱激活");
