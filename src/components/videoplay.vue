@@ -195,7 +195,7 @@
                   </el-col>
                   <el-col :span="14">
                     <div style="height: 80px;font-size: 25px;font-weight: bolder;margin-left: 10px;line-height: 80px">
-                      <input v-model="com.commentContent" type="text" style="height: 80px;width: 100%;font-size: 18px" />
+                      <input v-model="input2" type="text" style="height: 80px;width: 100%;font-size: 18px" />
                     </div>
                   </el-col>
                   <el-col :span="6">
@@ -206,7 +206,7 @@
                 </el-row>
 
                 <!--用户信息-->
-                <el-row :gutter="10" style="margin-top: 20px">
+                <el-row v-for="(item,index) in comments" v-bind:key="item.commentId" :gutter="10" style="margin-top: 20px">
                   <el-col :span="24">
                      <div style="width:150px;font-size: 25px;font-weight: bolder;margin-left: 10px;background-color: black;float: left;text-align: center">
                         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
@@ -260,21 +260,22 @@
                       <el-row :gutter="10">
                         <el-col :span="6" style="height: 30px;font-size: 14px;line-height: 30px">
                           <div style="float: left;">
-                            <span>用户名</span>
+                            <span>{{item.userName}}</span>
                           </div>
                         </el-col>
                         <el-col :span="12" style="height: 30px;font-size: 14px;line-height: 30px">
                           <div style="float: left;">
-                            <span>评论内容</span>
+                            <span>{{item.commentContent}}</span>
                           </div>
                         </el-col>
                         <el-col :span="24" style="height: 30px;font-size: 14px;line-height: 30px">
                           <el-row :gutter="10">
                             <el-col :span="6">
-                              <span >时间</span>
+                              <span >{{item.commentTime}}</span>
                             </el-col>
                             <el-col :span="6">
-                              <span >点赞</span>
+                              <el-button @click="like2(index)" icon="el-icon-thumb" type="warning" circle plain style="font-size: 8px"></el-button>
+                              <sapn>{{item.commentCount}}</sapn>
                             </el-col>
                             <el-col :span="6">
                               <span >不赞同</span>
@@ -291,7 +292,7 @@
                       <!--评论信息-->
                       <el-row :gutter="10" style="margin-top: 20px">
                         <el-col :span="20" :offset="4">
-                          <div v-for="(item,index) in comments" style="width:99%;font-size: 16px;font-weight: bolder;margin-left: 10px;background-color: beige;float: left;text-align: center">
+                          <div v-for="(i,value) in comments2[index].list" style="width:99%;font-size: 16px;font-weight: bolder;margin-left: 10px;background-color: beige;float: left;text-align: center">
                             <!--遍历评论信息-->
 
                             <el-row :gutter="10" style="margin-top: 20px;font-size: 14px">
@@ -318,7 +319,7 @@
                                       </el-col>
                                       <el-col :span="12" style="height:60px;line-height: 60px">
                                         <div style="float: left;">
-                                          <span>{{item.userName}}</span>
+                                          <span>{{i.userName}}</span>
                                         </div>
                                       </el-col>
                                       <el-col :span="18" :offset="6" style="font-size: 12px">
@@ -349,12 +350,12 @@
                               </el-col>
                               <el-col :span="4">
                                 <div style="float: left;">
-                                  <span>{{item.userName}}</span>
+                                  <span>{{i.userName}}</span>
                                 </div>
                               </el-col>
                               <el-col :span="4">
                                 <div style="float: left;">
-                                  <span>{{item.commentContent}}</span>
+                                  <span>{{i.commentContent}}</span>
                                 </div>
                               </el-col>
                             </el-row>
@@ -362,13 +363,13 @@
                             <el-row :gutter="10" style="height: 20px;font-size: 14px">
                               <el-col :span="8" :offset="2">
                                 <div style="float: left;">
-                                  <span >{{item.commentTime}}</span>
+                                  <span >{{i.commentTime}}</span>
                                 </div>
                               </el-col>
                               <el-col :span="4">
                                 <div style="float: left;">
-                                  <el-button @click="like(index)" icon="el-icon-thumb" type="warning" circle plain style="font-size: 8px"></el-button>
-                                  <sapn>{{item.commentCount}}</sapn>
+                                  <el-button @click="like(index,value)" icon="el-icon-thumb" type="warning" circle plain style="font-size: 8px"></el-button>
+                                  <sapn>{{i.commentCount}}</sapn>
                                 </div>
                               </el-col>
                               <el-col :span="4">
@@ -390,7 +391,7 @@
                           @current-change="handleCurrentChange"
                           :current-page="currentPage"
                           layout="total, sizes, prev, pager, next, jumper"
-                          :total="400"
+                          :total="comments2[index].total"
                           style="text-align: center"
                         >
                         </el-pagination>
@@ -570,6 +571,7 @@
         activeIndex: '1',
           input:'',
         input1:'',
+        input2:'',
         /*user:{
               userId:'',
           userName:''
@@ -659,6 +661,7 @@
       handleCurrentChange(val) {
         console.log('当前页: ${val}');
       },
+
 
       //弹幕
       sendMsg:function (msg) {
@@ -952,32 +955,50 @@
       },
 
 
-      /*评论
-       *针对视频的评论
-       */
       findAll:function () {
-        axios.get("api/findAllComment").then(res=>{
+        axios.get("api/findAllCom").then(res=>{
           if (res.data!=null){
-            this.comments=res.data;
+            console.log(res.data.com.list)
+            console.log(res.data.comment[0].list)
+            this.comments=res.data.com.list;
+            this.comments2=res.data.comment
+
 //            console.log(this.comments)
           }else {
             alert("暂无评论")
           }
         })
       },
+      /*评论
+       *针对视频的评论
+       */
+
+
+      /*findAll:function () {
+        axios.get("api/findAllComment").then(res=>{
+          if (res.data!=null){
+            this.comments=res.data;
+
+//            console.log(this.comments)
+          }else {
+            alert("暂无评论")
+          }
+        })
+      },*/
       //针对评论的评论
-      findAll2:function () {
+     /* findAll2:function () {
         axios.get("api/findAllComments2").then(res=>{
           if (res.data!=null){
             this.comments2=res.data;
+
             console.log(this.comments2)
           }else {
             alert("暂无评论")
           }
         })
-      },
+      },*/
       /*点赞*/
-      like:function (index) {
+      like2:function (index) {
           this.com=this.comments[index];
 
           this.com.commentCount=this.com.commentCount+1;
@@ -987,7 +1008,16 @@
           }
         })
       },
+      like:function (index,value) {
+        this.com=this.comments2[index].list[value];
 
+        this.com.commentCount=this.com.commentCount+1;
+        axios.post("api/updateComment",this.com).then(res=>{
+          if (res.data!=null){
+//              alert("success")
+          }
+        })
+      },
      /* findByCommentId:function (commentId) {
         axios.get("api/").then(res=>{
 
@@ -995,8 +1025,9 @@
       },*/
 
       save:function () {
-        this.com.commentRid=2;
+        this.com.commentRid=0;
         console.log(this.com)
+        this.com.commentContent=this.input2;
         axios.post("api/saveComment",this.com).then(res=>{
           if (res.data!=null){
             alert("success")
