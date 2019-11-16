@@ -195,7 +195,7 @@
                   </el-col>
                   <el-col :span="14">
                     <div style="height: 80px;font-size: 25px;font-weight: bolder;margin-left: 10px;line-height: 80px">
-                      <input v-model="com.commentContent" type="text" style="height: 80px;width: 100%;font-size: 18px" />
+                      <input v-model="input2" type="text" style="height: 80px;width: 100%;font-size: 18px" />
                     </div>
                   </el-col>
                   <el-col :span="6">
@@ -274,7 +274,7 @@
                               <span >{{item.commentTime}}</span>
                             </el-col>
                             <el-col :span="6">
-                              <el-button @click="like(index)" icon="el-icon-thumb" type="warning" circle plain style="font-size: 8px"></el-button>
+                              <el-button @click="like2(index)" icon="el-icon-thumb" type="warning" circle plain style="font-size: 8px"></el-button>
                               <sapn>{{item.commentCount}}</sapn>
                             </el-col>
                             <el-col :span="6">
@@ -368,7 +368,7 @@
                               </el-col>
                               <el-col :span="4">
                                 <div style="float: left;">
-                                  <el-button @click="like(value)" icon="el-icon-thumb" type="warning" circle plain style="font-size: 8px"></el-button>
+                                  <el-button @click="like(index,value)" icon="el-icon-thumb" type="warning" circle plain style="font-size: 8px"></el-button>
                                   <sapn>{{i.commentCount}}</sapn>
                                 </div>
                               </el-col>
@@ -571,6 +571,7 @@
         activeIndex: '1',
           input:'',
         input1:'',
+        input2:'',
         /*user:{
               userId:'',
           userName:''
@@ -997,7 +998,7 @@
         })
       },*/
       /*点赞*/
-      like:function (index) {
+      like2:function (index) {
           this.com=this.comments[index];
 
           this.com.commentCount=this.com.commentCount+1;
@@ -1007,7 +1008,16 @@
           }
         })
       },
+      like:function (index,value) {
+        this.com=this.comments2[index].list[value];
 
+        this.com.commentCount=this.com.commentCount+1;
+        axios.post("api/updateComment",this.com).then(res=>{
+          if (res.data!=null){
+//              alert("success")
+          }
+        })
+      },
      /* findByCommentId:function (commentId) {
         axios.get("api/").then(res=>{
 
@@ -1015,8 +1025,9 @@
       },*/
 
       save:function () {
-        this.com.commentRid=2;
+        this.com.commentRid=0;
         console.log(this.com)
+        this.com.commentContent=this.input2;
         axios.post("api/saveComment",this.com).then(res=>{
           if (res.data!=null){
             alert("success")
