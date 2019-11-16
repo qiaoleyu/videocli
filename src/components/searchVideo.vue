@@ -5,51 +5,51 @@
       <!--导航栏-->
       <el-header style="height: 40px;">
         <div style="width: 100%;margin: auto;height: 80px;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;opacity: 0.9" class="header">
-            <el-row :gutter="10">
-              <!--<el-col :span="4">-->
-              <!--<div class="grid-content " style="height: 60px;font-size: 16px">-->
-              <!--<el-image src="http://pxx4c7852.bkt.clouddn.com/logo2%20%281%29.jpg" style="height: 60px;width:150px;border-radius: 3px"></el-image>-->
-              <!--</div>-->
-              <!--</el-col>-->
-              <el-col :span="10" :offset="2">
-                <div class="grid-content " style="height: 80px;font-size: 16px;">
-                  <div class="grid-content " style="height: 60px;font-size: 16px;float: left;">
-                    <router-link :to="{name:'index'}"><el-image src="../static/img/bala2.gif" style="height: 80px;width:150px;border-radius: 3px" title="返回首页"></el-image></router-link>
-                  </div>
-                  <div id="sy" class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
-                       @mousemove="over(1)"
-                       @mouseleave="leave(1)"
-                       :style="active"
+          <el-row :gutter="10">
+            <!--<el-col :span="4">-->
+            <!--<div class="grid-content " style="height: 60px;font-size: 16px">-->
+            <!--<el-image src="http://pxx4c7852.bkt.clouddn.com/logo2%20%281%29.jpg" style="height: 60px;width:150px;border-radius: 3px"></el-image>-->
+            <!--</div>-->
+            <!--</el-col>-->
+            <el-col :span="10" :offset="2">
+              <div class="grid-content " style="height: 80px;font-size: 16px;">
+                <div class="grid-content " style="height: 60px;font-size: 16px;float: left;">
+                  <router-link :to="{name:'index'}"><el-image src="../static/img/bala2.gif" style="height: 80px;width:150px;border-radius: 3px" title="返回首页"></el-image></router-link>
+                </div>
+                <div id="sy" class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
+                     @mousemove="over(1)"
+                     @mouseleave="leave(1)"
+                     :style="active"
 
+                >
+                  <router-link type="info" :to="{name:'index'}" style="color:black;"><a style="cursor: pointer">首页</a></router-link>
+                </div>
+                <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
+                     @mousemove="over(2)"
+                     @mouseleave="leave(2)"
+                     :style="a"
+                >
+                  <a @click="toOrders()" style="cursor: pointer">直播</a>
+                </div>
+                <el-dropdown>
+                  <div class="grid-content " style="height:60px;font-size: 16px;float: left;margin-top: 10px"
+                       @mousemove="over(9)"
+                       @mouseleave="leave(9)"
+                       :style="h"
                   >
-                    <router-link type="info" :to="{name:'index'}" style="color:black;"><a style="cursor: pointer">首页</a></router-link>
-                  </div>
-                  <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
-                       @mousemove="over(2)"
-                       @mouseleave="leave(2)"
-                       :style="a"
-                  >
-                    <a @click="toOrders()" style="cursor: pointer">直播</a>
-                  </div>
-                  <el-dropdown>
-                    <div class="grid-content " style="height:60px;font-size: 16px;float: left;margin-top: 10px"
-                         @mousemove="over(9)"
-                         @mouseleave="leave(9)"
-                         :style="h"
-                    >
                   <span class="el-dropdown-link">
                     <a style="cursor: pointer">个人中心</a>
                     <i class="el-icon-arrow-down el-icon--left"></i>
                   </span>
-                      <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item><a @click="toUser()">完善资料</a></el-dropdown-item>
-                        <el-dropdown-item><a @click="toModify()">修改密码</a></el-dropdown-item>
-                        <el-dropdown-item><a @click="toMessage()">信息中心</a></el-dropdown-item>
-                      </el-dropdown-menu>
-                    </div>
-                  </el-dropdown>
+                    <el-dropdown-menu slot="dropdown">
+                      <el-dropdown-item><a @click="toUser()">完善资料</a></el-dropdown-item>
+                      <el-dropdown-item><a @click="toModify()">修改密码</a></el-dropdown-item>
+                      <el-dropdown-item><a @click="toMessage()">信息中心</a></el-dropdown-item>
+                    </el-dropdown-menu>
+                  </div>
+                </el-dropdown>
 
-                  <el-dropdown>
+                <el-dropdown>
 
                 <span class="el-dropdown-link">
                   <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;top: 10px"
@@ -60,6 +60,25 @@
                     <a style="cursor: pointer">赛事</a><i class="el-icon-arrow-down el-icon--left"></i>
                   </div>
                 </span>
+                  <el-dropdown-menu slot="dropdown" style="width:240px;">
+                    <el-dropdown-item>1</el-dropdown-item>
+                    <el-dropdown-item>2</el-dropdown-item>
+                    <el-dropdown-item>3</el-dropdown-item>
+                    <el-dropdown-item>4</el-dropdown-item>
+                    <el-dropdown-item>5</el-dropdown-item>
+                  </el-dropdown-menu>
+
+                </el-dropdown>
+                <el-dropdown>
+                  <div class="grid-content " style="height: 60px;font-size: 16px;float: left"
+                       @mousemove="over(4)"
+                       @mouseleave="leave(4)"
+                       :style="c"
+                  >
+                <span class="el-dropdown-link">
+                  <a style="cursor: pointer">视频</a>
+                  <i class="el-icon-arrow-down el-icon--left"></i>
+                </span>
                     <el-dropdown-menu slot="dropdown" style="width:240px;">
                       <el-dropdown-item>1</el-dropdown-item>
                       <el-dropdown-item>2</el-dropdown-item>
@@ -67,40 +86,21 @@
                       <el-dropdown-item>4</el-dropdown-item>
                       <el-dropdown-item>5</el-dropdown-item>
                     </el-dropdown-menu>
+                  </div>
+                </el-dropdown>
+              </div>
+            </el-col>
 
-                  </el-dropdown>
-                  <el-dropdown>
-                    <div class="grid-content " style="height: 60px;font-size: 16px;float: left"
-                         @mousemove="over(4)"
-                         @mouseleave="leave(4)"
-                         :style="c"
-                    >
-                <span class="el-dropdown-link">
-                  <a style="cursor: pointer">视频</a>
-                  <i class="el-icon-arrow-down el-icon--left"></i>
-                </span>
-                      <el-dropdown-menu slot="dropdown" style="width:240px;">
-                        <el-dropdown-item>1</el-dropdown-item>
-                        <el-dropdown-item>2</el-dropdown-item>
-                        <el-dropdown-item>3</el-dropdown-item>
-                        <el-dropdown-item>4</el-dropdown-item>
-                        <el-dropdown-item>5</el-dropdown-item>
-                      </el-dropdown-menu>
-                    </div>
-                  </el-dropdown>
-                </div>
-              </el-col>
+            <!--<el-col :span="4"><div class="grid-content bg-purple"></div></el-col>-->
+            <el-col :span="8" :offset="3">
+              <div class="grid-content " style="height: 80px;margin-top: 10px">
 
-              <!--<el-col :span="4"><div class="grid-content bg-purple"></div></el-col>-->
-              <el-col :span="8" :offset="3">
-                <div class="grid-content " style="height: 80px;margin-top: 10px">
-
-                  <!--VIP-->
-                  <div class="grid-content " style="height: 60px;width:50px;float: left"
-                       @mousemove="over(11)"
-                       @mouseleave="leave(11)"
-                       :style="j"
-                  >
+                <!--VIP-->
+                <div class="grid-content " style="height: 60px;width:50px;float: left"
+                     @mousemove="over(11)"
+                     @mouseleave="leave(11)"
+                     :style="j"
+                >
                  <span type="info" style="color:black;cursor: pointer;margin-right: 10px">
                     <el-popover
                       placement="top-start"
@@ -158,92 +158,87 @@
                       </el-popover>
 
                 </span>
-                  </div>
+                </div>
 
-                  <!--用户充值-->
-                  <div class="grid-content " style="height: 60px;float: left"
-                       @mousemove="over(12)"
-                       @mouseleave="leave(12)"
-                       :style="m"
-                  >
-                    <el-dropdown>
-                      <div>
+                <!--用户充值-->
+                <div class="grid-content " style="height: 60px;float: left"
+                     @mousemove="over(12)"
+                     @mouseleave="leave(12)"
+                     :style="m"
+                >
+                  <el-dropdown>
+                    <div>
                   <span class="el-dropdown-link" style="margin-right: 10px">
                     <a>充值</a>
                     <i class="el-icon-arrow-down el-icon--right"></i>
                   </span>
-                        <el-dropdown-menu slot="dropdown" style="width:130px;">
-                          <el-dropdown-item><a @click="WeChatPay()">微信充值</a></el-dropdown-item>
-                          <el-dropdown-item><a @click="aliPay()" >支付宝充值</a></el-dropdown-item>
-                        </el-dropdown-menu>
-                      </div>
-                    </el-dropdown>
-                  </div>
-
-                  <!--历史-->
-                  <div class="grid-content " style="height: 60px;float: left"
-                       @mousemove="over(5)"
-                       @mouseleave="leave(5)"
-                       :style="d"
-                  >
-                    <span type="info" style="color:black;cursor: pointer;margin-right: 10px" ><a @click="logout()" class="el-icon-pie-chart" :size="50">历史</a></span>
-                  </div>
-                  <!--登录-->
-                  <div class="grid-content " style="height: 60px;width:50px;float: left"
-                       @mousemove="over(6)"
-                       @mouseleave="leave(6)"
-                       :style="e"
-                  >
-                    <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.user.userId==null" ><a class="el-icon-user" >登录</a></router-link>
-                    <span style="color:black;" v-if="this.user.userId!=null"><a>{{user.userName}}</a></span>
-                  </div>
-                  <!--注册-->
-                  <div class="grid-content " style="height: 60px;width:50px;float: left"
-                       @mousemove="over(7)"
-                       @mouseleave="leave(7)"
-                       :style="f"
-                  >
-                    <router-link type="info" :to="{name:'userRegist'}" style="color:black"><a>注册</a></router-link>
-                  </div>
-                  <!--退出-->
-                  <div class="grid-content " style="height: 60px;width:50px;float: left"
-                       @mousemove="over(8)"
-                       @mouseleave="leave(8)"
-                       :style="g"
-                  >
-                    <span type="info" style="color:black;cursor: pointer"><a @click="logout()">退出</a></span>
-                  </div>
+                      <el-dropdown-menu slot="dropdown" style="width:130px;">
+                        <el-dropdown-item><a @click="WeChatPay()">微信充值</a></el-dropdown-item>
+                        <el-dropdown-item><a @click="aliPay()" >支付宝充值</a></el-dropdown-item>
+                      </el-dropdown-menu>
+                    </div>
+                  </el-dropdown>
                 </div>
-              </el-col>
-            </el-row>
+
+                <!--历史-->
+                <div class="grid-content " style="height: 60px;float: left"
+                     @mousemove="over(5)"
+                     @mouseleave="leave(5)"
+                     :style="d"
+                >
+                  <span type="info" style="color:black;cursor: pointer;margin-right: 10px" ><a @click="logout()" class="el-icon-pie-chart" :size="50">历史</a></span>
+                </div>
+                <!--登录-->
+                <div class="grid-content " style="height: 60px;width:50px;float: left"
+                     @mousemove="over(6)"
+                     @mouseleave="leave(6)"
+                     :style="e"
+                >
+                  <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.user.userId==null" ><a class="el-icon-user" >登录</a></router-link>
+                  <span style="color:black;" v-if="this.user.userId!=null"><a>{{user.userName}}</a></span>
+                </div>
+                <!--注册-->
+                <div class="grid-content " style="height: 60px;width:50px;float: left"
+                     @mousemove="over(7)"
+                     @mouseleave="leave(7)"
+                     :style="f"
+                >
+                  <router-link type="info" :to="{name:'userRegist'}" style="color:black"><a>注册</a></router-link>
+                </div>
+                <!--退出-->
+                <div class="grid-content " style="height: 60px;width:50px;float: left"
+                     @mousemove="over(8)"
+                     @mouseleave="leave(8)"
+                     :style="g"
+                >
+                  <span type="info" style="color:black;cursor: pointer"><a @click="logout()">退出</a></span>
+                </div>
+              </div>
+            </el-col>
+          </el-row>
 
         </div>
       </el-header>
 
 
       <el-main style="width: 90%;margin: auto">
-        <div v-if="img==''"></div>
-        <div v-else-if="img!=''">
-          <el-image :src="img" style="width: 40% ;margin: auto;margin-top: 100px;margin-bottom: 30px"></el-image>
-        </div>
-        <h1>{{this.msg}}</h1>
         <el-row :gutter="10">
           <el-col :span="14" :offset="5">
-           <!-- <div class="grid-content " style="height: 60px;margin-top: 20px">
-              &lt;!&ndash;搜索&ndash;&gt;
-              <el-input ref="searchName" type="text" style="width: 75%;margin: auto;margin-top: 10px" placeholder="想搜索点什么呢~^_^"
-                        v-model="input"
-              />
-              <el-button type="primary" icon="el-icon-search" style="width: 100px" plain @click="search()"></el-button>
-            </div>-->
+            <!-- <div class="grid-content " style="height: 60px;margin-top: 20px">
+               &lt;!&ndash;搜索&ndash;&gt;
+               <el-input ref="searchName" type="text" style="width: 75%;margin: auto;margin-top: 10px" placeholder="想搜索点什么呢~^_^"
+                         v-model="input"
+               />
+               <el-button type="primary" icon="el-icon-search" style="width: 100px" plain @click="search()"></el-button>
+             </div>-->
           </el-col>
         </el-row>
         <el-row>
           <el-col :span="6" :offset="18">
             <div class="grid-content" style="line-height: 40px;float: right;">
-             <!-- <el-tooltip content="更多" placement="bottom" effect="light">
-                <el-button class="el-icon-arrow-right" plain @click="next()"></el-button>
-              </el-tooltip>-->
+              <!-- <el-tooltip content="更多" placement="bottom" effect="light">
+                 <el-button class="el-icon-arrow-right" plain @click="next()"></el-button>
+               </el-tooltip>-->
             </div>
           </el-col>
         </el-row>
@@ -256,10 +251,10 @@
                 <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
                 <video  width=100%  style="margin: auto;height:130px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
-                <source
-                :src="video.idx_video_url"
-                type="video/mp4">
-                <!--type="application/x-mpegURL"-->
+                  <source
+                    :src="video.idx_video_url"
+                    type="video/mp4">
+                  <!--type="application/x-mpegURL"-->
                 </video>
 
 
@@ -437,12 +432,12 @@
             fullscreenToggle: true // 是否显示全屏按钮
           },
         },
-        img:'http://pzwtcm79f.bkt.clouddn.com/666.gif',
+
         imageUrl: '',
-          input:'',
+        input:'',
         msg: '',
         user:{
-         userId:'',
+          userId:'',
           userName:''
         },
         collection:{
@@ -456,7 +451,7 @@
       }
     },
     mounted(){
-     this.user.userId=Cookies.get("userId")
+      this.user.userId=Cookies.get("userId")
       if (this.user.userId!=''){
         axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
           this.user=res.data;
@@ -464,7 +459,7 @@
           //console(this.user)
         })
       }else {
-        this.$message.error('还没登录哦，请登录后再试');
+        alert("请登录")
         this.$router.push("/userLogin")
       }
 
@@ -473,10 +468,8 @@
       var url="api/search/"+name
       axios.get(url).then(res=>{
         if(res.data!=''){
-          this.videos=res.data;
-          this.img='';
-         }else{
-          this.msg='不好意思，没有该视频!';
+          this.videos=res.data
+        }else{
           swal({
             text: "不好意思，没有该视频！",
             icon: "info",
@@ -558,22 +551,33 @@
       },
       like: function (id) {
         //alert(id)
-        var url = "api/like/" + id
-        axios.get(url).then(res => {
-          if (res.data != null) {
-            swal({
-              text: "点赞成功！",
-              icon: "success",
-              button: "确定",
-            });
-          }
-        })
+        if(this.user.userId!=null){
+          var url = "api/like/" + id
+          axios.get(url).then(res => {
+            if (res.data != null) {
+              swal({
+                text: "点赞成功！",
+                icon: "success",
+                button: "确定",
+              });
+            }
+          })
+        }else{
+          swal({
+            text: "您还没有登录！",
+            icon: "info",
+            button: "确定",
+          });
+          this.$router.push("/userLogin")
+        }
+
       },
       favorite: function (id) {
         //alert(this.user.userId)
         var userId=this.user.userId
-        var url="api/favorite/"+userId+"/"+id
-        axios.get(url).then(res=>{
+        if(this.user.userId!=null){
+          var url="api/favorite/"+userId+"/"+id
+          axios.get(url).then(res=>{
             if(res.data=="1"){
               swal({
                 text: "收藏成功！",
@@ -587,7 +591,16 @@
                 button: "确定",
               });
             }
-        })
+          })
+        }else {
+          swal({
+            text: "您还没有登录！",
+            icon: "info",
+            button: "确定",
+          });
+          this.$router.push("/userLogin")
+        }
+
       },
     },
     //直播(跳转到直播页面)
@@ -705,7 +718,7 @@
       this.user.userName='登录'
       this.$router.go(0)
     },
-}
+  }
 </script>
 
 
@@ -787,7 +800,7 @@
 
 
   .el-row {
-    /*margin-bottom: 20px;*/
+  /*margin-bottom: 20px;*/
   &:last-child {
      margin-bottom: 0;
    }
@@ -850,9 +863,9 @@
     text-align: center;
   }
   /*.avatar {*/
-    /*width: 178px;*/
-    /*height: 178px;*/
-    /*display: block;*/
+  /*width: 178px;*/
+  /*height: 178px;*/
+  /*display: block;*/
   /*}*/
 
   .note{
@@ -867,38 +880,38 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-/*a {*/
+  h1, h2 {
+    font-weight: normal;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  /*a {*/
   /*color: #42b983;*/
-/*}*/
-a:link {
-  color: #000000;
-  text-decoration-line: none;
+  /*}*/
+  a:link {
+    color: #000000;
+    text-decoration-line: none;
 
-}
-a:hover {
-  color: black;
-}
+  }
+  a:hover {
+    color: black;
+  }
   .body{
     font-family: 楷体;
   }
-.note{
-  /*position: absolute;*/
-  height: 100%;
-  width: 100%;
-  top:0;
-  left: 0;
-  /*overflow-y: auto;*/
-}
-.header{ position:fixed; margin-top:0; width:99%;margin: auto ;z-index:9999; }
+  .note{
+    /*position: absolute;*/
+    height: 100%;
+    width: 100%;
+    top:0;
+    left: 0;
+    /*overflow-y: auto;*/
+  }
+  .header{ position:fixed; margin-top:0; width:99%;margin: auto ;z-index:9999; }
 </style>
