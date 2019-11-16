@@ -360,7 +360,7 @@
                             </el-row>
 
                             <el-row :gutter="10" style="height: 20px;font-size: 14px">
-                              <el-col :span="8">
+                              <el-col :span="8" :offset="2">
                                 <div style="float: left;">
                                   <span >{{item.commentTime}}</span>
                                 </div>
