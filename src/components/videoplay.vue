@@ -3,17 +3,228 @@
     <!--<h1>{{ msg }}</h1>-->
     <el-container >
       <!--导航栏-->
-      <el-header style="height: 40px;margin-top: 80px">
+      <el-header style="height: 80px;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;opacity: 0.9" class="header">
         <div style="width: 100%;margin: auto;">
-          <!--搜索-->
           <el-row :gutter="10">
-            <el-col :span="14" :offset="5">
-              <div class="grid-content " style="height: 60px">
-                <!--搜索-->
-                <el-input ref="searchName" type="text" style="width: 75%;margin: auto;margin-top: 10px" placeholder="想搜索点什么呢~^_^"
-                          v-model="input"
-                />
-                <el-button type="primary" icon="el-icon-search" style="width: 100px" plain @click="search()"></el-button>
+            <!--<el-col :span="4">-->
+            <!--<div class="grid-content " style="height: 60px;font-size: 16px">-->
+            <!--<el-image src="http://pxx4c7852.bkt.clouddn.com/logo2%20%281%29.jpg" style="height: 60px;width:150px;border-radius: 3px"></el-image>-->
+            <!--</div>-->
+            <!--</el-col>-->
+            <el-col :span="10" :offset="2">
+              <div class="grid-content " style="height: 80px;font-size: 16px;">
+                <div class="grid-content " style="height: 60px;font-size: 16px;float: left;">
+                  <router-link :to="{name:'index'}"><el-image src="../static/img/bala2.gif" style="height: 80px;width:150px;border-radius: 3px" title="返回首页"></el-image></router-link>
+                </div>
+                <div id="sy" class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
+                     @mousemove="over(1)"
+                     @mouseleave="leave(1)"
+                     :style="active"
+
+                >
+                  <router-link type="info" :to="{name:'index'}" style="color:black;"><a style="cursor: pointer">首页</a></router-link>
+                </div>
+                <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
+                     @mousemove="over(2)"
+                     @mouseleave="leave(2)"
+                     :style="a"
+                >
+                  <router-link type="info" :to="{name:'videoDirect'}" style="color:black;"><a style="cursor: pointer">直播</a></router-link>
+                  <!--<a ></a>-->
+                </div>
+                <el-dropdown>
+                  <div class="grid-content " style="height:60px;font-size: 16px;float: left;margin-top: 10px"
+                       @mousemove="over(9)"
+                       @mouseleave="leave(9)"
+                       :style="h"
+                  >
+                  <span class="el-dropdown-link">
+                    <a style="cursor: pointer">个人中心</a>
+                    <i class="el-icon-arrow-down el-icon--left"></i>
+                  </span>
+                    <el-dropdown-menu slot="dropdown">
+                      <el-dropdown-item><a @click="toUser()">完善资料</a></el-dropdown-item>
+                      <el-dropdown-item><a @click="toModify()">修改密码</a></el-dropdown-item>
+                      <el-dropdown-item><a @click="toMessage()">信息中心</a></el-dropdown-item>
+                    </el-dropdown-menu>
+                  </div>
+                </el-dropdown>
+
+                <el-dropdown>
+
+                <span class="el-dropdown-link">
+                  <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;top: 10px"
+                       @mousemove="over(3)"
+                       @mouseleave="leave(3)"
+                       :style="b"
+                  >
+                    <a style="cursor: pointer">赛事</a><i class="el-icon-arrow-down el-icon--left"></i>
+                  </div>
+                </span>
+                  <el-dropdown-menu slot="dropdown" style="width:240px;">
+                    <el-dropdown-item>1</el-dropdown-item>
+                    <el-dropdown-item>2</el-dropdown-item>
+                    <el-dropdown-item>3</el-dropdown-item>
+                    <el-dropdown-item>4</el-dropdown-item>
+                    <el-dropdown-item>5</el-dropdown-item>
+                  </el-dropdown-menu>
+
+                </el-dropdown>
+                <el-dropdown>
+                  <div class="grid-content " style="height: 60px;font-size: 16px;float: left"
+                       @mousemove="over(4)"
+                       @mouseleave="leave(4)"
+                       :style="c"
+                  >
+                <span class="el-dropdown-link">
+                  <a style="cursor: pointer">视频</a>
+                  <i class="el-icon-arrow-down el-icon--left"></i>
+                </span>
+                    <el-dropdown-menu slot="dropdown" style="width:240px;">
+                      <el-dropdown-item>1</el-dropdown-item>
+                      <el-dropdown-item>2</el-dropdown-item>
+                      <el-dropdown-item>3</el-dropdown-item>
+                      <el-dropdown-item>4</el-dropdown-item>
+                      <el-dropdown-item>5</el-dropdown-item>
+                    </el-dropdown-menu>
+                  </div>
+                </el-dropdown>
+              </div>
+            </el-col>
+
+            <!--<el-col :span="4"><div class="grid-content bg-purple"></div></el-col>-->
+            <el-col :span="8" :offset="3">
+              <div class="grid-content " style="height: 80px;margin-top: 10px">
+
+                <!--VIP-->
+                <div class="grid-content " style="height: 60px;width:50px;float: left"
+                     @mousemove="over(11)"
+                     @mouseleave="leave(11)"
+                     :style="j"
+                >
+                 <span type="info" style="color:black;cursor: pointer;margin-right: 10px">
+                    <el-popover
+                      placement="top-start"
+                      width="400"
+                      trigger="hover"
+                    >
+                        <!--title="标题"-->
+                      <!--content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"-->
+                      <!--<el-button slot="reference">hover 激活</el-button>-->
+                        <el-row :gutter="10">
+                          <el-col :span="24">
+                            <h3>请选择支付方式</h3>
+                          </el-col>
+                          <el-col :span="12">
+                            <el-radio-group v-model="radio2">
+                              <el-radio-button label="账户余额支付"></el-radio-button>
+                            </el-radio-group>
+                          </el-col>
+                          <el-col :span="12">
+                            <el-radio-group v-model="radio2">
+                              <el-radio-button label="支付宝支付"></el-radio-button>
+                            </el-radio-group>
+                          </el-col>
+                          <el-col :span="24">
+                            <h3>请选择会员充值期限</h3>
+                          </el-col>
+                          <el-col :span="8">
+
+                            <div style="float: left;text-align: center">
+                              <el-card style="height: 120px;width: 100%;cursor: pointer">
+                                <el-image src="../static/img/yue.jpg" style="width: 100%;height:100%" title="15元/月，普通会员"></el-image>
+                             </el-card>
+                              <el-radio-group v-model="radio1">
+                                <el-radio-button label="$15元/月"></el-radio-button>
+                              </el-radio-group>
+                            </div>
+
+                          </el-col>
+                          <el-col :span="8">
+                            <div style="float: left;text-align: center">
+                              <el-card style="height: 120px;width: 100%;cursor: pointer">
+                                <el-image src="../static/img/nian.jpg" style="width: 100%;height: 100%" title="50元/季，普通会员"></el-image>
+                              </el-card>
+                              <el-radio-group v-model="radio1">
+                                <el-radio-button label="$50元/季"></el-radio-button>
+                              </el-radio-group>
+                            </div>
+                          </el-col>
+                          <el-col :span="8">
+                            <div style="float: left;text-align: center">
+                              <el-card style="height: 120px;width: 100%;cursor: pointer">
+                                <el-image src="../static/img/huiyuan.jpg" style="width: 100%;height: 100%" title="200元/年，普通会员"></el-image>
+                              </el-card>
+                              <el-radio-group v-model="radio1">
+                                <el-radio-button label="$200元/年"></el-radio-button>
+                              </el-radio-group>
+                            </div>
+                          </el-col>
+                          <el-col :span="18" :offset="3" style="font-size: 12px;margin-top: 20px">
+                            <div style="float: left;width: 100%">
+                              <el-button type="primary" style="width: 100%" plain  @click="payForVip()">充值</el-button>
+                            </div>
+                          </el-col>
+                        </el-row>
+                      <a  type="info" slot="reference" style="font-size: 16px" title="VIP">VIP</a>
+                      </el-popover>
+
+                </span>
+                </div>
+
+                <!--用户充值-->
+                <div class="grid-content " style="height: 60px;float: left"
+                     @mousemove="over(12)"
+                     @mouseleave="leave(12)"
+                     :style="m"
+                >
+                  <el-dropdown>
+                    <div>
+                  <span class="el-dropdown-link" style="margin-right: 10px">
+                    <a>充值</a>
+                    <i class="el-icon-arrow-down el-icon--right"></i>
+                  </span>
+                      <el-dropdown-menu slot="dropdown" style="width:130px;">
+                        <el-dropdown-item><a @click="WeChatPay()">微信充值</a></el-dropdown-item>
+                        <el-dropdown-item><a @click="aliPay()" >支付宝充值</a></el-dropdown-item>
+                      </el-dropdown-menu>
+                    </div>
+                  </el-dropdown>
+                </div>
+
+                <!--历史-->
+                <div class="grid-content " style="height: 60px;float: left"
+                     @mousemove="over(5)"
+                     @mouseleave="leave(5)"
+                     :style="d"
+                >
+                  <span type="info" style="color:black;cursor: pointer;margin-right: 10px" ><a @click="logout()" class="el-icon-pie-chart" :size="50">历史</a></span>
+                </div>
+                <!--登录-->
+                <div class="grid-content " style="height: 60px;width:50px;float: left"
+                     @mousemove="over(6)"
+                     @mouseleave="leave(6)"
+                     :style="e"
+                >
+                  <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.user.userId==null" ><a class="el-icon-user" >登录</a></router-link>
+                  <span style="color:black;" v-if="this.user.userId!=null"><a>{{user.userName}}</a></span>
+                </div>
+                <!--注册-->
+                <div class="grid-content " style="height: 60px;width:50px;float: left"
+                     @mousemove="over(7)"
+                     @mouseleave="leave(7)"
+                     :style="f"
+                >
+                  <router-link type="info" :to="{name:'userRegist'}" style="color:black"><a>注册</a></router-link>
+                </div>
+                <!--退出-->
+                <div class="grid-content " style="height: 60px;width:50px;float: left"
+                     @mousemove="over(8)"
+                     @mouseleave="leave(8)"
+                     :style="g"
+                >
+                  <span type="info" style="color:black;cursor: pointer"><a @click="logout()">退出</a></span>
+                </div>
               </div>
             </el-col>
           </el-row>
@@ -47,7 +258,7 @@
                               @ready="playerReadied"
                 >
                   <source
-                    src="http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4"
+                    :src="video.videoUrl"
                     type="video/mp4">
                   >
                 </video-player>
@@ -524,6 +735,18 @@
     name: 'index',
     data () {
       return {
+        user: {
+          userId: '',
+          userName: '',
+          userMoney: '',
+          userStatue: ''
+        },
+        radio1: '$15元/月',
+        radio2: '账户余额支付',
+        pay: {
+          userId: '',
+          rechargeVip: '',
+        },
         playerOptions: {
           playbackRates: [0.5, 1.0, 1.5, 2.0], // 可选的播放速度
           autoplay: false, // 如果为true,浏览器准备好时开始回放。
@@ -618,11 +841,35 @@
         },
         video:{
           videoId:'',
+          videoName:'',
+          videoUrl:'',
+          videoLike:'',
+          videoFavorite:'',
+          videoComment:'',
+          videoDownload:''
         }
 
       }
     },
     mounted(){
+      this.user.userId=Cookies.get("userId")
+      if (this.user.userId!=''){
+        axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
+          this.user=res.data;
+        })
+      }else {
+        alert("请登录")
+        this.$router.push("/userLogin")
+      }
+
+      //alert(666)
+      var videoId=this.$route.params.pk_video_id
+      //alert(videoId)
+      var url="api/findVideoByVideoId/"+videoId
+      axios.get(url).then(res=>{
+          this.video=res.data
+      })
+
         this.barrage.videoId=this.$route.params.id;
       this.barrage.videoId=1;   //待删
       this.video.videoId=1;   //待删
@@ -641,6 +888,7 @@
       clearInterval(this.timer)
     },
     methods:{
+
 
         /*发送弹幕方法中调用该方法*/
       /*sendBarrage:function () {
@@ -1036,6 +1284,92 @@
             alert("fail")
           }
         })
+      },
+      //支付宝支付
+      aliPay() {
+        if (this.user.userId!=null) {
+          this.$prompt('请输入需要充值的金额', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            inputPattern:"" ,
+            inputErrorMessage: '充值金额格式不正确'
+          }).then(({ value }) => {
+            swal({
+              text: "充值的金额:"+value,
+              icon: "success",
+              button: "确定",
+            });
+            axios.post("api/aliPay/"+this.user.userId+"/"+value).then(res => {
+              alert(111)
+              this.$router.replace({path:'/applyText',query:{htmls:res.data}})
+            })
+          }).catch(() => {
+            swal({
+              text: "取消充值",
+              icon: "info",
+              button: "确定",
+            });
+          });
+        }else {
+          this.$message.error('还没登录哦，请登录后再试');
+          this.$router.push("/userLogin")
+        }
+      },
+      //用户充值会员
+      payfor:function(){
+        if (this.user.userId!=null) {
+          this.pay.userId=this.user.userId;
+          if(this.radio1=="$15元/月"){
+            this.pay.rechargeMoney=15;
+          }
+          if(this.radio1=="$50元/季"){
+            this.pay.rechargeMoney=50;
+          }
+          if(this.radio1=="$200元/年"){
+            this.pay.rechargeMoney=200;
+          }
+          //alert(this.pay.userId)
+          //alert(this.pay.rechargeMoney)
+          axios.post("api/userRecharge",this.pay).then(res => {
+            this.$router.replace({path:'/applyText',query:{htmls:res.data}})
+          })
+        }else {
+          this.$message.error('还没登录哦，请登录后再试');
+          this.$router.push("/userLogin")
+        }
+      },
+      //      个人中心-完善信息
+      toUser:function () {
+        //alert(666)
+        if (this.user.userId!=null) {
+          this.$router.push("/userDetial")
+        }else {
+          this.$message.error('还没登录哦，请登录后再试');
+          this.$router.push("/userLogin")
+        }
+      },
+      //修改密码
+      toModify:function () {
+        if (this.user.userId!=null) {
+          this.$router.push("/updatePassword")
+        }else {
+          this.$message.error('还没登录哦，请登录后再试');
+          this.$router.push("/userLogin")
+        }
+      },
+      toMessage(){
+        if (this.user.userId!=null) {
+          this.$router.push("/userMessage")
+        }else {
+          this.$message.error('还没登录哦，请登录后再试');
+          this.$router.push("/userLogin")
+        }
+      },
+      logout:function () {
+        Cookies.remove('userId'); // fail!
+        Cookies.remove('userId', { path: '/' });
+        this.user.userName='登录'
+        this.$router.go(0)
       },
 
       /*delete:function (commentId) {
