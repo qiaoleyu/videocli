@@ -208,7 +208,7 @@
                 <!--用户信息-->
                 <el-row :gutter="10" style="margin-top: 20px">
                   <el-col :span="24">
-                     <!-- <div style="width:150px;font-size: 25px;font-weight: bolder;margin-left: 10px;background-color: black;float: left;text-align: center">
+                     <div style="width:150px;font-size: 25px;font-weight: bolder;margin-left: 10px;background-color: black;float: left;text-align: center">
                         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
                         </el-menu>
                         <el-popover
@@ -216,9 +216,6 @@
                           width="300"
                           trigger="hover"
                           >
-                          &lt;!&ndash;title="标题"&ndash;&gt;
-                          &lt;!&ndash;content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"&ndash;&gt;
-                          &lt;!&ndash;<el-button slot="reference">hover 激活</el-button>&ndash;&gt;
                           <el-row :gutter="10">
                             <el-col :span="24">
                               <div style="float: left;">
@@ -259,9 +256,35 @@
                           <el-avatar slot="reference" src="../static/img/bala2.jpg" :size="60"></el-avatar>
                         </el-popover>
                       </div>
-                      <div style="float: left;text-align: left;font-size: 20px;line-height: 60px">
-
-                        <span>用户名</span>
+                      <div style="float: left;text-align: left;font-size: 20px;line-height: 60px;height: 60px">
+                      <el-row :gutter="10">
+                        <el-col :span="6" style="height: 30px;font-size: 14px;line-height: 30px">
+                          <div style="float: left;">
+                            <span>用户名</span>
+                          </div>
+                        </el-col>
+                        <el-col :span="12" style="height: 30px;font-size: 14px;line-height: 30px">
+                          <div style="float: left;">
+                            <span>评论内容</span>
+                          </div>
+                        </el-col>
+                        <el-col :span="24" style="height: 30px;font-size: 14px;line-height: 30px">
+                          <el-row :gutter="10">
+                            <el-col :span="6">
+                              <span >时间</span>
+                            </el-col>
+                            <el-col :span="6">
+                              <span >点赞</span>
+                            </el-col>
+                            <el-col :span="6">
+                              <span >不赞同</span>
+                            </el-col>
+                            <el-col :span="6">
+                              <a @click="replyMessage" style="cursor: pointer;text-align: center">回复</a>
+                            </el-col>
+                          </el-row>
+                        </el-col>
+                      </el-row>
 
                       </div>
 
@@ -271,7 +294,7 @@
                           <div v-for="(item,index) in comments" style="width:99%;font-size: 16px;font-weight: bolder;margin-left: 10px;background-color: beige;float: left;text-align: center">
                             <!--遍历评论信息-->
 
-                            <el-row :gutter="10" style="margin-top: 20px">
+                            <el-row :gutter="10" style="margin-top: 20px;font-size: 14px">
                               <el-col :span="2">
                                 <div style="float: left;">
                                   <el-popover
@@ -283,11 +306,11 @@
                                     <!--content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"-->
                                     <!--<el-button slot="reference">hover 激活</el-button>-->
                                     <el-row :gutter="10">
-                                      <el-col :span="24">
-                                        <div style="float: left;">
-                                          <el-image src="../static/img/yh1.jpg" style="width: 100%"></el-image>
-                                        </div>
-                                      </el-col>
+                                      <!--<el-col :span="24">-->
+                                        <!--<div style="float: left;">-->
+                                          <!--<el-image src="../static/img/yh1.jpg" style="width: 100%"></el-image>-->
+                                        <!--</div>-->
+                                      <!--</el-col>-->
                                       <el-col :span="10" :offset="2" style="height:60px;line-height: 60px">
                                         <div style="float: left;">
                                           <el-avatar src="../static/img/bala2.jpg" :size="60"></el-avatar>
@@ -324,26 +347,31 @@
                                   <!--<el-avatar slot="reference" src="item.userPic" :size="30"></el-avatar>-->
                                 </div>
                               </el-col>
-                              <el-col :span="2">
+                              <el-col :span="4">
                                 <div style="float: left;">
                                   <span>{{item.userName}}</span>
                                 </div>
                               </el-col>
+                              <el-col :span="4">
+                                <div style="float: left;">
+                                  <span>{{item.commentContent}}</span>
+                                </div>
+                              </el-col>
                             </el-row>
 
-                            <el-row :gutter="10" style="height: 20px">
-                              <el-col :span="3">
+                            <el-row :gutter="10" style="height: 20px;font-size: 14px">
+                              <el-col :span="8">
                                 <div style="float: left;">
                                   <span >{{item.commentTime}}</span>
                                 </div>
                               </el-col>
-                              <el-col :span="3">
+                              <el-col :span="4">
                                 <div style="float: left;">
                                   <el-button @click="like(index)" icon="el-icon-thumb" type="warning" circle plain style="font-size: 8px"></el-button>
                                   <sapn>{{item.commentCount}}</sapn>
                                 </div>
                               </el-col>
-                              <el-col :span="3">
+                              <el-col :span="4">
                                 <div style="float: left;">
                                   <a @click="replyMessage" style="cursor: pointer;">回复</a>
                                 </div>
