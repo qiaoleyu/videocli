@@ -998,40 +998,6 @@
           this.$router.push("/userLogin")
         }
       },*/
-      //回复
-      replyMessage(index,value) {
-        this.$prompt('请输入回复信息', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          //inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
-          //inputErrorMessage: '邮箱格式不正确'
-        }).then(({ val }) => {
-          this.$message({
-            type: 'success',
-            message: '您回复的信息是: ' + val,
-          });
-
-          this.com.commentRid =this.comments2[index].list[value].commentRid;
-          this.com.respondentId=this.comments2[index].list[value].userId;
-          this.com.respondentName=this.comments2[index].list[value].userName;
-          this.com.commentLid=this.comments[index].commentId;
-          this.com.commentContent=val;
-          axios.post("api/saveComment",this.com).then(res=>{
-            if (res.data!=null){
-              alert("success")
-              this.findAll();
-            }else {
-              alert("fail")
-            }
-          })
-
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '取消输入'
-          });
-        });
-      },
 
 //      //注册画中画按钮
 //      createMyButton () {
@@ -1259,7 +1225,7 @@
           }
         })
       },*/
-      /*点赞*/
+      /*点赞--》2 */
       like2:function (index) {
         this.com=this.comments[index];
 
@@ -1270,6 +1236,8 @@
           }
         })
       },
+
+      /*点赞--》3 */
       like:function (index,value) {
         this.com=this.comments2[index].list[value];
 
@@ -1285,7 +1253,7 @@
 
         })
       },*/
-
+      /*回复评论--》1 */
       save:function () {
         this.com.commentRid=0;
         console.log(this.com)
@@ -1299,6 +1267,7 @@
           }
         })
       },
+      /*回复评论--》3 */
       replyMeg:function (index) {
         this.$prompt('请输入回复信息', '提示', {
           confirmButtonText: '确定',
@@ -1331,6 +1300,41 @@
           });
         });
       },
+      //回复评论--》3
+      replyMessage(index,value) {
+        this.$prompt('请输入回复信息', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          //inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
+          //inputErrorMessage: '邮箱格式不正确'
+        }).then(({ val }) => {
+          this.$message({
+            type: 'success',
+            message: '您回复的信息是: ' + val,
+          });
+
+          this.com.commentRid =this.comments2[index].list[value].commentRid;
+          this.com.respondentId=this.comments2[index].list[value].userId;
+          this.com.respondentName=this.comments2[index].list[value].userName;
+          this.com.commentLid=this.comments[index].commentId;
+          this.com.commentContent=val;
+          axios.post("api/saveComment",this.com).then(res=>{
+            if (res.data!=null){
+              alert("success")
+              this.findAll();
+            }else {
+              alert("fail")
+            }
+          })
+
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消输入'
+          });
+        });
+      },
+
       //支付宝支付
       aliPay() {
         if (this.user.userId!=null) {
