@@ -566,7 +566,7 @@
                               </el-col>
                               <el-col :span="4">
                                 <div style="float: left;">
-                                  <span>{{i.commentContent}}</span>
+                                  <span v-if="i.commentLid<=1">{{i.commentContent}}</span>
                                   <span v-if="i.commentLid>1">回复@{{i.respondentName}}：{{i.commentContent}}</span>
                                 </div>
                               </el-col>
