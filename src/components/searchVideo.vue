@@ -459,7 +459,7 @@
           //console(this.user)
         })
       }else {
-        alert("请登录")
+        this.$message.error('还没登录哦，请登录后再试');
         this.$router.push("/userLogin")
       }
 

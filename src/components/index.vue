@@ -1207,7 +1207,9 @@
         },
       }
     },
-
+    mounted(){
+      this.user.userId=Cookies.get("userId")
+    },
     methods:{
         over:function (x) {
             if(x==1){
@@ -1256,6 +1258,7 @@
         }
       },
 //      上传视频
+
       toUpload:function(){
         if (this.user.userId!=null) {
           this.$router.push("/uploadVideo")
