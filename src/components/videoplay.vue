@@ -200,7 +200,7 @@
                   </el-col>
                   <el-col :span="6">
                     <div style="height: 80px;font-size: 25px;font-weight: bolder;margin-left: 10px;line-height: 80px;text-align: center">
-                      <el-button style="height: 80px;width: 80%;font-size: 20px;font-weight: bolder;" plain type="primary" @click="replyMessage">发表评论</el-button>
+                      <el-button style="height: 80px;width: 80%;font-size: 20px;font-weight: bolder;" plain type="primary" @click="save()">发表评论</el-button>
                     </div>
                   </el-col>
                 </el-row>
@@ -224,12 +224,12 @@
                             </el-col>
                             <el-col :span="10" :offset="2" style="height:60px;line-height: 60px">
                               <div style="float: left;">
-                                <el-avatar src="../static/img/bala2.jpg" :size="60"></el-avatar>
+                                <el-avatar src="item.userPic" :size="60"></el-avatar>
                               </div>
                             </el-col>
                             <el-col :span="12" style="height:60px;line-height: 60px">
                               <div style="float: left;">
-                                <span>用户名</span>
+                                <span>{{item.userName}}</span>
                               </div>
                             </el-col>
                             <el-col :span="18" :offset="6" style="font-size: 12px">
@@ -281,7 +281,7 @@
                               <span >不赞同</span>
                             </el-col>
                             <el-col :span="6">
-                              <a @click="replyMessage" style="cursor: pointer;text-align: center">回复</a>
+                              <a @click="replyMeg(index)" style="cursor: pointer;text-align: center">回复</a>
                             </el-col>
                           </el-row>
                         </el-col>
@@ -307,14 +307,14 @@
                                     <!--content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"-->
                                     <!--<el-button slot="reference">hover 激活</el-button>-->
                                     <el-row :gutter="10">
-                                      <!--<el-col :span="24">-->
-                                        <!--<div style="float: left;">-->
-                                          <!--<el-image src="../static/img/yh1.jpg" style="width: 100%"></el-image>-->
-                                        <!--</div>-->
-                                      <!--</el-col>-->
+                                      <el-col :span="24">
+                                        <div style="float: left;">
+                                          <el-image src="../static/img/yh1.jpg" style="width: 100%"></el-image>
+                                        </div>
+                                      </el-col>
                                       <el-col :span="10" :offset="2" style="height:60px;line-height: 60px">
                                         <div style="float: left;">
-                                          <el-avatar src="../static/img/bala2.jpg" :size="60"></el-avatar>
+                                          <el-avatar src="i.userPic" :size="60"></el-avatar>
                                         </div>
                                       </el-col>
                                       <el-col :span="12" style="height:60px;line-height: 60px">
@@ -374,7 +374,7 @@
                               </el-col>
                               <el-col :span="4">
                                 <div style="float: left;">
-                                  <a @click="replyMessage" style="cursor: pointer;">回复</a>
+                                  <a @click="replyMessage(index,value)" style="cursor: pointer;">回复</a>
                                 </div>
                               </el-col>
                             </el-row>
@@ -551,7 +551,6 @@
         comments2:[],  //针对评论的评论
         com:{
           videoId:1,
-          episodeId:'',
           userId:'',
           userName:'',
           userPic:'',
@@ -623,12 +622,18 @@
       }
     },
     mounted(){
-        this.barrage.videoId=this.$route.params.id;
+      var id=this.$route.params.id;
+      id=1;
+        this.barrage.videoId=id;
       this.barrage.videoId=1;   //待删
-      this.video.videoId=1;   //待删
+      this.video.videoId=id;   //待删
+      this.com.videoId=id;
         this.com.userId=Cookies.get('userId');
         axios.get("api/findUserByUserId/"+this.com.userId).then(res=>{
             this.user=res.data;
+            this.com.userName=this.user.userName;
+            this.com.userId=this.user.userId;
+            this.com.userPic=this.user.userPic;
 //            console.log(this.user)
         })
       this.findAll();
@@ -752,17 +757,32 @@
         }
       },*/
       //回复
-      replyMessage() {
+      replyMessage(index,value) {
         this.$prompt('请输入回复信息', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           //inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
           //inputErrorMessage: '邮箱格式不正确'
-        }).then(({ value }) => {
+        }).then(({ val }) => {
           this.$message({
             type: 'success',
-            message: '您回复的信息是: ' + value
+            message: '您回复的信息是: ' + val,
           });
+
+          this.com.commentRid =this.comments2[index].list[value].commentRid;
+          this.com.respondentId=this.comments2[index].list[value].userId;
+          this.com.respondentName=this.comments2[index].list[value].userName;
+          this.com.commentLid=this.comments[index].commentId;
+          this.com.commentContent=val;
+          axios.post("api/saveComment",this.com).then(res=>{
+            if (res.data!=null){
+              alert("success")
+              this.findAll();
+            }else {
+              alert("fail")
+            }
+          })
+
         }).catch(() => {
           this.$message({
             type: 'info',
@@ -958,8 +978,8 @@
       findAll:function () {
         axios.get("api/findAllCom").then(res=>{
           if (res.data!=null){
-            console.log(res.data.com.list)
-            console.log(res.data.comment[0].list)
+//            console.log(res.data.com.list)
+//            console.log(res.data.comment[0].list)
             this.comments=res.data.com.list;
             this.comments2=res.data.comment
 
@@ -1023,7 +1043,7 @@
 
         })
       },*/
-
+      /*回复*/
       save:function () {
         this.com.commentRid=0;
         console.log(this.com)
@@ -1037,6 +1057,38 @@
           }
         })
       },
+      replyMeg:function (index) {
+        this.$prompt('请输入回复信息', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          //inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
+          //inputErrorMessage: '邮箱格式不正确'
+        }).then(({ val }) => {
+          this.$message({
+            type: 'success',
+            message: '您回复的信息是: ' + val,
+          });
+
+        this.com.commentRid =this.comments[index].commentId;
+        this.com.respondentId=this.comments[index].userId;
+        this.com.respondentName=this.comments[index].userName;
+        this.com.commentContent="输入内容"
+        axios.post("api/saveComment",this.com).then(res=>{
+          if (res.data!=null){
+            alert("success")
+            this.findAll();
+          }else {
+            alert("fail")
+          }
+        })
+
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消输入'
+          });
+        });
+      }
 
       /*delete:function (commentId) {
           axios.get
