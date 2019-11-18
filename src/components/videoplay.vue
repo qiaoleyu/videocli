@@ -875,14 +875,16 @@
           videoPic:'',
           videoUrl:'',
         },
-        time:''
-
+        time:'',
+        list:[]
       }
     },
     mounted(){
-      this.record.userId=Cookies.get("userId");
+      var userId;
+      userId=Cookies.get("userId");
 
-      this.user.userId=Cookies.get("userId")
+      this.record.userId=userId;
+      this.user.userId=userId;
       if (this.user.userId!=''){
         axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
           this.user=res.data;
@@ -892,6 +894,8 @@
         alert("请登录")
         this.$router.push("/userLogin")
       }
+
+
 
       //alert(666)
       var videoId=this.$route.params.pk_video_id
@@ -908,6 +912,11 @@
         })
       })
 
+      axios.get("api/findRecordByVideoId/"+videoId+"/"+userId).then(res=>{
+          this.list=res.data;
+          //alert(this.list[0].videoId)
+      })
+
 
 
 
@@ -922,6 +931,11 @@
 //      this.findAll2();
 //      this.findByCommentId();
 //      var player = video('example-video');
+
+      this.record.videoId=this.video.videoId;
+      this.record.videoName=this.video.videoName;
+      this.record.videoPic=this.video.videoPic;
+      this.record.videoUrl=this.video.videoUrl;
 
     },
     beforeDestroy() {//这个才有用
@@ -1118,6 +1132,20 @@
       onPlayerPlay(player) {
         //console.log('player play!', player)
         /*开始播放则定时器启动，websocket连接，向后台请求弹幕数据*/
+
+
+
+
+        this.record.videoTime=player.currentTime();
+        axios.post("api/addRecord",this.record).then(res=>{
+          this.record=res.data;
+        })
+
+        alert(this.list[0].videoTime);
+        if (this.list[0].videoTime!==null){
+          player.currentTime(this.list[0].videoTime);
+        }
+
         this.conectWebSocket();
         if (this.timer){
           clearInterval(this.timer);
@@ -1127,24 +1155,23 @@
           },1000)
         }
 
+
       },
 
       // 暂停回调
       onPlayerPause(player) {
+
+        this.record.videoTime=player.currentTime();
+        alert(player.currentTime())
+        axios.post("api/updateRecord",this.record).then(res=>{
+          this.record=res.data;
+        })
         //console.log('player pause!', player)
         /*视频暂停，定时器暂停，websocket连接*/
         this.websocket.close();
         clearInterval(this.timer);
 
 
-        this.record.videoId=this.video.videoId;
-        this.record.videoName=this.video.videoName;
-        this.record.videoPic=this.video.videoPic;
-        this.record.videoUrl=this.video.videoUrl;
-        this.record.videoTime=this.time;
-        axios.post("api/addRecord",this.record).then(res=>{
-          this.record=res.data;
-        })
 
       },
 
@@ -1170,6 +1197,7 @@
           this.timer=setInterval(()=>{
             this.sendMessage();
           },1000)
+
 
       },
 
