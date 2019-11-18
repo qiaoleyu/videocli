@@ -258,7 +258,7 @@
                               @ready="playerReadied"
                 >
                   <source
-                    :src="video.videoUrl"
+                    src="video.videoUrl"
                     type="video/mp4">
                   >
                 </video-player>
@@ -307,11 +307,11 @@
                 <el-button @click="sendBarrage()" style="height: 40px " plain>发送弹幕</el-button>
 
                 <el-tooltip content="点赞" placement="bottom" effect="light">
-                  <el-button icon="el-icon-thumb" type="warning" circle plain style="margin-left: 60px;font-size: 18px"></el-button>
+                  <el-button icon="el-icon-thumb" type="warning" circle plain style="margin-left: 60px;font-size: 18px" @click="likeVideo()"></el-button>
                 </el-tooltip>
 
                 <el-tooltip content="收藏" placement="bottom" effect="light" >
-                  <el-button type="warning" icon="el-icon-star-off" circle plain style="margin-left: 20px;font-size: 18px"></el-button>
+                  <el-button type="warning" icon="el-icon-star-off" circle plain style="margin-left: 20px;font-size: 18px" @click="favoriteVideo()"></el-button>
                 </el-tooltip>
                 <el-tooltip content="打赏" placement="bottom" effect="light">
                   <el-button type="warning" icon="el-icon-coin" circle plain style="margin-left: 20px;font-size: 18px"></el-button>
@@ -344,23 +344,20 @@
               <div  style="float:left;text-align: left;margin-left: 10px">
                 <div style="height: 40px;padding-top: 20px">
                   <span style="line-height: 40px">视频名称：</span>
-                  <span>王者荣耀</span>
-                  <!--<span v-text="shop.shopName"></span>-->
+                  <span>{{video.videoName}}</span>
                 </div>
                 <div style="height: 40px;">
                   <span style="line-height: 40px">作者：</span>
-                  <!--<span v-text="shop.shopNumber"></span>-->
-                  <span>lsdldlk</span>
+                  <span>{{video.videoUsername}}</span>
                 </div>
                 <div style="height: 40px;">
                   <span style="line-height: 40px">视频类别：</span>
                   <!--<span v-text="shop.shopPrice" style="color: red"></span>-->
-                  <span >手游</span>
+                  <span >{{typeName}}</span>
                 </div>
                 <div style="height: 40px;">
                   <span style="line-height: 40px">视频描述：</span>
-                  <!--<span v-text="shop.factory"></span>-->
-                  <span>团战模式游戏，注重团队的配合</span>
+                  <span>{{video.videoInfo}}</span>
                 </div>
               </div>
 
@@ -759,7 +756,7 @@
           fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
           sources: [{
             type: "video/mp4", // 类型
-            src: 'http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4' // url地址
+            src: '' // url地址
           }],
           poster: '../static/img/bala.jpg', // 封面地址
           notSupportedMessage: '此视频暂无法播放，请稍后再试', // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
@@ -842,13 +839,15 @@
         },
         video:{
           videoId:'',
+          typeId:'',
           videoName:'',
           videoUrl:'',
           videoLike:'',
           videoFavorite:'',
           videoComment:'',
           videoDownload:''
-        }
+        },
+        typeName:''
 
       }
     },
@@ -868,8 +867,18 @@
       //alert(videoId)
       var url="api/findVideoByVideoId/"+videoId
       axios.get(url).then(res=>{
-          this.video=res.data
+        this.video=res.data
+        this.playerOptions.sources[0].src=this.video.videoUrl
+
+        var id=this.video.typeId
+        var url="api/findTypeById/"+id
+        axios.get(url).then(res=>{
+          this.typeName=res.data
+        })
       })
+
+
+
 
         this.barrage.videoId=videoId;
 //      this.barrage.videoId=1;   //待删
@@ -888,6 +897,60 @@
       clearInterval(this.timer)
     },
     methods:{
+        //点赞
+      likeVideo:function () {
+       var id=this.video.videoId
+        if(this.user.userId!=null){
+          var url = "api/like/" + id
+          axios.get(url).then(res => {
+            if (res.data != null) {
+              swal({
+                text: "点赞成功！",
+                icon: "success",
+                button: "确定",
+              });
+            }
+          })
+        }else{
+          swal({
+            text: "您还没有登录！",
+            icon: "info",
+            button: "确定",
+          });
+          this.$router.push("/userLogin")
+        }
+      },
+
+      //收藏
+      favoriteVideo:function () {
+        var id=this.video.videoId
+        var userId=this.user.userId
+        if(this.user.userId!=null){
+          var url="api/favorite/"+userId+"/"+id
+          axios.get(url).then(res=>{
+            if(res.data=="1"){
+              swal({
+                text: "收藏成功！",
+                icon: "success",
+                button: "确定",
+              });
+            }else{
+              swal({
+                text: "您已经收藏过该视频了！",
+                icon: "info",
+                button: "确定",
+              });
+            }
+          })
+        }else {
+          swal({
+            text: "您还没有登录！",
+            icon: "info",
+            button: "确定",
+          });
+          this.$router.push("/userLogin")
+        }
+      },
 
 
         /*发送弹幕方法中调用该方法*/
