@@ -8,10 +8,12 @@
             <div style="background-color: black;width: 80%;height: 92%;margin-left: 20%;padding-top: 20%">
 
               <el-avatar  width="50" height="50" src="../static/img/group.png"></el-avatar>
-              <p class="name" style="color: white">官方群组</p>
+              <!--<p class="name" style="color: white">官方群组</p>-->
               <hr>
-              <el-avatar  width="50" height="50" src="../static/img/bala2.jpg"></el-avatar>
-              <p class="name" style="color: white">{{name}}</p>
+              <div v-for="(item,index) in userList">
+                <el-avatar  width="50" height="50" :src="item.userPic"></el-avatar>
+                <p class="name" style="color: white">{{item.userName}}</p>
+              </div>
             </div>
           </el-col>
           <el-col :span="18" style="height: 558px">
@@ -19,7 +21,7 @@
               <el-col :span="24" style="height: 500px;">
                 <el-card class="box-card"  style="opacity:0.4;width: 95%;margin-right:5%;height: 93%;margin-bottom: 5%;border-radius: 10px;margin-top: 2%">
 
-                  <!--<el-input placeholder="请输入自己的昵称" prefix-icon="el-icon-user-solid" v-model="name" style="width:50%"></el-input>-->
+                  <span> {{user.userName}}</span>
                   <!--<el-button type="primary" @click="conectWebSocket()">建立连接</el-button>-->
                   <!--<el-button type="danger">断开连接</el-button>-->
                   <!--<el-input-->
@@ -71,28 +73,31 @@
         user2:{
 
         },
+        userList:[],
         toUserId:''  //对方id
       };
     },
     mounted(){
       this.conectWebSocket();
       this.toUserId=this.$route.params.toUserId;  //对方id
-      console.log(this.toUserId)
+      alert(this.toUserId)
       this.user.userId=Cookies.get('userId');
+      alert(this.user.userId)
       axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
         this.user=res.data;
         console.log(this.user)
+
       })
     },
     methods: {
       conectWebSocket: function() {
         console.log("建立连接");
-        if (this.name === "") {
+        /*if (this.name === "") {
           this.$alert("请输入自己的昵称", "提示", {
             confirmButtonText: "确定",
             callback: action => {}
           });
-        } else {
+        } else {*/
           //判断当前浏览器是否支持WebSocket
           if ("WebSocket" in window) {
             this.websocket = new WebSocket(
@@ -131,15 +136,14 @@
           window.onbeforeunload = function() {
             this.websocket.close();
           };
-        }
       },
       // 发送消息
       sendMessage: function() {
-        var socketMsg = { msg: this.messageValue, toUser: this.aisle };
+        var socketMsg = { msg: this.messageValue, toUser: this.toUserId };
         if (this.aisle == "") {
           //群聊.
-          socketMsg.type = 0;
-        } else {
+//          socketMsg.type = 0;
+//        } else {
           //单聊.
           socketMsg.type = 1;
         }

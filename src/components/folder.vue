@@ -57,6 +57,13 @@
 
       </el-row>
     </el-row>
+    <el-pagination
+      background
+      layout="prev, pager, next"
+      :page-size="this.params.size"
+      v-on:current-change="changePage"
+      :total="total" :current-page="this.params.page">
+    </el-pagination>
   </div>
 </template>
 
@@ -66,6 +73,11 @@
   export default {
     data() {
       return {
+        total:0,
+        params:{
+          size:4,
+          page:1
+        },
         path: '',
         user: {
           userId: '',
@@ -108,24 +120,34 @@
     },
     mounted(){
       this.user.userId=Cookies.get("userId")
-      var id=this.user.userId
-      var url="api/findCollection/"+id
-      axios.get(url).then(res=>{
-          var list=res.data
-          for(var i=0;i<list.length;i++){
-              var id=list[i].videoId
-              var url="api/findVideoByVideoId/"+id
-            axios.get(url).then(res=>{
-              this.videos=this.videos.concat(res.data)
-             // alert(666)
-            })
-          }
-      })
-
-
+      this.query()
     },
     methods: {
-
+      query:function () {
+        var id=this.user.userId
+        var url="api/findCollection/"+id+"/"+this.params.page+"/"+this.params.size
+        axios.get(url).then(res=>{
+          var list=res.data.list
+          this.total=res.data.total
+          //翻页时进行清空
+          this.videos=[]
+          //alert(this.total)
+          for(var i=0;i<list.length;i++){
+            var id=list[i].videoId
+            var url="api/findVideoByVideoId/"+id
+            axios.get(url).then(res=>{
+              this.videos=this.videos.concat(res.data)
+              // alert(666)
+            })
+          }
+        })
+      },
+      changePage:function (page) {
+        // alert(page)
+        this.params.page=page;
+        //alert(this.params.page)
+        this.query();
+      }
     },
   }
 </script>
