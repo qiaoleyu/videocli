@@ -15,39 +15,18 @@
       <!--视频-->
       <el-row :gutter="10">
         <!--<el-col :span="4" v-for="" v-bind:key="">-->
-        <el-col :span="6"  v-for="(video,index) in videos" v-bind:key="video.pk_video_id">
+        <el-col :span="6"  v-for="(record,index) in record" v-bind:key="record.videoId">
           <el-card style="height: 200px;margin-bottom: 10px;">
-            <div style="height: 150px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.pk_video_id}">
+            <div style="height: 150px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+record.videoId}">
               <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
               <video  width=100%  style="margin: auto;height:130px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
                 <source
-                  :src="video.idx_video_url"
+                  :src="record.videoUrl"
                   type="video/mp4">
                 <!--type="application/x-mpegURL"-->
               </video>
             </router-link>
-
-            </div>
-            <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
-              <div style="width:50%;float:left">
-                {{video.idx_video_name}}
-              </div>
-              <div style="width:15%;float:left" @click="like(video.pk_video_id)">
-                <el-tooltip content="点赞" >
-                  <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
-                </el-tooltip>
-              </div>
-              <div style="width:15%;float:left" @click="favorite(video.pk_video_id)">
-                <el-tooltip content="收藏" >
-                  <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
-                </el-tooltip>
-              </div>
-              <div style="width:15%;float:left" @click="download(video.pk_video_id)">
-                <el-tooltip content="下载" >
-                  <a class="el-icon-download" plain style="font-size: 18px"></a>
-                </el-tooltip>
-              </div>
             </div>
 
           </el-card>
@@ -60,6 +39,8 @@
 
 <script>
   import Cookies from 'js-cookie'
+  import axios from 'axios';
+  import swal from 'sweetalert'
   export default {
     data() {
       return {
@@ -100,10 +81,20 @@
           userId:'',
           videoId:''
         },
-        videos:[]
+        videos:[],
+        record:[]
       }
     },
     mounted(){
+
+      var userId=Cookies.get('userId');
+      this.user.userId=userId;
+
+      alert(this.user.userId)
+      axios.post("api/findUserAllRecord/"+this.user.userId).then(res=>{
+        this.record=res.data;
+        alert(this.record)
+      })
     },
     methods: {
 

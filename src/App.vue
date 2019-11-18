@@ -2,7 +2,7 @@
   <div id="app" class="note">
     <!--<img src="./assets/logo.png">-->
     <!--导航栏-->
-    <el-header v-show="(path ==='/'||path==='/videoplay'||path==='/chart'||path==='/upload'||path==='/chatMessage'||path==='/message'||path==='/document'||path==='/folder'||path==='/videoDirect'||path==='/userMessage'||path==='/uploadVideo'||path==='/updatePassword'||path==='/userDetial')" style="height: 80px;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;opacity: 0.9" class="header">
+    <el-header v-show="(path ==='/'||path==='/videoplay'||path==='/chart'||path==='/upload'||path==='/chatMessage'||path==='/message'||path==='/document'||path==='/folder'||path==='/videoDirect'||path==='/userMessage'||path==='/uploadVideo'||path==='/updatePassword'||path==='/userDetial')" style="height: 80px;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;opacity: 0.9" class="header" >
       <div style="width: 100%;margin: auto">
         <el-row :gutter="10">
           <!--<el-col :span="4">-->
@@ -210,7 +210,7 @@
                    :style="e"-->
                 <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.user.userId==null" ><a class="el-icon-user" >登录</a></router-link>
                 <span style="color:black;" v-if="this.user.userId!=null">
-                  <!--<a>{{user.userName}}</a>-->
+                 <!-- <a>{{user.userName}}</a>-->
                   <el-dropdown>
                 <div class="grid-content " style="height:60px;font-size: 16px;float: left;"
 
