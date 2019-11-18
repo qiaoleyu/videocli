@@ -24,7 +24,7 @@ export default new Router({
       name: 'index',
       component: index
     },{
-      path: '/videoplay',
+      path: '/videoplay/:pk_video_id',
       name: 'videoplay',
       component: videoplay
     },{

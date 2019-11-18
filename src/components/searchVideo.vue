@@ -3,8 +3,8 @@
     <!--<h1>{{ msg }}</h1>-->
     <el-container >
       <!--导航栏-->
-      <el-header style="height: 40px;">
-        <div style="width: 100%;margin: auto;height: 80px;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;opacity: 0.9" class="header">
+      <el-header style="height: 80px;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;opacity: 0.9" class="header">
+        <div style="width: 100%;margin: auto">
           <el-row :gutter="10">
             <!--<el-col :span="4">-->
             <!--<div class="grid-content " style="height: 60px;font-size: 16px">-->
@@ -29,7 +29,8 @@
                      @mouseleave="leave(2)"
                      :style="a"
                 >
-                  <a @click="toOrders()" style="cursor: pointer">直播</a>
+                  <router-link type="info" :to="{name:'videoDirect'}" style="color:black;"><a style="cursor: pointer">直播</a></router-link>
+                  <!--<a ></a>-->
                 </div>
                 <el-dropdown>
                   <div class="grid-content " style="height:60px;font-size: 16px;float: left;margin-top: 10px"
@@ -112,18 +113,29 @@
                       <!--<el-button slot="reference">hover 激活</el-button>-->
                         <el-row :gutter="10">
                           <el-col :span="24">
-                            <div style="float: left;text-align: left;font-weight: bolder;font-size: 16px;margin-bottom: 20px">
-                              <span>会员充值：</span>
-                            </div>
+                            <h3>请选择支付方式</h3>
+                          </el-col>
+                          <el-col :span="12">
+                            <el-radio-group v-model="radio2">
+                              <el-radio-button label="账户余额支付"></el-radio-button>
+                            </el-radio-group>
+                          </el-col>
+                          <el-col :span="12">
+                            <el-radio-group v-model="radio2">
+                              <el-radio-button label="支付宝支付"></el-radio-button>
+                            </el-radio-group>
+                          </el-col>
+                          <el-col :span="24">
+                            <h3>请选择会员充值期限</h3>
                           </el-col>
                           <el-col :span="8">
 
                             <div style="float: left;text-align: center">
                               <el-card style="height: 120px;width: 100%;cursor: pointer">
-                                <el-image src="../static/img/yue.jpg" style="width: 100%;height:100%" title="20元/月，普通会员"></el-image>
+                                <el-image src="../static/img/yue.jpg" style="width: 100%;height:100%" title="15元/月，普通会员"></el-image>
                              </el-card>
                               <el-radio-group v-model="radio1">
-                                <el-radio-button label="$20元/月"></el-radio-button>
+                                <el-radio-button label="$15元/月"></el-radio-button>
                               </el-radio-group>
                             </div>
 
@@ -150,11 +162,11 @@
                           </el-col>
                           <el-col :span="18" :offset="3" style="font-size: 12px;margin-top: 20px">
                             <div style="float: left;width: 100%">
-                              <el-button type="primary" style="width: 100%" plain  @click="payfor()">充值</el-button>
+                              <el-button type="primary" style="width: 100%" plain  @click="payForVip()">充值</el-button>
                             </div>
                           </el-col>
                         </el-row>
-                      <a  type="info" slot="reference" @click="toPay()" style="font-size: 20px" title="VIP">VIP</a>
+                      <a  type="info" slot="reference" style="font-size: 16px" title="VIP">VIP</a>
                       </el-popover>
 
                 </span>
@@ -216,12 +228,11 @@
               </div>
             </el-col>
           </el-row>
-
         </div>
       </el-header>
 
 
-      <el-main style="width: 90%;margin: auto">
+      <el-main style="width: 90%;margin: auto;padding-top: 60px">
         <el-row :gutter="10">
           <el-col :span="14" :offset="5">
             <!-- <div class="grid-content " style="height: 60px;margin-top: 20px">
@@ -247,7 +258,7 @@
           <!--<el-col :span="4" v-for="" v-bind:key="">-->
           <el-col :span="6"  v-for="(video,index) in videos" v-bind:key="video.pk_video_id">
             <el-card style="height: 200px;margin-bottom: 10px;">
-              <div style="height: 150px;float: left;width: 100%">
+              <div style="height: 150px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.pk_video_id}">
                 <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
                 <video  width=100%  style="margin: auto;height:130px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
@@ -256,7 +267,7 @@
                     type="video/mp4">
                   <!--type="application/x-mpegURL"-->
                 </video>
-
+              </router-link>
 
               </div>
               <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
@@ -385,30 +396,38 @@
   export default {
     components: {
       ElButton,
-      ElImage},
+      ElImage
+    },
     name: 'index',
     data () {
       return {
-
-        path:'',
-        active:'',
-        a:'',
-        b:'',
-        c:'',
-        d:'',
-        e:'',
-        f:'',
-        g:'',
-        h:'',
-        i:'',
-        j:'',
-        m:'',
-        radio1: '$20元/月',
-
-        pay:{
-          userId:'',
-          rechargeMoney:'',
+        path: '',
+        active: '',
+        a: '',
+        b: '',
+        c: '',
+        d: '',
+        e: '',
+        f: '',
+        g: '',
+        h: '',
+        i: '',
+        j: '',
+        m: '',
+        user: {
+          userId: '',
+          userName: '',
+          userMoney: '',
+          userStatue: ''
         },
+        radio1: '$15元/月',
+        radio2: '账户余额支付',
+        pay: {
+          userId: '',
+          rechargeVip: '',
+        },
+
+
 
         playerOptions: {
           playbackRates: [0.5, 1.0, 1.5, 2.0], // 可选的播放速度
@@ -444,12 +463,12 @@
           userId:'',
           videoId:''
         },
-        videos:[],
-        video:{
-          pk_video_id:''
+        videos:[]
         }
-      }
     },
+
+
+
     mounted(){
       this.user.userId=Cookies.get("userId")
       if (this.user.userId!=''){
@@ -602,7 +621,7 @@
         }
 
       },
-    },
+
     //直播(跳转到直播页面)
     toOrders:function(){
 
@@ -667,8 +686,8 @@
     payfor:function(){
       if (this.user.userId!=null) {
         this.pay.userId=this.user.userId;
-        if(this.radio1=="$20元/月"){
-          this.pay.rechargeMoney=20;
+        if(this.radio1=="$15元/月"){
+          this.pay.rechargeMoney=15;
         }
         if(this.radio1=="$50元/季"){
           this.pay.rechargeMoney=50;
@@ -688,6 +707,7 @@
     },
     //      个人中心-完善信息
     toUser:function () {
+        //alert(666)
       if (this.user.userId!=null) {
         this.$router.push("/userDetial")
       }else {
@@ -717,6 +737,7 @@
       Cookies.remove('userId', { path: '/' });
       this.user.userName='登录'
       this.$router.go(0)
+    },
     },
   }
 </script>
@@ -905,7 +926,7 @@
   .body{
     font-family: 楷体;
   }
-  .note{
+  .hello{
     /*position: absolute;*/
     height: 100%;
     width: 100%;
