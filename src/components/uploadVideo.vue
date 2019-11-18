@@ -34,7 +34,7 @@
                   <!--:show-file-list="false"-->
                   <!--:on-preview="handlePictureCardPreview"-->
                   <!--type="application/x-mpegURL"-->
-                  <img v-if="video.videoUrl" :src="video.videoUrl" class="avatar"  >
+                  <img v-if="video.videoUrl" :src="video.videoUrl"  >
                   <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                 </el-upload>
               </el-form-item>
@@ -292,6 +292,31 @@
 
 
 <style>
+  .avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+  }
+  .avatar {
+    width: 80px;
+    height: 80px;
+    display: block;
+  }
+
+
   element.style{
     margin-left: inherit;
     margin-right: inherit;
