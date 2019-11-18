@@ -258,7 +258,7 @@
                               @ready="playerReadied"
                 >
                   <source
-                    :src="video.videoUrl"
+                    src="video.videoUrl"
                     type="video/mp4">
                   >
                 </video-player>
@@ -344,13 +344,13 @@
               <div  style="float:left;text-align: left;margin-left: 10px">
                 <div style="height: 40px;padding-top: 20px">
                   <span style="line-height: 40px">视频名称：</span>
-                  <span>王者荣耀</span>
+                  <span>{{video.videoName}}</span>
                   <!--<span v-text="shop.shopName"></span>-->
                 </div>
                 <div style="height: 40px;">
                   <span style="line-height: 40px">作者：</span>
                   <!--<span v-text="shop.shopNumber"></span>-->
-                  <span>lsdldlk</span>
+                  <span>{{video.videoUsername}}</span>
                 </div>
                 <div style="height: 40px;">
                   <span style="line-height: 40px">视频类别：</span>
@@ -360,7 +360,7 @@
                 <div style="height: 40px;">
                   <span style="line-height: 40px">视频描述：</span>
                   <!--<span v-text="shop.factory"></span>-->
-                  <span>团战模式游戏，注重团队的配合</span>
+                  <span>{{video.videoInfo}}</span>
                 </div>
               </div>
 
@@ -758,7 +758,7 @@
           fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
           sources: [{
             type: "video/mp4", // 类型
-            src: 'http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4' // url地址
+            src: '' // url地址
           }],
           poster: '../static/img/bala.jpg', // 封面地址
           notSupportedMessage: '此视频暂无法播放，请稍后再试', // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
@@ -868,7 +868,11 @@
       var url="api/findVideoByVideoId/"+videoId
       axios.get(url).then(res=>{
           this.video=res.data
+
+        this.playerOptions.sources[0].src=this.video.videoUrl
       })
+
+      //var url="api/"
 
         this.barrage.videoId=this.$route.params.id;
       this.barrage.videoId=1;   //待删
