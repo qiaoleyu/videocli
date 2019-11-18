@@ -3,7 +3,7 @@
 
       <div class="card">
         <el-row :gutter="20">
-          <el-col :span="6" style="height: 558px;">
+          <el-col :span="6" style="height: 545px;">
 
             <div style="background-color: black;width: 80%;height: 92%;margin-left: 20%;padding-top: 20%">
 
