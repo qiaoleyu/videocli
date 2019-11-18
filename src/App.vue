@@ -51,7 +51,7 @@
                 <!--</div>-->
               <!--</el-dropdown>-->
 
-              <el-dropdown>
+              <el-dropdown style="float: left;margin-left:20px">
 
                 <span class="el-dropdown-link">
                   <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
@@ -71,8 +71,8 @@
                 </el-dropdown-menu>
 
               </el-dropdown>
-              <el-dropdown>
-                <div class="grid-content " style="height: 60px;font-size: 16px;float: left"
+              <el-dropdown style="float: left;margin-left:20px">
+                <div class="grid-content " style="height: 60px;font-size: 16px;float: left;margin-top: 10px"
                      @mousemove="over(4)"
                      @mouseleave="leave(4)"
                      :style="c"
