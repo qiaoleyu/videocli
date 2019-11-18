@@ -26,47 +26,47 @@
           <el-col :span="24" style="font-size: 14px;margin-bottom: 20px">
 
             <!--遍历视频类别-->
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
+            <div style="float: left;width: 50px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
               <a href="/">
                 <span class="el-icon-s-home" style="float: left;width: 100%;"></span>
                 <span style="float: left;width: 100%;">首页</span>
               </a>
             </div>
 
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
+            <div style="float: left;width: 50px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
               <span style="float: left;width: 100%;"><a href="/">番剧</a></span>
             </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
+            <div style="float: left;width: 50px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
               <span style="float: left;width: 100%;"><a href="/">国创</a></span>
             </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
+            <div style="float: left;width: 50px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
               <span style="float: left;width: 100%;"><a href="/">音乐</a></span>
             </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
+            <div style="float: left;width: 50px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
               <span style="float: left;width: 100%;"><a href="/">舞蹈</a></span>
             </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
+            <div style="float: left;width: 50px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
               <span style="float: left;width: 100%;"><a href="/">游戏</a></span>
             </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
+            <div style="float: left;width: 50px;height: 50px;bmargin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
               <span style="float: left;width: 100%;"><a href="/">科技</a></span>
             </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
+            <div style="float: left;width: 50px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
               <span style="float: left;width: 100%;"><a href="/">数码</a></span>
             </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
+            <div style="float: left;width: 50px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
               <span style="float: left;width: 100%;"><a href="/">生活</a></span>
             </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
+            <div style="float: left;width: 50px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
               <span style="float: left;width: 100%;"><a href="/">时尚</a></span>
             </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
+            <div style="float: left;width: 50px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
               <span style="float: left;width: 100%;"><a href="/">娱乐</a></span>
             </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
+            <div style="float: left;width: 50px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
               <span style="float: left;width: 100%;"><a href="/">影视</a></span>
             </div>
-            <div style="float: left;width: 50px;height: 50px;background-color: orangered;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
+            <div style="float: left;width: 50px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
               <span style="float: left;width: 100%;"><a href="/">直播</a></span>
             </div>
             <div style="float: left;width: 100px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">

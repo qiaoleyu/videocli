@@ -23,109 +23,206 @@
                 <!--</el-badge>-->
               <!--</template>-->
             <!--</template>-->
-            <!--<el-badge :value="6" class="item" type="primary" style="margin-top: 20px">-->
+            <el-badge :value="6" class="item" type="primary" style="margin-top: 20px">
               <el-menu-item  style="height: 10%" @click="chat(0)">
                 <i class="el-icon-chat-dot-round"></i>
                 <span slot="title">私聊</span>
               </el-menu-item>
-            <!--</el-badge>-->
+            </el-badge>
 
-            <!--<el-badge :value="10" class="item" type="primary" style="margin-top: 20px">-->
+            <el-badge :value="10" class="item" type="primary" style="margin-top: 20px">
               <el-menu-item  style="height: 10%" @click="chat(1)">
                 <i class="el-icon-message"></i>
                 <span slot="title">评论</span>
               </el-menu-item>
-            <!--</el-badge>-->
+            </el-badge>
 
-            <!--<el-badge :value="4" class="item" >-->
+            <el-badge :value="4" class="item" >
               <el-menu-item  style="height: 10%" @click="chat(2)">
                 <i class="el-icon-document"></i>
                 <span slot="title">回复</span>
               </el-menu-item>
-            <!--</el-badge>-->
+            </el-badge>
 
-            <!--<el-badge :value="5" class="item" type="primary">-->
+            <el-badge :value="5" class="item" type="primary">
               <el-menu-item  style="height: 10%" @click="chat(3)">
                 <i class="el-icon-folder-opened"></i>
                 <span slot="title">收藏</span>
               </el-menu-item>
-            <!--</el-badge>-->
+            </el-badge>
 
-            <!--<el-badge :value="5" class="item" type="primary">-->
+            <el-badge :value="5" class="item" type="primary">
             <el-menu-item  style="height: 10%" @click="chat(4)">
-              <i class="el-icon-folder-opened"></i>
-              <span slot="title">点赞</span>
+              <i class="el-icon-pie-chart"></i>
+              <span slot="title">历史</span>
             </el-menu-item>
-            <!--</el-badge>-->
+            </el-badge>
 
-            <!--<el-badge :value="6" class="item" type="warning">-->
+            <el-badge :value="6" class="item" type="warning">
               <el-menu-item  style="height: 10%" @click="chat(5)">
                 <i class="el-icon-upload"></i>
                 <span slot="title">发布</span>
               </el-menu-item>
-            <!--</el-badge>-->
+            </el-badge>
 
           </el-menu>
+
+          <!--<el-radio-group v-model="tabPosition" style="margin-bottom: 30px;">-->
+          <!--</el-radio-group>-->
+          <!--<el-tabs :tab-position="tabPosition" label-width="10%" style="height: 600px;width: 100%">-->
+            <!--<el-tab-pane label="私聊"  style="height: 580px;width: 100%">-->
+              <!--<div  style="height: 100%;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;border-radius: 20px" >-->
+                <!--&lt;!&ndash;<header>&ndash;&gt;-->
+                <!--<div class="card">-->
+                  <!--<el-row :gutter="20">-->
+                    <!--<el-col :span="6" style="height: 558px;">-->
+
+                      <!--<div style="background-color: black;width: 80%;height: 92%;margin-left: 20%;padding-top: 20%">-->
+
+                        <!--<el-avatar  width="50" height="50" src="../static/img/group.png"></el-avatar>-->
+                        <!--<p class="name" style="color: white">官方群组</p>-->
+                        <!--<hr>-->
+                        <!--<el-avatar  width="50" height="50" src="../static/img/bala2.jpg"></el-avatar>-->
+                        <!--<p class="name" style="color: white">{{name}}</p>-->
+                      <!--</div>-->
+                    <!--</el-col>-->
+                    <!--<el-col :span="18" style="height: 558px">-->
+                      <!--<el-row :gutter="20">-->
+                        <!--<el-col :span="24" style="height: 500px;">-->
+                          <!--<el-card class="box-card"  style="opacity:0.4;width: 95%;margin-right:5%;height: 93%;margin-bottom: 5%;border-radius: 10px;margin-top: 2%">-->
+
+                            <!--&lt;!&ndash;<el-input placeholder="请输入自己的昵称" prefix-icon="el-icon-user-solid" v-model="name" style="width:50%"></el-input>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<el-button type="primary" @click="conectWebSocket()">建立连接</el-button>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<el-button type="danger">断开连接</el-button>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<el-input&ndash;&gt;-->
+                            <!--&lt;!&ndash;placeholder="请输入对方频道号"&ndash;&gt;-->
+                            <!--&lt;!&ndash;prefix-icon="el-icon-phone"&ndash;&gt;-->
+                            <!--&lt;!&ndash;v-model="aisle"&ndash;&gt;-->
+                            <!--&lt;!&ndash;style="width:40%"&ndash;&gt;-->
+                            <!--&lt;!&ndash;&gt;</el-input>&ndash;&gt;-->
+
+                            <!--<div v-for="(value,key,index) in messageList" :key="index">-->
+                              <!--<el-tag v-if="value.name==name" type="success" style="float:right">我：{{value.msg}}</el-tag>-->
+                              <!--<br />-->
+                              <!--<el-tag v-if="value.name!=name" style="float:left">{{value.name}}：{{value.msg}}</el-tag>-->
+                              <!--<br />-->
+                            <!--</div>-->
+                          <!--</el-card>-->
+                        <!--</el-col>-->
+                        <!--<el-col :span="24" style="height: 58px;">-->
+                          <!--<div style="width: 95%;margin-right:5%;height: 95%;margin-bottom: 5%">-->
+                            <!--<el-input placeholder="请输入要发送的消息" prefix-icon="el-icon-s-promotion" v-model="messageValue" style="width:50%"-->
+                            <!--&gt;</el-input>-->
+                            <!--<el-button type="primary" @click="sendMessage()">发送</el-button>-->
+                            <!--<el-button @click="clean()"  type="danger">清空</el-button>-->
+                          <!--</div>-->
+                        <!--</el-col>-->
+                      <!--</el-row>-->
+
+                    <!--</el-col>-->
+                  <!--</el-row>-->
+                  <!--&lt;!&ndash;<el-avatar slot="reference" src="../static/img/bala2.jpg" :size="60"></el-avatar>&ndash;&gt;-->
+                  <!--&lt;!&ndash;<p class="name"></p>&ndash;&gt;-->
+                <!--</div>-->
+
+                <!--&lt;!&ndash;</header>&ndash;&gt;-->
+              <!--</div>-->
+
+            <!--</el-tab-pane>-->
+
+            <!--<el-tab-pane  label="评论">-->
+
+              <!--评论-->
+
+
+            <!--</el-tab-pane>-->
+            <!--<el-tab-pane label="回复">-->
+
+
+              <!--回复-->
+
+
+            <!--</el-tab-pane>-->
+            <!--<el-tab-pane label="收藏">-->
+
+
+              <!--收藏-->
+
+
+            <!--</el-tab-pane>-->
+            <!--<el-tab-pane label="点赞">-->
+
+
+              <!--点赞-->
+
+
+            <!--</el-tab-pane>-->
+            <!--<el-tab-pane label="发布">-->
+
+              <!--发布-->
+
+            <!--</el-tab-pane>-->
+          <!--</el-tabs>-->
         </el-aside>
 
         <el-main>
-          <template id="message" ref="message">
+          <template>
             <!--<router-view/>-->
-
+            <!--<div  ref="message" >12313212</div>-->
             <!--私聊-->
             <div  style="height: 100%;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;border-radius: 20px" >
               <!--<header>-->
-                <div class="card">
-                  <el-row :gutter="20">
-                    <el-col :span="6" style="height: 558px;">
+              <div class="card">
+                <el-row :gutter="20">
+                  <el-col :span="6" style="height: 558px;">
 
-                      <div style="background-color: black;width: 80%;height: 92%;margin-left: 20%;padding-top: 20%">
+                    <div style="background-color: black;width: 80%;height: 92%;margin-left: 20%;padding-top: 20%">
 
-                        <el-avatar  width="50" height="50" src="../static/img/group.png"></el-avatar>
-                        <p class="name" style="color: white">官方群组</p>
-                        <hr>
-                        <el-avatar  width="50" height="50" src="../static/img/bala2.jpg"></el-avatar>
-                        <p class="name" style="color: white">{{name}}</p>
-                      </div>
-                    </el-col>
-                    <el-col :span="18" style="height: 558px">
-                      <el-row :gutter="20">
-                        <el-col :span="24" style="height: 500px;">
-                          <el-card class="box-card"  style="opacity:0.4;width: 95%;margin-right:5%;height: 93%;margin-bottom: 5%;border-radius: 10px;margin-top: 2%">
+                      <el-avatar  width="50" height="50" src="../static/img/group.png"></el-avatar>
+                      <p class="name" style="color: white">官方群组</p>
+                      <hr>
+                      <el-avatar  width="50" height="50" src="../static/img/bala2.jpg"></el-avatar>
+                      <p class="name" style="color: white">{{name}}</p>
+                    </div>
+                  </el-col>
+                  <el-col :span="18" style="height: 558px">
+                    <el-row :gutter="20">
+                      <el-col :span="24" style="height: 500px;">
+                        <el-card class="box-card"  style="opacity:0.4;width: 95%;margin-right:5%;height: 93%;margin-bottom: 5%;border-radius: 10px;margin-top: 2%">
 
-                            <!--<el-input placeholder="请输入自己的昵称" prefix-icon="el-icon-user-solid" v-model="name" style="width:50%"></el-input>-->
-                            <!--<el-button type="primary" @click="conectWebSocket()">建立连接</el-button>-->
-                            <!--<el-button type="danger">断开连接</el-button>-->
-                            <!--<el-input-->
-                            <!--placeholder="请输入对方频道号"-->
-                            <!--prefix-icon="el-icon-phone"-->
-                            <!--v-model="aisle"-->
-                            <!--style="width:40%"-->
-                            <!--&gt;</el-input>-->
+                          <!--<el-input placeholder="请输入自己的昵称" prefix-icon="el-icon-user-solid" v-model="name" style="width:50%"></el-input>-->
+                          <!--<el-button type="primary" @click="conectWebSocket()">建立连接</el-button>-->
+                          <!--<el-button type="danger">断开连接</el-button>-->
+                          <!--<el-input-->
+                          <!--placeholder="请输入对方频道号"-->
+                          <!--prefix-icon="el-icon-phone"-->
+                          <!--v-model="aisle"-->
+                          <!--style="width:40%"-->
+                          <!--&gt;</el-input>-->
 
-                            <div v-for="(value,key,index) in messageList" :key="index">
-                              <el-tag v-if="value.name==name" type="success" style="float:right">我：{{value.msg}}</el-tag>
-                              <br />
-                              <el-tag v-if="value.name!=name" style="float:left">{{value.name}}：{{value.msg}}</el-tag>
-                              <br />
-                            </div>
-                          </el-card>
-                        </el-col>
-                        <el-col :span="24" style="height: 58px;">
-                          <div style="width: 95%;margin-right:5%;height: 95%;margin-bottom: 5%">
-                            <el-input placeholder="请输入要发送的消息" prefix-icon="el-icon-s-promotion" v-model="messageValue" style="width:50%"
-                            ></el-input>
-                            <el-button type="primary" @click="sendMessage()">发送</el-button>
-                            <el-button @click="clean()"  type="danger">清空</el-button>
+                          <div v-for="(value,key,index) in messageList" :key="index">
+                            <el-tag v-if="value.name==name" type="success" style="float:right">我：{{value.msg}}</el-tag>
+                            <br />
+                            <el-tag v-if="value.name!=name" style="float:left">{{value.name}}：{{value.msg}}</el-tag>
+                            <br />
                           </div>
-                        </el-col>
-                      </el-row>
+                        </el-card>
+                      </el-col>
+                      <el-col :span="24" style="height: 58px;">
+                        <div style="width: 95%;margin-right:5%;height: 95%;margin-bottom: 5%">
+                          <el-input placeholder="请输入要发送的消息" prefix-icon="el-icon-s-promotion" v-model="messageValue" style="width:50%"
+                          ></el-input>
+                          <el-button type="primary" @click="sendMessage()">发送</el-button>
+                          <el-button @click="clean()"  type="danger">清空</el-button>
+                        </div>
+                      </el-col>
+                    </el-row>
 
-                    </el-col>
-                  </el-row>
-                  <!--<el-avatar slot="reference" src="../static/img/bala2.jpg" :size="60"></el-avatar>-->
-                  <!--<p class="name"></p>-->
-                </div>
+                  </el-col>
+                </el-row>
+                <!--<el-avatar slot="reference" src="../static/img/bala2.jpg" :size="60"></el-avatar>-->
+                <!--<p class="name"></p>-->
+              </div>
 
               <!--</header>-->
             </div>
@@ -208,6 +305,26 @@
     left: 0;
     /*overflow-y: auto;*/
   }
+
+
+
+
+  /*.el-tabs--left .el-tabs__nav-scroll{*/
+    /*width: 180px;*/
+
+  /*}*/
+  /*.el-tabs--left .el-tabs__item.is-left{*/
+    /*font-size: 16px;*/
+    /*text-align: center;*/
+  /*}*/
+  /*.el-tabs__item.is-active{*/
+    /*height: 50px;*/
+    /*background-color: paleturquoise;*/
+  /*}*/
+  /*.el-tabs__item{*/
+    /*height: 50px;*/
+    /*line-height: 50px;*/
+  /*}*/
 </style>
 <style scoped>
 
@@ -233,9 +350,9 @@
         adminName:'未登录',
         userId:'',
         toUserId:'',
+        tabPosition: 'left'
 
-
-//        showPrise:true,
+//        showPrise:false,
       }
     },mounted(){
       this.userId=Cookies.get('userId');
@@ -245,16 +362,20 @@
 
     },
     methods:{
-      chat:function(x){
-        for(var i=0;i<6;i++){
-          if(x!=i){
-              alert()
-            document.getElementById("message").children[0]
-//            this.$refs.message.children[i].style='hidden';
-
-          }
-        }
-      }
+//      chat:function(x){
+//        for(var i=0;i<6;i++){
+//          if(x==i){
+////              alert(this.$refs.message.innerHTML)
+////            this.$refs.message.children[0].innerHTML
+//            alert()
+//            document.getElementById("message").children;
+////            this.$refs.message.hidden;
+////            $(this).parent()
+//
+//
+//          }
+//        }
+//      }
     }
   }
 </script>

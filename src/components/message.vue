@@ -1,6 +1,6 @@
 <template>
   <div style="height: 100%;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;border-radius: 20px" >
-    <header>
+
       <div class="card">
         <el-row :gutter="20">
           <el-col :span="6" style="height: 558px;">
@@ -14,7 +14,6 @@
               <p class="name" style="color: white">{{name}}</p>
             </div>
           </el-col>
-          <el-col :span="18" style="height: 558px">
             <el-row :gutter="20">
               <el-col :span="24" style="height: 500px;">
                 <el-card class="box-card"  style="opacity:0.4;width: 95%;margin-right:5%;height: 93%;margin-bottom: 5%;border-radius: 10px;margin-top: 2%">
@@ -52,7 +51,6 @@
         <!--<el-avatar slot="reference" src="../static/img/bala2.jpg" :size="60"></el-avatar>-->
         <!--<p class="name"></p>-->
       </div>
-    </header>
   </div>
 </template>
 
