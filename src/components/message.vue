@@ -60,7 +60,7 @@
                       </div>
                     </el-col>
                   </el-row>
-                  <el-avatar slot="reference" src="item.userPic" :size="30"></el-avatar>
+                  <el-avatar slot="reference" src="item.userPic" style="background-color: aqua" :size="30"></el-avatar>
                 </el-popover>
                 <!--<el-avatar slot="reference" src="item.userPic" :size="30"></el-avatar>-->
               </div>
