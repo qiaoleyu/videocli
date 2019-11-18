@@ -210,7 +210,7 @@
                    :style="e"-->
                 <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.user.userId==null" ><a class="el-icon-user" >登录</a></router-link>
                 <span style="color:black;" v-if="this.user.userId!=null">
-                  <!--<a>{{user.userName}}</a>-->
+                 <!-- <a>{{user.userName}}</a>-->
                   <el-dropdown>
                 <div class="grid-content " style="height:60px;font-size: 16px;float: left;"
 
