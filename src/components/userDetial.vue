@@ -25,7 +25,7 @@
             </el-form-item>
             <el-form-item label="头像：">
               <el-upload
-                action="https://jsonplaceholder.typicode.com/posts/"
+                action="api/upload"
                 list-type="picture-card"
                 :on-preview="handlePictureCardPreview"
                 :on-remove="handleRemove"
@@ -293,15 +293,17 @@
       },
       //图片上传
       handleRemove(file, fileList) {
-        console.log(file, fileList);
+//        console.log(file, fileList);
       },
       handlePictureCardPreview(file) {
+//          console.log(file)
         this.dialogImageUrl = file.url;
         this.dialogVisible = true;
       },
 
       handleAvatarSuccess(res, file) {
-        this.imageUrl = res;
+//          console.log(res)
+        this.user.userPic = res;
       //URL.createObjectURL(file.raw);
       },
       beforeAvatarUpload(file) {
