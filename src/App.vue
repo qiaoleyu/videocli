@@ -51,7 +51,7 @@
                 <!--</div>-->
               <!--</el-dropdown>-->
 
-              <el-dropdown style="float: left;margin-left:20px">
+              <el-dropdown style="float: left;margin-left:10px">
 
                 <span class="el-dropdown-link">
                   <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
@@ -59,7 +59,8 @@
                        @mouseleave="leave(3)"
                        :style="b"
                   >
-                    <a style="cursor: pointer">赛事</a><i class="el-icon-arrow-down el-icon--left"></i>
+                    <a style="cursor: pointer">赛事</a>
+                    <!--<i class="el-icon-arrow-down el-icon&#45;&#45;left"></i>-->
                   </div>
                 </span>
                 <el-dropdown-menu slot="dropdown" style="width:240px;">
@@ -71,15 +72,15 @@
                 </el-dropdown-menu>
 
               </el-dropdown>
-              <el-dropdown style="float: left;margin-left:20px">
-                <div class="grid-content " style="height: 60px;font-size: 16px;float: left;margin-top: 10px"
+              <el-dropdown style="float: left;margin-left:10px">
+                <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
                      @mousemove="over(4)"
                      @mouseleave="leave(4)"
                      :style="c"
                 >
                 <span class="el-dropdown-link">
                   <a style="cursor: pointer">视频</a>
-                  <i class="el-icon-arrow-down el-icon--left"></i>
+                  <!--<i class="el-icon-arrow-down el-icon&#45;&#45;left"></i>-->
                 </span>
                   <el-dropdown-menu slot="dropdown" style="width:240px;">
                     <el-dropdown-item>1</el-dropdown-item>
