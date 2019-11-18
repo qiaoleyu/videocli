@@ -1,10 +1,10 @@
 <template>
-  <div style="width: 100%;margin: auto" class="hello">
+  <div style="width: 100%;margin: auto" class="note">
       <el-container style="height: 600px;width: 90%;margin: auto; border: 1px solid #eee;margin-top: 100px">
 
         <!--<el-aside width="200px" style="background-color: rgb(238, 241, 246)">-->
         <el-aside class="app-side app-side-left"
-                  style="width: 20%;line-height: inherit;background-color: inherit;" >
+                  style="width: 200px;line-height: inherit;background-color: inherit;" >
           <el-menu
             router
             class="el-menu-vertical-demo"
@@ -241,14 +241,7 @@
     font-size: 16px;
 
   }
-  .note{
-    /*position: absolute;*/
-    height: 100%;
-    width: 100%;
-    top:0;
-    left: 0;
-    /*overflow-y: auto;*/
-  }
+
 
 
 
@@ -271,7 +264,14 @@
   /*}*/
 </style>
 <style scoped>
-
+  .note{
+    /*position: absolute;*/
+    height: 100%;
+    width: 100%;
+    top:0;
+    left: 0;
+    /*overflow-y: auto;*/
+  }
 
 </style>
 

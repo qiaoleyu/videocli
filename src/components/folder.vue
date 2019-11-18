@@ -15,25 +15,27 @@
       <!--视频-->
       <el-row :gutter="10">
         <!--<el-col :span="4" v-for="" v-bind:key="">-->
-        <el-col :span="6"  v-for="(video,index) in videos" v-bind:key="video.pk_video_id">
-          <el-card style="height: 200px;margin-bottom: 10px;">
-            <div style="height: 150px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.pk_video_id}">
+        <el-col :span="6"  v-for="(video,index) in videos" v-bind:key="video.videoId">
+          <!--<el-card style="height: 200px;margin-bottom: 20px;margin-left: 10px;width: 90%;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover">-->
+            <div style="height: 170px;float: left;width: 100%">
+              <router-link :to="{path:'/videoplay/'+video.videoId}">
               <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
-              <video  width=100%  style="margin: auto;height:130px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+              <video  width=90%  style="margin: auto;height:130px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
                 <source
-                  :src="video.idx_video_url"
+                  :src="video.videoUrl"
                   type="video/mp4">
                 <!--type="application/x-mpegURL"-->
               </video>
+                <div style="width:90%;float:left;height: 20px;line-height: 100%;margin-bottom: 10px;margin-top: 10px">
+                  {{video.videoName}}
+                </div>
             </router-link>
 
             </div>
-            <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
-              <div style="width:50%;float:left">
-                {{video.idx_video_name}}
-              </div>
-              <div style="width:15%;float:left" @click="like(video.pk_video_id)">
+            <!--<div style="height: 20px;float: left;line-height:100%;width: 90%;text-align: center;color:black">-->
+
+            <!--  <div style="width:15%;float:left" @click="like(video.pk_video_id)">
                 <el-tooltip content="点赞" >
                   <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
                 </el-tooltip>
@@ -47,22 +49,35 @@
                 <el-tooltip content="下载" >
                   <a class="el-icon-download" plain style="font-size: 18px"></a>
                 </el-tooltip>
-              </div>
-            </div>
+              </div>-->
+            <!--</div>-->
 
-          </el-card>
+          <!--</el-card>-->
         </el-col>
 
       </el-row>
     </el-row>
+    <el-pagination
+      background
+      layout="prev, pager, next"
+      :page-size="this.params.size"
+      v-on:current-change="changePage"
+      :total="total" :current-page="this.params.page">
+    </el-pagination>
   </div>
 </template>
 
 <script>
   import Cookies from 'js-cookie'
+  import axios from 'axios';
   export default {
     data() {
       return {
+        total:0,
+        params:{
+          size:4,
+          page:1
+        },
         path: '',
         user: {
           userId: '',
@@ -104,15 +119,45 @@
       }
     },
     mounted(){
-
+      this.user.userId=Cookies.get("userId")
+      this.query()
     },
     methods: {
-
+      query:function () {
+        var id=this.user.userId
+        var url="api/findCollection/"+id+"/"+this.params.page+"/"+this.params.size
+        axios.get(url).then(res=>{
+          var list=res.data.list
+          this.total=res.data.total
+          //翻页时进行清空
+          this.videos=[]
+          //alert(this.total)
+          for(var i=0;i<list.length;i++){
+            var id=list[i].videoId
+            var url="api/findVideoByVideoId/"+id
+            axios.get(url).then(res=>{
+              this.videos=this.videos.concat(res.data)
+              // alert(666)
+            })
+          }
+        })
+      },
+      changePage:function (page) {
+        // alert(page)
+        this.params.page=page;
+        //alert(this.params.page)
+        this.query();
+      }
     },
   }
 </script>
 
 <style scoped>
+  .video-js{
+    /*height: 500px;*/
+    width: 90%;
+  }
+
   .main {
     position: relative;
     top: 20px;

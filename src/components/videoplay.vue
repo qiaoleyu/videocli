@@ -32,28 +32,28 @@
                   <router-link type="info" :to="{name:'videoDirect'}" style="color:black;"><a style="cursor: pointer">直播</a></router-link>
                   <!--<a ></a>-->
                 </div>
-                <el-dropdown>
-                  <div class="grid-content " style="height:60px;font-size: 16px;float: left;margin-top: 10px"
-                       @mousemove="over(9)"
-                       @mouseleave="leave(9)"
-                       :style="h"
-                  >
-                  <span class="el-dropdown-link">
-                    <a style="cursor: pointer">个人中心</a>
-                    <i class="el-icon-arrow-down el-icon--left"></i>
-                  </span>
-                    <el-dropdown-menu slot="dropdown">
-                      <el-dropdown-item><a @click="toUser()">完善资料</a></el-dropdown-item>
-                      <el-dropdown-item><a @click="toModify()">修改密码</a></el-dropdown-item>
-                      <el-dropdown-item><a @click="toMessage()">信息中心</a></el-dropdown-item>
-                    </el-dropdown-menu>
-                  </div>
-                </el-dropdown>
+                <!--<el-dropdown>-->
+                  <!--<div class="grid-content " style="height:60px;font-size: 16px;float: left;margin-top: 10px"-->
+                       <!--@mousemove="over(9)"-->
+                       <!--@mouseleave="leave(9)"-->
+                       <!--:style="h"-->
+                  <!--&gt;-->
+                  <!--<span class="el-dropdown-link">-->
+                    <!--<a style="cursor: pointer">个人中心</a>-->
+                    <!--<i class="el-icon-arrow-down el-icon&#45;&#45;left"></i>-->
+                  <!--</span>-->
+                    <!--<el-dropdown-menu slot="dropdown">-->
+                      <!--<el-dropdown-item><a @click="toUser()">完善资料</a></el-dropdown-item>-->
+                      <!--<el-dropdown-item><a @click="toModify()">修改密码</a></el-dropdown-item>-->
+                      <!--<el-dropdown-item><a @click="toMessage()">信息中心</a></el-dropdown-item>-->
+                    <!--</el-dropdown-menu>-->
+                  <!--</div>-->
+                <!--</el-dropdown>-->
 
-                <el-dropdown>
+                <el-dropdown style="float: left;margin-left:20px">
 
                 <span class="el-dropdown-link">
-                  <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;top: 10px"
+                  <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
                        @mousemove="over(3)"
                        @mouseleave="leave(3)"
                        :style="b"
@@ -70,8 +70,8 @@
                   </el-dropdown-menu>
 
                 </el-dropdown>
-                <el-dropdown>
-                  <div class="grid-content " style="height: 60px;font-size: 16px;float: left"
+                <el-dropdown style="float: left;margin-left:20px">
+                  <div class="grid-content " style="height: 60px;font-size: 16px;float: left;margin-top: 10px"
                        @mousemove="over(4)"
                        @mouseleave="leave(4)"
                        :style="c"
@@ -193,21 +193,44 @@
                 </div>
 
                 <!--历史-->
-                <div class="grid-content " style="height: 60px;float: left"
-                     @mousemove="over(5)"
-                     @mouseleave="leave(5)"
-                     :style="d"
-                >
-                  <span type="info" style="color:black;cursor: pointer;margin-right: 10px" ><a @click="logout()" class="el-icon-pie-chart" :size="50">历史</a></span>
-                </div>
+                <!--<div class="grid-content " style="height: 60px;float: left"-->
+                     <!--@mousemove="over(5)"-->
+                     <!--@mouseleave="leave(5)"-->
+                     <!--:style="d"-->
+                <!--&gt;-->
+                  <!--<span type="info" style="color:black;cursor: pointer;margin-right: 10px" ><a @click="logout()" class="el-icon-pie-chart" :size="50">历史</a></span>-->
+                <!--</div>-->
                 <!--登录-->
-                <div class="grid-content " style="height: 60px;width:50px;float: left"
-                     @mousemove="over(6)"
-                     @mouseleave="leave(6)"
-                     :style="e"
+                <div class="grid-content " style="height: 60px;width:60px;float: left"
+
                 >
+                  <!--@mousemove="over(6)"
+                     @mouseleave="leave(6)"
+                     :style="e"-->
                   <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.user.userId==null" ><a class="el-icon-user" >登录</a></router-link>
-                  <span style="color:black;" v-if="this.user.userId!=null"><a>{{user.userName}}</a></span>
+                  <span style="color:black;" v-if="this.user.userId!=null">
+                 <!-- <a>{{user.userName}}</a>-->
+                  <el-dropdown>
+                <div class="grid-content " style="height:60px;font-size: 16px;float: left;"
+
+                >
+                   <!--@mousemove="over(9)"-->
+                  <!--@mouseleave="leave(9)"-->
+                  <!--:style="h"-->
+                  <span class="el-dropdown-link">
+                    <!--<a style="cursor: pointer">个人中心</a>-->
+                    <el-avatar slot="reference" :src="this.user.userPic" style="background-color: aqua;margin-top: 10px;margin-left: 10px;margin-right: 10px" :size="35" title="个人中心"></el-avatar>
+
+                    <!--<i class="el-icon-arrow-down el-icon&#45;&#45;left"></i>-->
+                  </span>
+                  <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item><a @click="toUser()">完善资料</a></el-dropdown-item>
+                    <el-dropdown-item><a @click="toModify()">修改密码</a></el-dropdown-item>
+                    <el-dropdown-item><a @click="toMessage()">信息中心</a></el-dropdown-item>
+                  </el-dropdown-menu>
+                </div>
+              </el-dropdown>
+                </span>
                 </div>
                 <!--注册-->
                 <div class="grid-content " style="height: 60px;width:50px;float: left"
@@ -416,7 +439,7 @@
                 <!--用户信息-->
                 <el-row v-for="(item,index) in comments" v-bind:key="item.commentId" :gutter="10" style="margin-top: 20px">
                   <el-col :span="24">
-                     <div style="width:150px;font-size: 25px;font-weight: bolder;margin-left: 10px;background-color: black;float: left;text-align: center">
+                     <div style="width:150px;font-size: 25px;font-weight: bolder;margin-left: 10px;float: left;text-align: center">
                         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
                         </el-menu>
                         <el-popover
@@ -457,7 +480,7 @@
                             </el-col>
                             <el-col :span="12"  style="font-size: 12px;margin-top: 20px">
                               <div style="float: left;width: 100%">
-                                <el-button type="primary" style="width: 100%" plain @click="toUserMsg()">发信息</el-button>
+                                <el-button type="primary" style="width: 100%" plain @click="toUserMsg(item.userId)">发信息</el-button>
                               </div>
                             </el-col>
                           </el-row>
@@ -547,7 +570,7 @@
                                       </el-col>
                                       <el-col :span="12"  style="font-size: 12px;margin-top: 20px">
                                         <div style="float: left;width: 100%">
-                                          <el-button type="primary" style="width: 100%" plain><router-link :to="{name:'私聊',params:{toUserId:item.userId}}">发信息</router-link></el-button>
+                                          <el-button type="primary" style="width: 100%" plain @click="toUserMsg(i.userId)">发信息</el-button>
                                         </div>
                                       </el-col>
                                     </el-row>
@@ -794,6 +817,7 @@
         },*/
         msg: 'Welcome video index',
         value1:'',
+        val:'',
 //        评分
         value2: null,
         colors: ['#99A9BF', '#F7BA2A', '#FF9900'] , // 等同于 { 2: '#99A9BF', 4: { value: '#F7BA2A', excluded: true }, 5: '#FF9900' }，
@@ -904,7 +928,7 @@
 //            console.log(this.user)
         })
       this.findAll();
-      this.findAll2();
+//      this.findAll2();
 //      this.findByCommentId();
 //      var player = video('example-video');
 
@@ -973,19 +997,6 @@
         }
       },
 
-
-        /*发送弹幕方法中调用该方法*/
-      /*sendBarrage:function () {
-          this.barrage.userId=this.user.userId;
-          axios.post("api/saveBarrage",this.barrage).then(res=>{
-              if (res.data!=null){
-//                  alert("success")
-              }else {
-                  alert("fail")
-              }
-          })
-        },*/
-
 //      分页
       handleSizeChange(val) {
         console.log('每页 ${val} 条');
@@ -1021,6 +1032,10 @@
             span.innerHTML = word;
     //          alert($('box'))
             $('box').appendChild(span);
+            if (span.offsetLeft < -length * random * 16) {
+              clearInterval(timer);
+              mainContent.removeChild(span);
+            }
           }
 
       },
@@ -1163,14 +1178,14 @@
       // 视频播完回调
       onPlayerEnded($event) {
         //console.log($event)
-        this.websocket.close();
+//        this.websocket.close();
         clearInterval(this.timer);
       },
 
       // DOM元素上的readyState更改导致播放停止
       onPlayerWaiting($event) {
        // console.log($event)
-        this.websocket.close();
+//        this.websocket.close();
 //        clearInterval(this.timer);
       },
 
@@ -1225,6 +1240,7 @@
             this.websocket = new WebSocket(
                 /*根据视频id建立连接*/
               "ws://localhost:8082/websocket/" + this.video.videoId
+
             );
 
           } else {
@@ -1276,7 +1292,7 @@
 
       // 发送消息
       sendMessage: function() {
-        var socketMsg = { msg: this.barrage.videoTime, toUser: this.aisle };
+        var socketMsg = { msg: this.time, toUser: this.aisle };
         /*if (this.videoId == "") {
           //群聊.
           socketMsg.type = 0;
@@ -1297,7 +1313,8 @@
 
 
       findAll:function () {
-        axios.get("api/findAllCom").then(res=>{
+          var videoId=this.$route.params.pk_video_id;
+        axios.get("api/findAllCom/"+videoId).then(res=>{
           if (res.data!=null){
 //            console.log(res.data.com.list)
 //            console.log(res.data.comment[0].list)
@@ -1313,31 +1330,6 @@
       /*评论
        *针对视频的评论
        */
-
-
-      /*findAll:function () {
-        axios.get("api/findAllComment").then(res=>{
-          if (res.data!=null){
-            this.comments=res.data;
-
-//            console.log(this.comments)
-          }else {
-            alert("暂无评论")
-          }
-        })
-      },*/
-      //针对评论的评论
-     /* findAll2:function () {
-        axios.get("api/findAllComments2").then(res=>{
-          if (res.data!=null){
-            this.comments2=res.data;
-
-            console.log(this.comments2)
-          }else {
-            alert("暂无评论")
-          }
-        })
-      },*/
       /*点赞--》2 */
       like2:function (index) {
         this.com=this.comments[index];
@@ -1369,8 +1361,13 @@
       /*回复评论--》1 */
       save:function () {
         this.com.commentRid=0;
-        console.log(this.com)
+        this.com.userPic=this.user.userPic;
+        this.com.userName=this.user.userName;
+        this.com.userId=this.user.userId;
+        this.com.videoId=this.$route.params.pk_video_id;
+        this.com.commentLid=0;
         this.com.commentContent=this.input2;
+        console.log(this.com)
         axios.post("api/saveComment",this.com).then(res=>{
           if (res.data!=null){
             alert("success")
@@ -1392,11 +1389,14 @@
             type: 'success',
             message: '您回复的信息是: ' + val,
           });
-
+          this.com.userPic=this.user.userPic;
+          this.com.userName=this.user.userName;
+          this.com.userId=this.user.userId;
+          this.com.videoId=this.$route.params.pk_video_id;
           this.com.commentRid =this.comments[index].commentId;
           this.com.respondentId=this.comments[index].userId;
           this.com.respondentName=this.comments[index].userName;
-          this.com.commentContent="输入内容"
+          this.com.commentContent=val;
           axios.post("api/saveComment",this.com).then(res=>{
             if (res.data!=null){
               alert("success")
@@ -1425,12 +1425,15 @@
             type: 'success',
             message: '您回复的信息是: ' + val,
           });
-
+          this.com.userPic=this.user.userPic;
+          this.com.userName=this.user.userName;
+          this.com.userId=this.user.userId;
           this.com.commentRid =this.comments2[index].list[value].commentRid;
           this.com.respondentId=this.comments2[index].list[value].userId;
           this.com.respondentName=this.comments2[index].list[value].userName;
           this.com.commentLid=this.comments[index].commentId;
           this.com.commentContent=val;
+          this.com.videoId=this.video.videoId;
           axios.post("api/saveComment",this.com).then(res=>{
             if (res.data!=null){
               alert("success")
@@ -1534,7 +1537,14 @@
         this.user.userName='登录'
         this.$router.go(0)
       },
-
+      toUserMsg:function (userId) {
+        if (this.user.userId!=null) {
+          this.$router.push("/chatMessage/"+userId)
+        }else {
+          this.$message.error('还没登录哦，请登录后再试');
+          this.$router.push("/userLogin")
+        }
+      }
       /*delete:function (commentId) {
           axios.get
         this.findAll();
