@@ -1122,9 +1122,16 @@
         this.websocket.close();
         clearInterval(this.timer);
 
-       axios.post("api/addRecord",this.record).then(res=>{
-           this.record=res.data;
-       })
+
+        this.record.videoId=this.video.videoId;
+        this.record.videoName=this.video.videoName;
+        this.record.videoPic=this.video.videoPic;
+        this.record.videoUrl=this.video.videoUrl;
+        this.record.videoTime=this.time;
+        axios.post("api/addRecord",this.record).then(res=>{
+          this.record=res.data;
+        })
+
       },
 
       // 视频播完回调
