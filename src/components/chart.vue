@@ -37,6 +37,13 @@
 
       </el-row>
     </el-row>
+    <el-pagination
+      background
+      layout="prev, pager, next"
+      :page-size="this.params.size"
+      v-on:current-change="changePage"
+      :total="total" :current-page="this.params.page">
+    </el-pagination>
   </div>
 </template>
 
@@ -47,6 +54,11 @@
   export default {
     data() {
       return {
+        total:0,
+        params:{
+          size:1,
+          page:1
+        },
         path: '',
         user: {
           userId: '',
@@ -92,15 +104,21 @@
 
       var userId=Cookies.get('userId');
       this.user.userId=userId;
+      this.query();
 
-//      alert(this.user.userId)
-      axios.post("api/findUserAllRecord/"+this.user.userId).then(res=>{
-        this.record=res.data;
-//        alert(this.record)
-      })
     },
     methods: {
-
+      query:function(){
+        var url="api/findUserAllRecord/"+this.user.userId+"/"+this.params.page+"/"+this.params.size
+        axios.get(url).then(res=>{
+          this.record=res.data.list
+          this.total=res.data.total
+        })
+      },
+      changePage:function (page) {
+        this.params.page=page;
+        this.query();
+      }
     },
   }
 </script>
