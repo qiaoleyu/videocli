@@ -193,13 +193,13 @@
                 </div>
 
                 <!--历史-->
-                <div class="grid-content " style="height: 60px;float: left"
-                     @mousemove="over(5)"
-                     @mouseleave="leave(5)"
-                     :style="d"
-                >
-                  <span type="info" style="color:black;cursor: pointer;margin-right: 10px" ><a @click="logout()" class="el-icon-pie-chart" :size="50">历史</a></span>
-                </div>
+                <!--<div class="grid-content " style="height: 60px;float: left"-->
+                     <!--@mousemove="over(5)"-->
+                     <!--@mouseleave="leave(5)"-->
+                     <!--:style="d"-->
+                <!--&gt;-->
+                  <!--<span type="info" style="color:black;cursor: pointer;margin-right: 10px" ><a @click="logout()" class="el-icon-pie-chart" :size="50">历史</a></span>-->
+                <!--</div>-->
                 <!--登录-->
                 <div class="grid-content " style="height: 60px;width:50px;float: left"
                      @mousemove="over(6)"
