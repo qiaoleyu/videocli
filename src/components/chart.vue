@@ -90,10 +90,10 @@
       var userId=Cookies.get('userId');
       this.user.userId=userId;
 
-      alert(this.user.userId)
+      //alert(this.user.userId)
       axios.post("api/findUserAllRecord/"+this.user.userId).then(res=>{
         this.record=res.data;
-        alert(this.record)
+        //alert(this.record)
       })
     },
     methods: {
