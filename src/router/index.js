@@ -10,7 +10,8 @@ import userLogin from '@/components/userLogin'
 import userRegist from '@/components/userRegist'
 import searchVideo from '@/components/searchVideo'
 import userMessage from '@/components/userMessage'
-import moreMessage from '@/components/moreMessage'
+import chatMessage from '@/components/chatMessage'
+import message from '@/components/message'
 import applyText from '@/components/applyText'
 import videoDirect from '@/components/videoDirect'
 
@@ -59,7 +60,8 @@ export default new Router({
       name: 'userMessage',
       component: userMessage,
       children: [
-        {path: '/moreMessage', name: '私聊', component: moreMessage}
+        {path: '/chatMessage', name: '私聊', component: chatMessage},
+        {path: '/message', name: '评论', component: message},
       ]
     },{
       path: '/applyText',
