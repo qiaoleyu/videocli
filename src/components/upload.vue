@@ -4,7 +4,7 @@
     <!--已上传视频-->
     <el-row :gutter="10">
       <el-row>
-        <el-col :span="6" :offset="18">
+        <el-col :span="6" >
           <div class="grid-content" style="line-height: 40px;float: right;">
             <!-- <el-tooltip content="更多" placement="bottom" effect="light">
                <el-button class="el-icon-arrow-right" plain @click="next()"></el-button>
@@ -15,24 +15,29 @@
       <!--视频-->
       <el-row :gutter="10">
         <!--<el-col :span="4" v-for="" v-bind:key="">-->
+
         <el-col :span="6"  v-for="(video,index) in videos" v-bind:key="video.videoId">
-          <el-card style="height: 200px;margin-bottom: 10px;">
-            <div style="height: 150px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
+          <!--<el-card style="height: 200px;margin-bottom: 10px;">-->
+            <div style="height: 170px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
               <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
-              <video  width=100%  style="margin: auto;height:130px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+              <video  width=90%  style="margin: auto;height:130px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
                 <source
                   :src="video.videoUrl"
                   type="video/mp4">
                 <!--type="application/x-mpegURL"-->
               </video>
-            </router-link>
 
-            </div>
-            <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
-              <div style="width:100%;float:left">
+            </router-link>
+              <div style="width:60%;float:left;font-weight:bolder;margin-top: 10px;color:black;height: 20px;line-height: 100%">
                 {{video.videoName}}
               </div>
+              <div style="width:40%;float:left;margin-top: 10px;height: 20px;line-height: 100%">
+                <a class="el-icon-circle-close"  style="cursor: pointer;font-size: 20px;font-weight: bolder" title="删除" @click=""></a>
+              </div>
+            </div>
+            <!--<div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">-->
+
              <!-- <div style="width:15%;float:left" @click="like(video.pk_video_id)">
                 <el-tooltip content="点赞" >
                   <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
@@ -48,9 +53,9 @@
                   <a class="el-icon-download" plain style="font-size: 18px"></a>
                 </el-tooltip>
               </div>-->
-            </div>
+            <!--</div>-->
 
-          </el-card>
+          <!--</el-card>-->
         </el-col>
 
       </el-row>
@@ -141,6 +146,11 @@
 </script>
 
 <style scoped>
+  .video-js{
+    /*height: 500px;*/
+    width: 90%;
+  }
+
   .main {
     position: relative;
     top: 20px;
@@ -161,6 +171,9 @@
     top:0;
     left: 0;
     /*overflow-y: auto;*/
+  }
+  a:hover{
+    color: red;
   }
 </style>
 
