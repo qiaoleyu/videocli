@@ -15,14 +15,14 @@
       <!--视频-->
       <el-row :gutter="10">
         <!--<el-col :span="4" v-for="" v-bind:key="">-->
-        <el-col :span="6"  v-for="(video,index) in videos" v-bind:key="video.pk_video_id">
+        <el-col :span="6"  v-for="(video,index) in videos" v-bind:key="video.videoId">
           <el-card style="height: 200px;margin-bottom: 10px;">
-            <div style="height: 150px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.pk_video_id}">
+            <div style="height: 150px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
               <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
               <video  width=100%  style="margin: auto;height:130px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
                 <source
-                  :src="video.idx_video_url"
+                  :src="video.videoUrl"
                   type="video/mp4">
                 <!--type="application/x-mpegURL"-->
               </video>
@@ -30,10 +30,10 @@
 
             </div>
             <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
-              <div style="width:50%;float:left">
-                {{video.idx_video_name}}
+              <div style="width:100%;float:left">
+                {{video.videoName}}
               </div>
-              <div style="width:15%;float:left" @click="like(video.pk_video_id)">
+             <!-- <div style="width:15%;float:left" @click="like(video.pk_video_id)">
                 <el-tooltip content="点赞" >
                   <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
                 </el-tooltip>
@@ -47,7 +47,7 @@
                 <el-tooltip content="下载" >
                   <a class="el-icon-download" plain style="font-size: 18px"></a>
                 </el-tooltip>
-              </div>
+              </div>-->
             </div>
 
           </el-card>
@@ -55,14 +55,27 @@
 
       </el-row>
     </el-row>
+    <el-pagination
+      background
+      layout="prev, pager, next"
+      :page-size="this.params.size"
+      v-on:current-change="changePage"
+      :total="total" :current-page="this.params.page">
+    </el-pagination>
   </div>
 </template>
 
 <script>
   import Cookies from 'js-cookie'
+  import axios from 'axios';
   export default {
     data() {
       return {
+        total:0,
+        params:{
+          size:4,
+          page:1
+        },
         path: '',
         user: {
           userId: '',
@@ -104,9 +117,24 @@
       }
     },
     mounted(){
-
+      this.user.userId=Cookies.get("userId")
+      this.query()
     },
     methods: {
+        query:function () {
+          var id=this.user.userId
+          var url="api/findVideoByUserId/"+id+"/"+this.params.page+"/"+this.params.size
+          axios.get(url).then(res=>{
+            this.total=res.data.total
+            this.videos=res.data.list
+          })
+        },
+      changePage:function (page) {
+        // alert(page)
+        this.params.page=page;
+        //alert(this.params.page)
+        this.query();
+      }
 
     },
   }
