@@ -398,7 +398,7 @@
                 <el-row :gutter="10" style="margin-top: 20px">
                   <el-col :span="4">
                     <div style="height: 80px;font-size: 25px;font-weight: bolder;margin-left: 10px">
-                      <el-avatar  src="user.userPic" :size="80"></el-avatar>
+                      <el-avatar  :src="user.userPic" :size="80"></el-avatar>
                     </div>
                   </el-col>
                   <el-col :span="14">
@@ -432,7 +432,7 @@
                             </el-col>
                             <el-col :span="10" :offset="2" style="height:60px;line-height: 60px">
                               <div style="float: left;">
-                                <el-avatar src="item.userPic" :size="60"></el-avatar>
+                                <el-avatar :src="item.userPic" :size="60"></el-avatar>
                               </div>
                             </el-col>
                             <el-col :span="12" style="height:60px;line-height: 60px">
@@ -461,7 +461,7 @@
                               </div>
                             </el-col>
                           </el-row>
-                          <el-avatar slot="reference" src="item.userPic" :size="60"></el-avatar>
+                          <el-avatar slot="reference" :src="item.userPic" :size="60"></el-avatar>
                         </el-popover>
                       </div>
                       <div style="float: left;text-align: left;font-size: 20px;line-height: 60px;height: 60px">
@@ -522,7 +522,7 @@
                                       </el-col>
                                       <el-col :span="10" :offset="2" style="height:60px;line-height: 60px">
                                         <div style="float: left;">
-                                          <el-avatar src="i.userPic" :size="60"></el-avatar>
+                                          <el-avatar :src="i.userPic" :size="60"></el-avatar>
                                         </div>
                                       </el-col>
                                       <el-col :span="12" style="height:60px;line-height: 60px">
@@ -551,7 +551,7 @@
                                         </div>
                                       </el-col>
                                     </el-row>
-                                    <el-avatar slot="reference" src="item.userPic" :size="30"></el-avatar>
+                                    <el-avatar slot="reference" :src="i.userPic" :size="30"></el-avatar>
                                   </el-popover>
                                   <!--<el-avatar slot="reference" src="item.userPic" :size="30"></el-avatar>-->
                                 </div>
@@ -737,7 +737,8 @@
           userId: '',
           userName: '',
           userMoney: '',
-          userStatue: ''
+          userStatue: '',
+          userPic:''
         },
         radio1: '$15元/月',
         radio2: '账户余额支付',
@@ -780,12 +781,6 @@
           commentRid:0,
           commentCount:0,
           commentTime:''
-        },
-
-        user:{
-          userId:'',
-          userName:'',
-          userPic:'',
         },
 
       visible: false,
@@ -867,6 +862,7 @@
       if (this.user.userId!=''){
         axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
           this.user=res.data;
+          console.log(this.user);
         })
       }else {
         alert("请登录")
