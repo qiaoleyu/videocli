@@ -4,8 +4,10 @@
     <!--收藏-->
     <el-row :gutter="10">
       <el-row>
-        <el-col :span="6" :offset="18">
+        <el-col :span="6" :offset="17">
           <div class="grid-content" style="line-height: 40px;float: right;">
+            <a class="el-icon-circle-close"  style="cursor: pointer;font-size: 25px;color:red;font-weight: bolder" title="全删" @click=""></a>
+
             <!-- <el-tooltip content="更多" placement="bottom" effect="light">
                <el-button class="el-icon-arrow-right" plain @click="next()"></el-button>
              </el-tooltip>-->
@@ -27,11 +29,13 @@
                   type="video/mp4">
                 <!--type="application/x-mpegURL"-->
               </video>
-                <div style="width:90%;float:left;height: 20px;line-height: 100%;margin-bottom: 10px;margin-top: 10px">
-                  {{video.videoName}}
-                </div>
             </router-link>
-
+              <div style="width:60%;float:left;font-weight:bolder;margin-top: 10px;color:black;height: 20px;line-height: 100%">
+                {{video.videoName}}
+              </div>
+              <div style="width:40%;float:left;margin-top: 10px;height: 20px;line-height: 100%">
+                <a class="el-icon-circle-close"  style="color:red;cursor: pointer;font-size: 20px;font-weight: bolder" title="删除" @click=""></a>
+              </div>
             </div>
             <!--<div style="height: 20px;float: left;line-height:100%;width: 90%;text-align: center;color:black">-->
 
@@ -178,6 +182,9 @@
     top:0;
     left: 0;
     /*overflow-y: auto;*/
+  }
+  a:hover{
+    color:red;
   }
 </style>
 

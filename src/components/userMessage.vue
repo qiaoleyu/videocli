@@ -44,7 +44,7 @@
               </el-menu-item>
             </el-badge>
 
-            <el-badge :value="5" class="item" type="primary">
+            <el-badge :value="collection" class="item" type="primary">
               <el-menu-item index="/folder" style="height: 10%" @click="chat(3)">
                 <i class="el-icon-folder-opened"></i>
                 <span slot="title">收藏</span>
@@ -58,7 +58,7 @@
             </el-menu-item>
             </el-badge>
 
-            <el-badge :value="6" class="item" type="warning">
+            <el-badge :value="upload" class="item" type="warning">
               <el-menu-item index="/upload" style="height: 10%" @click="chat(5)">
                 <i class="el-icon-upload"></i>
                 <span slot="title">发布</span>
@@ -294,14 +294,26 @@
         adminName:'未登录',
         userId:'',
         toUserId:'',
-        tabPosition: 'left'
+        tabPosition: 'left',
+        collection:0,
+        upload:0
 
 //        showPrise:false,
       }
     },mounted(){
-      this.userId=Cookies.get('userId');
+      var id=Cookies.get('userId');
 //      this.adminName= Cookies.get('name');
 //      console.log(this.adminName)
+      //收藏
+      var url="api/findAllCollection/"+id
+      axios.get(url).then(res=>{
+          this.collection=res.data.length
+      })
+      //发布
+      var url="api/findVideoById/"+id
+      axios.get(url).then(res=>{
+          this.upload=res.data.length
+      })
 
 
     },
