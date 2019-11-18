@@ -24,42 +24,42 @@
               <!--</template>-->
             <!--</template>-->
             <el-badge :value="6" class="item" type="primary" style="margin-top: 20px">
-              <el-menu-item  style="height: 10%" @click="chat(0)">
+              <el-menu-item index="/chatMessage" style="height: 10%" @click="chat(0)">
                 <i class="el-icon-chat-dot-round"></i>
                 <span slot="title">私聊</span>
               </el-menu-item>
             </el-badge>
 
             <el-badge :value="10" class="item" type="primary" style="margin-top: 20px">
-              <el-menu-item  style="height: 10%" @click="chat(1)">
+              <el-menu-item index="/message" style="height: 10%" @click="chat(1)">
                 <i class="el-icon-message"></i>
                 <span slot="title">评论</span>
               </el-menu-item>
             </el-badge>
 
             <el-badge :value="4" class="item" >
-              <el-menu-item  style="height: 10%" @click="chat(2)">
+              <el-menu-item index="/document" style="height: 10%" @click="chat(2)">
                 <i class="el-icon-document"></i>
                 <span slot="title">回复</span>
               </el-menu-item>
             </el-badge>
 
             <el-badge :value="5" class="item" type="primary">
-              <el-menu-item  style="height: 10%" @click="chat(3)">
+              <el-menu-item index="/folder" style="height: 10%" @click="chat(3)">
                 <i class="el-icon-folder-opened"></i>
                 <span slot="title">收藏</span>
               </el-menu-item>
             </el-badge>
 
             <el-badge :value="5" class="item" type="primary">
-            <el-menu-item  style="height: 10%" @click="chat(4)">
+            <el-menu-item index="chart" style="height: 10%" @click="chat(4)">
               <i class="el-icon-pie-chart"></i>
               <span slot="title">历史</span>
             </el-menu-item>
             </el-badge>
 
             <el-badge :value="6" class="item" type="warning">
-              <el-menu-item  style="height: 10%" @click="chat(5)">
+              <el-menu-item index="/upload" style="height: 10%" @click="chat(5)">
                 <i class="el-icon-upload"></i>
                 <span slot="title">发布</span>
               </el-menu-item>
@@ -167,65 +167,9 @@
 
         <el-main>
           <template>
-            <!--<router-view/>-->
-            <!--<div  ref="message" >12313212</div>-->
-            <!--私聊-->
-            <div  style="height: 100%;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;border-radius: 20px" >
-              <!--<header>-->
-              <div class="card">
-                <el-row :gutter="20">
-                  <el-col :span="6" style="height: 558px;">
-
-                    <div style="background-color: black;width: 80%;height: 92%;margin-left: 20%;padding-top: 20%">
-
-                      <el-avatar  width="50" height="50" src="../static/img/group.png"></el-avatar>
-                      <p class="name" style="color: white">官方群组</p>
-                      <hr>
-                      <el-avatar  width="50" height="50" src="../static/img/bala2.jpg"></el-avatar>
-                      <p class="name" style="color: white">{{name}}</p>
-                    </div>
-                  </el-col>
-                  <el-col :span="18" style="height: 558px">
-                    <el-row :gutter="20">
-                      <el-col :span="24" style="height: 500px;">
-                        <el-card class="box-card"  style="opacity:0.4;width: 95%;margin-right:5%;height: 93%;margin-bottom: 5%;border-radius: 10px;margin-top: 2%">
-
-                          <!--<el-input placeholder="请输入自己的昵称" prefix-icon="el-icon-user-solid" v-model="name" style="width:50%"></el-input>-->
-                          <!--<el-button type="primary" @click="conectWebSocket()">建立连接</el-button>-->
-                          <!--<el-button type="danger">断开连接</el-button>-->
-                          <!--<el-input-->
-                          <!--placeholder="请输入对方频道号"-->
-                          <!--prefix-icon="el-icon-phone"-->
-                          <!--v-model="aisle"-->
-                          <!--style="width:40%"-->
-                          <!--&gt;</el-input>-->
-
-                          <div v-for="(value,key,index) in messageList" :key="index">
-                            <el-tag v-if="value.name==name" type="success" style="float:right">我：{{value.msg}}</el-tag>
-                            <br />
-                            <el-tag v-if="value.name!=name" style="float:left">{{value.name}}：{{value.msg}}</el-tag>
-                            <br />
-                          </div>
-                        </el-card>
-                      </el-col>
-                      <el-col :span="24" style="height: 58px;">
-                        <div style="width: 95%;margin-right:5%;height: 95%;margin-bottom: 5%">
-                          <el-input placeholder="请输入要发送的消息" prefix-icon="el-icon-s-promotion" v-model="messageValue" style="width:50%"
-                          ></el-input>
-                          <el-button type="primary" @click="sendMessage()">发送</el-button>
-                          <el-button @click="clean()"  type="danger">清空</el-button>
-                        </div>
-                      </el-col>
-                    </el-row>
-
-                  </el-col>
-                </el-row>
-                <!--<el-avatar slot="reference" src="../static/img/bala2.jpg" :size="60"></el-avatar>-->
-                <!--<p class="name"></p>-->
-              </div>
-
-              <!--</header>-->
-            </div>
+              <!--&lt;!&ndash;</header>&ndash;&gt;-->
+            <!--</div>-->
+            <router-view/>
           </template>
         </el-main>
 

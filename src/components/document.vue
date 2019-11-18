@@ -1,7 +1,7 @@
 <template>
   <div style="height: 100%;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;border-radius: 20px" >
 
-    <!--评论-->
+    <!--回复-->
     <el-row :gutter="10">
       <el-col :span="22" :offset="1">
         <!--v-for="(i,value) in comments2[index].list"-->
@@ -33,7 +33,7 @@
                     <el-col :span="12" style="height:60px;line-height: 60px">
                       <div style="float: left;">
                         <!--<span>{{i.userName}}</span>-->
-                        用户名
+                        用户名1
                       </div>
                     </el-col>
                     <el-col :span="18" :offset="6" style="font-size: 12px">
@@ -68,12 +68,12 @@
             <el-col :span="4">
               <div style="float: left;">
                 <!--<span>{{i.userName}}</span>-->
-                用户名
+                用户名1
               </div>
             </el-col>
             <el-col :span="4">
               <div style="float: left;">
-                评论
+                评论1
                 <!--<span v-if="i.commentLid<=1">{{i.commentContent}}</span>-->
                 <!--<span v-if="i.commentLid>1">回复@{{i.respondentName}}：{{i.commentContent}}</span>-->
               </div>
@@ -84,14 +84,14 @@
             <el-col :span="8" :offset="2">
               <div style="float: left;">
                 <!--<span >{{i.commentTime}}</span>-->
-                时间
+                时间1
               </div>
             </el-col>
             <el-col :span="4">
               <div style="float: left;">
                 <!--<el-button @click="like(index,value)" icon="el-icon-thumb" type="warning" circle plain style="font-size: 8px"></el-button>-->
                 <!--<sapn>{{i.commentCount}}</sapn>-->
-                评论内容
+                评论内容1
               </div>
             </el-col>
             <el-col :span="4">
@@ -181,15 +181,12 @@
     },
     methods: {
 
-
     },
+
   }
 </script>
 
 <style scoped>
-  .header{
-    position: inherit;
-  }
   .main {
     position: relative;
     top: 20px;
