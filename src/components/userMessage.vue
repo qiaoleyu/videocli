@@ -4,7 +4,7 @@
 
         <!--<el-aside width="200px" style="background-color: rgb(238, 241, 246)">-->
         <el-aside class="app-side app-side-left"
-                  style="width: 20%;line-height: inherit;background-color: inherit;" >
+                  style="width: 200px;line-height: inherit;background-color: inherit;" >
           <el-menu
             router
             class="el-menu-vertical-demo"

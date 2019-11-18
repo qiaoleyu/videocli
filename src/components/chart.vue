@@ -16,20 +16,23 @@
       <el-row :gutter="10">
         <!--<el-col :span="4" v-for="" v-bind:key="">-->
         <el-col :span="6"  v-for="(record,index) in record" v-bind:key="record.videoId">
-          <el-card style="height: 200px;margin-bottom: 10px;">
-            <div style="height: 150px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+record.videoId}">
+          <!--<el-card style="height: 200px;margin-bottom: 10px;">-->
+            <div style="height: 170px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+record.videoId}">
               <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
-              <video  width=100%  style="margin: auto;height:130px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+              <video  width=90%  style="margin: auto;height:130px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
                 <source
                   :src="record.videoUrl"
                   type="video/mp4">
                 <!--type="application/x-mpegURL"-->
               </video>
+              <div style="width:90%;float:left;height: 20px;line-height: 100%;margin-bottom: 10px;margin-top: 10px">
+                {{record.videoName}}
+              </div>
             </router-link>
             </div>
 
-          </el-card>
+          <!--</el-card>-->
         </el-col>
 
       </el-row>
@@ -103,6 +106,11 @@
 </script>
 
 <style scoped>
+  .video-js{
+    /*height: 500px;*/
+    width: 90%;
+  }
+
   .main {
     position: relative;
     top: 20px;
