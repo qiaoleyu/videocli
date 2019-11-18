@@ -32,28 +32,28 @@
                   <router-link type="info" :to="{name:'videoDirect'}" style="color:black;"><a style="cursor: pointer">直播</a></router-link>
                   <!--<a ></a>-->
                 </div>
-                <el-dropdown>
-                  <div class="grid-content " style="height:60px;font-size: 16px;float: left;margin-top: 10px"
-                       @mousemove="over(9)"
-                       @mouseleave="leave(9)"
-                       :style="h"
-                  >
-                  <span class="el-dropdown-link">
-                    <a style="cursor: pointer">个人中心</a>
-                    <i class="el-icon-arrow-down el-icon--left"></i>
-                  </span>
-                    <el-dropdown-menu slot="dropdown">
-                      <el-dropdown-item><a @click="toUser()">完善资料</a></el-dropdown-item>
-                      <el-dropdown-item><a @click="toModify()">修改密码</a></el-dropdown-item>
-                      <el-dropdown-item><a @click="toMessage()">信息中心</a></el-dropdown-item>
-                    </el-dropdown-menu>
-                  </div>
-                </el-dropdown>
+                <!--<el-dropdown>-->
+                  <!--<div class="grid-content " style="height:60px;font-size: 16px;float: left;margin-top: 10px"-->
+                       <!--@mousemove="over(9)"-->
+                       <!--@mouseleave="leave(9)"-->
+                       <!--:style="h"-->
+                  <!--&gt;-->
+                  <!--<span class="el-dropdown-link">-->
+                    <!--<a style="cursor: pointer">个人中心</a>-->
+                    <!--<i class="el-icon-arrow-down el-icon&#45;&#45;left"></i>-->
+                  <!--</span>-->
+                    <!--<el-dropdown-menu slot="dropdown">-->
+                      <!--<el-dropdown-item><a @click="toUser()">完善资料</a></el-dropdown-item>-->
+                      <!--<el-dropdown-item><a @click="toModify()">修改密码</a></el-dropdown-item>-->
+                      <!--<el-dropdown-item><a @click="toMessage()">信息中心</a></el-dropdown-item>-->
+                    <!--</el-dropdown-menu>-->
+                  <!--</div>-->
+                <!--</el-dropdown>-->
 
-                <el-dropdown>
+                <el-dropdown style="float: left;margin-left:20px">
 
                 <span class="el-dropdown-link">
-                  <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;top: 10px"
+                  <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
                        @mousemove="over(3)"
                        @mouseleave="leave(3)"
                        :style="b"
@@ -70,8 +70,8 @@
                   </el-dropdown-menu>
 
                 </el-dropdown>
-                <el-dropdown>
-                  <div class="grid-content " style="height: 60px;font-size: 16px;float: left"
+                <el-dropdown style="float: left;margin-left:20px">
+                  <div class="grid-content " style="height: 60px;font-size: 16px;float: left;margin-top: 10px"
                        @mousemove="over(4)"
                        @mouseleave="leave(4)"
                        :style="c"
@@ -193,21 +193,44 @@
                 </div>
 
                 <!--历史-->
-                <div class="grid-content " style="height: 60px;float: left"
-                     @mousemove="over(5)"
-                     @mouseleave="leave(5)"
-                     :style="d"
-                >
-                  <span type="info" style="color:black;cursor: pointer;margin-right: 10px" ><a @click="logout()" class="el-icon-pie-chart" :size="50">历史</a></span>
-                </div>
+                <!--<div class="grid-content " style="height: 60px;float: left"-->
+                     <!--@mousemove="over(5)"-->
+                     <!--@mouseleave="leave(5)"-->
+                     <!--:style="d"-->
+                <!--&gt;-->
+                  <!--<span type="info" style="color:black;cursor: pointer;margin-right: 10px" ><a @click="logout()" class="el-icon-pie-chart" :size="50">历史</a></span>-->
+                <!--</div>-->
                 <!--登录-->
-                <div class="grid-content " style="height: 60px;width:50px;float: left"
-                     @mousemove="over(6)"
-                     @mouseleave="leave(6)"
-                     :style="e"
+                <div class="grid-content " style="height: 60px;width:60px;float: left"
+
                 >
+                  <!--@mousemove="over(6)"
+                     @mouseleave="leave(6)"
+                     :style="e"-->
                   <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.user.userId==null" ><a class="el-icon-user" >登录</a></router-link>
-                  <span style="color:black;" v-if="this.user.userId!=null"><a>{{user.userName}}</a></span>
+                  <span style="color:black;" v-if="this.user.userId!=null">
+                 <!-- <a>{{user.userName}}</a>-->
+                  <el-dropdown>
+                <div class="grid-content " style="height:60px;font-size: 16px;float: left;"
+
+                >
+                   <!--@mousemove="over(9)"-->
+                  <!--@mouseleave="leave(9)"-->
+                  <!--:style="h"-->
+                  <span class="el-dropdown-link">
+                    <!--<a style="cursor: pointer">个人中心</a>-->
+                    <el-avatar slot="reference" :src="this.user.userPic" style="background-color: aqua;margin-top: 10px;margin-left: 10px;margin-right: 10px" :size="35" title="个人中心"></el-avatar>
+
+                    <!--<i class="el-icon-arrow-down el-icon&#45;&#45;left"></i>-->
+                  </span>
+                  <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item><a @click="toUser()">完善资料</a></el-dropdown-item>
+                    <el-dropdown-item><a @click="toModify()">修改密码</a></el-dropdown-item>
+                    <el-dropdown-item><a @click="toMessage()">信息中心</a></el-dropdown-item>
+                  </el-dropdown-menu>
+                </div>
+              </el-dropdown>
+                </span>
                 </div>
                 <!--注册-->
                 <div class="grid-content " style="height: 60px;width:50px;float: left"
@@ -417,8 +440,8 @@
                 <el-row v-for="(item,index) in comments" v-bind:key="item.commentId" :gutter="10" style="margin-top: 20px">
                   <el-col :span="24">
                      <div style="width:150px;font-size: 25px;font-weight: bolder;margin-left: 10px;float: left;text-align: center">
-                        <!--<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">-->
-                        <!--</el-menu>-->
+                        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
+                        </el-menu>
                         <el-popover
                           placement="top-start"
                           width="300"
@@ -457,7 +480,7 @@
                             </el-col>
                             <el-col :span="12"  style="font-size: 12px;margin-top: 20px">
                               <div style="float: left;width: 100%">
-                                <el-button type="primary" style="width: 100%" plain @click="toUserMsg()">发信息</el-button>
+                                <el-button type="primary" style="width: 100%" plain @click="toUserMsg(item.userId)">发信息</el-button>
                               </div>
                             </el-col>
                           </el-row>
@@ -547,7 +570,7 @@
                                       </el-col>
                                       <el-col :span="12"  style="font-size: 12px;margin-top: 20px">
                                         <div style="float: left;width: 100%">
-                                          <el-button type="primary" style="width: 100%" plain><router-link :to="{name:'私聊',params:{toUserId:item.userId}}">发信息</router-link></el-button>
+                                          <el-button type="primary" style="width: 100%" plain @click="toUserMsg(i.userId)">发信息</el-button>
                                         </div>
                                       </el-col>
                                     </el-row>
@@ -995,6 +1018,10 @@
             span.innerHTML = word;
     //          alert($('box'))
             $('box').appendChild(span);
+            if (span.offsetLeft < -length * random * 16) {
+              clearInterval(timer);
+              mainContent.removeChild(span);
+            }
           }
 
       },
@@ -1482,7 +1509,14 @@
         this.user.userName='登录'
         this.$router.go(0)
       },
-
+      toUserMsg:function (userId) {
+        if (this.user.userId!=null) {
+          this.$router.push("/chatMessage/"+userId)
+        }else {
+          this.$message.error('还没登录哦，请登录后再试');
+          this.$router.push("/userLogin")
+        }
+      }
       /*delete:function (commentId) {
           axios.get
         this.findAll();
