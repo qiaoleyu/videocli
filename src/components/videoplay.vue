@@ -1123,14 +1123,14 @@
       // 视频播完回调
       onPlayerEnded($event) {
         //console.log($event)
-        this.websocket.close();
+//        this.websocket.close();
         clearInterval(this.timer);
       },
 
       // DOM元素上的readyState更改导致播放停止
       onPlayerWaiting($event) {
        // console.log($event)
-        this.websocket.close();
+//        this.websocket.close();
 //        clearInterval(this.timer);
       },
 
@@ -1184,6 +1184,7 @@
             this.websocket = new WebSocket(
                 /*根据视频id建立连接*/
               "ws://localhost:8082/websocket/" + this.video.videoId
+
             );
 
           } else {
@@ -1235,7 +1236,7 @@
 
       // 发送消息
       sendMessage: function() {
-        var socketMsg = { msg: this.barrage.videoTime, toUser: this.aisle };
+        var socketMsg = { msg: this.time, toUser: this.aisle };
         /*if (this.videoId == "") {
           //群聊.
           socketMsg.type = 0;
@@ -1256,7 +1257,8 @@
 
 
       findAll:function () {
-        axios.get("api/findAllCom").then(res=>{
+          var videoId=this.$route.params.pk_video_id;
+        axios.get("api/findAllCom/"+videoId).then(res=>{
           if (res.data!=null){
 //            console.log(res.data.com.list)
 //            console.log(res.data.comment[0].list)
@@ -1272,31 +1274,6 @@
       /*评论
        *针对视频的评论
        */
-
-
-      /*findAll:function () {
-        axios.get("api/findAllComment").then(res=>{
-          if (res.data!=null){
-            this.comments=res.data;
-
-//            console.log(this.comments)
-          }else {
-            alert("暂无评论")
-          }
-        })
-      },*/
-      //针对评论的评论
-     /* findAll2:function () {
-        axios.get("api/findAllComments2").then(res=>{
-          if (res.data!=null){
-            this.comments2=res.data;
-
-            console.log(this.comments2)
-          }else {
-            alert("暂无评论")
-          }
-        })
-      },*/
       /*点赞--》2 */
       like2:function (index) {
         this.com=this.comments[index];
@@ -1328,10 +1305,13 @@
       /*回复评论--》1 */
       save:function () {
         this.com.commentRid=0;
-        this.users
-        this.video
-        console.log(this.com)
+        this.com.userPic=this.user.userPic;
+        this.com.userName=this.user.userName;
+        this.com.userId=this.user.userId;
+        this.com.videoId=this.$route.params.pk_video_id;
+        this.com.commentLid=0;
         this.com.commentContent=this.input2;
+        console.log(this.com)
         axios.post("api/saveComment",this.com).then(res=>{
           if (res.data!=null){
             alert("success")
@@ -1353,11 +1333,14 @@
             type: 'success',
             message: '您回复的信息是: ' + val,
           });
-
+          this.com.userPic=this.user.userPic;
+          this.com.userName=this.user.userName;
+          this.com.userId=this.user.userId;
+          this.com.videoId=this.$route.params.pk_video_id;
           this.com.commentRid =this.comments[index].commentId;
           this.com.respondentId=this.comments[index].userId;
           this.com.respondentName=this.comments[index].userName;
-          this.com.commentContent="输入内容"
+          this.com.commentContent=val;
           axios.post("api/saveComment",this.com).then(res=>{
             if (res.data!=null){
               alert("success")
@@ -1386,20 +1369,23 @@
             type: 'success',
             message: '您回复的信息是: ' + val,
           });
+          this.com.userPic=this.user.userPic;
+          this.com.userName=this.user.userName;
+          this.com.userId=this.user.userId;
           this.com.commentRid =this.comments2[index].list[value].commentRid;
-
           this.com.respondentId=this.comments2[index].list[value].userId;
           this.com.respondentName=this.comments2[index].list[value].userName;
           this.com.commentLid=this.comments[index].commentId;
           this.com.commentContent=val;
-          /*axios.post("api/saveComment",this.com).then(res=>{
+          this.com.videoId=this.video.videoId;
+          axios.post("api/saveComment",this.com).then(res=>{
             if (res.data!=null){
               alert("success")
               this.findAll();
             }else {
               alert("fail")
             }
-          })*/
+          })
 
         }).catch(() => {
           this.$message({
