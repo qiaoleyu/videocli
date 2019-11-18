@@ -12,6 +12,10 @@ import searchVideo from '@/components/searchVideo'
 import userMessage from '@/components/userMessage'
 import chatMessage from '@/components/chatMessage'
 import message from '@/components/message'
+import document from '@/components/document'
+import folder from '@/components/folder'
+import chart from '@/components/chart'
+import upload from '@/components/upload'
 import applyText from '@/components/applyText'
 import videoDirect from '@/components/videoDirect'
 
@@ -62,6 +66,10 @@ export default new Router({
       children: [
         {path: '/chatMessage', name: '私聊', component: chatMessage},
         {path: '/message', name: '评论', component: message},
+        {path: '/document', name: '回复', component: document},
+        {path: '/folder', name: '收藏', component: folder},
+        {path: '/chart', name: '历史', component: chart},
+        {path: '/upload', name: '发布', component: upload},
       ]
     },{
       path: '/applyText',

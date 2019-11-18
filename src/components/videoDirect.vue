@@ -4,7 +4,7 @@
     <el-container >
       <el-main style="margin-top: 80px;">
 
-        <!--视频轮播-->
+        <!--视频直播-->
         <el-card style="background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;">
         <el-row :gutter="10" style="width: 94%;margin: auto">
           <el-col :span="20">

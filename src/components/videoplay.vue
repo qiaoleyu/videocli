@@ -1111,20 +1111,6 @@
             this.sendMessage();
           },1000)
         }
-        /*alert(this.record.userId);
-        this.record.videoId=this.video.videoId;
-        alert(this.record.videoId);
-        this.record.videoName=this.video.videoName;
-        alert(this.record.videoName);
-        this.record.videoPic=this.video.videoPic;
-        alert(this.record.videoPic);
-        this.record.videoUrl=this.video.videoUrl;
-        alert(this.record.videoUrl);
-        this.record.videoTime=this.time;
-        alert(this.record.videoTime);*/
-       /* axios.post("api/addRecord",this.record).then(res=>{
-          this.record=res.data;
-        })*/
 
       },
 
@@ -1135,8 +1121,9 @@
         this.websocket.close();
         clearInterval(this.timer);
 
-        this.record.videoTime=this.time;
-        console.log(this.record.videoTime);
+       axios.post("api/addRecord",this.record).then(res=>{
+           this.record=res.data;
+       })
       },
 
       // 视频播完回调
