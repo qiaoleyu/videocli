@@ -38,8 +38,10 @@
                      :style="h"
                 >
                   <span class="el-dropdown-link">
-                    <a style="cursor: pointer">个人中心</a>
-                    <i class="el-icon-arrow-down el-icon--left"></i>
+                    <!--<a style="cursor: pointer">个人中心</a>-->
+                    <el-avatar slot="reference" :src="user.userPic" style="background-color: aqua;margin-top: 10px;margin-right: 10px;margin-left: 10px" :size="35" title="个人中心"></el-avatar>
+
+                    <!--<i class="el-icon-arrow-down el-icon&#45;&#45;left"></i>-->
                   </span>
                   <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item><a @click="toUser()">完善资料</a></el-dropdown-item>
