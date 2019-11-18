@@ -847,11 +847,22 @@
           videoComment:'',
           videoDownload:''
         },
-        typeName:''
+        typeName:'',
+        record:{
+          userId:'',
+          videoId:'',
+          videoName:'',
+          videoTime:'',
+          videoPic:'',
+          videoUrl:'',
+        },
+        time:''
 
       }
     },
     mounted(){
+      this.record.userId=Cookies.get("userId");
+
       this.user.userId=Cookies.get("userId")
       if (this.user.userId!=''){
         axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
@@ -1039,6 +1050,7 @@
         },
 
         sendBarrage:function(){
+          this.barrage.videoTime=this.time;
          this.barrage.barrageContent=this.input1;
          this.barrage.userId=this.user.userId;
          axios.post("api/saveBarrage",this.barrage).then(res=>{
@@ -1103,6 +1115,21 @@
             this.sendMessage();
           },1000)
         }
+        /*alert(this.record.userId);
+        this.record.videoId=this.video.videoId;
+        alert(this.record.videoId);
+        this.record.videoName=this.video.videoName;
+        alert(this.record.videoName);
+        this.record.videoPic=this.video.videoPic;
+        alert(this.record.videoPic);
+        this.record.videoUrl=this.video.videoUrl;
+        alert(this.record.videoUrl);
+        this.record.videoTime=this.time;
+        alert(this.record.videoTime);*/
+       /* axios.post("api/addRecord",this.record).then(res=>{
+          this.record=res.data;
+        })*/
+
       },
 
       // 暂停回调
@@ -1111,7 +1138,9 @@
         /*视频暂停，定时器暂停，websocket连接*/
         this.websocket.close();
         clearInterval(this.timer);
-//        beforeDestroy();
+
+        this.record.videoTime=this.time;
+        console.log(this.record.videoTime);
       },
 
       // 视频播完回调
@@ -1146,7 +1175,7 @@
 
       // 当前播放位置发生变化时触发。
       onPlayerTimeupdate($event) {
-        this.barrage.videoTime=($event.cache_.currentTime).toFixed();
+        this.time=($event.cache_.currentTime).toFixed();
       },
 
       //媒体的readyState为HAVE_FUTURE_DATA或更高
