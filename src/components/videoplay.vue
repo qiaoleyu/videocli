@@ -895,7 +895,7 @@
 //            console.log(this.user)
         })
       this.findAll();
-      this.findAll2();
+//      this.findAll2();
 //      this.findByCommentId();
 //      var player = video('example-video');
 
@@ -958,19 +958,6 @@
           this.$router.push("/userLogin")
         }
       },
-
-
-        /*发送弹幕方法中调用该方法*/
-      /*sendBarrage:function () {
-          this.barrage.userId=this.user.userId;
-          axios.post("api/saveBarrage",this.barrage).then(res=>{
-              if (res.data!=null){
-//                  alert("success")
-              }else {
-                  alert("fail")
-              }
-          })
-        },*/
 
 //      分页
       handleSizeChange(val) {
@@ -1341,6 +1328,8 @@
       /*回复评论--》1 */
       save:function () {
         this.com.commentRid=0;
+        this.users
+        this.video
         console.log(this.com)
         this.com.commentContent=this.input2;
         axios.post("api/saveComment",this.com).then(res=>{
@@ -1397,9 +1386,6 @@
             type: 'success',
             message: '您回复的信息是: ' + val,
           });
-//alert(val)
-          alert(index)
-          alert(value)
           this.com.commentRid =this.comments2[index].list[value].commentRid;
 
           this.com.respondentId=this.comments2[index].list[value].userId;
