@@ -416,9 +416,9 @@
                 <!--用户信息-->
                 <el-row v-for="(item,index) in comments" v-bind:key="item.commentId" :gutter="10" style="margin-top: 20px">
                   <el-col :span="24">
-                     <div style="width:150px;font-size: 25px;font-weight: bolder;margin-left: 10px;background-color: black;float: left;text-align: center">
-                        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
-                        </el-menu>
+                     <div style="width:150px;font-size: 25px;font-weight: bolder;margin-left: 10px;float: left;text-align: center">
+                        <!--<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">-->
+                        <!--</el-menu>-->
                         <el-popover
                           placement="top-start"
                           width="300"
