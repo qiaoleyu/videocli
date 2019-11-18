@@ -1390,20 +1390,23 @@
             type: 'success',
             message: '您回复的信息是: ' + val,
           });
-
+//alert(val)
+          alert(index)
+          alert(value)
           this.com.commentRid =this.comments2[index].list[value].commentRid;
+
           this.com.respondentId=this.comments2[index].list[value].userId;
           this.com.respondentName=this.comments2[index].list[value].userName;
           this.com.commentLid=this.comments[index].commentId;
           this.com.commentContent=val;
-          axios.post("api/saveComment",this.com).then(res=>{
+          /*axios.post("api/saveComment",this.com).then(res=>{
             if (res.data!=null){
               alert("success")
               this.findAll();
             }else {
               alert("fail")
             }
-          })
+          })*/
 
         }).catch(() => {
           this.$message({
