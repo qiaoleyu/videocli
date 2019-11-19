@@ -635,6 +635,7 @@
                           @current-change="handleCurrentChange"
                           :current-page="currentPage"
                           layout="total, sizes, prev, pager, next, jumper"
+                          :page-sizes="[5, 10, 15, 20]"
                           :total="comments2[index].total"
                           style="text-align: center"
                         >
@@ -849,6 +850,7 @@
 //      分页
         currentPage: 1,
         player:'',
+        jumper:1,
         index:1,
 //        倍速
 //        options: [
