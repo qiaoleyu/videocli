@@ -74,6 +74,7 @@
 <script>
   import Cookies from 'js-cookie'
   import axios from 'axios';
+  import swal from 'sweetalert'
   export default {
     data() {
       return {
