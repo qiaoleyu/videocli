@@ -99,6 +99,7 @@
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
   import Cookies from 'js-cookie'
+  import swal from 'sweetalert'
 
   export default {
     components: {
@@ -276,9 +277,10 @@
             axios.post("api/updateUser", this.user).then(res => {
               if (res.data == "success") {
                 //                alert("修改成功")
-                this.$message({
-                  message: '恭喜你，修改成功',
-                  type: 'success'
+                swal({
+                  text: "修改成功！",
+                  icon: "success",
+                  button: "确定",
                 });
                 this.$router.push('/')
               } else {
