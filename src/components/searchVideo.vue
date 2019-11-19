@@ -1,9 +1,9 @@
 <template>
-  <div class="hello" style="width: 95%;margin: auto">
+  <div class="hello" style="margin: auto">
     <!--<h1>{{ msg }}</h1>-->
     <el-container >
       <!--导航栏-->
-      <el-header style="height: 80px;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;opacity: 0.9" class="header">
+      <el-header style="width:100%;height: 80px;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;opacity: 0.9" class="header">
         <div style="width: 100%;margin: auto">
           <el-row :gutter="10">
             <!--<el-col :span="4">-->
@@ -98,7 +98,7 @@
               <div class="grid-content " style="height: 80px;margin-top: 10px">
 
                 <!--VIP-->
-                <div class="grid-content " style="height: 60px;width:50px;float: left"
+                <div class="grid-content " style="height: 60px;width:60px;float: left"
                      @mousemove="over(11)"
                      @mouseleave="leave(11)"
                      :style="j"

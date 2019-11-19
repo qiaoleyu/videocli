@@ -50,7 +50,7 @@
                   <!--</div>-->
                 <!--</el-dropdown>-->
 
-                <el-dropdown style="float: left;margin-left:20px">
+                <el-dropdown style="float: left;margin-left:10px">
 
                 <span class="el-dropdown-link">
                   <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
@@ -58,7 +58,8 @@
                        @mouseleave="leave(3)"
                        :style="b"
                   >
-                    <a style="cursor: pointer">赛事</a><i class="el-icon-arrow-down el-icon--left"></i>
+                    <a style="cursor: pointer">赛事</a>
+                    <!--<i class="el-icon-arrow-down el-icon&#45;&#45;left"></i>-->
                   </div>
                 </span>
                   <el-dropdown-menu slot="dropdown" style="width:240px;">
@@ -70,15 +71,15 @@
                   </el-dropdown-menu>
 
                 </el-dropdown>
-                <el-dropdown style="float: left;margin-left:20px">
-                  <div class="grid-content " style="height: 60px;font-size: 16px;float: left;margin-top: 10px"
+                <el-dropdown style="float: left;margin-left:10px">
+                  <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
                        @mousemove="over(4)"
                        @mouseleave="leave(4)"
                        :style="c"
                   >
                 <span class="el-dropdown-link">
                   <a style="cursor: pointer">视频</a>
-                  <i class="el-icon-arrow-down el-icon--left"></i>
+                  <!--<i class="el-icon-arrow-down el-icon&#45;&#45;left"></i>-->
                 </span>
                     <el-dropdown-menu slot="dropdown" style="width:240px;">
                       <el-dropdown-item>1</el-dropdown-item>
@@ -97,12 +98,12 @@
               <div class="grid-content " style="height: 80px;margin-top: 10px">
 
                 <!--VIP-->
-                <div class="grid-content " style="height: 60px;width:50px;float: left"
+                <div class="grid-content " style="height: 60px;width:60px;float: left"
                      @mousemove="over(11)"
                      @mouseleave="leave(11)"
                      :style="j"
                 >
-                 <span type="info" style="color:black;cursor: pointer;margin-right: 10px">
+                 <span type="info" style="color:black;cursor: pointer;">
                     <el-popover
                       placement="top-start"
                       width="400"
@@ -501,18 +502,33 @@
                         </el-col>
                         <el-col :span="24" style="height: 30px;font-size: 14px;line-height: 30px">
                           <el-row :gutter="10">
-                            <el-col :span="6">
+                            <el-col :span="10">
                               <span >{{item.commentTime}}</span>
                             </el-col>
                             <el-col :span="6">
                               <el-button @click="like2(index)" icon="el-icon-thumb" type="warning" circle plain style="font-size: 8px"></el-button>
                               <sapn>{{item.commentCount}}</sapn>
                             </el-col>
-                            <el-col :span="6">
+                            <el-col :span="4">
                               <span >不赞同</span>
                             </el-col>
-                            <el-col :span="6">
-                              <a @click="replyMeg(index)" style="cursor: pointer;text-align: center">回复</a>
+                            <el-col :span="10">
+                              <!--<a @click="replyMeg(index)" style="cursor: pointer;text-align: center">回复</a>-->
+
+                              <el-button type="text" @click="dialogVisible = true">回复</el-button>
+
+                              <el-dialog
+                                title="提示"
+                                :visible.sync="dialogVisible"
+                                width="30%"
+                                :before-close="handleClose">
+                                <el-input v-model="input3"></el-input>
+                                <span slot="footer" class="dialog-footer">
+                                      <el-button @click="dialogVisible = false">取 消</el-button>
+                                      <el-button type="primary"  @click="replyMeg(index)">确 定</el-button>
+                                    </span>
+                              </el-dialog>
+
                             </el-col>
                           </el-row>
                         </el-col>
@@ -584,7 +600,7 @@
                                   <span>{{i.userName}}</span>
                                 </div>
                               </el-col>
-                              <el-col :span="4">
+                              <el-col :span="12">
                                 <div style="float: left;">
                                   <span v-if="i.commentLid<=1">{{i.commentContent}}</span>
                                   <span v-if="i.commentLid>1">回复@{{i.respondentName}}：{{i.commentContent}}</span>
@@ -606,7 +622,21 @@
                               </el-col>
                               <el-col :span="4">
                                 <div style="float: left;">
-                                  <a @click="replyMessage(index,value)" style="cursor: pointer;">回复</a>
+                                  <!--<a @click="replyMessage(index,value)" style="cursor: pointer;">回复</a>-->
+                                  <el-button type="text" @click="dialogVisible = true">回复</el-button>
+
+                                  <el-dialog
+                                    title="提示"
+                                    :visible.sync="dialogVisible"
+                                    width="30%"
+                                    :before-close="handleClose">
+                                    <el-input v-model="input3"></el-input>
+                                    <span slot="footer" class="dialog-footer">
+                                      <el-button @click="dialogVisible = false">取 消</el-button>
+                                      <el-button type="primary"  @click="replyMessage(index,value)">确 定</el-button>
+                                    </span>
+                                  </el-dialog>
+
                                 </div>
                               </el-col>
                             </el-row>
@@ -756,6 +786,19 @@
     name: 'index',
     data () {
       return {
+        path: '',
+        active: '',
+        a: '',
+        b: '',
+        c: '',
+        d: '',
+        e: '',
+        f: '',
+        g: '',
+        h: '',
+        i: '',
+        j: '',
+        m: '',
         user: {
           userId: '',
           userName: '',
@@ -811,6 +854,8 @@
           input:'',
         input1:'',
         input2:'',
+        input3:'',
+        dialogVisible: false,
         /*user:{
               userId:'',
           userName:''
@@ -921,7 +966,6 @@
 
 
         this.barrage.videoId=videoId;
-//      this.barrage.videoId=1;   //待删
         this.com.userId=Cookies.get('userId');
         axios.get("api/findUserByUserId/"+this.com.userId).then(res=>{
             this.user=res.data;
@@ -934,10 +978,77 @@
 
 
     },
-    beforeDestroy() {//这个才有用
-      clearInterval(this.timer)
-    },
     methods:{
+      over: function (x) {
+        if (x == 1) {
+          this.active = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 2) {
+          this.a = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 3) {
+          this.b = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 4) {
+          this.c = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 5) {
+          this.d = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 6) {
+          this.e = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 7) {
+          this.f = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 8) {
+          this.g = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 9) {
+          this.h = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 11) {
+          this.j = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 12) {
+          this.m = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+      },
+      leave: function (x) {
+        if (x == 1) {
+          this.active = '';
+        }
+        if (x == 2) {
+          this.a = '';
+        }
+        if (x == 3) {
+          this.b = '';
+        }
+        if (x == 4) {
+          this.c = '';
+        }
+        if (x == 5) {
+          this.d = '';
+        }
+        if (x == 6) {
+          this.e = '';
+        }
+        if (x == 7) {
+          this.f = '';
+        }
+        if (x == 8) {
+          this.g = '';
+        }
+        if (x == 9) {
+          this.h = '';
+        }
+        if (x == 11) {
+          this.j = '';
+        }
+        if (x == 12) {
+          this.m = '';
+        }
+      },
         //点赞
       likeVideo:function () {
        var id=this.video.videoId
@@ -1009,7 +1120,8 @@
             var word = msg[i];
     //         alert(word)
             var length=word.length;//huoqu wenben de changdu
-            var span = document.createElement('span');
+//            var span = document.createElement('span');
+            var span=document.getElementById()
             var top = parseInt(Math.random() * 500) - 20;
             var color1 = parseInt(Math.random() * 256);
             var color2 = parseInt(Math.random() * 256);
@@ -1028,7 +1140,7 @@
             span.innerHTML = word;
     //          alert($('box'))
             $('box').appendChild(span);
-            if (span.offsetLeft < -length * random * 16) {
+            if (span.offsetLeft < -length * random() * 16) {
               clearInterval(timer);
               mainContent.removeChild(span);
             }
@@ -1062,7 +1174,7 @@
 
           $('box').appendChild(span);
           this.input1= "";
-          if (span.offsetLeft < -length * random * 16) {
+          if (span.offsetLeft < -length * random() * 16) {
             clearInterval(timer);
             mainContent.removeChild(span);
           }
@@ -1145,14 +1257,14 @@
           player.currentTime(this.list[0].videoTime);
         }
 
-        this.conectWebSocket();
+        /*this.conectWebSocket();
         if (this.timer){
           clearInterval(this.timer);
         } else {
           this.timer=setInterval(()=>{
             this.sendMessage();
           },1000)
-        }
+        }*/
 
 
       },
@@ -1174,15 +1286,15 @@
       // 视频播完回调
       onPlayerEnded($event) {
         //console.log($event)
-//        this.websocket.close();
+        this.websocket.close();
         clearInterval(this.timer);
       },
 
       // DOM元素上的readyState更改导致播放停止
       onPlayerWaiting($event) {
        // console.log($event)
-//        this.websocket.close();
-//        clearInterval(this.timer);
+        this.websocket.close();
+        clearInterval(this.timer);
       },
 
       // 已开始播放回调
@@ -1373,9 +1485,19 @@
           }
         })
       },
-      /*回复评论--》3 */
+
+      handleClose(done) {
+        this.$confirm('确认关闭？')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+      },
+
+      /*回复评论--》2 */
       replyMeg:function (index) {
-        this.$prompt('请输入回复信息', '提示', {
+        this.dialogVisible = false;
+        /*this.$prompt('请输入回复信息', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           //inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
@@ -1384,7 +1506,7 @@
           this.$message({
             type: 'success',
             message: '您回复的信息是: ' + val,
-          });
+          });*/
           this.com.userPic=this.user.userPic;
           this.com.userName=this.user.userName;
           this.com.userId=this.user.userId;
@@ -1392,26 +1514,28 @@
           this.com.commentRid =this.comments[index].commentId;
           this.com.respondentId=this.comments[index].userId;
           this.com.respondentName=this.comments[index].userName;
-          this.com.commentContent=val;
+          this.com.commentContent=this.input3;
+          console.log(this.com)
           axios.post("api/saveComment",this.com).then(res=>{
             if (res.data!=null){
-              alert("success")
+//              alert("success")
+              this.input3='';
               this.findAll();
             }else {
               alert("fail")
             }
           })
 
-        }).catch(() => {
+       /* }).catch(() => {
           this.$message({
             type: 'info',
             message: '取消输入'
           });
-        });
+        });*/
       },
       //回复评论--》3
       replyMessage(index,value) {
-        this.$prompt('请输入回复信息', '提示', {
+        /*this.$prompt('请输入回复信息', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           //inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
@@ -1420,7 +1544,10 @@
           this.$message({
             type: 'success',
             message: '您回复的信息是: ' + val,
-          });
+          });*/
+        this.dialogVisible = false;
+//        alert(this.input3)
+
           this.com.userPic=this.user.userPic;
           this.com.userName=this.user.userName;
           this.com.userId=this.user.userId;
@@ -1428,23 +1555,24 @@
           this.com.respondentId=this.comments2[index].list[value].userId;
           this.com.respondentName=this.comments2[index].list[value].userName;
           this.com.commentLid=this.comments[index].commentId;
-          this.com.commentContent=val;
+          this.com.commentContent=this.input3;
           this.com.videoId=this.video.videoId;
           axios.post("api/saveComment",this.com).then(res=>{
             if (res.data!=null){
-              alert("success")
+//              alert("success")
+              this.input3='';
               this.findAll();
             }else {
               alert("fail")
             }
           })
 
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '取消输入'
-          });
-        });
+//        }).catch(() => {
+//          this.$message({
+//            type: 'info',
+//            message: '取消输入'
+//          });
+//        });
       },
 
       //支付宝支付

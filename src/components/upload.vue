@@ -33,7 +33,7 @@
                 {{video.videoName}}
               </div>
               <div style="width:40%;float:left;margin-top: 10px;height: 20px;line-height: 100%">
-                <a class="el-icon-circle-close"  style="color:red;cursor: pointer;font-size: 20px;font-weight: bolder" title="删除" @click=""></a>
+                <a class="el-icon-circle-close"  style="color:red;cursor: pointer;font-size: 20px;font-weight: bolder" title="删除" @click="del(video.videoId)"></a>
               </div>
             </div>
             <!--<div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">-->
@@ -73,6 +73,7 @@
 <script>
   import Cookies from 'js-cookie'
   import axios from 'axios';
+  import swal from 'sweetalert'
   export default {
     data() {
       return {
@@ -139,6 +140,20 @@
         this.params.page=page;
         //alert(this.params.page)
         this.query();
+      },
+      del:function (id) {
+        //alert(id)
+        var url="api/deleteVideo/"+id
+        axios.get(url).then(res=>{
+          if(res.data!=null){
+            swal({
+              text: "删除成功！",
+              icon: "success",
+              button: "确定",
+            });
+            this.query()
+          }
+        })
       }
 
     },
