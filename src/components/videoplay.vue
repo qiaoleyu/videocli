@@ -1,9 +1,9 @@
 <template>
-  <div class="hello" style="width: 95%;margin: auto">
+  <div class="hello" style="width: 100%;margin: auto">
     <!--<h1>{{ msg }}</h1>-->
     <el-container >
       <!--导航栏-->
-      <el-header style="height: 80px;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;opacity: 0.9" class="header">
+      <el-header style="width:100%;height: 80px;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;opacity: 0.9" class="header">
         <div style="width: 100%;margin: auto;">
           <el-row :gutter="10">
             <!--<el-col :span="4">-->
@@ -220,7 +220,7 @@
                   <!--:style="h"-->
                   <span class="el-dropdown-link">
                     <!--<a style="cursor: pointer">个人中心</a>-->
-                    <el-avatar slot="reference" :src="this.user.userPic" style="background-color: aqua;margin-top: 10px;margin-left: 10px;margin-right: 10px" :size="35" title="个人中心"></el-avatar>
+                    <el-avatar slot="reference" :src="this.user.userPic" style="margin-top: 10px;margin-left: 10px;margin-right: 10px" :size="35" title="个人中心"></el-avatar>
 
                     <!--<i class="el-icon-arrow-down el-icon&#45;&#45;left"></i>-->
                   </span>
@@ -255,7 +255,7 @@
         </div>
       </el-header>
 
-      <el-main>
+      <el-main style="width: 95%;margin: auto">
 
         <!--视频轮播-->
         <el-row :gutter="10">
@@ -518,21 +518,7 @@
                               <!--<span >不赞同</span>-->
                               <!--</el-col>-->
                               <el-col :span="4">
-                                <!--<a @click="replyMeg(index)" style="cursor: pointer;text-align: center">回复</a>-->
-
-                                <el-button type="text" @click="dialogVisible = true" style="width: 40px;height: 40px">回复</el-button>
-
-                                <el-dialog
-                                  title="提示"
-                                  :visible.sync="dialogVisible"
-                                  width="30%"
-                                  :before-close="handleClose">
-                                  <el-input v-model="input3"></el-input>
-                                  <span slot="footer" class="dialog-footer">
-                                      <el-button @click="dialogVisible = false">取 消</el-button>
-                                      <el-button type="primary"  @click="replyMeg(index)">确 定</el-button>
-                                    </span>
-                                </el-dialog>
+                                <a @click="replyMeg(index)" style="cursor: pointer;text-align: center">回复</a>
                               </el-col>
                             </el-row>
 
@@ -632,23 +618,8 @@
                               </div>
                             </el-col>
                             <el-col :span="4">
-                              <div style="float: left;">
-                                <!--<a @click="replyMessage(index,value)" style="cursor: pointer;">回复</a>-->
-                                <el-button type="text" @click="dialogVisible = true">回复</el-button>
+                                <a @click="replyMessage(index,value)" style="cursor: pointer;">回复</a>
 
-                                <el-dialog
-                                  title="提示"
-                                  :visible.sync="dialogVisible"
-                                  width="30%"
-                                  :before-close="handleClose">
-                                  <el-input v-model="input3"></el-input>
-                                  <span slot="footer" class="dialog-footer">
-                                    <el-button @click="dialogVisible = false">取 消</el-button>
-                                    <el-button type="primary"  @click="replyMessage(index,value)">确 定</el-button>
-                                  </span>
-                                </el-dialog>
-
-                              </div>
                             </el-col>
                           </el-row>
                         </div>
@@ -865,8 +836,6 @@
           input:'',
         input1:'',
         input2:'',
-        input3:'',
-        dialogVisible: false,
         /*user:{
               userId:'',
           userName:''
@@ -1131,8 +1100,8 @@
             var word = msg[i];
     //         alert(word)
             var length=word.length;//huoqu wenben de changdu
-//            var span = document.createElement('span');
-            var span=document.getElementById()
+            var span = document.createElement('span');
+//            var span=document.getElementById('span')
             var top = parseInt(Math.random() * 500) - 20;
             var color1 = parseInt(Math.random() * 256);
             var color2 = parseInt(Math.random() * 256);
@@ -1151,10 +1120,10 @@
             span.innerHTML = word;
     //          alert($('box'))
             $('box').appendChild(span);
-            if (span.offsetLeft < -length * random() * 16) {
+           /* if (span.offsetLeft < -length * random() * 16) {
               clearInterval(timer);
               mainContent.removeChild(span);
-            }
+            }*/
           }
 
       },
@@ -1254,25 +1223,27 @@
 
 
 
+        this.record.videoId=this.video.videoId;
+        this.record.videoName=this.video.videoName;
+        this.record.videoPic=this.video.videoPic;
+        this.record.videoUrl=this.video.videoUrl;
+        this.record.videoTime=player.currentTime();
+        axios.post("api/addRecord",this.record).then(res=>{
+          this.record=res.data;
+        })
 
-
-        /*this.conectWebSocket();
-        if (this.timer){
-          clearInterval(this.timer);
-        } else {
-          this.timer=setInterval(()=>{
-            this.sendMessage();
-          },1000)
-        }*/
-
-
+//        alert(this.list[0].videoTime);
+        if (this.list[0].videoTime!==null){
+          player.currentTime(this.list[0].videoTime);
+        }
       },
 
       // 暂停回调
       onPlayerPause(player) {
 
         this.record.videoTime=player.currentTime();
-        axios.post("api/changeRecord",this.record).then(res=>{
+//        alert(player.currentTime())
+        axios.post("api/updateRecord",this.record).then(res=>{
           this.record=res.data;
         })
         //console.log('player pause!', player)
@@ -1293,7 +1264,6 @@
        // console.log($event)
         this.websocket.close();
         clearInterval(this.timer);
-
       },
 
       // 已开始播放回调
@@ -1304,7 +1274,7 @@
           this.timer=setInterval(()=>{
             this.sendMessage();
           },1000)
-//        Player.cache_.currentTime(this.time);
+
 
       },
 
@@ -1315,31 +1285,11 @@
 
       // 当前播放位置发生变化时触发。
       onPlayerTimeupdate($event) {
-        this.record.videoId=this.video.videoId;
-        this.record.videoName=this.video.videoName;
-        this.record.videoPic=this.video.videoPic;
-        this.record.videoUrl=this.video.videoUrl;
-        this.record.videoTime=player.currentTime();
-
-
-//        alert(this.list[0].videoTime);
-        if ($event.cache_.currentTime!=null){
-          if ($event.cache_.currentTime==this.list[0].videoTime){
-            player.currentTime(this.list[0].videoTime);
-          }else {
-            player.currentTime(this.time);
-          }
-        }
-//          alert(111)
-        console.log($event)
         this.time=($event.cache_.currentTime).toFixed();
-//        alert(this.time)
-//        Player.cache_.currentTime(this.time);
       },
 
       //媒体的readyState为HAVE_FUTURE_DATA或更高
       onPlayerCanplay(player) {
-
         // console.log('player Canplay!', player)
       },
 
@@ -1350,11 +1300,6 @@
 
       //播放状态改变回调
       playerStateChanged(playerCurrentState) {
-
-        /*this.record.videoTime=playerCurrentState.currentTime();
-        axios.post("api/changeRecord",this.record).then(res=>{
-          this.record=res.data;
-        })*/
         //console.log('player current update state', playerCurrentState)
       },
 
@@ -1389,12 +1334,12 @@
           //接收到消息的回调方法
           var that = this;
           this.websocket.onmessage = function(event) {
-              console.log(event)
+//              console.log(event)
             var object = eval("(" + event.data + ")");
-            console.log(object);
-            console.log("接收到的消息："+object.msg);
+//            console.log(object);
+//            console.log("接收到的消息："+object.msg);
             this.messageList=object.msg;
-            console.log(this.messageList)
+//            console.log(this.messageList)
             if (object.type == 0) {
               // 提示连接成功
               console.log("连接成功");
@@ -1405,7 +1350,8 @@
             if (object.type == 1) {
               //显示消息
               console.log("接受消息");
-              that.messageList.push(object);
+//              that.messageList.push(object);
+//              console.log(this.messageList)
               that.sendMsg(this.messageList);
 //              document.getElementById('box').innerHTML += object.msg + '<br/>';
             }
@@ -1465,6 +1411,7 @@
       /*点赞--》2 */
       like2:function (index) {
         this.com=this.comments[index];
+//        alert(index)
 
         this.com.commentCount=this.com.commentCount+1;
         axios.post("api/updateComment",this.com).then(res=>{
@@ -1477,6 +1424,8 @@
       /*点赞--》3 */
       like:function (index,value) {
         this.com=this.comments2[index].list[value];
+//        alert(index)
+//        alert(value)
 
         this.com.commentCount=this.com.commentCount+1;
         axios.post("api/updateComment",this.com).then(res=>{
@@ -1502,7 +1451,8 @@
         console.log(this.com)
         axios.post("api/saveComment",this.com).then(res=>{
           if (res.data!=null){
-            alert("success")
+//            alert("success")
+            this.input2='';
             this.findAll();
           }else {
             alert("fail")
@@ -1510,27 +1460,20 @@
         })
       },
 
-      handleClose(done) {
-        this.$confirm('确认关闭？')
-          .then(_ => {
-            done();
-          })
-          .catch(_ => {});
-      },
-
       /*回复评论--》2 */
       replyMeg:function (index) {
-        this.dialogVisible = false;
-        /*this.$prompt('请输入回复信息', '提示', {
+
+        this.$prompt('请输入回复信息', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           //inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
           //inputErrorMessage: '邮箱格式不正确'
-        }).then(({ val }) => {
+        }).then(({ value }) => {
           this.$message({
             type: 'success',
-            message: '您回复的信息是: ' + val,
-          });*/
+            message: '您回复的信息是: ' + value,
+          });
+
           this.com.userPic=this.user.userPic;
           this.com.userName=this.user.userName;
           this.com.userId=this.user.userId;
@@ -1538,48 +1481,49 @@
           this.com.commentRid =this.comments[index].commentId;
           this.com.respondentId=this.comments[index].userId;
           this.com.respondentName=this.comments[index].userName;
-          this.com.commentContent=this.input3;
+          this.com.commentContent=value;
           console.log(this.com)
+//        this.diaVisible = false;
           axios.post("api/saveComment",this.com).then(res=>{
             if (res.data!=null){
 //              alert("success")
-              this.input3='';
+              this.input4='';
               this.findAll();
             }else {
               alert("fail")
             }
           })
 
-       /* }).catch(() => {
+        }).catch(() => {
           this.$message({
             type: 'info',
             message: '取消输入'
           });
-        });*/
+        });
       },
       //回复评论--》3
-      replyMessage(index,value) {
-        /*this.$prompt('请输入回复信息', '提示', {
+      replyMessage(index,val) {
+        this.$prompt('请输入回复信息', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           //inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
           //inputErrorMessage: '邮箱格式不正确'
-        }).then(({ val }) => {
+        }).then(({ value }) => {
           this.$message({
             type: 'success',
-            message: '您回复的信息是: ' + val,
-          });*/
+            message: '您回复的信息是: ' + value,
+          });
+          alert(value)
         this.dialogVisible = false;
 //        alert(this.input3)
-
           this.com.userPic=this.user.userPic;
           this.com.userName=this.user.userName;
           this.com.userId=this.user.userId;
-          this.com.commentRid =this.comments2[index].list[value].commentRid;
-          this.com.respondentId=this.comments2[index].list[value].userId;
-          this.com.respondentName=this.comments2[index].list[value].userName;
+          this.com.commentRid =this.comments2[index].list[val].commentRid;
+          this.com.respondentId=this.comments2[index].list[val].userId;
+          this.com.respondentName=this.comments2[index].list[val].userName;
           this.com.commentLid=this.comments[index].commentId;
-          this.com.commentContent=this.input3;
+          this.com.commentContent=value;
           this.com.videoId=this.video.videoId;
           axios.post("api/saveComment",this.com).then(res=>{
             if (res.data!=null){
@@ -1590,13 +1534,12 @@
               alert("fail")
             }
           })
-
-//        }).catch(() => {
-//          this.$message({
-//            type: 'info',
-//            message: '取消输入'
-//          });
-//        });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消输入'
+          });
+        });
       },
 
       //支付宝支付

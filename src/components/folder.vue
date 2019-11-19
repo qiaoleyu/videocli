@@ -6,7 +6,7 @@
       <el-row>
         <el-col :span="6" :offset="17">
           <div class="grid-content" style="line-height: 40px;float: right;">
-            <a class="el-icon-circle-close"  style="cursor: pointer;font-size: 25px;color:red;font-weight: bolder" title="全删" @click="delAll()"></a>
+            <a class="el-icon-circle-close"  style="cursor: pointer;font-size: 25px;font-weight: bolder" title="全删" @click="delAll()"></a>
 
             <!-- <el-tooltip content="更多" placement="bottom" effect="light">
                <el-button class="el-icon-arrow-right" plain @click="next()"></el-button>
@@ -34,7 +34,7 @@
                 {{video.videoName}}
               </div>
               <div style="width:40%;float:left;margin-top: 10px;height: 20px;line-height: 100%">
-                <a class="el-icon-circle-close"  style="color:red;cursor: pointer;font-size: 20px;font-weight: bolder" title="删除" @click="del(video.videoId)"></a>
+                <a class="el-icon-circle-close"  style="cursor: pointer;font-size: 20px;font-weight: bolder" title="删除" @click="del(video.videoId)"></a>
               </div>
             </div>
             <!--<div style="height: 20px;float: left;line-height:100%;width: 90%;text-align: center;color:black">-->
@@ -74,6 +74,7 @@
 <script>
   import Cookies from 'js-cookie'
   import axios from 'axios';
+  import swal from 'sweetalert'
   export default {
     data() {
       return {
@@ -159,6 +160,7 @@
               icon: "success",
               button: "确定",
             });
+            this.params.page=1
             this.query()
           }
         })
