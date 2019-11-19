@@ -159,6 +159,7 @@
               icon: "success",
               button: "确定",
             });
+            this.params.page=1
             this.query()
           }
         })
@@ -173,7 +174,6 @@
               icon: "success",
               button: "确定",
             });
-            this.params.page=1
             this.query()
           }
         })
