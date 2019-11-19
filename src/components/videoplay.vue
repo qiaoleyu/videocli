@@ -50,7 +50,7 @@
                   <!--</div>-->
                 <!--</el-dropdown>-->
 
-                <el-dropdown style="float: left;margin-left:20px">
+                <el-dropdown style="float: left;margin-left:10px">
 
                 <span class="el-dropdown-link">
                   <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
@@ -58,7 +58,8 @@
                        @mouseleave="leave(3)"
                        :style="b"
                   >
-                    <a style="cursor: pointer">赛事</a><i class="el-icon-arrow-down el-icon--left"></i>
+                    <a style="cursor: pointer">赛事</a>
+                    <!--<i class="el-icon-arrow-down el-icon&#45;&#45;left"></i>-->
                   </div>
                 </span>
                   <el-dropdown-menu slot="dropdown" style="width:240px;">
@@ -70,15 +71,15 @@
                   </el-dropdown-menu>
 
                 </el-dropdown>
-                <el-dropdown style="float: left;margin-left:20px">
-                  <div class="grid-content " style="height: 60px;font-size: 16px;float: left;margin-top: 10px"
+                <el-dropdown style="float: left;margin-left:10px">
+                  <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
                        @mousemove="over(4)"
                        @mouseleave="leave(4)"
                        :style="c"
                   >
                 <span class="el-dropdown-link">
                   <a style="cursor: pointer">视频</a>
-                  <i class="el-icon-arrow-down el-icon--left"></i>
+                  <!--<i class="el-icon-arrow-down el-icon&#45;&#45;left"></i>-->
                 </span>
                     <el-dropdown-menu slot="dropdown" style="width:240px;">
                       <el-dropdown-item>1</el-dropdown-item>
@@ -97,12 +98,12 @@
               <div class="grid-content " style="height: 80px;margin-top: 10px">
 
                 <!--VIP-->
-                <div class="grid-content " style="height: 60px;width:50px;float: left"
+                <div class="grid-content " style="height: 60px;width:60px;float: left"
                      @mousemove="over(11)"
                      @mouseleave="leave(11)"
                      :style="j"
                 >
-                 <span type="info" style="color:black;cursor: pointer;margin-right: 10px">
+                 <span type="info" style="color:black;cursor: pointer;">
                     <el-popover
                       placement="top-start"
                       width="400"
@@ -756,6 +757,19 @@
     name: 'index',
     data () {
       return {
+        path: '',
+        active: '',
+        a: '',
+        b: '',
+        c: '',
+        d: '',
+        e: '',
+        f: '',
+        g: '',
+        h: '',
+        i: '',
+        j: '',
+        m: '',
         user: {
           userId: '',
           userName: '',
@@ -942,6 +956,76 @@
       clearInterval(this.timer)
     },
     methods:{
+      over: function (x) {
+        if (x == 1) {
+          this.active = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 2) {
+          this.a = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 3) {
+          this.b = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 4) {
+          this.c = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 5) {
+          this.d = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 6) {
+          this.e = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 7) {
+          this.f = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 8) {
+          this.g = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 9) {
+          this.h = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 11) {
+          this.j = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 12) {
+          this.m = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+      },
+      leave: function (x) {
+        if (x == 1) {
+          this.active = '';
+        }
+        if (x == 2) {
+          this.a = '';
+        }
+        if (x == 3) {
+          this.b = '';
+        }
+        if (x == 4) {
+          this.c = '';
+        }
+        if (x == 5) {
+          this.d = '';
+        }
+        if (x == 6) {
+          this.e = '';
+        }
+        if (x == 7) {
+          this.f = '';
+        }
+        if (x == 8) {
+          this.g = '';
+        }
+        if (x == 9) {
+          this.h = '';
+        }
+        if (x == 11) {
+          this.j = '';
+        }
+        if (x == 12) {
+          this.m = '';
+        }
+      },
         //点赞
       likeVideo:function () {
        var id=this.video.videoId

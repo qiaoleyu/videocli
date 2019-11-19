@@ -98,7 +98,7 @@
               <div class="grid-content " style="height: 80px;margin-top: 10px">
 
                 <!--VIP-->
-                <div class="grid-content " style="height: 60px;width:50px;float: left"
+                <div class="grid-content " style="height: 60px;width:60px;float: left"
                      @mousemove="over(11)"
                      @mouseleave="leave(11)"
                      :style="j"
