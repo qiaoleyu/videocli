@@ -549,10 +549,10 @@
 
                     <!--评论信息-->
                     <el-row :gutter="10" style="">
-                      <el-col :span="20" :offset="4"  v-for="(i,value) in comments2[index].list" style="font-size: 16px;background-color: beige;font-weight: bolder;float: left;text-align: center">
+                      <el-col :span="20" :offset="4"  style="font-size: 16px;background-color: beige;font-weight: bolder;float: left;text-align: center">
                         <!--<div v-for="(i,value) in comments2[index].list" style="width:99%;font-size: 16px;font-weight: bolder;margin-left: 10px;background-color: beige;float: left;text-align: center">-->
                           <!--遍历评论信息-->
-
+                        <div v-for="(i,value) in comments2[index].list" >
                           <el-row :gutter="10" style="margin-top: 10px;font-size: 14px;">
                             <el-col :span="4" >
                               <div style="float: left;">
@@ -651,7 +651,7 @@
                               </div>
                             </el-col>
                           </el-row>
-                        <!--</div>-->
+                        </div>
                       </el-col>
                     </el-row>
 
