@@ -518,21 +518,7 @@
                               <!--<span >不赞同</span>-->
                               <!--</el-col>-->
                               <el-col :span="4">
-                                <!--<a @click="replyMeg(index)" style="cursor: pointer;text-align: center">回复</a>-->
-
-                                <el-button type="text" @click="dialogVisible = true" style="width: 40px;height: 40px">回复</el-button>
-
-                                <el-dialog
-                                  title="提示"
-                                  :visible.sync="dialogVisible"
-                                  width="30%"
-                                  :before-close="handleClose">
-                                  <el-input v-model="input3"></el-input>
-                                  <span slot="footer" class="dialog-footer">
-                                      <el-button @click="dialogVisible = false">取 消</el-button>
-                                      <el-button type="primary"  @click="replyMeg(index)">确 定</el-button>
-                                    </span>
-                                </el-dialog>
+                                <a @click="replyMeg(index)" style="cursor: pointer;text-align: center">回复</a>
                               </el-col>
                             </el-row>
 
@@ -632,23 +618,8 @@
                               </div>
                             </el-col>
                             <el-col :span="4">
-                              <div style="float: left;">
-                                <!--<a @click="replyMessage(index,value)" style="cursor: pointer;">回复</a>-->
-                                <el-button type="text" @click="dialogVisible = true">回复</el-button>
+                                <a @click="replyMessage(index,value)" style="cursor: pointer;">回复</a>
 
-                                <el-dialog
-                                  title="提示"
-                                  :visible.sync="dialogVisible"
-                                  width="30%"
-                                  :before-close="handleClose">
-                                  <el-input v-model="input3"></el-input>
-                                  <span slot="footer" class="dialog-footer">
-                                    <el-button @click="dialogVisible = false">取 消</el-button>
-                                    <el-button type="primary"  @click="replyMessage(index,value)">确 定</el-button>
-                                  </span>
-                                </el-dialog>
-
-                              </div>
                             </el-col>
                           </el-row>
                         </div>
@@ -865,8 +836,6 @@
           input:'',
         input1:'',
         input2:'',
-        input3:'',
-        dialogVisible: false,
         /*user:{
               userId:'',
           userName:''
@@ -1267,17 +1236,6 @@
         if (this.list[0].videoTime!==null){
           player.currentTime(this.list[0].videoTime);
         }
-
-        /*this.conectWebSocket();
-        if (this.timer){
-          clearInterval(this.timer);
-        } else {
-          this.timer=setInterval(()=>{
-            this.sendMessage();
-          },1000)
-        }*/
-
-
       },
 
       // 暂停回调
@@ -1452,6 +1410,7 @@
       /*点赞--》2 */
       like2:function (index) {
         this.com=this.comments[index];
+//        alert(index)
 
         this.com.commentCount=this.com.commentCount+1;
         axios.post("api/updateComment",this.com).then(res=>{
@@ -1464,6 +1423,8 @@
       /*点赞--》3 */
       like:function (index,value) {
         this.com=this.comments2[index].list[value];
+//        alert(index)
+//        alert(value)
 
         this.com.commentCount=this.com.commentCount+1;
         axios.post("api/updateComment",this.com).then(res=>{
@@ -1489,7 +1450,8 @@
         console.log(this.com)
         axios.post("api/saveComment",this.com).then(res=>{
           if (res.data!=null){
-            alert("success")
+//            alert("success")
+            this.input2='';
             this.findAll();
           }else {
             alert("fail")
@@ -1497,27 +1459,20 @@
         })
       },
 
-      handleClose(done) {
-        this.$confirm('确认关闭？')
-          .then(_ => {
-            done();
-          })
-          .catch(_ => {});
-      },
-
       /*回复评论--》2 */
       replyMeg:function (index) {
-        this.dialogVisible = false;
-        /*this.$prompt('请输入回复信息', '提示', {
+
+        this.$prompt('请输入回复信息', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           //inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
           //inputErrorMessage: '邮箱格式不正确'
-        }).then(({ val }) => {
+        }).then(({ value }) => {
           this.$message({
             type: 'success',
-            message: '您回复的信息是: ' + val,
-          });*/
+            message: '您回复的信息是: ' + value,
+          });
+
           this.com.userPic=this.user.userPic;
           this.com.userName=this.user.userName;
           this.com.userId=this.user.userId;
@@ -1525,48 +1480,49 @@
           this.com.commentRid =this.comments[index].commentId;
           this.com.respondentId=this.comments[index].userId;
           this.com.respondentName=this.comments[index].userName;
-          this.com.commentContent=this.input3;
+          this.com.commentContent=value;
           console.log(this.com)
+//        this.diaVisible = false;
           axios.post("api/saveComment",this.com).then(res=>{
             if (res.data!=null){
 //              alert("success")
-              this.input3='';
+              this.input4='';
               this.findAll();
             }else {
               alert("fail")
             }
           })
 
-       /* }).catch(() => {
+        }).catch(() => {
           this.$message({
             type: 'info',
             message: '取消输入'
           });
-        });*/
+        });
       },
       //回复评论--》3
-      replyMessage(index,value) {
-        /*this.$prompt('请输入回复信息', '提示', {
+      replyMessage(index,val) {
+        this.$prompt('请输入回复信息', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           //inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
           //inputErrorMessage: '邮箱格式不正确'
-        }).then(({ val }) => {
+        }).then(({ value }) => {
           this.$message({
             type: 'success',
-            message: '您回复的信息是: ' + val,
-          });*/
+            message: '您回复的信息是: ' + value,
+          });
+          alert(value)
         this.dialogVisible = false;
 //        alert(this.input3)
-
           this.com.userPic=this.user.userPic;
           this.com.userName=this.user.userName;
           this.com.userId=this.user.userId;
-          this.com.commentRid =this.comments2[index].list[value].commentRid;
-          this.com.respondentId=this.comments2[index].list[value].userId;
-          this.com.respondentName=this.comments2[index].list[value].userName;
+          this.com.commentRid =this.comments2[index].list[val].commentRid;
+          this.com.respondentId=this.comments2[index].list[val].userId;
+          this.com.respondentName=this.comments2[index].list[val].userName;
           this.com.commentLid=this.comments[index].commentId;
-          this.com.commentContent=this.input3;
+          this.com.commentContent=value;
           this.com.videoId=this.video.videoId;
           axios.post("api/saveComment",this.com).then(res=>{
             if (res.data!=null){
@@ -1577,13 +1533,12 @@
               alert("fail")
             }
           })
-
-//        }).catch(() => {
-//          this.$message({
-//            type: 'info',
-//            message: '取消输入'
-//          });
-//        });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消输入'
+          });
+        });
       },
 
       //支付宝支付
