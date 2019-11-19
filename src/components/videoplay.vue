@@ -1254,19 +1254,7 @@
 
 
 
-        this.record.videoId=this.video.videoId;
-        this.record.videoName=this.video.videoName;
-        this.record.videoPic=this.video.videoPic;
-        this.record.videoUrl=this.video.videoUrl;
-        this.record.videoTime=player.currentTime();
-        axios.post("api/addRecord",this.record).then(res=>{
-          this.record=res.data;
-        })
 
-        alert(this.list[0].videoTime);
-        if (this.list[0].videoTime!==null){
-          player.currentTime(this.list[0].videoTime);
-        }
 
         /*this.conectWebSocket();
         if (this.timer){
@@ -1284,8 +1272,7 @@
       onPlayerPause(player) {
 
         this.record.videoTime=player.currentTime();
-        alert(player.currentTime())
-        axios.post("api/updateRecord",this.record).then(res=>{
+        axios.post("api/changeRecord",this.record).then(res=>{
           this.record=res.data;
         })
         //console.log('player pause!', player)
@@ -1306,6 +1293,7 @@
        // console.log($event)
         this.websocket.close();
         clearInterval(this.timer);
+
       },
 
       // 已开始播放回调
@@ -1316,7 +1304,7 @@
           this.timer=setInterval(()=>{
             this.sendMessage();
           },1000)
-
+//        Player.cache_.currentTime(this.time);
 
       },
 
@@ -1327,11 +1315,31 @@
 
       // 当前播放位置发生变化时触发。
       onPlayerTimeupdate($event) {
+        this.record.videoId=this.video.videoId;
+        this.record.videoName=this.video.videoName;
+        this.record.videoPic=this.video.videoPic;
+        this.record.videoUrl=this.video.videoUrl;
+        this.record.videoTime=player.currentTime();
+
+
+//        alert(this.list[0].videoTime);
+        if ($event.cache_.currentTime!=null){
+          if ($event.cache_.currentTime==this.list[0].videoTime){
+            player.currentTime(this.list[0].videoTime);
+          }else {
+            player.currentTime(this.time);
+          }
+        }
+//          alert(111)
+        console.log($event)
         this.time=($event.cache_.currentTime).toFixed();
+//        alert(this.time)
+//        Player.cache_.currentTime(this.time);
       },
 
       //媒体的readyState为HAVE_FUTURE_DATA或更高
       onPlayerCanplay(player) {
+
         // console.log('player Canplay!', player)
       },
 
@@ -1342,6 +1350,11 @@
 
       //播放状态改变回调
       playerStateChanged(playerCurrentState) {
+
+        /*this.record.videoTime=playerCurrentState.currentTime();
+        axios.post("api/changeRecord",this.record).then(res=>{
+          this.record=res.data;
+        })*/
         //console.log('player current update state', playerCurrentState)
       },
 
