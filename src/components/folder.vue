@@ -6,7 +6,7 @@
       <el-row>
         <el-col :span="6" :offset="17">
           <div class="grid-content" style="line-height: 40px;float: right;">
-            <a class="el-icon-circle-close"  style="cursor: pointer;font-size: 25px;color:red;font-weight: bolder" title="全删" @click=""></a>
+            <a class="el-icon-circle-close"  style="cursor: pointer;font-size: 25px;color:red;font-weight: bolder" title="全删" @click="delAll()"></a>
 
             <!-- <el-tooltip content="更多" placement="bottom" effect="light">
                <el-button class="el-icon-arrow-right" plain @click="next()"></el-button>
@@ -34,7 +34,7 @@
                 {{video.videoName}}
               </div>
               <div style="width:40%;float:left;margin-top: 10px;height: 20px;line-height: 100%">
-                <a class="el-icon-circle-close"  style="color:red;cursor: pointer;font-size: 20px;font-weight: bolder" title="删除" @click=""></a>
+                <a class="el-icon-circle-close"  style="color:red;cursor: pointer;font-size: 20px;font-weight: bolder" title="删除" @click="del(video.videoId)"></a>
               </div>
             </div>
             <!--<div style="height: 20px;float: left;line-height:100%;width: 90%;text-align: center;color:black">-->
@@ -115,10 +115,7 @@
         imageUrl: '',
         input:'',
         msg: '',
-        collection:{
-          userId:'',
-          videoId:''
-        },
+        collectionId:'',
         videos:[]
       }
     },
@@ -151,8 +148,37 @@
         this.params.page=page;
         //alert(this.params.page)
         this.query();
-      }
+      },
+      del:function (id) {
+      var url="api/deleteCollection/"+this.user.userId+"/"+id
+        //alert(id)
+        axios.get(url).then(res=>{
+          if(res.data!=null){
+            swal({
+              text: "删除成功！",
+              icon: "success",
+              button: "确定",
+            });
+            this.query()
+          }
+        })
     },
+      delAll:function () {
+        var id=this.user.userId
+        var url="api/deleteAllCollection/"+id
+        axios.get(url).then(res=>{
+          if(res.data!=null){
+            swal({
+              text: "删除成功！",
+              icon: "success",
+              button: "确定",
+            });
+            this.query()
+          }
+        })
+      }
+
+    }
   }
 </script>
 
