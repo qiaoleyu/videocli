@@ -33,7 +33,7 @@
                 {{video.videoName}}
               </div>
               <div style="width:40%;float:left;margin-top: 10px;height: 20px;line-height: 100%">
-                <a class="el-icon-circle-close"  style="color:red;cursor: pointer;font-size: 20px;font-weight: bolder" title="删除" @click="del(video.videoId)"></a>
+                <a class="el-icon-circle-close"  style="cursor: pointer;font-size: 20px;font-weight: bolder" title="删除" @click="del(video.videoId)"></a>
               </div>
             </div>
             <!--<div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">-->
@@ -79,7 +79,7 @@
       return {
         total:0,
         params:{
-          size:4,
+          size:8,
           page:1
         },
         path: '',
