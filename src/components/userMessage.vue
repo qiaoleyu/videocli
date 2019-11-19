@@ -170,6 +170,9 @@
               <!--&lt;!&ndash;</header>&ndash;&gt;-->
             <!--</div>-->
             <router-view/>
+            <div style="background: url('../static/img/girl2.jpeg');opacity:0.6;height: 100%;width:100%;margin-top: 0px">
+              <h1 style="color: red;line-height: 100%">欢迎来到个人中心！</h1>
+            </div>
           </template>
         </el-main>
 
