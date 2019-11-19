@@ -1,9 +1,9 @@
 <template>
-  <div class="hello" style="width: 95%;margin: auto">
+  <div class="hello" style="width: 100%;margin: auto">
     <!--<h1>{{ msg }}</h1>-->
     <el-container >
       <!--导航栏-->
-      <el-header style="height: 80px;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;opacity: 0.9" class="header">
+      <el-header style="width:100%;height: 80px;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;opacity: 0.9" class="header">
         <div style="width: 100%;margin: auto;">
           <el-row :gutter="10">
             <!--<el-col :span="4">-->
@@ -255,7 +255,7 @@
         </div>
       </el-header>
 
-      <el-main>
+      <el-main style="width: 95%;margin: auto">
 
         <!--视频轮播-->
         <el-row :gutter="10">
