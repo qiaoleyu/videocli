@@ -1,9 +1,9 @@
 <template>
-  <div class="hello" style="width:100%;margin: auto">
+  <div class="hello" style="width: 95%;margin: auto">
     <!--<h1>{{ msg }}</h1>-->
     <el-container >
       <!--导航栏-->
-      <el-header style="width:100%;height: 80px;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;opacity: 0.9" class="header">
+      <el-header style="height: 80px;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;opacity: 0.9" class="header">
         <div style="width: 100%;margin: auto;">
           <el-row :gutter="10">
             <!--<el-col :span="4">-->
@@ -255,7 +255,7 @@
         </div>
       </el-header>
 
-      <el-main style="width: 95%;margin: auto">
+      <el-main>
 
         <!--视频轮播-->
         <el-row :gutter="10">
@@ -1101,6 +1101,7 @@
     //         alert(word)
             var length=word.length;//huoqu wenben de changdu
             var span = document.createElement('span');
+//            var span=document.getElementById('span')
             var top = parseInt(Math.random() * 500) - 20;
             var color1 = parseInt(Math.random() * 256);
             var color2 = parseInt(Math.random() * 256);
@@ -1119,10 +1120,10 @@
             span.innerHTML = word;
     //          alert($('box'))
             $('box').appendChild(span);
-            if (span.offsetLeft < -length * random() * 16) {
+           /* if (span.offsetLeft < -length * random() * 16) {
               clearInterval(timer);
               mainContent.removeChild(span);
-            }
+            }*/
           }
 
       },
@@ -1241,7 +1242,7 @@
       onPlayerPause(player) {
 
         this.record.videoTime=player.currentTime();
-        alert(player.currentTime())
+//        alert(player.currentTime())
         axios.post("api/updateRecord",this.record).then(res=>{
           this.record=res.data;
         })
@@ -1333,12 +1334,12 @@
           //接收到消息的回调方法
           var that = this;
           this.websocket.onmessage = function(event) {
-              console.log(event)
+//              console.log(event)
             var object = eval("(" + event.data + ")");
-            console.log(object);
-            console.log("接收到的消息："+object.msg);
+//            console.log(object);
+//            console.log("接收到的消息："+object.msg);
             this.messageList=object.msg;
-            console.log(this.messageList)
+//            console.log(this.messageList)
             if (object.type == 0) {
               // 提示连接成功
               console.log("连接成功");
@@ -1349,7 +1350,8 @@
             if (object.type == 1) {
               //显示消息
               console.log("接受消息");
-              that.messageList.push(object);
+//              that.messageList.push(object);
+//              console.log(this.messageList)
               that.sendMsg(this.messageList);
 //              document.getElementById('box').innerHTML += object.msg + '<br/>';
             }
