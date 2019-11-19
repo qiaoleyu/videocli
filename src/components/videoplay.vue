@@ -32,33 +32,34 @@
                   <router-link type="info" :to="{name:'videoDirect'}" style="color:black;"><a style="cursor: pointer">直播</a></router-link>
                   <!--<a ></a>-->
                 </div>
-                <el-dropdown>
-                  <div class="grid-content " style="height:60px;font-size: 16px;float: left;margin-top: 10px"
-                       @mousemove="over(9)"
-                       @mouseleave="leave(9)"
-                       :style="h"
-                  >
-                  <span class="el-dropdown-link">
-                    <a style="cursor: pointer">个人中心</a>
-                    <i class="el-icon-arrow-down el-icon--left"></i>
-                  </span>
-                    <el-dropdown-menu slot="dropdown">
-                      <el-dropdown-item><a @click="toUser()">完善资料</a></el-dropdown-item>
-                      <el-dropdown-item><a @click="toModify()">修改密码</a></el-dropdown-item>
-                      <el-dropdown-item><a @click="toMessage()">信息中心</a></el-dropdown-item>
-                    </el-dropdown-menu>
-                  </div>
-                </el-dropdown>
+                <!--<el-dropdown>-->
+                  <!--<div class="grid-content " style="height:60px;font-size: 16px;float: left;margin-top: 10px"-->
+                       <!--@mousemove="over(9)"-->
+                       <!--@mouseleave="leave(9)"-->
+                       <!--:style="h"-->
+                  <!--&gt;-->
+                  <!--<span class="el-dropdown-link">-->
+                    <!--<a style="cursor: pointer">个人中心</a>-->
+                    <!--<i class="el-icon-arrow-down el-icon&#45;&#45;left"></i>-->
+                  <!--</span>-->
+                    <!--<el-dropdown-menu slot="dropdown">-->
+                      <!--<el-dropdown-item><a @click="toUser()">完善资料</a></el-dropdown-item>-->
+                      <!--<el-dropdown-item><a @click="toModify()">修改密码</a></el-dropdown-item>-->
+                      <!--<el-dropdown-item><a @click="toMessage()">信息中心</a></el-dropdown-item>-->
+                    <!--</el-dropdown-menu>-->
+                  <!--</div>-->
+                <!--</el-dropdown>-->
 
-                <el-dropdown>
+                <el-dropdown style="float: left;margin-left:10px">
 
                 <span class="el-dropdown-link">
-                  <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;top: 10px"
+                  <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
                        @mousemove="over(3)"
                        @mouseleave="leave(3)"
                        :style="b"
                   >
-                    <a style="cursor: pointer">赛事</a><i class="el-icon-arrow-down el-icon--left"></i>
+                    <a style="cursor: pointer">赛事</a>
+                    <!--<i class="el-icon-arrow-down el-icon&#45;&#45;left"></i>-->
                   </div>
                 </span>
                   <el-dropdown-menu slot="dropdown" style="width:240px;">
@@ -70,15 +71,15 @@
                   </el-dropdown-menu>
 
                 </el-dropdown>
-                <el-dropdown>
-                  <div class="grid-content " style="height: 60px;font-size: 16px;float: left"
+                <el-dropdown style="float: left;margin-left:10px">
+                  <div class="grid-content " style="height: 60px;width:60px;font-size: 16px;float: left;margin-top: 10px"
                        @mousemove="over(4)"
                        @mouseleave="leave(4)"
                        :style="c"
                   >
                 <span class="el-dropdown-link">
                   <a style="cursor: pointer">视频</a>
-                  <i class="el-icon-arrow-down el-icon--left"></i>
+                  <!--<i class="el-icon-arrow-down el-icon&#45;&#45;left"></i>-->
                 </span>
                     <el-dropdown-menu slot="dropdown" style="width:240px;">
                       <el-dropdown-item>1</el-dropdown-item>
@@ -97,12 +98,12 @@
               <div class="grid-content " style="height: 80px;margin-top: 10px">
 
                 <!--VIP-->
-                <div class="grid-content " style="height: 60px;width:50px;float: left"
+                <div class="grid-content " style="height: 60px;width:60px;float: left"
                      @mousemove="over(11)"
                      @mouseleave="leave(11)"
                      :style="j"
                 >
-                 <span type="info" style="color:black;cursor: pointer;margin-right: 10px">
+                 <span type="info" style="color:black;cursor: pointer;">
                     <el-popover
                       placement="top-start"
                       width="400"
@@ -193,21 +194,44 @@
                 </div>
 
                 <!--历史-->
-                <div class="grid-content " style="height: 60px;float: left"
-                     @mousemove="over(5)"
-                     @mouseleave="leave(5)"
-                     :style="d"
-                >
-                  <span type="info" style="color:black;cursor: pointer;margin-right: 10px" ><a @click="logout()" class="el-icon-pie-chart" :size="50">历史</a></span>
-                </div>
+                <!--<div class="grid-content " style="height: 60px;float: left"-->
+                     <!--@mousemove="over(5)"-->
+                     <!--@mouseleave="leave(5)"-->
+                     <!--:style="d"-->
+                <!--&gt;-->
+                  <!--<span type="info" style="color:black;cursor: pointer;margin-right: 10px" ><a @click="logout()" class="el-icon-pie-chart" :size="50">历史</a></span>-->
+                <!--</div>-->
                 <!--登录-->
-                <div class="grid-content " style="height: 60px;width:50px;float: left"
-                     @mousemove="over(6)"
-                     @mouseleave="leave(6)"
-                     :style="e"
+                <div class="grid-content " style="height: 60px;width:60px;float: left"
+
                 >
+                  <!--@mousemove="over(6)"
+                     @mouseleave="leave(6)"
+                     :style="e"-->
                   <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.user.userId==null" ><a class="el-icon-user" >登录</a></router-link>
-                  <span style="color:black;" v-if="this.user.userId!=null"><a>{{user.userName}}</a></span>
+                  <span style="color:black;" v-if="this.user.userId!=null">
+                 <!-- <a>{{user.userName}}</a>-->
+                  <el-dropdown>
+                <div class="grid-content " style="height:60px;font-size: 16px;float: left;"
+
+                >
+                   <!--@mousemove="over(9)"-->
+                  <!--@mouseleave="leave(9)"-->
+                  <!--:style="h"-->
+                  <span class="el-dropdown-link">
+                    <!--<a style="cursor: pointer">个人中心</a>-->
+                    <el-avatar slot="reference" :src="this.user.userPic" style="background-color: aqua;margin-top: 10px;margin-left: 10px;margin-right: 10px" :size="35" title="个人中心"></el-avatar>
+
+                    <!--<i class="el-icon-arrow-down el-icon&#45;&#45;left"></i>-->
+                  </span>
+                  <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item><a @click="toUser()">完善资料</a></el-dropdown-item>
+                    <el-dropdown-item><a @click="toModify()">修改密码</a></el-dropdown-item>
+                    <el-dropdown-item><a @click="toMessage()">信息中心</a></el-dropdown-item>
+                  </el-dropdown-menu>
+                </div>
+              </el-dropdown>
+                </span>
                 </div>
                 <!--注册-->
                 <div class="grid-content " style="height: 60px;width:50px;float: left"
@@ -711,7 +735,7 @@
   };
   setInterval(move,200)
   function move() {
-if($('box').hasChildren){
+
       var spanArray = $('box').children;
       for (var i = 0; i < spanArray.length; i++) {
 
@@ -723,7 +747,6 @@ if($('box').hasChildren){
           spanArray[i].speed==0;
       }
     }
-}
 
   };
   export default {
@@ -734,6 +757,19 @@ if($('box').hasChildren){
     name: 'index',
     data () {
       return {
+        path: '',
+        active: '',
+        a: '',
+        b: '',
+        c: '',
+        d: '',
+        e: '',
+        f: '',
+        g: '',
+        h: '',
+        i: '',
+        j: '',
+        m: '',
         user: {
           userId: '',
           userName: '',
@@ -853,14 +889,16 @@ if($('box').hasChildren){
           videoPic:'',
           videoUrl:'',
         },
-        time:''
-
+        time:'',
+        list:[]
       }
     },
     mounted(){
-      this.record.userId=Cookies.get("userId");
+      var userId;
+      userId=Cookies.get("userId");
 
-      this.user.userId=Cookies.get("userId")
+      this.record.userId=userId;
+      this.user.userId=userId;
       if (this.user.userId!=''){
         axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
           this.user=res.data;
@@ -870,6 +908,8 @@ if($('box').hasChildren){
         alert("请登录")
         this.$router.push("/userLogin")
       }
+
+
 
       //alert(666)
       var videoId=this.$route.params.pk_video_id
@@ -884,6 +924,11 @@ if($('box').hasChildren){
         axios.get(url).then(res=>{
           this.typeName=res.data
         })
+      })
+
+      axios.get("api/findRecordByVideoId/"+videoId+"/"+userId).then(res=>{
+          this.list=res.data;
+          //alert(this.list[0].videoId)
       })
 
 
@@ -901,11 +946,86 @@ if($('box').hasChildren){
 //      this.findByCommentId();
 //      var player = video('example-video');
 
+      this.record.videoId=this.video.videoId;
+      this.record.videoName=this.video.videoName;
+      this.record.videoPic=this.video.videoPic;
+      this.record.videoUrl=this.video.videoUrl;
+
     },
     beforeDestroy() {//这个才有用
       clearInterval(this.timer)
     },
     methods:{
+      over: function (x) {
+        if (x == 1) {
+          this.active = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 2) {
+          this.a = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 3) {
+          this.b = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 4) {
+          this.c = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 5) {
+          this.d = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 6) {
+          this.e = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 7) {
+          this.f = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 8) {
+          this.g = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 9) {
+          this.h = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 11) {
+          this.j = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+        if (x == 12) {
+          this.m = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+      },
+      leave: function (x) {
+        if (x == 1) {
+          this.active = '';
+        }
+        if (x == 2) {
+          this.a = '';
+        }
+        if (x == 3) {
+          this.b = '';
+        }
+        if (x == 4) {
+          this.c = '';
+        }
+        if (x == 5) {
+          this.d = '';
+        }
+        if (x == 6) {
+          this.e = '';
+        }
+        if (x == 7) {
+          this.f = '';
+        }
+        if (x == 8) {
+          this.g = '';
+        }
+        if (x == 9) {
+          this.h = '';
+        }
+        if (x == 11) {
+          this.j = '';
+        }
+        if (x == 12) {
+          this.m = '';
+        }
+      },
         //点赞
       likeVideo:function () {
        var id=this.video.videoId
@@ -996,10 +1116,10 @@ if($('box').hasChildren){
             span.innerHTML = word;
     //          alert($('box'))
             $('box').appendChild(span);
-            /*if (span.offsetLeft < -length * random * 16) {
+            if (span.offsetLeft < -length * random * 16) {
               clearInterval(timer);
               mainContent.removeChild(span);
-            }*/
+            }
           }
 
       },
@@ -1096,49 +1216,61 @@ if($('box').hasChildren){
       onPlayerPlay(player) {
         //console.log('player play!', player)
         /*开始播放则定时器启动，websocket连接，向后台请求弹幕数据*/
-//        this.conectWebSocket();
-//        if (this.timer){
-//          clearInterval(this.timer);
-//        } else {
-//          this.timer=setInterval(()=>{
-//            this.sendMessage();
-//          },1000)
-//        }
+
+
+
+
+        this.record.videoTime=player.currentTime();
+        axios.post("api/addRecord",this.record).then(res=>{
+          this.record=res.data;
+        })
+
+        alert(this.list[0].videoTime);
+        if (this.list[0].videoTime!==null){
+          player.currentTime(this.list[0].videoTime);
+        }
+
+        this.conectWebSocket();
+        if (this.timer){
+          clearInterval(this.timer);
+        } else {
+          this.timer=setInterval(()=>{
+            this.sendMessage();
+          },1000)
+        }
+
 
       },
 
       // 暂停回调
       onPlayerPause(player) {
+
+        this.record.videoTime=player.currentTime();
+        alert(player.currentTime())
+        axios.post("api/updateRecord",this.record).then(res=>{
+          this.record=res.data;
+        })
         //console.log('player pause!', player)
         /*视频暂停，定时器暂停，websocket连接*/
         this.websocket.close();
-          clearInterval(this.timer);
+        clearInterval(this.timer);
 
-        this.record.videoId=this.video.videoId;
-        this.record.videoName=this.video.videoName;
-        this.record.videoPic=this.video.videoPic;
-        this.record.videoUrl=this.video.videoUrl;
-        this.record.videoTime=this.time;
-        axios.post("api/addRecord",this.record).then(res=>{
-          this.record=res.data;
-        })
+
 
       },
 
       // 视频播完回调
       onPlayerEnded($event) {
         //console.log($event)
-        this.websocket.close();
-
-          clearInterval(this.timer);
-
+//        this.websocket.close();
+        clearInterval(this.timer);
       },
 
       // DOM元素上的readyState更改导致播放停止
       onPlayerWaiting($event) {
        // console.log($event)
-        this.websocket.close();
-          clearInterval(this.timer);
+//        this.websocket.close();
+//        clearInterval(this.timer);
       },
 
       // 已开始播放回调
@@ -1149,6 +1281,7 @@ if($('box').hasChildren){
           this.timer=setInterval(()=>{
             this.sendMessage();
           },1000)
+
 
       },
 
