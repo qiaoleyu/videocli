@@ -599,8 +599,8 @@
                             </el-col>
                             <el-col :span="8" style="margin-top: 10px">
                               <div style="float: left;">
-                                <span v-if="i.commentLid<=1">{{i.commentContent}}</span>
-                                <span v-if="i.commentLid>1">回复@{{i.respondentName}}：{{i.commentContent}}</span>
+                                <span v-if="i.commentLid==i.commentRid">{{i.commentContent}}</span>
+                                <span v-if="i.commentLid!=i.commentRid">回复@{{i.respondentName}}：{{i.commentContent}}</span>
                               </div>
                             </el-col>
                           </el-row>
@@ -1492,6 +1492,7 @@
           this.com.userId=this.user.userId;
           this.com.videoId=this.$route.params.pk_video_id;
           this.com.commentRid =this.comments[index].commentId;
+          this.com.commentLid =this.comments[index].commentId;
           this.com.respondentId=this.comments[index].userId;
           this.com.respondentName=this.comments[index].userName;
           this.com.commentContent=value;
