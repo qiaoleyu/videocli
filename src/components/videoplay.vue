@@ -1220,31 +1220,40 @@
       onPlayerPlay(player) {
         //console.log('player play!', player)
         /*开始播放则定时器启动，websocket连接，向后台请求弹幕数据*/
+        if (this.list[0].videoTime!=null){
+          player.currentTime(this.list[0].videoTime);
+        }
 
-
+        if (this.list[0].videoTime=player.currentTime){
+          this.playerOptions.loop=true;
+        }
 
         this.record.videoId=this.video.videoId;
         this.record.videoName=this.video.videoName;
         this.record.videoPic=this.video.videoPic;
         this.record.videoUrl=this.video.videoUrl;
         this.record.videoTime=player.currentTime();
-        axios.post("api/addRecord",this.record).then(res=>{
-          this.record=res.data;
+        axios.post("api/addRecord",this.record).then(res=> {
+          if (res.data!=null){
+              console.log("success");
+          }
         })
 
-//        alert(this.list[0].videoTime);
-        if (this.list[0].videoTime!==null){
+        if (this.list[0].videoTime!=null){
           player.currentTime(this.list[0].videoTime);
         }
       },
 
       // 暂停回调
       onPlayerPause(player) {
-
+        this.list[0].videoTime=player.currentTime();
         this.record.videoTime=player.currentTime();
 //        alert(player.currentTime())
+
         axios.post("api/updateRecord",this.record).then(res=>{
-          this.record=res.data;
+          if (res.data!=null){
+            console.log("success");
+          }
         })
         //console.log('player pause!', player)
         /*视频暂停，定时器暂停，websocket连接*/
@@ -1264,6 +1273,10 @@
        // console.log($event)
         this.websocket.close();
         clearInterval(this.timer);
+       /* alert(player.currentTime());
+        player.currentTime($event.cache_.currentTime);
+        this.list[0].videoTime=$event.cache_.currentTime;*/
+
       },
 
       // 已开始播放回调
