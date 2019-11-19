@@ -1097,7 +1097,8 @@
             var word = msg[i];
     //         alert(word)
             var length=word.length;//huoqu wenben de changdu
-            var span = document.createElement('span');
+//            var span = document.createElement('span');
+            var span=document.getElementById()
             var top = parseInt(Math.random() * 500) - 20;
             var color1 = parseInt(Math.random() * 256);
             var color2 = parseInt(Math.random() * 256);
@@ -1116,7 +1117,7 @@
             span.innerHTML = word;
     //          alert($('box'))
             $('box').appendChild(span);
-            if (span.offsetLeft < -length * random * 16) {
+            if (span.offsetLeft < -length * random() * 16) {
               clearInterval(timer);
               mainContent.removeChild(span);
             }
@@ -1150,7 +1151,7 @@
 
           $('box').appendChild(span);
           this.input1= "";
-          if (span.offsetLeft < -length * random * 16) {
+          if (span.offsetLeft < -length * random() * 16) {
             clearInterval(timer);
             mainContent.removeChild(span);
           }
