@@ -502,18 +502,33 @@
                         </el-col>
                         <el-col :span="24" style="height: 30px;font-size: 14px;line-height: 30px">
                           <el-row :gutter="10">
-                            <el-col :span="6">
+                            <el-col :span="10">
                               <span >{{item.commentTime}}</span>
                             </el-col>
                             <el-col :span="6">
                               <el-button @click="like2(index)" icon="el-icon-thumb" type="warning" circle plain style="font-size: 8px"></el-button>
                               <sapn>{{item.commentCount}}</sapn>
                             </el-col>
-                            <el-col :span="6">
+                            <el-col :span="4">
                               <span >不赞同</span>
                             </el-col>
-                            <el-col :span="6">
-                              <a @click="replyMeg(index)" style="cursor: pointer;text-align: center">回复</a>
+                            <el-col :span="10">
+                              <!--<a @click="replyMeg(index)" style="cursor: pointer;text-align: center">回复</a>-->
+
+                              <el-button type="text" @click="dialogVisible = true">回复</el-button>
+
+                              <el-dialog
+                                title="提示"
+                                :visible.sync="dialogVisible"
+                                width="30%"
+                                :before-close="handleClose">
+                                <el-input v-model="input3"></el-input>
+                                <span slot="footer" class="dialog-footer">
+                                      <el-button @click="dialogVisible = false">取 消</el-button>
+                                      <el-button type="primary"  @click="replyMeg(index)">确 定</el-button>
+                                    </span>
+                              </el-dialog>
+
                             </el-col>
                           </el-row>
                         </el-col>
@@ -585,7 +600,7 @@
                                   <span>{{i.userName}}</span>
                                 </div>
                               </el-col>
-                              <el-col :span="4">
+                              <el-col :span="12">
                                 <div style="float: left;">
                                   <span v-if="i.commentLid<=1">{{i.commentContent}}</span>
                                   <span v-if="i.commentLid>1">回复@{{i.respondentName}}：{{i.commentContent}}</span>
@@ -607,7 +622,21 @@
                               </el-col>
                               <el-col :span="4">
                                 <div style="float: left;">
-                                  <a @click="replyMessage(index,value)" style="cursor: pointer;">回复</a>
+                                  <!--<a @click="replyMessage(index,value)" style="cursor: pointer;">回复</a>-->
+                                  <el-button type="text" @click="dialogVisible = true">回复</el-button>
+
+                                  <el-dialog
+                                    title="提示"
+                                    :visible.sync="dialogVisible"
+                                    width="30%"
+                                    :before-close="handleClose">
+                                    <el-input v-model="input3"></el-input>
+                                    <span slot="footer" class="dialog-footer">
+                                      <el-button @click="dialogVisible = false">取 消</el-button>
+                                      <el-button type="primary"  @click="replyMessage(index,value)">确 定</el-button>
+                                    </span>
+                                  </el-dialog>
+
                                 </div>
                               </el-col>
                             </el-row>
@@ -825,6 +854,8 @@
           input:'',
         input1:'',
         input2:'',
+        input3:'',
+        dialogVisible: false,
         /*user:{
               userId:'',
           userName:''
@@ -1457,9 +1488,19 @@
           }
         })
       },
-      /*回复评论--》3 */
+
+      handleClose(done) {
+        this.$confirm('确认关闭？')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+      },
+
+      /*回复评论--》2 */
       replyMeg:function (index) {
-        this.$prompt('请输入回复信息', '提示', {
+        this.dialogVisible = false;
+        /*this.$prompt('请输入回复信息', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           //inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
@@ -1468,7 +1509,7 @@
           this.$message({
             type: 'success',
             message: '您回复的信息是: ' + val,
-          });
+          });*/
           this.com.userPic=this.user.userPic;
           this.com.userName=this.user.userName;
           this.com.userId=this.user.userId;
@@ -1476,26 +1517,28 @@
           this.com.commentRid =this.comments[index].commentId;
           this.com.respondentId=this.comments[index].userId;
           this.com.respondentName=this.comments[index].userName;
-          this.com.commentContent=val;
+          this.com.commentContent=this.input3;
+          console.log(this.com)
           axios.post("api/saveComment",this.com).then(res=>{
             if (res.data!=null){
-              alert("success")
+//              alert("success")
+              this.input3='';
               this.findAll();
             }else {
               alert("fail")
             }
           })
 
-        }).catch(() => {
+       /* }).catch(() => {
           this.$message({
             type: 'info',
             message: '取消输入'
           });
-        });
+        });*/
       },
       //回复评论--》3
       replyMessage(index,value) {
-        this.$prompt('请输入回复信息', '提示', {
+        /*this.$prompt('请输入回复信息', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           //inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
@@ -1504,7 +1547,10 @@
           this.$message({
             type: 'success',
             message: '您回复的信息是: ' + val,
-          });
+          });*/
+        this.dialogVisible = false;
+//        alert(this.input3)
+
           this.com.userPic=this.user.userPic;
           this.com.userName=this.user.userName;
           this.com.userId=this.user.userId;
@@ -1512,23 +1558,24 @@
           this.com.respondentId=this.comments2[index].list[value].userId;
           this.com.respondentName=this.comments2[index].list[value].userName;
           this.com.commentLid=this.comments[index].commentId;
-          this.com.commentContent=val;
+          this.com.commentContent=this.input3;
           this.com.videoId=this.video.videoId;
           axios.post("api/saveComment",this.com).then(res=>{
             if (res.data!=null){
-              alert("success")
+//              alert("success")
+              this.input3='';
               this.findAll();
             }else {
               alert("fail")
             }
           })
 
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '取消输入'
-          });
-        });
+//        }).catch(() => {
+//          this.$message({
+//            type: 'info',
+//            message: '取消输入'
+//          });
+//        });
       },
 
       //支付宝支付
