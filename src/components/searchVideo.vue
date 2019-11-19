@@ -291,7 +291,7 @@
         <el-row :gutter="10">
           <!--<el-col :span="4" v-for="" v-bind:key="">-->
           <el-col :span="6"  v-for="(video,index) in videos" v-bind:key="video.pk_video_id">
-            <el-card style="height: 200px;margin-bottom: 10px;">
+            <el-card style="height: 200px;margin-bottom: 10px;font-size:14px">
               <div style="height: 150px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.pk_video_id}">
                 <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
@@ -305,7 +305,7 @@
 
               </div>
               <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
-                <div style="width:50%;float:left">
+                <div style="width:50%;float:left;">
                   {{video.idx_video_name}}
 
                 </div>
@@ -601,6 +601,40 @@
         if (x == 12) {
           this.m = '';
         }
+      },
+      //下载
+      download:function (index) {
+
+        this.$prompt('请输入回复信息', '选择下载路径', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          //inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
+          //inputErrorMessage: '邮箱格式不正确'
+        }).then(({ value }) => {
+          this.$message({
+            type: 'success',
+            message: '您回复的信息是: ' + value,
+          });
+
+          this.com.userPic=this.user.userPic;
+          console.log(this.com)
+//        this.diaVisible = false;
+          axios.post("api/saveComment",this.com).then(res=>{
+            if (res.data!=null){
+//              alert("success")
+              this.input4='';
+              this.findAll();
+            }else {
+              alert("fail")
+            }
+          })
+
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消输入'
+          });
+        });
       },
       like: function (id) {
         //alert(id)

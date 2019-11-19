@@ -15,11 +15,11 @@
         </el-col>
       </el-row>
       <!--视频-->
-      <el-row :gutter="10">
+      <el-row :gutter="10" style="height: 450px">
         <!--<el-col :span="4" v-for="" v-bind:key="">-->
         <el-col :span="6"  v-for="(record,index) in record" v-bind:key="record.videoId">
           <!--<el-card style="height: 200px;margin-bottom: 10px;">-->
-            <div style="height: 170px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+record.videoId}">
+            <div style="height: 200px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+record.videoId}">
               <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
               <video  width=90%  style="margin: auto;height:130px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
@@ -29,10 +29,10 @@
                 <!--type="application/x-mpegURL"-->
               </video>
             </router-link>
-              <div style="width:60%;float:left;font-weight:bolder;margin-top: 10px;color:black;height: 20px;line-height: 100%">
+              <div style="width:60%;float:left;font-weight:bolder;margin-top: 20px;color:black;height: 50px;line-height: 100%">
                 {{record.videoName}}
               </div>
-              <div style="width:40%;float:left;margin-top: 10px;height: 20px;line-height: 100%">
+              <div style="width:40%;float:left;margin-top: 20px;height: 50px;line-height: 100%">
                 <a class="el-icon-circle-close"  style="cursor: pointer;font-size: 20px;font-weight: bolder" title="删除" @click="del(record.recordId)"></a>
               </div>
             </div>
@@ -61,7 +61,7 @@
       return {
         total:0,
         params:{
-          size:2,
+          size:8,
           page:1
         },
         path: '',
