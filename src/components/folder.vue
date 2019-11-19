@@ -6,7 +6,7 @@
       <el-row>
         <el-col :span="6" :offset="17">
           <div class="grid-content" style="line-height: 40px;float: right;">
-            <a class="el-icon-circle-close"  style="cursor: pointer;font-size: 25px;color:red;font-weight: bolder" title="全删" @click=""></a>
+            <a class="el-icon-circle-close"  style="cursor: pointer;font-size: 25px;color:red;font-weight: bolder" title="全删" @click="delAll()"></a>
 
             <!-- <el-tooltip content="更多" placement="bottom" effect="light">
                <el-button class="el-icon-arrow-right" plain @click="next()"></el-button>
@@ -163,6 +163,20 @@
           }
         })
     },
+      delAll:function () {
+        var id=this.user.userId
+        var url="api/deleteAllCollection/"+id
+        axios.get(url).then(res=>{
+          if(res.data!=null){
+            swal({
+              text: "删除成功！",
+              icon: "success",
+              button: "确定",
+            });
+            this.query()
+          }
+        })
+      }
 
     }
   }
