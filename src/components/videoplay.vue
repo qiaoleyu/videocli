@@ -1529,7 +1529,7 @@
           });
           alert(value)
         this.dialogVisible = false;
-//        alert(this.input3)
+        alert(this.input3)
           this.com.userPic=this.user.userPic;
           this.com.userName=this.user.userName;
           this.com.userId=this.user.userId;
