@@ -935,7 +935,6 @@
 
 
         this.barrage.videoId=videoId;
-//      this.barrage.videoId=1;   //待删
         this.com.userId=Cookies.get('userId');
         axios.get("api/findUserByUserId/"+this.com.userId).then(res=>{
             this.user=res.data;
@@ -951,9 +950,6 @@
       this.record.videoPic=this.video.videoPic;
       this.record.videoUrl=this.video.videoUrl;
 
-    },
-    beforeDestroy() {//这个才有用
-      clearInterval(this.timer)
     },
     methods:{
       over: function (x) {
@@ -1230,14 +1226,14 @@
           player.currentTime(this.list[0].videoTime);
         }
 
-        this.conectWebSocket();
+        /*this.conectWebSocket();
         if (this.timer){
           clearInterval(this.timer);
         } else {
           this.timer=setInterval(()=>{
             this.sendMessage();
           },1000)
-        }
+        }*/
 
 
       },
@@ -1262,15 +1258,15 @@
       // 视频播完回调
       onPlayerEnded($event) {
         //console.log($event)
-//        this.websocket.close();
+        this.websocket.close();
         clearInterval(this.timer);
       },
 
       // DOM元素上的readyState更改导致播放停止
       onPlayerWaiting($event) {
        // console.log($event)
-//        this.websocket.close();
-//        clearInterval(this.timer);
+        this.websocket.close();
+        clearInterval(this.timer);
       },
 
       // 已开始播放回调
