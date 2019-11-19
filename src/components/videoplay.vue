@@ -1232,7 +1232,7 @@
           this.record=res.data;
         })
 
-        alert(this.list[0].videoTime);
+//        alert(this.list[0].videoTime);
         if (this.list[0].videoTime!==null){
           player.currentTime(this.list[0].videoTime);
         }

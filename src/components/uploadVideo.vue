@@ -78,7 +78,9 @@
                     v-for="item in videoKinds"
                     :key="item.typeId"
                     :label="item.typeName"
-                    :value="item.typeId">
+                    :value="item.typeId"
+                    style="width: 100%;margin: auto"
+                  >
                   </el-option>
                 </el-select>
               </el-form-item>
@@ -292,6 +294,17 @@
 
 
 <style>
+  .el-select-dropdown__list{
+    width: 400px;
+    margin: auto;
+    position: relative;
+    text-align: left;
+    overflow: hidden;
+  }
+  .el-scrollbar__bar.is-vertical{
+    width: 0px;
+    height: 0px;
+  }
   .avatar-uploader .el-upload {
     border: 1px dashed #d9d9d9;
     border-radius: 6px;
