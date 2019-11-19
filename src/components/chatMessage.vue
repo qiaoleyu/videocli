@@ -11,7 +11,7 @@
               <!--<p class="name" style="color: white">官方群组</p>-->
               <hr>
               <div v-for="(item,index) in userList">
-                <el-avatar  width="50" height="50" :src="item.userPic"></el-avatar>
+                <el-avatar  width="50" height="50" :src="item.userPic" @click="creatWS(index)"></el-avatar>
                 <p class="name" style="color: white">{{item.userName}}</p>
               </div>
             </div>
@@ -59,6 +59,8 @@
 
 <script>
   import Cookies from 'js-cookie'
+  import axios from 'axios';
+
   export default {
     data() {
       return {
@@ -73,8 +75,12 @@
         user2:{
 
         },
+        communication:{
+
+        },
         userList:[],
         toUserId:''  //对方id
+
       };
     },
     mounted(){
@@ -101,7 +107,7 @@
           //判断当前浏览器是否支持WebSocket
           if ("WebSocket" in window) {
             this.websocket = new WebSocket(
-              "ws://localhost:8080/websocket/" + this.name
+              "ws://localhost:8080/websoc/" + this.user.userId
             );
           } else {
             alert("不支持建立socket连接");
@@ -127,7 +133,25 @@
             if (object.type == 1) {
               //显示消息
               console.log("接受消息");
-              that.messageList.push(object);
+
+              /*存库*/
+              this.communication.userId=this.user.userId;
+              this.communication.userName=this.user.userName;
+              this.communication.userPic=this.user.userPic;
+              this.communication.userRid=this.user2.userId;
+              this.communication.userRname=this.user2.userName;
+              this.communication.userRpic=this.user2.userPic;
+              this.communication.message=object.msg;
+              alert(object.msg);
+                  axios.post("api/saveUserMsg",this.communication).then(res=>{
+                  if (res.data!=null){
+                    that.messageList.push(object);
+                  }else {
+                      alert("网络不佳")
+                  }
+              })
+
+
             }
           };
           //连接关闭的回调方法
@@ -140,13 +164,13 @@
       // 发送消息
       sendMessage: function() {
         var socketMsg = { msg: this.messageValue, toUser: this.toUserId };
-        if (this.aisle == "") {
+//        if (this.aisle == "") {
           //群聊.
 //          socketMsg.type = 0;
 //        } else {
           //单聊.
           socketMsg.type = 1;
-        }
+//        }
         this.websocket.send(JSON.stringify(socketMsg));
       },
       showInfo: function(people, aisle) {

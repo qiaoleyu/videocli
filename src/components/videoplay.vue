@@ -711,7 +711,7 @@
   };
   setInterval(move,200)
   function move() {
-
+if($('box').hasChildren){
       var spanArray = $('box').children;
       for (var i = 0; i < spanArray.length; i++) {
 
@@ -723,6 +723,7 @@
           spanArray[i].speed==0;
       }
     }
+}
 
   };
   export default {
@@ -995,10 +996,10 @@
             span.innerHTML = word;
     //          alert($('box'))
             $('box').appendChild(span);
-            if (span.offsetLeft < -length * random * 16) {
+            /*if (span.offsetLeft < -length * random * 16) {
               clearInterval(timer);
               mainContent.removeChild(span);
-            }
+            }*/
           }
 
       },
@@ -1095,14 +1096,14 @@
       onPlayerPlay(player) {
         //console.log('player play!', player)
         /*开始播放则定时器启动，websocket连接，向后台请求弹幕数据*/
-        this.conectWebSocket();
-        if (this.timer){
-          clearInterval(this.timer);
-        } else {
-          this.timer=setInterval(()=>{
-            this.sendMessage();
-          },1000)
-        }
+//        this.conectWebSocket();
+//        if (this.timer){
+//          clearInterval(this.timer);
+//        } else {
+//          this.timer=setInterval(()=>{
+//            this.sendMessage();
+//          },1000)
+//        }
 
       },
 
@@ -1111,8 +1112,7 @@
         //console.log('player pause!', player)
         /*视频暂停，定时器暂停，websocket连接*/
         this.websocket.close();
-        clearInterval(this.timer);
-
+          clearInterval(this.timer);
 
         this.record.videoId=this.video.videoId;
         this.record.videoName=this.video.videoName;
@@ -1128,15 +1128,17 @@
       // 视频播完回调
       onPlayerEnded($event) {
         //console.log($event)
-//        this.websocket.close();
-        clearInterval(this.timer);
+        this.websocket.close();
+
+          clearInterval(this.timer);
+
       },
 
       // DOM元素上的readyState更改导致播放停止
       onPlayerWaiting($event) {
        // console.log($event)
-//        this.websocket.close();
-//        clearInterval(this.timer);
+        this.websocket.close();
+          clearInterval(this.timer);
       },
 
       // 已开始播放回调
