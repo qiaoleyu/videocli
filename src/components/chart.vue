@@ -6,7 +6,7 @@
       <el-row>
         <el-col :span="6" :offset="17">
           <div class="grid-content" style="line-height: 40px;float: right;">
-            <a class="el-icon-circle-close"  style="cursor: pointer;;font-weight: bolder;font-size: 25px" @click="" title="全删"></a>
+            <a class="el-icon-circle-close"  style="cursor: pointer;;font-weight: bolder;font-size: 25px" @click="deleteAll()" title="全删"></a>
 
             <!-- <el-tooltip content="更多" placement="bottom" effect="light">
                <el-button class="el-icon-arrow-right" plain @click="next()"></el-button>
@@ -33,7 +33,7 @@
                 {{record.videoName}}
               </div>
               <div style="width:40%;float:left;margin-top: 10px;height: 20px;line-height: 100%">
-                <a class="el-icon-circle-close"  style="cursor: pointer;font-size: 20px;font-weight: bolder" title="删除" @click=""></a>
+                <a class="el-icon-circle-close"  style="cursor: pointer;font-size: 20px;font-weight: bolder" title="删除" @click="del(record.recordId)"></a>
               </div>
             </div>
 
@@ -61,7 +61,7 @@
       return {
         total:0,
         params:{
-          size:1,
+          size:2,
           page:1
         },
         path: '',
@@ -113,11 +113,39 @@
 
     },
     methods: {
+      del:function (recordId) {
+        alert(recordId);
+        axios.get("api/deleteRecordByRecordId/"+recordId).then(res=>{
+            if(res.data!=null){
+              swal({
+                text: "删除成功",
+                icon: "success",
+                button: "确定",
+              });
+              this.query();
+            }
+        })
+      },
+      deleteAll:function () {
+        alert(this.user.userId)
+        axios.get("api/deleteAll/"+this.user.userId).then(res=>{
+          if(res.data!=null){
+            swal({
+              text: "删除成功",
+              icon: "success",
+              button: "确定",
+            });
+            this.query();
+          }
+        })
+      },
       query:function(){
+        this.record=[]
         var url="api/findUserAllRecord/"+this.user.userId+"/"+this.params.page+"/"+this.params.size
         axios.get(url).then(res=>{
           this.record=res.data.list
           this.total=res.data.total
+          //this.record=[]
         })
       },
       changePage:function (page) {

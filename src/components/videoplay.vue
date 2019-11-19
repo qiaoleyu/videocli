@@ -976,10 +976,6 @@
 //      this.findByCommentId();
 //      var player = video('example-video');
 
-      this.record.videoId=this.video.videoId;
-      this.record.videoName=this.video.videoName;
-      this.record.videoPic=this.video.videoPic;
-      this.record.videoUrl=this.video.videoUrl;
 
     },
     methods:{
@@ -1247,7 +1243,10 @@
 
 
 
-
+        this.record.videoId=this.video.videoId;
+        this.record.videoName=this.video.videoName;
+        this.record.videoPic=this.video.videoPic;
+        this.record.videoUrl=this.video.videoUrl;
         this.record.videoTime=player.currentTime();
         axios.post("api/addRecord",this.record).then(res=>{
           this.record=res.data;
@@ -1282,9 +1281,6 @@
         /*视频暂停，定时器暂停，websocket连接*/
         this.websocket.close();
         clearInterval(this.timer);
-
-
-
       },
 
       // 视频播完回调
