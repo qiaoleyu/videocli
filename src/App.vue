@@ -210,28 +210,27 @@
                    @mouseleave="leave(6)"
                    :style="e"-->
                 <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.user.userId==null" ><a class="el-icon-user" >登录</a></router-link>
-                <span style="color:black;" v-if="this.user.userId!=null">
-                 <!-- <a>{{user.userName}}</a>-->
-                  <el-dropdown>
-                <div class="grid-content " style="height:60px;font-size: 16px;float: left;"
+                  <span style="color:black;" v-if="this.user.userId!=null">
+                   <!-- <a>{{user.userName}}</a>-->
+                    <el-dropdown>
+                    <div class="grid-content " style="height:60px;width:60px;font-size: 16px;float: left;"
 
-                >
-                   <!--@mousemove="over(9)"-->
-                  <!--@mouseleave="leave(9)"-->
-                  <!--:style="h"-->
-                  <span class="el-dropdown-link">
-                    <!--<a style="cursor: pointer">个人中心</a>-->
-                    <el-avatar slot="reference" :src="this.user.userPic" style="background-color: aqua;margin-top: 10px;margin-left: 10px;margin-right: 10px" :size="35" title="个人中心"></el-avatar>
-
-                    <!--<i class="el-icon-arrow-down el-icon&#45;&#45;left"></i>-->
-                  </span>
-                  <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item><a @click="toUser()">完善资料</a></el-dropdown-item>
-                    <el-dropdown-item><a @click="toModify()">修改密码</a></el-dropdown-item>
-                    <el-dropdown-item><a @click="toMessage()">信息中心</a></el-dropdown-item>
-                  </el-dropdown-menu>
-                </div>
-              </el-dropdown>
+                    >
+                       <!--@mousemove="over(9)"-->
+                      <!--@mouseleave="leave(9)"-->
+                      <!--:style="h"-->
+                      <span class="el-dropdown-link"  style="height:60px;width:60px;">
+                        <!--<a style="cursor: pointer">个人中心</a>-->
+                          <el-avatar slot="reference"  :src="this.user.userPic" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;text-align: center;" :size="40" title="个人中心"></el-avatar>
+                        <!--<i class="el-icon-arrow-down el-icon&#45;&#45;left"></i>-->
+                      </span>
+                      <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item><a @click="toUser()">完善资料</a></el-dropdown-item>
+                        <el-dropdown-item><a @click="toModify()">修改密码</a></el-dropdown-item>
+                        <el-dropdown-item><a @click="toMessage()">信息中心</a></el-dropdown-item>
+                      </el-dropdown-menu>
+                    </div>
+                  </el-dropdown>
                 </span>
               </div>
               <!--注册-->
