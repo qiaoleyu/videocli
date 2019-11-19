@@ -23,64 +23,70 @@
       <el-main style="width: 90%;margin: auto">
         <!--分类展示-->
         <el-row :gutter="10">
-          <el-col :span="24" style="font-size: 14px;margin-bottom: 20px">
+          <el-col :span="24" style="font-size: 15px;margin-bottom: 20px">
+            <el-row :gutter="10">
+              <el-col :span="20">
+                <!--遍历视频类别-->
+                <div style="float: left;width: 50px;height: 50px;line-height:50px;text-align: center">
+                  <a href="/">
+                    <span class="el-icon-s-home" style="float: left;width: 100%;"></span>
+                    <span style="float: left;width: 100%;">首页</span>
+                  </a>
+                </div>
 
-            <!--遍历视频类别-->
-            <div style="float: left;width: 50px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <a href="/">
-                <span class="el-icon-s-home" style="float: left;width: 100%;"></span>
-                <span style="float: left;width: 100%;">首页</span>
-              </a>
-            </div>
+                <div style="float: left;width: 50px;height: 50px;line-height:50px;text-align: center">
+                  <span style="float: left;width: 100%;"><a href="/">番剧</a></span>
+                </div>
+                <div style="float: left;width: 50px;height: 50px;line-height:50px;text-align: center">
+                  <span style="float: left;width: 100%;"><a href="/">国创</a></span>
+                </div>
+                <div style="float: left;width: 50px;height: 50px;line-height:50px;text-align: center">
+                  <span style="float: left;width: 100%;"><a href="/">音乐</a></span>
+                </div>
+                <div style="float: left;width: 50px;height: 50px;line-height:50px;text-align: center">
+                  <span style="float: left;width: 100%;"><a href="/">舞蹈</a></span>
+                </div>
+                <div style="float: left;width: 50px;height: 50px;line-height:50px;text-align: center">
+                  <span style="float: left;width: 100%;"><a href="/">游戏</a></span>
+                </div>
+                <div style="float: left;width: 50px;height: 50px;line-height:50px;text-align: center">
+                  <span style="float: left;width: 100%;"><a href="/">科技</a></span>
+                </div>
+                <div style="float: left;width: 50px;height: 50px;line-height:50px;text-align: center">
+                  <span style="float: left;width: 100%;"><a href="/">数码</a></span>
+                </div>
+                <div style="float: left;width: 50px;height: 50px;line-height:50px;text-align: center">
+                  <span style="float: left;width: 100%;"><a href="/">生活</a></span>
+                </div>
+                <div style="float: left;width: 50px;height: 50px;line-height:50px;text-align: center">
+                  <span style="float: left;width: 100%;"><a href="/">时尚</a></span>
+                </div>
+                <div style="float: left;width: 50px;height: 50px;line-height:50px;text-align: center">
+                  <span style="float: left;width: 100%;"><a href="/">娱乐</a></span>
+                </div>
+                <div style="float: left;width: 50px;height: 50px;line-height:50px;text-align: center">
+                  <span style="float: left;width: 100%;"><a href="/">影视</a></span>
+                </div>
+                <div style="float: left;width: 50px;height: 50px;line-height:50px;text-align: center">
+                  <span style="float: left;width: 100%;"><a href="/">直播</a></span>
+                </div>
+              </el-col>
+              <el-col :span="4">
 
-            <div style="float: left;width: 50px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">番剧</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">国创</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">音乐</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">舞蹈</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">游戏</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;bmargin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">科技</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">数码</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">生活</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">时尚</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">娱乐</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">影视</a></span>
-            </div>
-            <div style="float: left;width: 50px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <span style="float: left;width: 100%;"><a href="/">直播</a></span>
-            </div>
-            <div style="float: left;width: 100px;height: 50px;margin-bottom: 10px;margin-right: 20px;line-height:50px;text-align: center">
-              <el-image src="../static/img/bala2.jpg" style="float: left;width: 100%;"></el-image>
-            </div>
-            <div class="grid-content " style="height: 60px;width:50px;float: left"
-                 @mousemove="over(10)"
-                 @mouseleave="leave(10)"
-                 :style="i"
-            >
-                 <span type="info" style="color:black;cursor: pointer;margin-top:20px">
-                  <a class="el-icon-circle-plus-outline" type="primary" @click="toUpload()" style="font-size: 30px" title="发布视频"></a>
-                </span>
-            </div>
+                <div style="float: left;width: 100px;height: 50px;line-height:50px;text-align: center">
+                  <el-image src="../static/img/bala2.jpg" style="float: left;width: 100%;height: 100%"></el-image>
+                </div>
+                <div class="grid-content " style="height: 50px;width:50px;float: left;"
+                     @mousemove="over(10)"
+                     @mouseleave="leave(10)"
+                     :style="i"
+                >
+                     <span type="info" style="color:black;cursor: pointer;">
+                      <a class="el-icon-circle-plus-outline" type="primary" @click="toUpload()" style="font-size: 35px" title="发布视频"></a>
+                    </span>
+                </div>
+              </el-col>
+            </el-row>
           </el-col>
         </el-row>
 
