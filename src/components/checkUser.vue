@@ -18,7 +18,7 @@
             </el-form-item>
             <el-form-item label="验证码：" prop="userCode" style="text-align: left;margin-bottom: 40px">
               <el-input type="text" v-model="user.userCode" autocomplete="off" style="width: 250px" placeholder="请输入短信验证码"></el-input>
-              <el-button round type="primary" plain :class="{disabled: !this.canClick}" @click="sendMail()">{{content}}</el-button>
+              <el-button round type="primary" plain :class="{disabled: !this.canClick}" @click="getCode()">{{content}}</el-button>
             </el-form-item>
             <el-from-item>
               <div style="margin: auto;height: 40px;margin-left: 100px">
@@ -44,6 +44,7 @@
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
   import Cookies from 'js-cookie'
+  import swal from 'sweetalert'
 
   export default {
     components: {
@@ -100,7 +101,7 @@
 
     },
     methods:{
-      sendMail:function () {
+      getCode:function () {
         var phone = document.getElementById('phone').value;
         if(!(/^[1][3,4,5,7,8][0-9]{9}$/.test(phone))){
           alert("手机号码有误，请重填");
@@ -120,30 +121,47 @@
             }
           },1000)
         }
-        axios.post("/api/sendEmail",this.users).then(res=>{
-          if(res.data!=''){
-            alert(res.data)
-            this.$message({
-              message: '验证码发送成功，欢迎注册！',
-
-              type: 'success'
+        var url="/api/getCode/"+phone
+        axios.get(url).then(res=>{
+          if(res.data=="1"){
+            swal({
+              text: "验证码发送成功！请在手机上查看！",
+              icon: "success",
+              button: "确定",
             });
-            console.log(res.data)
-//              alert(res.data)
           }else{
-//              alert("发送失败！")
-            this.$message.error('错了哦，验证码发送失败');
+            swal({
+              text: "发送失败！",
+              icon: "error",
+              button: "确定",
+            });
           }
         })
       },
       toPass:function () {
-        this.$refs['user'].validate((valid) => {
-          if (valid) {
-            this.$router.push("/userLogin")
-          }else{
-              return false;
-          }
+        var code=this.user.userCode
+        var tel=this.user.userTell
+        var url="api/checkCode/"+code+"/"+tel
+        axios.get(url).then(res=>{
+          axios.get(url).then(res=>{
+            if(res.data=="1"){
+              swal({
+                text: "验证成功！请设置新密码！",
+                icon: "success",
+                button: "确定",
+              });
+              Cookies.set("tel", this.user.userTell, {expires: 7, path: '/'});
+               this.$router.push("/updatePassword")
+            }else{
+              swal({
+                text: "验证失败！",
+                icon: "error",
+                button: "确定",
+              });
+            }
+          })
         })
+
       },
       reference:function () {
         this.$refs['user'].resetFields();

@@ -43,7 +43,7 @@
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
   import Cookies from 'js-cookie'
-
+  import swal from 'sweetalert'
   export default {
     components: {
       ElButton,
@@ -86,6 +86,14 @@
       }
     },
     mounted(){
+        var tel=Cookies.get("tel")
+      var url="api/findUserByTel/"+tel
+       axios.get(url).then(res=>{
+         this.user.userName=res.data.userName;
+         this.user.userId=res.data.userId
+       })
+
+
       var userId=Cookies.get('userId');
       //alert(userId)
       this.user.userId=userId;
@@ -95,7 +103,11 @@
           //alert(this.user.userName)
         })
       }else {
-        this.$message.error('还没登录哦，请登录后再试');
+         swal({
+          text: "还没登录哦，请登录后再试！",
+          icon: "error",
+          button: "确定",
+        });
         this.$router.push("/userLogin")
       }
     },
@@ -105,15 +117,19 @@
           if (valid) {
             axios.post("api/updatePassword", this.user).then(res => {
               if (res.data == "success") {
-//                alert("修改成功")
-                this.$message({
-                  message: '恭喜你，修改成功',
-                  type: 'success'
+               swal({
+                  text: "恭喜你，修改成功！",
+                  icon: "success",
+                  button: "确定",
                 });
-                this.$router.push('/')
+                this.$router.push('/userLogin')
               }
               else {
-                this.$message.error('错了哦，修改失败');
+                 swal({
+                  text: "错了哦，修改失败！",
+                  icon: "error",
+                  button: "确定",
+                });
                 this.$router.push("/updatePassword")
               }
             })
