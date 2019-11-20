@@ -10,10 +10,11 @@
               <el-avatar  width="50" height="50" src="../static/img/group.png"></el-avatar>
               <!--<p class="name" style="color: white">官方群组</p>-->
               <hr>
-              <div v-for="(item,index) in userList">
+              <!--<div v-for="(item,index) in userList">
                 <el-avatar  width="50" height="50" :src="item.userPic" @click="creatWS(index)"></el-avatar>
                 <p class="name" style="color: white">{{item.userName}}</p>
-              </div>
+              </div>-->
+              <el-avatar  width="50" height="50" :src="user2.userPic"></el-avatar>
             </div>
           </el-col>
           <el-col :span="18" style="height: 558px">
@@ -32,11 +33,11 @@
                   <!--&gt;</el-input>-->
 
                   <div v-for="(value,key,index) in messageList" :key="index">
-                      <el-tag v-if="value.name==name" type="success" style="float:right">我：{{value.msg}}</el-tag>
-                      <br />
-                      <el-tag v-if="value.name!=name" style="float:left">{{value.name}}：{{value.msg}}</el-tag>
-                      <br />
-                    </div>
+                    <el-tag v-if="value.name==name" type="success" style="float:right">我：{{value.msg}}</el-tag>
+                    <br />
+                    <el-tag v-if="value.name!=name" style="float:left">{{value.name}}：{{value.msg}}</el-tag>
+                    <br />
+                  </div>
                 </el-card>
               </el-col>
               <el-col :span="24" style="height: 58px;">
@@ -84,16 +85,23 @@
       };
     },
     mounted(){
-      this.conectWebSocket();
-      this.toUserId=this.$route.params.toUserId;  //对方id
-      alert(this.toUserId)
-      this.user.userId=Cookies.get('userId');
-      alert(this.user.userId)
-      axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
-        this.user=res.data;
-        console.log(this.user)
+
+      this.toUserId=this.$route.params.userId;  //对方id
+//      alert(this.toUserId)
+      axios.get("api/findUserByUserId/"+this.toUserId).then(res=>{
+        this.user2=res.data;
+//        console.log(this.user2)
 
       })
+
+      this.user.userId=Cookies.get('userId');
+//      alert(this.user.userId)
+      axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
+        this.user=res.data;
+//        console.log(this.user)
+
+      })
+      this.conectWebSocket();
     },
     methods: {
       conectWebSocket: function() {
@@ -107,7 +115,8 @@
           //判断当前浏览器是否支持WebSocket
           if ("WebSocket" in window) {
             this.websocket = new WebSocket(
-              "ws://localhost:8080/websoc/" + this.user.userId
+              "ws://27517f29s2.zicp.vip/websocket/" + this.user.userId
+
             );
           } else {
             alert("不支持建立socket连接");
@@ -135,7 +144,7 @@
               console.log("接受消息");
 
               /*存库*/
-              this.communication.userId=this.user.userId;
+             /* this.communication.userId=this.user.userId;
               this.communication.userName=this.user.userName;
               this.communication.userPic=this.user.userPic;
               this.communication.userRid=this.user2.userId;
@@ -149,8 +158,9 @@
                   }else {
                       alert("网络不佳")
                   }
-              })
-
+              })*/
+              that.messageList.push(object);
+              that.messageValue="";
 
             }
           };
@@ -179,6 +189,7 @@
           message: "您的频道号：" + aisle,
           duration: 0
         });
+        this.aisle=aisle;
       },
       //清空
       clean(){

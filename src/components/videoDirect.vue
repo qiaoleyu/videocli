@@ -303,11 +303,11 @@
   import Cookies from 'js-cookie'
 
 //    弹幕
-  function $(str)  {
+  /*function $(str)  {
     return document.getElementById(str);
   };
-  setInterval(move,200)
-  function move() {
+  setInterval(move,200)*/
+  /*function move() {
 
       var spanArray = $('box').children;
       for (var i = 0; i < spanArray.length; i++) {
@@ -321,7 +321,7 @@
       }
     }
 
-  };
+  };*/
   export default {
     components: {
       ElInput,

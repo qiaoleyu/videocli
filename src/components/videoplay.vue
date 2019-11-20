@@ -1359,7 +1359,7 @@
 //              this.aisle=object.aisle;
 //              alert(this.aisle)
             }
-            if (object.type == 1) {
+            if (object.type == 2) {
               //显示消息
               console.log("接受消息");
 //              that.messageList.push(object);
@@ -1388,7 +1388,7 @@
           socketMsg.type = 0;
         } else {*/
           //单聊.
-          socketMsg.type = 1;
+          socketMsg.type = 2;
 //        }
         this.websocket.send(JSON.stringify(socketMsg));
       },
