@@ -34,7 +34,7 @@
                   <el-form-item label="邮箱：" prop="userEmail" style="font-size:25px;text-align: left;font-weight: bolder">
                     <el-input type="text" name="userEmail" v-model="user.userEmail" style="width: 340px" placeholder="请输入邮箱地址"></el-input>
                   </el-form-item><br>
-                  <el-form-item label="手机号：" prop="userTell" style="font-size:25px;text-align: left;font-weight: bolder">
+                  <el-form-item label="手机号：" id="phone" prop="userTell" style="font-size:25px;text-align: left;font-weight: bolder">
                     <el-input type="text" name="userTell" v-model="user.userTell" style="width: 340px" placeholder="请输入手机号"></el-input>
                   </el-form-item><br>
                 <el-form-item label="密码：" prop="userPassword" style="font-size:25px;text-align: left;font-weight: bolder" show-password>
@@ -219,9 +219,19 @@
       };
       var checkUserTell = (rule, value, callback) => {
         if (!value) {
-          return callback(new Error('邮箱不能为空'));
+          return callback(new Error('手机号不能为空'));
         }else{
-          return callback();
+          var phone = document.getElementById('phone').value;
+          if(!(/^[1][3,4,5,7,8][0-9]{9}$/.test(phone))){
+            swal({
+              text: "手机号输入不正确，请重新输入！",
+              icon: "error",
+              button: "确定",
+            });
+            return false;
+          }else{
+            return callback();
+          }
         }
       };
       var validatePass = (rule, value, callback) => {

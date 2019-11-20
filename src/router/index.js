@@ -18,6 +18,7 @@ import chart from '@/components/chart'
 import upload from '@/components/upload'
 import download from '@/components/download'
 import checkUser from '@/components/checkUser'
+import videoType from '@/components/videoType'
 import applyText from '@/components/applyText'
 import videoDirect from '@/components/videoDirect'
 
@@ -89,6 +90,10 @@ export default new Router({
       path: '/checkUser',
       name: 'checkUser',
       component:checkUser
+    },{
+      path: '/videoType',
+      name: 'videoType',
+      component:videoType
     }
     // },{
     // path: '/moreMessage',
