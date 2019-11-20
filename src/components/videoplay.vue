@@ -437,8 +437,10 @@
                   </el-col>
                 </el-row>
 
+
+
                 <!--用户信息-->
-                <el-row v-for="(item,index) in comments" v-bind:key="item.commentId" :gutter="10" style="margin-top: 20px">
+                <el-row v-for="(item,index) in comments.list"  v-bind:key="item.commentId" :gutter="10" style="margin-top: 20px">
                   <el-col :span="24">
 
                     <el-row :gutter="10">
@@ -531,8 +533,6 @@
                       </el-col>
                     </el-row>
 
-                    <!--</div>-->
-
                     <!--评论信息-->
                     <el-row :gutter="10" style="">
                       <el-col :span="20" :offset="4"  style="font-size: 16px;background-color: beige;font-weight: bolder;float: left;text-align: center">
@@ -545,8 +545,7 @@
                                 <el-popover
                                   placement="top-start"
                                   width="300"
-                                  trigger="hover"
-                                >
+                                  trigger="hover">
                                   <!--title="标题"-->
                                   <!--content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"-->
                                   <!--<el-button slot="reference">hover 激活</el-button>-->
@@ -622,27 +621,32 @@
 
                             </el-col>
                           </el-row>
+
                         </div>
                       </el-col>
                     </el-row>
+                    <span v-if="comments2[index].total>3">
+                      共{{comments2[index].total}}条回复，
+                      <el-button @click="searchComment(item.commentId,index)">查看更多</el-button>
+                      <el-button v-if="comments2[index].list.length>3" @click="seaComment(index)">收起</el-button>
+                    </span>
+                  </el-col>
+                </el-row>
 
-                    <!--分页-->
-                    <el-row :gutter="10" style="margin-top: 20px">
-                      <el-col :span="24">
-                        <el-pagination
-                          background
-                          @size-change="handleSizeChange"
-                          @current-change="handleCurrentChange"
-                          :current-page="currentPage"
-                          layout="total, sizes, prev, pager, next, jumper"
-                          :page-sizes="[5, 10, 15, 20]"
-                          :total="comments2[index].total"
-                          style="text-align: center"
-                        >
-                        </el-pagination>
-                      </el-col>
-                    </el-row>
-
+                <!--分页-->
+                <el-row :gutter="10" style="margin-top: 20px">
+                  <el-col :span="24">
+                    <el-pagination
+                      background
+                      @size-change="handleSizeChange"
+                      @current-change="handleCurrentChange"
+                      :current-page="currentPage"
+                      layout="total, sizes, prev, pager, next, jumper"
+                      :page-sizes="[3,5,10]"
+                      :total="comments.total"
+                      style="text-align: center"
+                    >
+                    </el-pagination>
                   </el-col>
                 </el-row>
 
@@ -852,25 +856,7 @@
         player:'',
         jumper:1,
         index:1,
-//        倍速
-//        options: [
-//          {
-//            value: '0.5',
-//            label: '0.5'
-//          },{
-//            value: '1',
-//            label: '1.0'
-//          },{
-//            value: '1.25',
-//            label: '1.25'
-//          },{
-//            value: '1.5',
-//            label: '1.5'
-//          },{
-//            value: '2',
-//            label: '2.0'
-//          }
-//        ]
+
 
         userName: "", // 用户名
         websocket: null, // WebSocket对象
@@ -961,6 +947,13 @@
 
     },
     methods:{
+      handleClose(done) {
+        this.$confirm('确认关闭？')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+      },
       over: function (x) {
         if (x == 1) {
           this.active = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
@@ -1088,10 +1081,14 @@
 
 //      分页
       handleSizeChange(val) {
-        console.log('每页 ${val} 条');
+          console.log(val)
+        console.log('每页 '+val+'条');
+//        alert(this.currentPage)
       },
       handleCurrentChange(val) {
-        console.log('当前页: ${val}');
+        console.log('当前页:'+val);
+        this.currentPage=val;
+        alert(this.currentPage)
       },
 
 
@@ -1411,7 +1408,7 @@
           if (res.data!=null){
 //            console.log(res.data.com.list)
 //            console.log(res.data.comment[0].list)
-            this.comments=res.data.com.list;
+            this.comments=res.data.com;
             this.comments2=res.data.comment
 
 //            console.log(this.comments)
@@ -1419,6 +1416,25 @@
             alert("暂无评论")
           }
         })
+      },
+      searchComment:function (commentId,index) {
+        var videoId=this.$route.params.pk_video_id;
+        axios.get("api/searchComment/"+commentId+'/'+videoId).then(res=>{
+          if (res.data!=null){
+//            console.log(res.data.com.list)
+//            console.log(res.data.comment[0].list)
+            this.comments2[index].list=res.data
+
+//            console.log(this.comments)
+          }else {
+            alert("暂无评论")
+          }
+        })
+      },
+      seaComment:function(index) {
+//        this.comments2[index].list=(this.comments2[index].list).slice(0.2);
+        this.comments2[index].list='';
+
       },
       /*评论
        *针对视频的评论
@@ -1529,23 +1545,21 @@
             type: 'success',
             message: '您回复的信息是: ' + value,
           });
-          alert(value)
-        this.dialogVisible = false;
-        alert(this.input3)
+//          alert(value)
           this.com.userPic=this.user.userPic;
           this.com.userName=this.user.userName;
           this.com.userId=this.user.userId;
           this.com.commentRid =this.comments2[index].list[val].commentRid;
           this.com.respondentId=this.comments2[index].list[val].userId;
           this.com.respondentName=this.comments2[index].list[val].userName;
-          this.com.commentLid=this.comments[index].commentId;
+          this.com.commentLid=this.comments2[val].list[val].commentId;
           this.com.commentContent=value;
           this.com.videoId=this.video.videoId;
           axios.post("api/saveComment",this.com).then(res=>{
             if (res.data!=null){
 //              alert("success")
-              this.input3='';
-              this.findAll();
+//              alert(this.com.commentRid)
+              this.searchComment(this.com.commentRid,index);
             }else {
               alert("fail")
             }
