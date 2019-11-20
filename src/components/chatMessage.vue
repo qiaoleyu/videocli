@@ -33,9 +33,9 @@
                   <!--&gt;</el-input>-->
 
                   <div v-for="(value,key,index) in messageList" :key="index">
-                    <el-tag v-if="value.name==name" type="success" style="float:right">我：{{value.msg}}</el-tag>
+                    <el-tag v-if="value.name==aisle" type="success" style="float:right">{{value.msg}}&nbsp;{{user.userName}}&nbsp;<img height="50px" width="50px" :src="user.userPic"/></el-tag>
                     <br />
-                    <el-tag v-if="value.name!=name" style="float:left">{{value.name}}：{{value.msg}}</el-tag>
+                    <el-tag v-if="value.name!=aisle" style="float:left"><img height="50px" width="50px" :src="user2.userPic"/>&nbsp;{{user2.userName}}：{{value.msg}}</el-tag>
                     <br />
                   </div>
                 </el-card>
@@ -184,11 +184,11 @@
         this.websocket.send(JSON.stringify(socketMsg));
       },
       showInfo: function(people, aisle) {
-        this.$notify({
+        /*this.$notify({
           title: "当前在线人数：" + people,
           message: "您的频道号：" + aisle,
           duration: 0
-        });
+        });*/
         this.aisle=aisle;
       },
       //清空
