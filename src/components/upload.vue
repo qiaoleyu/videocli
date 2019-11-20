@@ -191,5 +191,6 @@
   a:hover{
     color: red;
   }
+  .header{ position:fixed; margin-top:0; width:99%;margin: auto ;z-index:9999; }
 </style>
 

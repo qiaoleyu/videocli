@@ -16,6 +16,7 @@ import document from '@/components/document'
 import folder from '@/components/folder'
 import chart from '@/components/chart'
 import upload from '@/components/upload'
+import download from '@/components/download'
 import applyText from '@/components/applyText'
 import videoDirect from '@/components/videoDirect'
 
@@ -79,6 +80,10 @@ export default new Router({
       path: '/videoDirect',
       name: 'videoDirect',
       component: videoDirect
+    },{
+      path: '/download',
+      name: 'download',
+      component:download
     }
     // },{
     // path: '/moreMessage',

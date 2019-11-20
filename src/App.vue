@@ -644,6 +644,6 @@ export default {
     /*overflow-y: auto;*/
   }
   /*设置头部（公共部分）悬浮样式*/
-  .header{ position:fixed; margin-top:0; width:99%;margin: auto ;z-index:9999; }
+  .header{ position:fixed; margin-top:0; width:100%;margin: auto ;z-index:9999; }
   /*.body{ position:relative; padding-top:119px; width:100%; }*/
 </style>

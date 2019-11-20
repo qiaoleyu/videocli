@@ -1,10 +1,15 @@
 <template>
   <div style="width: 100%;margin: auto" class="note">
-      <el-container style="height: 600px;width: 90%;margin: auto; border: 1px solid #eee;margin-top: 100px">
+
+      <el-container >
+        <el-header >
+
+        </el-header>
+      <div style="height: 600px;width: 90%;margin: auto; border: 1px solid #eee;margin-top: 40px">
 
         <!--<el-aside width="200px" style="background-color: rgb(238, 241, 246)">-->
         <el-aside class="app-side app-side-left"
-                  style="width: 200px;line-height: inherit;background-color: inherit;" >
+                  style="width: 20%;float:left;line-height: inherit;background-color: inherit;" >
           <el-menu
             router
             class="el-menu-vertical-demo"
@@ -165,17 +170,19 @@
           <!--</el-tabs>-->
         </el-aside>
 
-        <el-main>
+        <el-main style="width: 80%;float: left">
+
           <template>
               <!--&lt;!&ndash;</header>&ndash;&gt;-->
             <!--</div>-->
+
             <router-view/>
-            <div style="background: url('../static/img/girl2.jpeg');opacity:0.6;height: 100%;width:100%;margin-top: 0px">
-              <h1 style="color: red;line-height: 100%">欢迎来到个人中心！</h1>
-            </div>
+            <!--<div style="background: url('../static/img/girl2.jpeg');opacity:0.6;height: 100%;width:100%;margin-top: 0px">-->
+              <!--<h1 style="color: red;line-height: 100%">欢迎来到个人中心！</h1>-->
+            <!--</div>-->
           </template>
         </el-main>
-
+      </div>
       </el-container>
   </div>
 </template>
@@ -244,7 +251,15 @@
     font-size: 16px;
 
   }
+  .header[data-v-7ba5bd90]{
+    position: inherit;
+    width: 100%;height: 80px;
 
+  }
+  .header{
+    width: 100%;
+
+  }
 
 
 
@@ -267,15 +282,15 @@
   /*}*/
 </style>
 <style scoped>
-  .note{
-    /*position: absolute;*/
-    height: 100%;
-    width: 100%;
-    top:0;
-    left: 0;
-    /*overflow-y: auto;*/
-  }
-
+  /*.note{*/
+    /*!*position: absolute;*!*/
+    /*height: 100%;*/
+    /*width: 100%;*/
+    /*top:0;*/
+    /*left: 0;*/
+    /*!*overflow-y: auto;*!*/
+  /*}*/
+  /*.header{ position:fixed; margin-top:0; width:99%;margin: auto ;z-index:9999; }*/
 </style>
 
 <script>

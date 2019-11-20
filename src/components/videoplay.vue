@@ -255,7 +255,7 @@
         </div>
       </el-header>
 
-      <el-main style="width: 95%;margin: auto">
+      <el-main style="width: 95%;margin: auto;margin-top: 80px">
 
         <!--视频轮播-->
         <el-row :gutter="10">
@@ -1822,4 +1822,5 @@ a:hover {
   .body{
     font-family: 楷体;
   }
+.header{ position:fixed; margin-top:0; width:99%;margin: auto ;z-index:9999; }
 </style>

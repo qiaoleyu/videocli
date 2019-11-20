@@ -319,11 +319,56 @@
                     <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
                   </el-tooltip>
                 </div>
-                <div style="width:15%;float:left" @click="download(video.pk_video_id)">
+                <div style="width:15%;float:left" @click="download(video.pk_video_id)" >
+                 <!--dialogVisible = true,-->
                   <el-tooltip content="下载" >
                     <a class="el-icon-download" plain style="font-size: 18px"></a>
                   </el-tooltip>
                 </div>
+                <!--<div>-->
+                  <!--<el-dialog-->
+                    <!--title="请选择文件夹"-->
+                    <!--:visible.sync="dialogVisible"-->
+                    <!--width="30%"-->
+                    <!--:before-close="handleClose">-->
+                    <!--&lt;!&ndash;<input type="file" name="filename" directory=""&ndash;&gt;-->
+                           <!--&lt;!&ndash;nwdirectory="" id="open" style="display: none">&ndash;&gt;-->
+                    <!--<input type="file" :id="id" name="filname" class="getImgUrl_file" @change="preview($event)">-->
+                    <!--&lt;!&ndash;webkitdirectory multiple&ndash;&gt;-->
+                    <!--<el-input id="input01"-->
+                              <!--type="textarea"-->
+                              <!--:autosize="{ minRows: 2, maxRows: 10}"-->
+                              <!--placeholder="请选择文件夹"-->
+                              <!--v-model="textarea">-->
+                    <!--</el-input>-->
+
+                    <!--<input-->
+                    <!--type="file"-->
+                    <!--hidden-->
+                    <!--directory=""-->
+                    <!--nwdirectory=""-->
+                    <!--ref={ref => {this.srcFolder = ref;}}-->
+                    <!--onChange={(e) => {this.changeFolder(e);}}-->
+                    <!--/>-->
+                    <!--changeFolder = (e) => {-->
+                    <!--const file = e.target.files[0];-->
+                    <!--if(file){-->
+                    <!--this.setState({-->
+                    <!--folderPath: file.path-->
+                    <!--});-->
+                    <!--}-->
+                    <!--};-->
+
+                    <!--</input>-->
+
+                    <!--<span slot="footer" class="dialog-footer">-->
+                       <!--<el-button type="primary" v-on:click="openFile()" round>选择文件</el-button>-->
+                        <!--<el-button @click="dialogVisible = false" round>取 消</el-button>-->
+                        <!--<el-button type="primary" v-on:click="dialogVisible = true,getObjectURL(this.filename)" round>确 定</el-button>-->
+                  <!--</span>-->
+                  <!--</el-dialog>-->
+                <!--</div>-->
+
               </div>
 
             </el-card>
@@ -422,6 +467,8 @@
 </template>
 
 <script>
+
+
   import axios from 'axios';
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
@@ -435,6 +482,8 @@
     name: 'index',
     data () {
       return {
+//        textarea:'',
+//        dialogVisible:false,
         path: '',
         active: '',
         a: '',
@@ -532,6 +581,37 @@
       })
     },
     methods: {
+//      preview:function(event){
+//        let files = document.getElementById(this.id).files[0]
+//        this.imgDataUrl =this.getObjectURL(files)
+//        this.$emit('sendImgUrl',this.imgDataUrl,this.id)
+//      },
+//      getObjectURL:function(file) {
+//        let url = null ;
+//        if (window.createObjectURL!=undefined) { // basic
+//          url = window.createObjectURL(file) ;
+//        }else if (window.webkitURL!=undefined) { // webkit or chrome
+//          url = window.webkitURL.createObjectURL(file) ;
+//        }else if (window.URL!=undefined) { // mozilla(firefox)
+//          url = window.URL.createObjectURL(file) ;
+//        }
+//        return url ;
+//      },
+//
+//      openFile: function () {
+//        document.getElementById('open').click()
+//      },
+//      showRealPath: function () {
+//        document.getElementById('input01').value = document.getElementById('open').files[0].path
+//      },
+//      handleClose(done) {
+//        this.$confirm('确认关闭？')
+//          .then(_ => {
+//            done();
+//          })
+//          .catch(_ => {});
+//        }
+//      },
       over: function (x) {
         if (x == 1) {
           this.active = 'background-color: orangered;border-radius: 0px 10px 0px 10px';
@@ -603,42 +683,13 @@
         }
       },
       //下载
-      download:function (index) {
-
-        this.$prompt('请输入回复信息', '选择下载路径', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          //inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
-          //inputErrorMessage: '邮箱格式不正确'
-        }).then(({ value }) => {
-          this.$message({
-            type: 'success',
-            message: '您回复的信息是: ' + value,
-          });
-
-          this.com.userPic=this.user.userPic;
-          console.log(this.com)
-//        this.diaVisible = false;
-          axios.post("api/saveComment",this.com).then(res=>{
-            if (res.data!=null){
-//              alert("success")
-              this.input4='';
-              this.findAll();
-            }else {
-              alert("fail")
-            }
-          })
-
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '取消输入'
-          });
-        });
-      },
+//      download:function (index) {
+//
+//
+//      },
       like: function (id) {
         //alert(id)
-        if(this.user.userId!=null){
+        if (this.user.userId != null) {
           var url = "api/like/" + id
           axios.get(url).then(res => {
             if (res.data != null) {
@@ -649,7 +700,7 @@
               });
             }
           })
-        }else{
+        } else {
           swal({
             text: "您还没有登录！",
             icon: "info",
@@ -661,17 +712,17 @@
       },
       favorite: function (id) {
         //alert(this.user.userId)
-        var userId=this.user.userId
-        if(this.user.userId!=null){
-          var url="api/favorite/"+userId+"/"+id
-          axios.get(url).then(res=>{
-            if(res.data=="1"){
+        var userId = this.user.userId
+        if (this.user.userId != null) {
+          var url = "api/favorite/" + userId + "/" + id
+          axios.get(url).then(res => {
+            if (res.data == "1") {
               swal({
                 text: "收藏成功！",
                 icon: "success",
                 button: "确定",
               });
-            }else{
+            } else {
               swal({
                 text: "您已经收藏过该视频了！",
                 icon: "info",
@@ -679,7 +730,7 @@
               });
             }
           })
-        }else {
+        } else {
           swal({
             text: "您还没有登录！",
             icon: "info",
@@ -690,11 +741,11 @@
 
       },
 
-    //直播(跳转到直播页面)
-    toOrders:function(){
+      //直播(跳转到直播页面)
+      toOrders: function () {
 
-    },
-    /*//微信充值
+      },
+      /*//微信充值
      WeChatPay() {
      if (this.user.userId!=null) {
      this.$prompt('请输入需要充值的金额', '提示', {
@@ -723,90 +774,96 @@
     //支付宝支付
     aliPay() {
       if (this.user.userId!=null) {
-        this.$prompt('请输入需要充值的金额', '提示', {
+        this.$prompt('请输入需要充值的金额',
+          '提示', {
           confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          inputPattern:"" ,
-          inputErrorMessage: '充值金额格式不正确'
-        }).then(({ value }) => {
-          swal({
-            text: "充值的金额:"+value,
-            icon: "success",
-            button: "确定",
+            cancelButtonText: '取消',
+          inputPattern: "" ,
+            inputErrorMessage: '充值金额格式不正确'
+          }).then(({ value }) => {
+            swal({
+              text: "充值的金额:"+value,
+              icon: "success",
+              button: "确定",
+            });
+            axios.post("api/aliPay/"+this.user.userId+"/"+value).then(res => {
+              alert(111)
+              this.$router.replace({path: '/applyText',query: {htmls:res.data}})
+            })
+          }).catch(() => {
+            swal({
+              text: "取消充值",
+              icon: "info",
+              button: "确定",
+            });
           });
-          axios.post("api/aliPay/"+this.user.userId+"/"+value).then(res => {
-            alert(111)
-            this.$router.replace({path:'/applyText',query:{htmls:res.data}})
+        }else {
+          this.$message.error('还没登录哦，请登录后再试');
+          this.$router.push("/userLogin")
+        }
+      },
+      //用户充值会员
+      payfor: function (){
+        if (this.user.userId !=null) {
+          this.pay.userId=this.user.userId;
+          if(this.radio1== "$15元/月"){
+            this.pay
+              .rechargeMoney=15;
+          }
+          if(this.radio1== "$50元/季"){
+            this.pay
+              .rechargeMoney=50;
+          }
+          if(this.radio1== "$200元/年"){
+            this.pay
+              .rechargeMoney=200;
+          }
+          //alert(this.pay.userId)
+          //alert(this.pay.rechargeMoney)
+          axios.post("api/userRecharge",this.pay).then(res => {
+            this.$router.replace({path: '/applyText', query:{htmls:res.data}})
           })
-        }).catch(() => {
-          swal({
-            text: "取消充值",
-            icon: "info",
-            button: "确定",
-          });
-        });
-      }else {
-        this.$message.error('还没登录哦，请登录后再试');
-        this.$router.push("/userLogin")
-      }
-    },
-    //用户充值会员
-    payfor:function(){
-      if (this.user.userId!=null) {
-        this.pay.userId=this.user.userId;
-        if(this.radio1=="$15元/月"){
-          this.pay.rechargeMoney=15;
+        }else {
+          this.$message.error('还没登录哦，请登录后再试');
+          this.$router.push("/userLogin")
         }
-        if(this.radio1=="$50元/季"){
-          this.pay.rechargeMoney=50;
-        }
-        if(this.radio1=="$200元/年"){
-          this.pay.rechargeMoney=200;
-        }
-        //alert(this.pay.userId)
-        //alert(this.pay.rechargeMoney)
-        axios.post("api/userRecharge",this.pay).then(res => {
-          this.$router.replace({path:'/applyText',query:{htmls:res.data}})
-        })
-      }else {
-        this.$message.error('还没登录哦，请登录后再试');
-        this.$router.push("/userLogin")
-      }
-    },
+      },
     //      个人中心-完善信息
-    toUser:function () {
+      toUser:function () {
         //alert(666)
-      if (this.user.userId!=null) {
-        this.$router.push("/userDetial")
-      }else {
-        this.$message.error('还没登录哦，请登录后再试');
-        this.$router.push("/userLogin")
-      }
-    },
+        if
+        (this.user.userId!=null) {
+          this.$router.push("/userDetial")
+        }else {
+          this.$message.error('还没登录哦，请登录后再试');
+          this.$router.push("/userLogin")
+        }
+      },
     //修改密码
-    toModify:function () {
-      if (this.user.userId!=null) {
-        this.$router.push("/updatePassword")
-      }else {
-        this.$message.error('还没登录哦，请登录后再试');
-        this.$router.push("/userLogin")
-      }
-    },
-    toMessage(){
-      if (this.user.userId!=null) {
-        this.$router.push("/userMessage")
-      }else {
-        this.$message.error('还没登录哦，请登录后再试');
-        this.$router.push("/userLogin")
-      }
-    },
-    logout:function () {
-      Cookies.remove('userId'); // fail!
-      Cookies.remove('userId', { path: '/' });
-      this.user.userName='登录'
-      this.$router.go(0)
-    },
-    },
+      toModify:function () {
+        if
+        (this.user.userId!=null) {
+          this.$router.push("/updatePassword")
+        }else {
+          this.$message.error('还没登录哦，请登录后再试');
+          this.$router.push("/userLogin")
+        }
+      },
+      toMessage(){
+        if (this.user.userId !=null) {
+          this.$router.push("/userMessage")
+        }else {
+          this.$message.error('还没登录哦，请登录后再试');
+          this.$router.push("/userLogin")
+        }
+      },
+      logout:function () {
+        Cookies.remove('userId'); // fail!
+        Cookies.remove('userId', {path: '/' });
+        this.user.userName= '登录'
+        this.$router.go(0)
+      },
+    }
   }
 </script>
 
