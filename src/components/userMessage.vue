@@ -1,15 +1,11 @@
 <template>
   <div style="width: 100%;margin: auto" class="note">
 
-      <el-container >
-        <el-header >
-
-        </el-header>
-      <div style="height: 600px;width: 90%;margin: auto; border: 1px solid #eee;margin-top: 40px">
+      <el-container style="height: 600px;width: 90%;margin: auto; border: 1px solid #eee;">
 
         <!--<el-aside width="200px" style="background-color: rgb(238, 241, 246)">-->
         <el-aside class="app-side app-side-left"
-                  style="width: 20%;float:left;line-height: inherit;background-color: inherit;" >
+                  style="width: 200px;line-height: inherit;background-color: inherit;" >
           <el-menu
             router
             class="el-menu-vertical-demo"
@@ -170,7 +166,7 @@
           <!--</el-tabs>-->
         </el-aside>
 
-        <el-main style="width: 80%;float: left">
+        <el-main>
 
           <template>
               <!--&lt;!&ndash;</header>&ndash;&gt;-->
@@ -182,7 +178,7 @@
             <!--</div>-->
           </template>
         </el-main>
-      </div>
+
       </el-container>
   </div>
 </template>
@@ -253,13 +249,12 @@
   }
   .header[data-v-7ba5bd90]{
     position: inherit;
-    width: 100%;height: 80px;
-
-  }
-  .header{
     width: 100%;
-
+    height: 80px;
   }
+  /*.header{*/
+    /*width: 100%;*/
+  /*}*/
 
 
 
@@ -282,15 +277,15 @@
   /*}*/
 </style>
 <style scoped>
-  /*.note{*/
-    /*!*position: absolute;*!*/
-    /*height: 100%;*/
-    /*width: 100%;*/
-    /*top:0;*/
-    /*left: 0;*/
-    /*!*overflow-y: auto;*!*/
-  /*}*/
-  /*.header{ position:fixed; margin-top:0; width:99%;margin: auto ;z-index:9999; }*/
+  .note{
+    /*position: absolute;*/
+    height: 100%;
+    width: 100%;
+    top:80px;
+    left: 0;
+    /*overflow-y: auto;*/
+  }
+  .header{  margin-top:0; width:99%;margin: auto ;z-index:9999; }
 </style>
 
 <script>
