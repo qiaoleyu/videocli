@@ -20,7 +20,7 @@
           <el-col :span="18" style="height: 558px">
             <el-row :gutter="20">
               <el-col :span="24" style="height: 500px;">
-                <el-card class="box-card"  style="opacity:0.4;width: 95%;margin-right:5%;height: 93%;margin-bottom: 5%;border-radius: 10px;margin-top: 2%">
+                <el-card class="box-card"  style="opacity:0.8;width: 95%;margin-right:5%;height: 93%;margin-bottom: 5%;border-radius: 10px;margin-top: 2%;overflow-y: visible">
 
                   <span> {{user.userName}}</span>
                   <!--<el-button type="primary" @click="conectWebSocket()">建立连接</el-button>-->
@@ -33,10 +33,29 @@
                   <!--&gt;</el-input>-->
 
                   <div v-for="(value,key,index) in messageList" :key="index">
-                    <el-tag v-if="value.name==aisle" type="success" style="float:right">{{value.msg}}&nbsp;{{user.userName}}&nbsp;<img height="50px" width="50px" :src="user.userPic"/></el-tag>
-                    <br />
-                    <el-tag v-if="value.name!=aisle" style="float:left"><img height="50px" width="50px" :src="user2.userPic"/>&nbsp;{{user2.userName}}：{{value.msg}}</el-tag>
-                    <br />
+                    <el-row :gutter="10">
+                      <el-col :span="8" :offset="12" v-if="value.name==aisle">
+                        <!--<el-tag   style="background-color: white;color: black;font-weight: bolder;margin-right: 5%">-->
+                          <el-tag style="text-align: right;float: right">{{value.msg}}</el-tag>
+                        <!--</el-tag>-->
+                      </el-col>
+                      <el-col :span="4" >
+                        <span style="line-height: 30px;font-size: 14px">{{user.userName}}</span>
+                        <img height="30px" width="30px" :src="user.userPic" style="border:15px;"/>
+                      </el-col>
+                    </el-row>
+                    <el-row :gutter="10">
+                      <el-col :span="4" style="font-size: 14px">
+                        <img height="30px" width="30px" :src="user2.userPic" style="border:15px;"/>
+                        {{user.userName}}：
+                      </el-col>
+                      <el-col :span="20" v-if="value.name!=aisle">
+                        <el-tag  style="float:left;text-align: left;">
+                          {{value.msg}}
+                        </el-tag>
+                      </el-col>
+
+                    </el-row>
                   </div>
                 </el-card>
               </el-col>

@@ -12,8 +12,8 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        //http://localhost:8082/
-        target: 'http://27517f29s2.zicp.vip/', // 设置你调用的接口域名和端口号
+        //http://27517f29s2.zicp.vip/
+        target: 'http://localhost:8082/', // 设置你调用的接口域名和端口号
         changeOrigin: true,   // 跨域
         pathRewrite: {
           '^/api': '/'
