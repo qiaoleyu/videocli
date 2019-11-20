@@ -17,7 +17,7 @@
               <el-input id="phone" type="text" v-model="user.userTell" name="userTell" autocomplete="off"  placeholder="请输入真实有效的手机号"></el-input>
             </el-form-item>
             <el-form-item label="验证码：" prop="userCode" style="text-align: left;margin-bottom: 40px">
-              <el-input type="text" v-model="user.userCode" autocomplete="off" style="width: 250px" placeholder="请输入短信验证码"></el-input>
+              <el-input type="text" v-model="user.userCode" autocomplete="off" style="width: 230px" placeholder="请输入短信验证码"></el-input>
               <el-button round type="primary" plain :class="{disabled: !this.canClick}" @click="getCode()">{{content}}</el-button>
             </el-form-item>
             <el-from-item>

@@ -266,7 +266,11 @@
       </el-header>
 
 
-      <el-main style="width: 90%;margin: auto;padding-top: 60px">
+      <el-main style="width: 90%;margin: auto;padding-top: 100px"
+               v-loading="loading"
+               element-loading-text="拼命下载中"
+               element-loading-spinner="el-icon-loading"
+               element-loading-background="rgba(0, 0, 0, 0.8)">
         <el-row :gutter="10">
           <el-col :span="14" :offset="5">
             <!-- <div class="grid-content " style="height: 60px;margin-top: 20px">
@@ -290,7 +294,9 @@
         <!--视频-->
         <el-row :gutter="10">
           <!--<el-col :span="4" v-for="" v-bind:key="">-->
-          <el-col :span="6"  v-for="(video,index) in videos" v-bind:key="video.pk_video_id">
+          <el-col :span="6"
+                  v-for="(video,index) in videos"
+                  v-bind:key="video.pk_video_id">
             <el-card style="height: 200px;margin-bottom: 10px;font-size:14px">
               <div style="height: 150px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.pk_video_id}">
                 <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
@@ -482,6 +488,7 @@
     name: 'index',
     data () {
       return {
+        loading: false,
 //        textarea:'',
 //        dialogVisible:false,
         path: '',
@@ -744,9 +751,16 @@
       download:function (id) {
         if (this.user.userId != null) {
             if(this.user.userStatue==1){
+//              swal({
+//                text: "下载中！请稍等！",
+////                loading: true,
+////                icon: "success",
+//              });
+              this.loading=true;
               var url="api/download/"+id
               axios.get(url).then(res=>{
                 if(res.data=="1"){
+                  this.loading=false;
                   swal({
                     text: "下载成功！请在您的桌面查看！",
                     icon: "success",
