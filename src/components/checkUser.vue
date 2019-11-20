@@ -1,5 +1,5 @@
 <template>
-  <div class="note" style="width: 100%;margin: auto">
+  <div class="note" style="width: 100%;margin: auto;top: 0px;left: 0px">
     <!--<h1>{{ msg }}</h1>-->
     <el-container >
       <!--导航栏-->
