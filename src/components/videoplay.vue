@@ -624,12 +624,14 @@
 
                         </div>
                       </el-col>
+                      <el-col :span="8" :offset="16" style="font-size: 12px">
+                        <span v-if="comments2[index].total>3" style="margin: auto">
+                          共{{comments2[index].total}}条回复，
+                          <el-button style="width: 100px;height: 30px;text-align: center;line-height: 5px;font-size:12px"  @click="searchComment(item.commentId,index)">查看更多</el-button>
+                          <el-button style="width: 100px;height: 30px;text-align: center;line-height: 5px" class="el-icon-more" v-if="comments2[index].list.length>3" @click="seaComment(index)" title="收起"></el-button>
+                        </span>
+                      </el-col>
                     </el-row>
-                    <span v-if="comments2[index].total>3">
-                      共{{comments2[index].total}}条回复，
-                      <el-button @click="searchComment(item.commentId,index)">查看更多</el-button>
-                      <el-button v-if="comments2[index].list.length>3" @click="seaComment(index)">收起</el-button>
-                    </span>
                   </el-col>
                 </el-row>
 
@@ -1359,7 +1361,7 @@
 //              this.aisle=object.aisle;
 //              alert(this.aisle)
             }
-            if (object.type == 1) {
+            if (object.type == 2) {
               //显示消息
               console.log("接受消息");
 //              that.messageList.push(object);
@@ -1388,7 +1390,7 @@
           socketMsg.type = 0;
         } else {*/
           //单聊.
-          socketMsg.type = 1;
+          socketMsg.type = 2;
 //        }
         this.websocket.send(JSON.stringify(socketMsg));
       },

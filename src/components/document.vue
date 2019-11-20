@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 560px;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;border-radius: 20px" >
+  <div style="height: 100%;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;border-radius: 20px" >
 
     <!--回复-->
     <el-row :gutter="10">
