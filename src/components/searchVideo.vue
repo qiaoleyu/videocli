@@ -540,7 +540,8 @@
         msg: '',
         user:{
           userId:'',
-          userName:''
+          userName:'',
+          userStatue:''
         },
         collection:{
           userId:'',
@@ -731,6 +732,42 @@
             }
           })
         } else {
+          swal({
+            text: "您还没有登录！",
+            icon: "info",
+            button: "确定",
+          });
+          this.$router.push("/userLogin")
+        }
+
+      },
+      download:function (id) {
+        if (this.user.userId != null) {
+            if(this.user.userStatue==1){
+              var url="api/download/"+id
+              axios.get(url).then(res=>{
+                if(res.data=="1"){
+                  swal({
+                    text: "下载成功！请在您的桌面查看！",
+                    icon: "success",
+                    button: "确定",
+                  });
+                }else{
+                  swal({
+                    text: "下载失败！请检查您的网络！",
+                    icon: "info",
+                    button: "确定",
+                  });
+                }
+              })
+            }else{
+              swal({
+                text: "对不起！您不是会员！无法下载！",
+                icon: "warning",
+                button: "确定",
+              });
+            }
+         }else{
           swal({
             text: "您还没有登录！",
             icon: "info",

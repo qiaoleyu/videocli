@@ -626,8 +626,8 @@
                       </el-col>
                       <el-col :span="8" :offset="16" style="font-size: 12px">
                         <span v-if="comments2[index].total>3" style="margin: auto">
-                          共{{comments2[index].total}}条回复，
-                          <el-button style="width: 100px;height: 30px;text-align: center;line-height: 5px;font-size:12px"  @click="searchComment(item.commentId,index)">查看更多</el-button>
+                          共{{comments2[index].total}}条回复
+                          <el-button style="width: 100px;height: 30px;text-align: center;line-height: 5px;font-size:12px" v-if="comments2[index].list.length<=3" @click="searchComment(item.commentId,index)">查看更多</el-button>
                           <el-button style="width: 100px;height: 30px;text-align: center;line-height: 5px" class="el-icon-more" v-if="comments2[index].list.length>3" @click="seaComment(index)" title="收起"></el-button>
                         </span>
                       </el-col>
@@ -855,6 +855,7 @@
         colors: ['#99A9BF', '#F7BA2A', '#FF9900'] , // 等同于 { 2: '#99A9BF', 4: { value: '#F7BA2A', excluded: true }, 5: '#FF9900' }，
 //      分页
         currentPage: 1,
+        pageSize:10,
         player:'',
         jumper:1,
         index:1,
@@ -903,7 +904,7 @@
       if (this.user.userId!=''){
         axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
           this.user=res.data;
-          console.log(this.user);
+//          console.log(this.user);
         })
       }else {
         alert("请登录")
@@ -1083,14 +1084,17 @@
 
 //      分页
       handleSizeChange(val) {
-          console.log(val)
-        console.log('每页 '+val+'条');
+//          console.log(val)
+        this.pageSize=val;
+        console.log('每页 '+this.pageSize+'条');
+        this.findAll();
 //        alert(this.currentPage)
       },
       handleCurrentChange(val) {
         console.log('当前页:'+val);
         this.currentPage=val;
-        alert(this.currentPage)
+        this.findAll();
+        //        alert(this.currentPage)
       },
 
 
@@ -1406,13 +1410,13 @@
 
       findAll:function () {
           var videoId=this.$route.params.pk_video_id;
-        axios.get("api/findAllCom/"+videoId).then(res=>{
+        axios.get("api/findAllCom/"+videoId+"/"+this.currentPage+"/"+this.pageSize).then(res=>{
           if (res.data!=null){
 //            console.log(res.data.com.list)
 //            console.log(res.data.comment[0].list)
             this.comments=res.data.com;
             this.comments2=res.data.comment
-
+alert(111)
 //            console.log(this.comments)
           }else {
             alert("暂无评论")
@@ -1481,7 +1485,7 @@
         this.com.videoId=this.$route.params.pk_video_id;
         this.com.commentLid=0;
         this.com.commentContent=this.input2;
-        console.log(this.com)
+//        console.log(this.com)
         axios.post("api/saveComment",this.com).then(res=>{
           if (res.data!=null){
 //            alert("success")
