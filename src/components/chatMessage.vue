@@ -192,7 +192,7 @@
       },
       // 发送消息
       sendMessage: function() {
-        var socketMsg = { msg: this.messageValue, toUser: this.toUserId };
+        var socketMsg = { msg: this.messageValue, toUser: 4 };
 //        if (this.aisle == "") {
           //群聊.
 //          socketMsg.type = 0;

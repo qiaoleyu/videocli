@@ -1171,7 +1171,7 @@
           this.barrage.videoTime=this.time;
          this.barrage.barrageContent=this.input1;
          this.barrage.userId=this.user.userId;
-         axios.post("api/saveBarrage",this.barrage).then(res=>{
+         axios.post("api/saveBarrage",{barrage:this.barrage,video:this.video}).then(res=>{
            if (res.data!=null){
                console.log(res.data)
 //                  alert("success")
@@ -1522,7 +1522,7 @@ alert(111)
           this.com.commentContent=value;
           console.log(this.com)
 //        this.diaVisible = false;
-          axios.post("api/saveComment",this.com).then(res=>{
+          axios.post("api/saveComment",{comment:this.com,video:this.video}).then(res=>{
             if (res.data!=null){
 //              alert("success")
               this.input4='';
