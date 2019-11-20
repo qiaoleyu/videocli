@@ -281,7 +281,7 @@
     /*position: absolute;*/
     height: 100%;
     width: 100%;
-    top:80px;
+    top:100px;
     left: 0;
     /*overflow-y: auto;*/
   }
