@@ -45,7 +45,7 @@
                   <div style="width: 100px"><input type="checkbox" name="rememberme" value="yes"/>记住密码</div>
                 </el-col>
                 <el-col :span="6" :offset="6" style="margin-bottom: 16px">
-                <a type="primary" plain @click="toCheck()" style="font-size: 16px;float: right;cursor: pointer;">忘记密码》</a>
+                <a type="primary" plain @click="toCheck()" style="font-size: 16px;float: right;cursor: pointer;">忘记密码>></a>
                 </el-col>
               </el-row>
               <el-row :gutter="10">

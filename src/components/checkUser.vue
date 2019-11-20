@@ -1,5 +1,5 @@
 <template>
-  <div class="hello" style="width: 95%;margin: auto">
+  <div class="note" style="width: 100%;margin: auto;top: 0px;left: 0px">
     <!--<h1>{{ msg }}</h1>-->
     <el-container >
       <!--导航栏-->
@@ -11,17 +11,18 @@
       <el-main style="width: 90%;margin: auto;margin-top: 60px">
 
 
-        <div style="width: 80%;height:300px;margin: auto;margin-top: 60px">
-          <el-form :model="user" status-icon :rules="rules" ref="user" class="demo-ruleForm" label-width="100px" style="width: 500px;margin: auto;height: 80px;line-height: 80px;text-align: left">
-            <el-form-item label="设置新密码：" prop="userPassword" style="text-align: left;margin-bottom: 40px">
-              <el-input type="password" v-model="user.userPassword" name="userPassword" autocomplete="off" placeholder="请设置新密码"></el-input>
+        <div style="width: 80%;height:300px;margin: auto;margin-top: 100px">
+          <el-form :model="user" status-icon :rules="rules" ref="user" class="demo-ruleForm" label-width="100px" style="width: 480px;margin: auto;height: 80px;line-height: 80px;text-align: left">
+            <el-form-item label="手机号：" prop="userTell" style="text-align: left;margin-bottom: 40px">
+              <el-input id="phone" type="text" v-model="user.userTell" name="userTell" autocomplete="off"  placeholder="请输入真实有效的手机号"></el-input>
             </el-form-item>
-            <el-form-item label="确认新密码：" prop="checkPass" style="text-align: left;margin-bottom: 40px">
-              <el-input type="password" v-model="user.checkPass" autocomplete="off"  placeholder="请输入确认新密码"></el-input>
+            <el-form-item label="验证码：" prop="userCode" style="text-align: left;margin-bottom: 40px">
+              <el-input type="text" v-model="user.userCode" autocomplete="off" style="width: 230px" placeholder="请输入短信验证码"></el-input>
+              <el-button round type="primary" plain :class="{disabled: !this.canClick}" @click="getCode()">{{content}}</el-button>
             </el-form-item>
             <el-from-item>
               <div style="margin: auto;height: 40px;margin-left: 100px">
-                <el-button type="primary" round plain style="height: 40px;width: 150px;float: left" plain @click="updatePass()">确认</el-button>
+                <el-button type="primary" round plain style="height: 40px;width: 150px;float: left" plain @click="toPass()">确认</el-button>
                 <el-button type="primary" round plain style="height: 40px;width: 150px;float: left" plain @click="reference('user')">重置</el-button>
               </div>
             </el-from-item>
@@ -44,6 +45,7 @@
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
   import Cookies from 'js-cookie'
   import swal from 'sweetalert'
+
   export default {
     components: {
       ElButton,
@@ -51,20 +53,25 @@
     name: 'index',
     data () {
 //        非空验证
-      var checkUserPassword = (rule, value, callback) => {
+      var checkUserTell = (rule, value, callback) => {
         if (!value) {
-          return callback(new Error('新密码不能为空'));
+          return callback(new Error('手机号不能为空'));
         }else{
           return callback();
         }
       };
-      var checkPass = (rule, value, callback) => {
+      var checkUserCode = (rule, value, callback) => {
         if (value === '') {
-          callback(new Error('请再次输入新密码'));
-        } else if (value !== this.user.userPassword) {
-          callback(new Error('两次输入密码不一致!'));
-        } else {
-          callback();
+          return callback(new Error('短信验证码不能为空'));
+        }
+        else {
+          var phone = document.getElementById('phone').value;
+          if(!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(phone))){
+            alert("手机号码有误，请重填");
+            return false;
+          }else{
+            callback();
+          }
         }
       };
       return {
@@ -75,70 +82,88 @@
         user:{
           userId:'',
           userName:'',
-          userPassword:'',
-          checkPass:''
+          userTell:'',
+          userCode:''
         },
 
         rules:{
-          userPassword: [{ validator: checkUserPassword, trigger: 'blur' }],
-          checkPass: [{ validator: checkPass, trigger: 'blur' }],
-        }
+          userTell: [{ validator: checkUserTell, trigger: 'blur' }],
+          userCode: [{ validator: checkUserCode, trigger: 'blur' }],
+        },
+        //        验证码失效时间控制
+        userCode:'',
+        content:'发送验证码',
+        totalTime:60,
+        canClick:true
       }
     },
     mounted(){
-        var tel=Cookies.get("tel")
-      var url="api/findUserByTel/"+tel
-       axios.get(url).then(res=>{
-         this.user.userName=res.data.userName;
-         this.user.userId=res.data.userId
-       })
 
-
-      var userId=Cookies.get('userId');
-      //alert(userId)
-      this.user.userId=userId;
-      if (this.user.userId!=''){
-        axios.get("api/findUserByUserId/"+this.user.userId).then(res=>{
-          this.user.userName=res.data.userName;
-          //alert(this.user.userName)
-        })
-      }else {
-         swal({
-          text: "还没登录哦，请登录后再试！",
-          icon: "error",
-          button: "确定",
-        });
-        this.$router.push("/userLogin")
-      }
     },
     methods:{
-      updatePass:function () {
-        this.$refs['user'].validate((valid) => {
-          if (valid) {
-            axios.post("api/updatePassword", this.user).then(res => {
-              if (res.data == "success") {
-               swal({
-                  text: "恭喜你，修改成功！",
-                  icon: "success",
-                  button: "确定",
-                });
-                this.$router.push('/userLogin')
-              }
-              else {
-                 swal({
-                  text: "错了哦，修改失败！",
-                  icon: "error",
-                  button: "确定",
-                });
-                this.$router.push("/updatePassword")
-              }
-            })
-          } else {
-//
-            return false;
+      getCode:function () {
+        var phone = document.getElementById('phone').value;
+        if(!(/^[1][3,4,5,7,8][0-9]{9}$/.test(phone))){
+          alert("手机号码有误，请重填");
+          return false;
+        }else{
+          if (!this.canClick) return  //改动的是这两行代码
+          this.canClick = false
+          this.content = this.totalTime + 's后重新发送'
+          let clock = window.setInterval(() => {
+            this.totalTime--
+            this.content = this.totalTime + 's后重新发送'
+            if (this.totalTime < 0) {
+              window.clearInterval(clock)
+              this.content = '重新发送'
+              this.totalTime = 60
+              this.canClick = true  //这里重新开启
+            }
+          },1000)
+        }
+        var url="/api/getCode/"+phone
+        axios.get(url).then(res=>{
+          if(res.data=="1"){
+            swal({
+              text: "验证码发送成功！请在手机上查看！",
+              icon: "success",
+              button: "确定",
+            });
+          }else{
+            swal({
+              text: "发送失败！",
+              icon: "error",
+              button: "确定",
+            });
           }
         })
-      }, reference:function () {
+      },
+      toPass:function () {
+        var code=this.user.userCode
+        var tel=this.user.userTell
+        var url="api/checkCode/"+code+"/"+tel
+        axios.get(url).then(res=>{
+          axios.get(url).then(res=>{
+            if(res.data=="1"){
+              swal({
+                text: "验证成功！请设置新密码！",
+                icon: "success",
+                button: "确定",
+              });
+              Cookies.set("tel", this.user.userTell, {expires: 7, path: '/'});
+               this.$router.push("/updatePassword")
+            }else{
+              swal({
+                text: "验证失败！",
+                icon: "error",
+                button: "确定",
+              });
+            }
+          })
+        })
+
+      },
+      reference:function () {
         this.$refs['user'].resetFields();
       },
 //      返回主页（首页）

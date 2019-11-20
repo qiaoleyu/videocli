@@ -1068,8 +1068,8 @@
 
       </el-main>
 
-      <el-footer>
-        <el-row :gutter="10" class="bg-purple" style="margin-left: inherit;margin-right: inherit">
+      <el-footer style="width:100%;height: 350px;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;">
+        <el-row :gutter="10"  style="margin-left: inherit;margin-right: inherit">
           <el-col :span="8"  >
             <div style="height: 120px;border-right: solid 1px white;margin-top: 5%;">
               <div style="float: left;height: 25%;width: 100%;font-size: 16px;line-height: 100%;margin-top: 10px;text-align: left;margin-left: 35px">
@@ -1121,7 +1121,7 @@
 
         <!--bottom版权-->
         <el-row>
-          <el-col :span="24"  class="bg-purple">
+          <el-col :span="24"  >
             <div style="height: 170px;line-height: 170px;font-size: 13px;text-align: center;float: left;width: 10%">
               <el-image src="../static/img/hz.jpg" style="cursor: pointer" title="合作机构"></el-image>
             </div>
@@ -1384,6 +1384,7 @@
     /*background-color: #B3C0D1;*/
     color: #333;
     text-align: center;
+    padding: 0;
     /*line-height: 160px;*/
   }
 

@@ -17,6 +17,7 @@ import folder from '@/components/folder'
 import chart from '@/components/chart'
 import upload from '@/components/upload'
 import download from '@/components/download'
+import checkUser from '@/components/checkUser'
 import applyText from '@/components/applyText'
 import videoDirect from '@/components/videoDirect'
 
@@ -84,6 +85,10 @@ export default new Router({
       path: '/download',
       name: 'download',
       component:download
+    },{
+      path: '/checkUser',
+      name: 'checkUser',
+      component:checkUser
     }
     // },{
     // path: '/moreMessage',
