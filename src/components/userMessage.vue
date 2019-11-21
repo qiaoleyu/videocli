@@ -24,17 +24,11 @@
                 <!--</el-badge>-->
               <!--</template>-->
             <!--</template>-->
-            <el-badge :value="6" class="item" type="primary" style="margin-top: 20px">
-              <el-menu-item index="/chatMessage" style="height: 10%" @click="chat(0)">
-                <i class="el-icon-chat-dot-round"></i>
-                <span slot="title">私聊</span>
-              </el-menu-item>
-            </el-badge>
 
             <el-badge :value="10" class="item" type="primary" style="margin-top: 20px">
               <el-menu-item index="/message" style="height: 10%" @click="chat(1)">
                 <i class="el-icon-message"></i>
-                <span slot="title">评论</span>
+                <span slot="title">消息</span>
               </el-menu-item>
             </el-badge>
 
@@ -63,6 +57,13 @@
               <el-menu-item index="/upload" style="height: 10%" @click="chat(5)">
                 <i class="el-icon-upload"></i>
                 <span slot="title">发布</span>
+              </el-menu-item>
+            </el-badge>
+
+            <el-badge  class="item" type="primary" >
+              <el-menu-item index="/chatMessage" style="height: 10%" @click="chat(0)" disabled>
+                <i class="el-icon-chat-dot-round"></i>
+                <span slot="title">私聊</span>
               </el-menu-item>
             </el-badge>
 

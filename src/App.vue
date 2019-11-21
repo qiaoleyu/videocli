@@ -249,6 +249,16 @@
               >
                 <span type="info" style="color:black;cursor: pointer"><a @click="logout()">退出</a></span>
               </div>
+
+              <!--消息-->
+              <div class="grid-content " style="height: 60px;width:60px;float: left"
+                   @mousemove="over(13)"
+                   @mouseleave="leave(13)"
+                   :style="n"
+              ><el-badge :value="10" class="item" type="danger" >
+                <span type="info" style="color:black;cursor: pointer"><a @click="RequstMessage()">消息</a></span>
+              </el-badge>
+              </div>
             </div>
           </el-col>
         </el-row>
@@ -279,6 +289,7 @@ export default {
         i:'',
         j:'',
         m:'',
+        n:'',
         user:{
           userId:'',
           userName:'',
@@ -344,6 +355,9 @@ export default {
       }if(x==12){
         this.m='background-color: orangered;border-radius: 0px 10px 0px 10px';
       }
+      if(x==13){
+        this.n='background-color: orangered;border-radius: 0px 10px 0px 10px';
+      }
     },
     leave:function (x) {
       if(x==1){
@@ -368,6 +382,9 @@ export default {
         this.j='';
       }if(x==12){
         this.m='';
+      }
+      if(x==13){
+        this.n='';
       }
     },
     //直播(跳转到直播页面)

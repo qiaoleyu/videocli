@@ -169,7 +169,7 @@
         <!--视频标题-->
         <el-row :gutter="10">
           <el-col :span="24">
-            <div style="text-align: center;background-color: orangered;height: 40px;margin-bottom: 20px;line-height: 40px">
+            <div style="text-align: center;background-color: powderblue;height: 40px;margin-bottom: 20px;line-height: 40px;border-radius: 10px">
               <span>王者荣耀播主视频(轮播视频对应的标题)</span>
             </div>
           </el-col>
@@ -194,7 +194,7 @@
               <div style="height: 150px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
                 <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
-                <video  width=100%  style="margin: auto;height:130px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+                <video  width=100%  style="margin: auto;height:130px;border-radius: 10px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
                   <source
                     :src="video.videoUrl"
                     type="video/mp4">
@@ -254,26 +254,18 @@
                 </div>
 
               </el-col>
-              <!--更多-->
-              <el-col :span="6" :offset="6">
-                <div class="grid-content" style="line-height: 40px;float: right;">
-                  <el-tooltip content="更多" placement="bottom" effect="light">
-                    <el-button class="el-icon-arrow-right" plain @click="next()"></el-button>
-                  </el-tooltip>
-                </div>
-              </el-col>
+
             </el-row>
 
             <el-row :gutter="10">
               <!--遍历特别推荐-->
-              <el-col :span="6">
                 <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px">-->
                   <el-col :span="6"  v-for="(video,index) in video5" :key="video.videoId">
-                    <el-card style="height: 120px;margin-bottom: 10px;font-size:14px">
-                      <div style="height: 100px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
+                    <!--<el-card style="height: 120px;margin-bottom: 10px;font-size:14px">-->
+                      <div style="height: 140px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
                         <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
-                        <video  width=100%  style="margin: auto;height:130px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+                        <video  width=100%  style="margin: auto;height:130px;border-radius: 10px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
                           <source
                             :src="video.videoUrl"
                             type="video/mp4">
@@ -304,10 +296,9 @@
                           </el-tooltip>
                         </div>
                       </div>
-                    </el-card>
+                    <!--</el-card>-->
                   </el-col>
                 <!--</div>-->
-              </el-col>
             </el-row>
 
           </el-col>
@@ -317,7 +308,7 @@
             <el-row :gutter="10">
 
               <el-col :span="6">
-                <div style="width:150px;height: 40px;float:left;background-color: #d3dce6;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 16px">
+                <div style="width:150px;height: 40px;float:left;background-color: #d3dce6;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 16px;border-radius: 10px">
                   推荐排行
                 </div>
 
@@ -334,11 +325,13 @@
 
               <el-col :span="24">
                 <!--遍历排行-->
-                <div style="height: 260px;background-color: greenyellow">
-                  <div v-for="(video,index) in videos" v-bind="video.videoId">
-                    <router-link :to="{path:'/videoplay/'+video.videoId}"><div style="height: 32px;line-height: 30px">{{video.videoName}}</div></router-link>
-                  </div>
-                </div>
+                <el-row :gutter="10" style="height: 340px;background-color: greenyellow;text-align: left;border-radius: 10px">
+                  <el-col span="22" :offset="2" style="margin-top: 10px">
+                    <div v-for="(video,index) in videos" v-bind="video.videoId">
+                      <router-link :to="{path:'/videoplay/'+video.videoId}"><div style="height: 32px;line-height: 30px">{{video.videoName}}</div></router-link>
+                    </div>
+                  </el-col>
+                </el-row>
               </el-col>
             </el-row>
 
@@ -346,12 +339,12 @@
         </el-row>
 
 
-        <!--视频分类-直播-->
+        <!--视频分类-娱乐-->
         <el-row :gutter="10">
           <el-col :span="18">
 
             <el-row :gutter="10">
-              <el-col :span="6">
+              <el-col :span="12">
                 <div style="width:150px;height: 40px;float:left;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 20px">
                   <div style="height: 40px;float: left;width: 40px;margin-right: 10px">
                     <el-image src="../static/img/zhibo.jpg" style="width: 40px;height: 40px;cursor:pointer" title="直播"></el-image>
@@ -367,37 +360,24 @@
                   </el-menu>
                 </div>
               </el-col>
-              <!--<el-col :span="6">
-                <div style="height: 40px;float:left;font-size: 16px;color:palevioletred;text-align: center;line-height: 40px">
-                  <span>共？播主在线直播</span>
-                </div>
-              </el-col>-->
-              <el-col :span="6">
+              <el-col :span="5" :offset="7">
                 <div style="height: 40px;float:left;font-size: 16px;color:palevioletred;text-align: center;line-height: 40px">
                   <el-button class="el-icon-refresh"></el-button>
                   <span>共{{count1}}条动态</span>
                 </div>
               </el-col>
-              <!--更多-->
-              <el-col :span="6" >
-                <div class="grid-content" style="line-height: 40px;float: right;">
-                  <el-tooltip content="更多" placement="bottom" effect="light">
-                    <el-button class="el-icon-arrow-right" plain @click="next()"></el-button>
-                  </el-tooltip>
-                </div>
-              </el-col>
+
             </el-row>
 
             <el-row :gutter="10">
               <!--遍历直播-->
-              <el-col :span="6">
                 <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> -->
                 <el-col :span="6"  v-for="(video,index) in video6" :key="video.videoId">
-                  <el-card style="height: 200px;margin-bottom: 10px;font-size:14px">
-                    <div style="height: 150px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
+                  <!--<el-card style="height: 200px;margin-bottom: 10px;font-size:14px">-->
+                    <div style="height: 140px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
                       <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
-                      <video  width=100%  style="margin: auto;height:130px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+                      <video  width=100%  style="margin: auto;height:130px;border-radius: 10px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
                         <source
                           :src="video.videoUrl"
                           type="video/mp4">
@@ -428,10 +408,9 @@
                         </el-tooltip>
                       </div>
                     </div>
-                  </el-card>
+                  <!--</el-card>-->
                 </el-col>
                 <!--</div>-->
-              </el-col>
             </el-row>
 
           </el-col>
@@ -441,7 +420,7 @@
             <el-row :gutter="10">
 
               <el-col :span="6">
-                <div style="width:150px;height: 40px;float:left;background-color: #d3dce6;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 16px">
+                <div style="width:150px;height: 40px;float:left;background-color: #d3dce6;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 16px;border-radius: 10px">
                   娱乐排行
                 </div>
               </el-col>
@@ -455,11 +434,13 @@
               </el-col>
 
               <el-col :span="24">
-                <div style="height: 260px;background-color: greenyellow">
-                  <div v-for="(video,index) in videos1" v-bind="video.videoId">
-                    <router-link :to="{path:'/videoplay/'+video.videoId}"><div style="height: 32px;line-height: 30px">{{video.videoName}}</div></router-link>
-                  </div>
-                </div>
+                <el-row :gutter="10" style="height: 340px;background-color: greenyellow;text-align: left;border-radius: 10px">
+                  <el-col span="22" :offset="2" style="margin-top: 10px">
+                    <div v-for="(video,index) in videos1" v-bind="video.videoId">
+                      <router-link :to="{path:'/videoplay/'+video.videoId}"><div style="height: 32px;line-height: 30px">{{video.videoName}}</div></router-link>
+                    </div>
+                  </el-col>
+                </el-row>
               </el-col>
             </el-row>
 
@@ -489,68 +470,57 @@
                 </div>
 
               </el-col>
-              <el-col :span="6">
+              <el-col :span="5" :offset="7">
                 <div style="height: 40px;float:left;font-size: 16px;color:palevioletred;text-align: center;line-height: 40px">
                   <el-button class="el-icon-refresh" @click="findTrend(1)"></el-button>
                   <span>共{{count2}}条动态</span>
                 </div>
               </el-col>
 
-              <!--更多-->
-              <el-col :span="6" :offset="6">
-                <div class="grid-content" style="line-height: 40px;float: right;">
-                  <el-tooltip content="更多" placement="bottom" effect="light">
-                    <el-button class="el-icon-arrow-right" plain @click="next()"></el-button>
-                  </el-tooltip>
-                </div>
-              </el-col>
             </el-row>
 
             <el-row :gutter="10">
               <!--遍历动漫-->
-              <el-col :span="6">
-                <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> -->
-                <el-col :span="6"  v-for="(video,index) in video8" :key="video.videoId">
-                  <el-card style="height: 200px;margin-bottom: 10px;font-size:14px">
-                    <div style="height: 150px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
-                      <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
-                      <video  width=100%  style="margin: auto;height:130px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
-                        <source
-                          :src="video.videoUrl"
-                          type="video/mp4">
-                        <!--type="application/x-mpegURL"-->
-                      </video>
-                    </router-link>
+              <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> -->
+              <el-col :span="6"  v-for="(video,index) in video8" :key="video.videoId">
+                <!--<el-card style="height: 200px;margin-bottom: 10px;font-size:14px">-->
+                  <div style="height: 140px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
+                    <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
+                    <video  width=100%  style="margin: auto;height:130px;border-radius: 10px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+                      <source
+                        :src="video.videoUrl"
+                        type="video/mp4">
+                      <!--type="application/x-mpegURL"-->
+                    </video>
+                  </router-link>
+
+                  </div>
+                  <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
+                    <div style="width:50%;float:left;">
+                      {{video.videoName}}
                     </div>
-                    <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
-                      <div style="width:50%;float:left;">
-                        {{video.videoName}}
-
-                      </div>
-                      <div style="width:15%;float:left" @click="like(video.videoId)">
-                        <el-tooltip content="点赞" >
-                          <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
-                        </el-tooltip>
-                      </div>
-                      <div style="width:15%;float:left" @click="favorite(video.videoId)">
-                        <el-tooltip content="收藏" >
-                          <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
-                        </el-tooltip>
-                      </div>
-                      <div style="width:15%;float:left" @click="download(video.videoId)" >
-                        <!--dialogVisible = true,-->
-                        <el-tooltip content="下载" >
-                          <a class="el-icon-download" plain style="font-size: 18px"></a>
-                        </el-tooltip>
-                      </div>
+                    <div style="width:15%;float:left" @click="like(video.videoId)">
+                      <el-tooltip content="点赞" >
+                        <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
+                      </el-tooltip>
                     </div>
-                  </el-card>
-                </el-col>
-                <!--</div>-->
+                    <div style="width:15%;float:left" @click="favorite(video.videoId)">
+                      <el-tooltip content="收藏" >
+                        <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
+                      </el-tooltip>
+                    </div>
+                    <div style="width:15%;float:left" @click="download(video.videoId)" >
+                      <!--dialogVisible = true,-->
+                      <el-tooltip content="下载" >
+                        <a class="el-icon-download" plain style="font-size: 18px"></a>
+                      </el-tooltip>
+                    </div>
+                  </div>
+                <!--</el-card>-->
               </el-col>
-
+              <!--</div>-->
             </el-row>
 
           </el-col>
@@ -560,7 +530,7 @@
             <el-row :gutter="10">
 
               <el-col :span="6">
-                <div style="width:150px;height: 40px;float:left;background-color: #d3dce6;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 16px">
+                <div style="width:150px;height: 40px;float:left;background-color: #d3dce6;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 16px;border-radius: 10px">
                   动画排行
                 </div>
               </el-col>
@@ -573,12 +543,14 @@
                 </div>
               </el-col>
 
-              <el-col :span="24">
-                <div style="height: 260px;background-color: greenyellow">
-                  <div v-for="(video,index) in videos2" v-bind="video.videoId">
-                    <router-link :to="{path:'/videoplay/'+video.videoId}"><div style="height: 32px;line-height: 30px">{{video.videoName}}</div></router-link>
-                  </div>
-                </div>
+              <el-col :span="24" >
+                <el-row :gutter="10" style="height: 340px;background-color: greenyellow;text-align: left;border-radius: 10px">
+                  <el-col span="22" :offset="2" style="margin-top: 10px">
+                    <div v-for="(video,index) in videos2" v-bind="video.videoId">
+                      <router-link :to="{path:'/videoplay/'+video.videoId}"><div style="height: 32px;line-height: 30px">{{video.videoName}}</div></router-link>
+                    </div>
+                  </el-col>
+                </el-row>
               </el-col>
             </el-row>
 
@@ -608,67 +580,58 @@
                 </div>
 
               </el-col>
-              <el-col :span="6">
+              <el-col :span="5" :offset="7">
                 <div style="height: 40px;float:left;font-size: 16px;color:palevioletred;text-align: center;line-height: 40px">
                   <el-button class="el-icon-refresh" @click="findTrend(11)"></el-button>
                   <span>共{{count3}}条动态</span>
                 </div>
               </el-col>
 
-              <!--更多-->
-              <el-col :span="6" :offset="6">
-                <div class="grid-content" style="line-height: 40px;float: right;">
-                  <el-tooltip content="更多" placement="bottom" effect="light">
-                    <el-button class="el-icon-arrow-right" plain @click="next()"></el-button>
-                  </el-tooltip>
-                </div>
-              </el-col>
             </el-row>
 
             <el-row :gutter="10">
               <!--遍历动画-->
-              <el-col :span="6">
-                <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> -->
-                <el-col :span="6"  v-for="(video,index) in video9" :key="video.videoId">
-                  <el-card style="height: 200px;margin-bottom: 10px;font-size:14px">
-                    <div style="height: 150px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
-                      <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
-                      <video  width=100%  style="margin: auto;height:130px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
-                        <source
-                          :src="video.videoUrl"
-                          type="video/mp4">
-                        <!--type="application/x-mpegURL"-->
-                      </video>
-                    </router-link>
+              <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> -->
+              <el-col :span="6"  v-for="(video,index) in video9" :key="video.videoId">
+                <!--<el-card style="height: 200px;margin-bottom: 10px;font-size:14px">-->
+                  <div style="height: 140px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
+                    <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
+                    <video  width=100%  style="margin: auto;height:130px;border-radius: 10px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+                      <source
+                        :src="video.videoUrl"
+                        type="video/mp4">
+                      <!--type="application/x-mpegURL"-->
+                    </video>
+                  </router-link>
+
+                  </div>
+                  <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
+                    <div style="width:50%;float:left;">
+                      {{video.videoName}}
                     </div>
-                    <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
-                      <div style="width:50%;float:left;">
-                        {{video.videoName}}
-
-                      </div>
-                      <div style="width:15%;float:left" @click="like(video.videoId)">
-                        <el-tooltip content="点赞" >
-                          <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
-                        </el-tooltip>
-                      </div>
-                      <div style="width:15%;float:left" @click="favorite(video.videoId)">
-                        <el-tooltip content="收藏" >
-                          <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
-                        </el-tooltip>
-                      </div>
-                      <div style="width:15%;float:left" @click="download(video.videoId)" >
-                        <!--dialogVisible = true,-->
-                        <el-tooltip content="下载" >
-                          <a class="el-icon-download" plain style="font-size: 18px"></a>
-                        </el-tooltip>
-                      </div>
+                    <div style="width:15%;float:left" @click="like(video.videoId)">
+                      <el-tooltip content="点赞" >
+                        <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
+                      </el-tooltip>
                     </div>
-                  </el-card>
-                </el-col>
-                <!--</div>-->
+                    <div style="width:15%;float:left" @click="favorite(video.videoId)">
+                      <el-tooltip content="收藏" >
+                        <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
+                      </el-tooltip>
+                    </div>
+                    <div style="width:15%;float:left" @click="download(video.videoId)" >
+                      <!--dialogVisible = true,-->
+                      <el-tooltip content="下载" >
+                        <a class="el-icon-download" plain style="font-size: 18px"></a>
+                      </el-tooltip>
+                    </div>
+                  </div>
+                <!--</el-card>-->
               </el-col>
+              <!--</div>-->
+
             </el-row>
 
           </el-col>
@@ -678,7 +641,7 @@
             <el-row :gutter="10">
 
               <el-col :span="6">
-                <div style="width:150px;height: 40px;float:left;background-color: #d3dce6;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 16px">
+                <div style="width:150px;height: 40px;float:left;background-color: #d3dce6;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 16px;border-radius: 10px">
                   TV排行
                 </div>
               </el-col>
@@ -691,12 +654,14 @@
                 </div>
               </el-col>
 
-              <el-col :span="24">
-                <div style="height: 260px;background-color: greenyellow">
-                  <div v-for="(video,index) in videos3" v-bind="video.videoId">
-                    <router-link :to="{path:'/videoplay/'+video.videoId}"><div style="height: 32px;line-height: 30px">{{video.videoName}}</div></router-link>
-                  </div>
-                </div>
+              <el-col :span="24" >
+                <el-row :gutter="10" style="height: 340px;background-color: greenyellow;text-align: left;border-radius: 10px">
+                  <el-col span="22" :offset="2" style="margin-top: 10px">
+                    <div v-for="(video,index) in videos3" v-bind="video.videoId">
+                      <router-link :to="{path:'/videoplay/'+video.videoId}"><div style="height: 32px;line-height: 30px">{{video.videoName}}</div></router-link>
+                    </div>
+                  </el-col>
+                </el-row>
               </el-col>
             </el-row>
 
@@ -725,66 +690,64 @@
                 </div>
 
               </el-col>
-              <el-col :span="6">
+              <el-col :span="5" :offset="7">
                 <div style="height: 40px;float:left;font-size: 16px;color:palevioletred;text-align: center;line-height: 40px">
                   <el-button class="el-icon-refresh" @click="findTrend(6)"></el-button>
                   <span>共{{count4}}条动态</span>
                 </div>
               </el-col>
-              <!--更多-->
-              <el-col :span="6" :offset="6">
-                <div class="grid-content" style="line-height: 40px;float: right;">
-                  <el-tooltip content="更多" placement="bottom" effect="light">
-                    <el-button class="el-icon-arrow-right" plain @click="next()"></el-button>
-                  </el-tooltip>
-                </div>
-              </el-col>
+              <!--&lt;!&ndash;更多&ndash;&gt;-->
+              <!--<el-col :span="6" :offset="6">-->
+                <!--<div class="grid-content" style="line-height: 40px;float: right;">-->
+                  <!--<el-tooltip content="更多" placement="bottom" effect="light">-->
+                    <!--<el-button class="el-icon-arrow-right" plain @click="next()"></el-button>-->
+                  <!--</el-tooltip>-->
+                <!--</div>-->
+              <!--</el-col>-->
             </el-row>
 
             <el-row :gutter="10">
               <!--遍历音乐舞蹈-->
-              <el-col :span="6">
-                <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> -->
-                <el-col :span="6"  v-for="(video,index) in video10" :key="video.videoId">
-                  <el-card style="height: 200px;margin-bottom: 10px;font-size:14px">
-                    <div style="height: 150px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
-                      <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
-                      <video  width=100%  style="margin: auto;height:130px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
-                        <source
-                          :src="video.videoUrl"
-                          type="video/mp4">
-                        <!--type="application/x-mpegURL"-->
-                      </video>
-                    </router-link>
+              <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> -->
+              <el-col :span="6"  v-for="(video,index) in video10" :key="video.videoId">
+                <!--<el-card style="height: 200px;margin-bottom: 10px;font-size:14px">-->
+                  <div style="height: 140px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
+                    <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
+                    <video  width=100%  style="margin: auto;height:130px;border-radius: 10px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+                      <source
+                        :src="video.videoUrl"
+                        type="video/mp4">
+                      <!--type="application/x-mpegURL"-->
+                    </video>
+                  </router-link>
+
+                  </div>
+                  <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
+                    <div style="width:50%;float:left;">
+                      {{video.videoName}}
                     </div>
-                    <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
-                      <div style="width:50%;float:left;">
-                        {{video.videoName}}
-
-                      </div>
-                      <div style="width:15%;float:left" @click="like(video.videoId)">
-                        <el-tooltip content="点赞" >
-                          <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
-                        </el-tooltip>
-                      </div>
-                      <div style="width:15%;float:left" @click="favorite(video.videoId)">
-                        <el-tooltip content="收藏" >
-                          <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
-                        </el-tooltip>
-                      </div>
-                      <div style="width:15%;float:left" @click="download(video.videoId)" >
-                        <!--dialogVisible = true,-->
-                        <el-tooltip content="下载" >
-                          <a class="el-icon-download" plain style="font-size: 18px"></a>
-                        </el-tooltip>
-                      </div>
+                    <div style="width:15%;float:left" @click="like(video.videoId)">
+                      <el-tooltip content="点赞" >
+                        <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
+                      </el-tooltip>
                     </div>
-                  </el-card>
-                </el-col>
-                <!--</div>-->
+                    <div style="width:15%;float:left" @click="favorite(video.videoId)">
+                      <el-tooltip content="收藏" >
+                        <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
+                      </el-tooltip>
+                    </div>
+                    <div style="width:15%;float:left" @click="download(video.videoId)" >
+                      <!--dialogVisible = true,-->
+                      <el-tooltip content="下载" >
+                        <a class="el-icon-download" plain style="font-size: 18px"></a>
+                      </el-tooltip>
+                    </div>
+                  </div>
+                <!--</el-card>-->
               </el-col>
+              <!--</div>-->
             </el-row>
 
           </el-col>
@@ -794,7 +757,7 @@
             <el-row :gutter="10">
 
               <el-col :span="6">
-                <div style="width:150px;height: 40px;float:left;background-color: #d3dce6;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 16px">
+                <div style="width:150px;height: 40px;float:left;background-color: #d3dce6;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 16px;border-radius: 10px">
                   影视排行
                 </div>
               </el-col>
@@ -808,11 +771,15 @@
               </el-col>
 
               <el-col :span="24">
-                <div style="height: 260px;background-color: greenyellow">
-                  <div v-for="(video,index) in videos4" v-bind="video.videoId">
-                    <router-link :to="{path:'/videoplay/'+video.videoId}"><div style="height: 32px;line-height: 30px">{{video.videoName}}</div></router-link>
-                  </div>
-                </div>
+
+                <el-row :gutter="10" style="height: 340px;background-color: greenyellow;text-align: left;border-radius: 10px">
+                  <el-col span="22" :offset="2" style="margin-top: 10px">
+                    <div v-for="(video,index) in videos4" v-bind="video.videoId">
+                      <router-link :to="{path:'/videoplay/'+video.videoId}"><div style="height: 32px;line-height: 30px">{{video.videoName}}</div></router-link>
+                    </div>
+                  </el-col>
+                </el-row>
+
               </el-col>
             </el-row>
 
