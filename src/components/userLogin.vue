@@ -3,83 +3,86 @@
     <!--<h1>{{ msg }}</h1>-->
     <el-container >
       <!--导航栏-->
-      <el-header style="height: 80px">
+      <el-header style="height: 100px;width: 100%;padding: 0">
         <div style="width: 100%;margin: auto;">
           <router-link :to="{name:'index'}"><el-image src="../static/img/logo3.jpg" style="width:100%;" title="返回首页"></el-image></router-link>
         </div>
       </el-header>
-      <el-main style="width: 100%;margin: auto;">
-        <el-row :gutter="10">
-          <el-col :span="6" :offset="5" style="font-size: 14px;margin-bottom: 20px;margin-top: 20px">
-            <hr>
-          </el-col>
-          <el-col :span="2" style="font-size: 36px;font-weight:bolder;margin-bottom: 20px">
-            <span>登  录</span>
-          </el-col>
-          <el-col :span="6" style="font-size: 14px;margin-bottom: 20px;margin-top: 20px">
-            <hr>
-          </el-col>
-        </el-row>
-        <el-row :gutter="10" style="height:460px;">
-          <el-col :span="12"style="font-size: 14px;height:100%;margin-bottom: 20px;border-right: solid 2px #d3dce6">
-            <!--<el-card class="box-card" style="background-color: #FDFFF4">-->
-              <el-image src="../static/img/girl3.jpeg" style="height: 460px;width: 100%;font-size: 25px" title="欢迎来到bala视频网站"></el-image>
-            <!--</el-card>-->
-          </el-col>
-          <el-col :span="12" >
-            <NoButtonHeader></NoButtonHeader>
-            <el-card class="box-card" style="background-color: #FDFFF4">
-            <el-form :model="users" status-icon :rules="rules" ref="users" label-width="20%" style="width: 80%;margin: auto;margin-top: 10%" >
-              <el-row :gutter="10">
-                <el-col :span="24">
-                <el-form-item label="账号：" prop="loginName" style="font-size:25px;text-align: left;font-weight: bolder">
-                  <el-input type="text" name="loginName" v-model="users.loginName" style="width: 340px" placeholder="昵称/邮箱/手机号"></el-input>
-                </el-form-item><br>
-                <el-form-item label="密码：" prop="password" style="font-size:25px;text-align: left;font-weight: bolder" show-password>
-                  <el-input type="password" name="password" v-model="users.password" style="width: 340px" placeholder="请输入密码"></el-input>
-                </el-form-item><br>
-                </el-col>
-              </el-row>
-              <el-row :gutter="10">
-                <el-col :span="4"  :offset="4" style="margin-bottom: 16px">
-                  <div style="width: 100px"><input type="checkbox" name="rememberme" value="yes"/>记住密码</div>
-                </el-col>
-                <el-col :span="6" :offset="6" style="margin-bottom: 16px">
-                <a type="primary" plain @click="toCheck()" style="font-size: 16px;float: right;cursor: pointer;">忘记密码>></a>
-                </el-col>
-              </el-row>
-              <el-row :gutter="10">
-                <el-col :span="18" :offset="3" style="margin-top: 15%">
-                  <el-button type="primary" style="width: 28%" plain @click="login()">确认</el-button>
-                  <el-button type="primary" style="width: 28%" plain @click="toinsetUser()">注册</el-button>
-                  <el-button type="primary" style="width: 28%" plain @click="resetForm('user')">重置</el-button>
-                </el-col>
-              </el-row>
-              <el-row :gutter="10">
-                <el-col :span="18" :offset="3">
-                  <a href="" >
-                    <div style="width:40px;margin-top: 20px;float:left;margin-left: 10px">
-                      <el-image src="../static/img/qq.jpg" title="QQ"></el-image>
-                    </div>
-                    <div style="width:40px;margin-top: 20px;float:left;line-height: 20px;margin-right: 30px">
-                      <span >QQ</span>
-                    </div>
-                  </a>
-                  <a href="">
-                    <div style="width:40px;margin-top: 20px;float:left">
-                      <el-image src="../static/img/weixin1.jpg" title="微信"></el-image>
-                    </div>
-                    <div style="width:40px;margin-top: 20px;float:left">
-                      <span>微信</span>
-                    </div>
-                  </a>
-                </el-col>
-              </el-row>
-            </el-form>
-            </el-card>
-          </el-col>
-        </el-row>
-      </el-main>
+      <el-card style="width:100%;background: #f5f5f5 url('../static/img/girl3.jpeg') no-repeat center;background-size: cover;opacity: 0.8;border-radius: 10px">
+        <el-main style="width: 100%">
+          <el-row :gutter="10">
+            <el-col :span="6" :offset="5" style="font-size: 14px;margin-bottom: 20px;margin-top: 20px">
+              <hr>
+            </el-col>
+            <el-col :span="2" style="font-size: 36px;font-weight:bolder;margin-bottom: 20px">
+              <span>登  录</span>
+            </el-col>
+            <el-col :span="6" style="font-size: 14px;margin-bottom: 20px;margin-top: 20px">
+              <hr>
+            </el-col>
+          </el-row>
+          <el-row :gutter="10" style="height:460px;">
+            <!--<el-col :span="12"style="font-size: 14px;height:100%;margin-bottom: 20px;border-right: solid 2px #d3dce6">-->
+            <!--&lt;!&ndash;<el-card class="box-card" style="background-color: #FDFFF4">&ndash;&gt;-->
+            <!--<el-image src="../static/img/girl3.jpeg" style="height: 460px;width: 100%;font-size: 25px" title="欢迎来到bala视频网站"></el-image>-->
+            <!--&lt;!&ndash;</el-card>&ndash;&gt;-->
+            <!--</el-col>-->
+            <el-col :span="8" :offset="14">
+              <NoButtonHeader></NoButtonHeader>
+              <el-card class="box-card" style="opacity: 0.9;height: 430px;border-radius: 15px">
+                <el-form :model="users" status-icon :rules="rules" ref="users" label-width="20%" style="width: 90%;margin: auto;margin-top: 10%" >
+                  <el-row :gutter="10">
+                    <el-col :span="24">
+                      <el-form-item label="账号：" prop="loginName" style="font-size:25px;text-align: left;font-weight: bolder">
+                        <el-input type="text" name="loginName" v-model="users.loginName" style="width: 240px" placeholder="昵称/邮箱/手机号"></el-input>
+                      </el-form-item><br>
+                      <el-form-item label="密码：" prop="password" style="font-size:25px;text-align: left;font-weight: bolder" show-password>
+                        <el-input type="password" name="password" v-model="users.password" style="width: 240px" placeholder="请输入密码"></el-input>
+                      </el-form-item><br>
+                    </el-col>
+                  </el-row>
+                  <el-row :gutter="10">
+                    <el-col :span="4"  :offset="2" style="margin-bottom: 16px">
+                      <div style="width: 100px"><input type="checkbox" name="rememberme" value="yes"/>记住密码</div>
+                    </el-col>
+                    <el-col :span="8" :offset="6" style="margin-bottom: 16px">
+                      <a type="primary" plain @click="toCheck()" style="font-size: 16px;float: right;cursor: pointer;">忘记密码>></a>
+                    </el-col>
+                  </el-row>
+                  <el-row :gutter="10">
+                    <el-col :span="18" :offset="2" style="margin-top: 10%;margin-left: 10%">
+                      <el-button type="primary" style="width: 29%" plain @click="login()">确认</el-button>
+                      <el-button type="primary" style="width: 29%" plain @click="toinsetUser()">注册</el-button>
+                      <el-button type="primary" style="width: 29%" plain @click="resetForm('user')">重置</el-button>
+                    </el-col>
+                  </el-row>
+                  <el-row :gutter="10">
+                    <el-col :span="18" :offset="2">
+                      <a href="" >
+                        <div style="width:40px;margin-top: 20px;float:left;margin-left: 10px">
+                          <el-image src="../static/img/qq.jpg" title="QQ"></el-image>
+                        </div>
+                        <div style="width:40px;margin-top: 20px;float:left;line-height: 20px;margin-right: 30px">
+                          <span >QQ</span>
+                        </div>
+                      </a>
+                      <a href="">
+                        <div style="width:40px;margin-top: 20px;float:left;margin-left: 18%">
+                          <el-image src="../static/img/weixin1.jpg" title="微信"></el-image>
+                        </div>
+                        <div style="width:40px;margin-top: 20px;float:left">
+                          <span>微信</span>
+                        </div>
+                      </a>
+                    </el-col>
+                  </el-row>
+                </el-form>
+              </el-card>
+            </el-col>
+          </el-row>
+        </el-main>
+      </el-card>
+
 
       <el-footer>
         <el-row :gutter="10"  style="margin-left: inherit;margin-right: inherit">

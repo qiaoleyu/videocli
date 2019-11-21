@@ -169,7 +169,7 @@
         <!--视频标题-->
         <el-row :gutter="10">
           <el-col :span="24">
-            <div style="text-align: center;background-color: powderblue;height: 40px;margin-bottom: 20px;line-height: 40px;border-radius: 10px">
+            <div style="text-align: center;background: url('../static/img/girl2.jpeg') no-repeat;height: 40px;margin-bottom: 20px;line-height: 40px;border-radius: 10px">
               <span>王者荣耀播主视频(轮播视频对应的标题)</span>
             </div>
           </el-col>
