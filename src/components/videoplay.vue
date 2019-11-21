@@ -1416,7 +1416,6 @@
 //            console.log(res.data.comment[0].list)
             this.comments=res.data.com;
             this.comments2=res.data.comment
-alert(111)
 //            console.log(this.comments)
           }else {
             alert("暂无评论")
@@ -1486,7 +1485,7 @@ alert(111)
         this.com.commentLid=0;
         this.com.commentContent=this.input2;
 //        console.log(this.com)
-        axios.post("api/saveComment",this.com).then(res=>{
+        axios.post("api/saveComment",{comment:this.com,video:this.video}).then(res=>{
           if (res.data!=null){
 //            alert("success")
             this.input2='';
@@ -1561,7 +1560,7 @@ alert(111)
           this.com.commentLid=this.comments2[val].list[val].commentId;
           this.com.commentContent=value;
           this.com.videoId=this.video.videoId;
-          axios.post("api/saveComment",this.com).then(res=>{
+          axios.post("api/saveComment",{comment:this.com,video:this.video}).then(res=>{
             if (res.data!=null){
 //              alert("success")
 //              alert(this.com.commentRid)
@@ -1593,7 +1592,7 @@ alert(111)
               button: "确定",
             });
             axios.post("api/aliPay/"+this.user.userId+"/"+value).then(res => {
-              alert(111)
+//              alert(111)
               this.$router.replace({path:'/applyText',query:{htmls:res.data}})
             })
           }).catch(() => {

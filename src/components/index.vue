@@ -711,15 +711,15 @@
                     <el-image src="../static/img/zhibo.jpg" style="width: 40px;height: 40px;cursor:pointer" title="直播"></el-image>
                   </div>
                   <div style="height: 40px;float: left;">
-                    <span>正在直播</span>
+                    <span>广告</span>
                   </div>
                 </div>
               </el-col>
-              <el-col :span="6">
+              <!--<el-col :span="6">
                 <div style="height: 40px;float:left;font-size: 16px;color:palevioletred;text-align: center;line-height: 40px">
                   <span>共？播主在线直播</span>
                 </div>
-              </el-col>
+              </el-col>-->
               <el-col :span="6">
                 <div style="height: 40px;float:left;font-size: 16px;color:palevioletred;text-align: center;line-height: 40px">
                   <el-button class="el-icon-refresh"></el-button>
@@ -805,7 +805,7 @@
                     <el-image src="../static/img/dongman.jpg" style="width: 40px;height: 40px;cursor:pointer" title="动漫"></el-image>
                   </div>
                   <div style="height: 40px;float: left;">
-                    <span>动 漫</span>
+                    <span>动 画</span>
                   </div>
                 </div>
                 <div style="height: 40px;float:left;font-size: 18px;font-weight: bolder;text-align: center;line-height: 40px">
@@ -896,7 +896,7 @@
                     <el-image src="../static/img/youxi.jpg" style="width: 40px;height: 40px;cursor:pointer" title="游戏"></el-image>
                   </div>
                   <div style="height: 40px;float: left;">
-                    <span>游 戏</span>
+                    <span>TV</span>
                   </div>
                 </div>
                 <div style="height: 40px;float:left;font-size: 18px;font-weight: bolder;text-align: center;line-height: 40px">
@@ -986,7 +986,7 @@
                     <el-image src="../static/img/yinyue.jpg" style="width: 40px;height: 40px;cursor:pointer" title="音乐舞蹈"></el-image>
                   </div>
                   <div style="height: 40px;float: left;">
-                    <span>音乐舞蹈</span>
+                    <span>影视</span>
                   </div>
                 </div>
                 <div style="height: 40px;float:left;font-size: 18px;font-weight: bolder;text-align: center;line-height: 40px">
