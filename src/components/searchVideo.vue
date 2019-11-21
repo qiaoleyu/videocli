@@ -266,7 +266,7 @@
       </el-header>
 
 
-      <el-main style="width: 90%;margin: auto;padding-top: 100px"
+      <el-main style="width: 90%;margin: auto;padding-top: 80px"
                v-loading="loading"
                element-loading-text="拼命下载中"
                element-loading-spinner="el-icon-loading"
@@ -301,7 +301,7 @@
               <div style="height: 150px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.pk_video_id}">
                 <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
-                <video  width=100%  style="margin: auto;height:130px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+                <video  width=100%  style="margin: auto;height:130px;border-radius: 10px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
                   <source
                     :src="video.idx_video_url"
                     type="video/mp4">
