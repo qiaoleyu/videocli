@@ -284,7 +284,6 @@
                   });
                   /*var userId=Cookies.get('userId');
                   alert(userId)*/
-                  //
                   this.$router.push("/");
                   this.$router.go(0);
                 })
