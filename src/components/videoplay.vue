@@ -1416,7 +1416,6 @@
 //            console.log(res.data.comment[0].list)
             this.comments=res.data.com;
             this.comments2=res.data.comment
-alert(111)
 //            console.log(this.comments)
           }else {
             alert("暂无评论")
