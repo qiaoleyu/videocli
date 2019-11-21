@@ -676,7 +676,7 @@
 
               <el-col :span="6">
                 <div style="width:150px;height: 40px;float:left;background-color: #d3dce6;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 16px">
-                  排 行
+                  推荐排行
                 </div>
 
               </el-col>
@@ -692,7 +692,11 @@
 
               <el-col :span="24">
                 <!--遍历排行-->
-                <div style="height: 260px;background-color: orangered"> </div>
+                <div style="height: 260px;background-color: greenyellow">
+                  <div v-for="(video,index) in videos" v-bind="video.videoId">
+                    <router-link :to="{path:'/videoplay/'+video.videoId}"><div style="height: 32px;line-height: 30px">{{video.videoName}}</div></router-link>
+                  </div>
+                </div>
               </el-col>
             </el-row>
 
@@ -711,7 +715,7 @@
                     <el-image src="../static/img/zhibo.jpg" style="width: 40px;height: 40px;cursor:pointer" title="直播"></el-image>
                   </div>
                   <div style="height: 40px;float: left;">
-                    <span>广告</span>
+                    <span>娱乐</span>
                   </div>
                 </div>
               </el-col>
@@ -772,7 +776,7 @@
 
               <el-col :span="6">
                 <div style="width:150px;height: 40px;float:left;background-color: #d3dce6;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 16px">
-                  直播排行
+                  娱乐排行
                 </div>
               </el-col>
               <!--更多-->
@@ -785,8 +789,11 @@
               </el-col>
 
               <el-col :span="24">
-                <!--遍历排行-->
-                <div style="height: 260px;background-color: orangered"> </div>
+                <div style="height: 260px;background-color: greenyellow">
+                  <div v-for="(video,index) in videos1" v-bind="video.videoId">
+                    <router-link :to="{path:'/videoplay/'+video.videoId}"><div style="height: 32px;line-height: 30px">{{video.videoName}}</div></router-link>
+                  </div>
+                </div>
               </el-col>
             </el-row>
 
@@ -863,7 +870,7 @@
 
               <el-col :span="6">
                 <div style="width:150px;height: 40px;float:left;background-color: #d3dce6;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 16px">
-                  排 行
+                  动画排行
                 </div>
               </el-col>
               <!--更多-->
@@ -876,8 +883,11 @@
               </el-col>
 
               <el-col :span="24">
-                <!--遍历排行-->
-                <div style="height: 260px;background-color: orangered"> </div>
+                <div style="height: 260px;background-color: greenyellow">
+                  <div v-for="(video,index) in videos2" v-bind="video.videoId">
+                    <router-link :to="{path:'/videoplay/'+video.videoId}"><div style="height: 32px;line-height: 30px">{{video.videoName}}</div></router-link>
+                  </div>
+                </div>
               </el-col>
             </el-row>
 
@@ -954,7 +964,7 @@
 
               <el-col :span="6">
                 <div style="width:150px;height: 40px;float:left;background-color: #d3dce6;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 16px">
-                  排 行
+                  TV排行
                 </div>
               </el-col>
               <!--更多-->
@@ -967,8 +977,11 @@
               </el-col>
 
               <el-col :span="24">
-                <!--遍历排行-->
-                <div style="height: 260px;background-color: orangered"> </div>
+                <div style="height: 260px;background-color: greenyellow">
+                  <div v-for="(video,index) in videos3" v-bind="video.videoId">
+                    <router-link :to="{path:'/videoplay/'+video.videoId}"><div style="height: 32px;line-height: 30px">{{video.videoName}}</div></router-link>
+                  </div>
+                </div>
               </el-col>
             </el-row>
 
@@ -1044,7 +1057,7 @@
 
               <el-col :span="6">
                 <div style="width:150px;height: 40px;float:left;background-color: #d3dce6;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 16px">
-                  排 行
+                  影视排行
                 </div>
               </el-col>
               <!--更多-->
@@ -1057,8 +1070,11 @@
               </el-col>
 
               <el-col :span="24">
-                <!--遍历排行-->
-                <div style="height: 260px;background-color: orangered"> </div>
+                <div style="height: 260px;background-color: greenyellow">
+                  <div v-for="(video,index) in videos4" v-bind="video.videoId">
+                    <router-link :to="{path:'/videoplay/'+video.videoId}"><div style="height: 32px;line-height: 30px">{{video.videoName}}</div></router-link>
+                  </div>
+                </div>
               </el-col>
             </el-row>
 
@@ -1211,10 +1227,44 @@
           userId:'',
           userName:''
         },
+        videos:[],
+        videos1:[],
+        videos2:[],
+        videos3:[],
+        videos4:[]
       }
     },
     mounted(){
       this.user.userId=Cookies.get("userId")
+      //推荐
+      var url="api/findAllVideo"
+      axios.get(url).then(res=>{
+        this.videos=res.data
+      })
+      //娱乐
+     var url="api/findFunById/"+7
+      axios.get(url).then(res=>{
+          this.videos1=res.data
+      })
+      //动画
+      var url="api/findFunById/"+1
+      axios.get(url).then(res=>{
+        this.videos2=res.data
+      })
+      //TV
+      var url="api/findFunById/"+11
+      axios.get(url).then(res=>{
+        this.videos3=res.data
+      })
+      //影视
+      var url="api/findFunById/"+6
+      axios.get(url).then(res=>{
+        this.videos4=res.data
+      })
+
+
+
+
     },
     methods:{
         over:function (x) {
