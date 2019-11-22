@@ -68,7 +68,7 @@ export default new Router({
       component: userMessage,
       children: [
         {path: '/chatMessage/:userId', name: '私聊', component: chatMessage},
-        {path: '/message', name: '评论', component: message},
+        {path: '/message', name: '系统消息', component: message},
         {path: '/document', name: '回复', component: document},
         {path: '/folder', name: '收藏', component: folder},
         {path: '/chart', name: '历史', component: chart},
