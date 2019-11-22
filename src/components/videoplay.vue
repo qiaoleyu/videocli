@@ -337,17 +337,50 @@
                 <el-tooltip content="收藏" placement="bottom" effect="light" >
                   <el-button type="warning" icon="el-icon-star-off" circle plain style="margin-left: 20px;font-size: 18px" @click="favoriteVideo()"></el-button>
                 </el-tooltip>
-                <el-tooltip content="打赏" placement="bottom" effect="light">
-                  <el-button type="warning" icon="el-icon-coin" circle plain style="margin-left: 20px;font-size: 18px"></el-button>
-                </el-tooltip>
+                <el-dropdown>
 
+                  <div>
+                  <span class="el-dropdown-link" style="margin-right: 10px">
+                    <el-tooltip content="打赏" placement="bottom" effect="light">
+                      <el-button type="warning" icon="el-icon-coin" circle plain style="margin-left: 20px;font-size: 18px"></el-button>
+                    </el-tooltip>
+                    <i class="el-icon-arrow-down el-icon--right"></i>
+                  </span>
+                    <el-dropdown-menu slot="dropdown" style="width:280px;">
+                      <el-dropdown-item>
+                        <el-radio-group v-model="radio3">
+                          <el-radio-button label="$1" plain style="font-size: 10px">$1</el-radio-button>
+                        </el-radio-group>
+                        <el-radio-group v-model="radio3">
+                          <el-radio-button label="$5" plain style="font-size: 10px">$5</el-radio-button>
+                        </el-radio-group>
+                        <el-radio-group v-model="radio3">
+                          <el-radio-button label="$10" plain style="font-size: 10px">$10</el-radio-button>
+                        </el-radio-group>
+                        <el-radio-group v-model="radio3">
+                          <el-radio-button label="$20" plain style="font-size: 10px;margin-top: 10px">$20</el-radio-button>
+                        </el-radio-group>
+                        <el-radio-group v-model="radio3">
+                          <el-radio-button label="$50" plain style="font-size: 10px;margin-top: 10px">$50</el-radio-button>
+                        </el-radio-group>
+                        <el-radio-group v-model="radio3">
+                          <el-radio-button label="$100" plain style="font-size: 10px;margin-top: 10px">$100</el-radio-button>
+                        </el-radio-group>
+                      </el-dropdown-item>
+                    </el-dropdown-menu>
+                  </div>
+                </el-dropdown>
                 <el-tooltip content="弹幕" placement="bottom" effect="light">
                   <el-switch
                     v-model="value1"
                     style="margin-left: 30px;font-size: 18px"
 
                     active-text="开关"
+                    activevalue="true"
+                    inactiveValue="false"
                   >
+                    <!-- activevalue="true"打开
+                    inactiveValue="false"关闭-->
                     <!--inactive-text="关闭"-->
                   </el-switch>
                 </el-tooltip>
@@ -748,24 +781,23 @@
   import Cookies from 'js-cookie'
 
 //    弹幕
-  function $(str)  {
-    return document.getElementById(str);
-  };
-  setInterval(move,200)
-  function move() {
+    function $(str)  {
+      return document.getElementById(str);
+    };
+    setInterval(move,200)
+    function move() {
 
-      var spanArray = $('box').children;
-      for (var i = 0; i < spanArray.length; i++) {
+        var spanArray = $('box').children;
+        for (var i = 0; i < spanArray.length; i++) {
 
-        spanArray[i].style.left = parseInt(spanArray[i].style.left) - spanArray[i].speed + 'px';
-        if((parseInt(spanArray[i].style.left)- spanArray[i].speed)<0){
-//          clearInterval(stopImg)
-          spanArray[i].hidden;
-          spanArray[i].style.left==0;
-          spanArray[i].speed==0;
+          spanArray[i].style.left = parseInt(spanArray[i].style.left) - spanArray[i].speed + 'px';
+          if((parseInt(spanArray[i].style.left)- spanArray[i].speed)<0){
+  //          clearInterval(stopImg)
+            spanArray[i].hidden;
+            spanArray[i].style.left==0;
+            spanArray[i].speed==0;
+        }
       }
-    }
-
   };
   export default {
     components: {
@@ -797,6 +829,8 @@
         },
         radio1: '$15元/月',
         radio2: '账户余额支付',
+        //打赏
+        radio3:'',
         pay: {
           userId: '',
           rechargeVip: '',
@@ -848,7 +882,7 @@
           userName:''
         },*/
         msg: 'Welcome video index',
-        value1:'',
+        value1:false,
         val:'',
 //        评分
         value2: null,
@@ -1100,88 +1134,89 @@
 
       //弹幕
       sendMsg:function (msg) {
-          for (var i=0;i<=msg.length;i++){
+          if(this.value1==true){
+            for (var i=0;i<=msg.length;i++){
 
-            var word = msg[i];
-    //         alert(word)
-            var length=word.length;//huoqu wenben de changdu
-            var span = document.createElement('span');
-//            var span=document.getElementById('span')
-            var top = parseInt(Math.random() * 500) - 20;
-            var color1 = parseInt(Math.random() * 256);
-            var color2 = parseInt(Math.random() * 256);
-            var color3 = parseInt(Math.random() * 256);
-            var color = "rgb(" + color1 + "," + color2 + "," + color3 + ")";
-            top = top < 0 ? 0 : top;
-            span.style.position = 'absolute';
-            span.style.top = top + "px";
-            span.style.color = color;
-            span.style.left = '800px';
-            span.style.whiteSpace = 'nowrap';
-            span.style.fontSize='20px'
-            var nub = (Math.random() * 10) + 1;
-            span.setAttribute('speed', nub);
-            span.speed = nub;
-            span.innerHTML = word;
-    //          alert($('box'))
-            $('box').appendChild(span);
-           /* if (span.offsetLeft < -length * random() * 16) {
-              clearInterval(timer);
-              mainContent.removeChild(span);
-            }*/
+              var word = msg[i];
+      //         alert(word)
+              var length=word.length;//huoqu wenben de changdu
+              var span = document.createElement('span');
+  //            var span=document.getElementById('span')
+              var top = parseInt(Math.random() * 500) - 20;
+              var color1 = parseInt(Math.random() * 256);
+              var color2 = parseInt(Math.random() * 256);
+              var color3 = parseInt(Math.random() * 256);
+              var color = "rgb(" + color1 + "," + color2 + "," + color3 + ")";
+              top = top < 0 ? 0 : top;
+              span.style.position = 'absolute';
+              span.style.top = top + "px";
+              span.style.color = color;
+              span.style.left = '800px';
+              span.style.whiteSpace = 'nowrap';
+              span.style.fontSize='20px'
+              var nub = (Math.random() * 10) + 1;
+              span.setAttribute('speed', nub);
+              span.speed = nub;
+              span.innerHTML = word;
+      //          alert($('box'))
+              $('box').appendChild(span);
+             /* if (span.offsetLeft < -length * random() * 16) {
+                clearInterval(timer);
+                mainContent.removeChild(span);
+              }*/
+            }
           }
-
       },
 
       sendMsg2:function (msg) {
-          var word = msg;
-          //         alert(word)
-          var length=word.length;//huoqu wenben de changdu
-        if(word!=null&&word!=''){
-          var span = document.createElement('span');
-          var top = parseInt(Math.random() * 500) - 20;
-          var color1 = parseInt(Math.random() * 256);
-          var color2 = parseInt(Math.random() * 256);
-          var color3 = parseInt(Math.random() * 256);
-          var color = "rgb(" + color1 + "," + color2 + "," + color3 + ")";
-          top = top < 0 ? 0 : top;
-          span.style.position = 'absolute';
-          span.style.top = top + "px";
-          span.style.color = color;
-          span.style.left = '800px';
-          span.style.whiteSpace = 'nowrap';
-          span.style.fontSize='20px'
-          var nub = (Math.random() * 10) + 1;
-          span.setAttribute('speed', nub);
-          span.speed = nub;
-          span.innerHTML = word;
-          //          alert($('box'))
+          if(this.value1==true){
+            var word = msg;
+            //         alert(word)
+            var length=word.length;//huoqu wenben de changdu
+            if(word!=null&&word!=''){
+              var span = document.createElement('span');
+              var top = parseInt(Math.random() * 500) - 20;
+              var color1 = parseInt(Math.random() * 256);
+              var color2 = parseInt(Math.random() * 256);
+              var color3 = parseInt(Math.random() * 256);
+              var color = "rgb(" + color1 + "," + color2 + "," + color3 + ")";
+              top = top < 0 ? 0 : top;
+              span.style.position = 'absolute';
+              span.style.top = top + "px";
+              span.style.color = color;
+              span.style.left = '800px';
+              span.style.whiteSpace = 'nowrap';
+              span.style.fontSize='20px'
+              var nub = (Math.random() * 10) + 1;
+              span.setAttribute('speed', nub);
+              span.speed = nub;
+              span.innerHTML = word;
+              //          alert($('box'))
 
-          $('box').appendChild(span);
-          this.input1= "";
-          if (span.offsetLeft < -length * random() * 16) {
-            clearInterval(timer);
-            mainContent.removeChild(span);
+              $('box').appendChild(span);
+              this.input1= "";
+              if (span.offsetLeft < -length * random() * 16) {
+                clearInterval(timer);
+                mainContent.removeChild(span);
+              }
+            }
           }
-        }
-
         },
 
         sendBarrage:function(){
           this.barrage.videoTime=this.time;
-         this.barrage.barrageContent=this.input1;
-         this.barrage.userId=this.user.userId;
-         axios.post("api/saveBarrage",{barrage:this.barrage,video:this.video}).then(res=>{
-           if (res.data!=null){
+          this.barrage.barrageContent=this.input1;
+          this.barrage.userId=this.user.userId;
+          axios.post("api/saveBarrage",{barrage:this.barrage,video:this.video}).then(res=>{
+            if (res.data!=null){
                console.log(res.data)
 //                  alert("success")
-           }else {
-             alert("fail")
-           }
-         })
+            }else {
+              alert("fail")
+            }
+          })
 //         alert(word)
-         this.sendMsg2(this.barrage.barrageContent);
-
+          this.sendMsg2(this.barrage.barrageContent);
        },
 //      倍速播放
 
