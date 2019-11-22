@@ -255,7 +255,7 @@
                    @mousemove="over(13)"
                    @mouseleave="leave(13)"
                    :style="n"
-              ><el-badge :value="1" type="danger" >
+              ><el-badge :value="count" type="danger" >
                 <span type="info" style="color:black;cursor: pointer"><a @click="RequstMessage()">消息</a></span>
               </el-badge>
               </div>
@@ -303,7 +303,8 @@ export default {
           userId:'',
           rechargeVip:'',
         },
-        days:''
+        days:'',
+        count:''
       }
   },
   mounted() {
@@ -325,6 +326,11 @@ export default {
       alert("请登录")
       this.$router.push("/userLogin")
     }
+
+    axios.get("api/findMsgCount/"+this.user.userId).then(res=>{
+        this.count=res.data();
+    })
+
   },
   watch:{
     $route(to,from){
@@ -332,6 +338,9 @@ export default {
     }
   },
   methods:{
+    RequstMessage:function () {
+      this.$router.push("/message")
+    },
     over:function (x) {
       if(x==1){
         this.active='background-color: orangered;border-radius: 0px 10px 0px 10px';
