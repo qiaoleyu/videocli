@@ -169,8 +169,10 @@
         <!--视频标题-->
         <el-row :gutter="10">
           <el-col :span="24">
-            <div style="text-align: center;background: url('../static/img/logo3.jpg') no-repeat;height: 40px;margin-bottom: 20px;line-height: 40px;border-radius: 10px" class="box">
-              <span style="font-weight: bolder" class="animate">英雄联盟精彩视频（您的英雄时刻）</span>
+            <div style="text-align: center;background: url('../static/img/logo3.jpg') no-repeat;height: 40px;margin-bottom: 20px;line-height: 40px;border-radius: 10px" >
+              <!--class="box"-->
+              <!--<span style="font-weight: bolder" class="animate">英雄联盟精彩视频（您的英雄时刻）</span>-->
+              <marquee style="font-size:18px;font-weight: bolder" direction="left">英雄联盟精彩视频（您的英雄时刻）</marquee>
             </div>
           </el-col>
         </el-row>
