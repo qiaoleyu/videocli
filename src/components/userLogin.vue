@@ -282,7 +282,7 @@
                     type: 'success'
                   });
                   var userId=Cookies.get('userId');
-                  alert(userId)
+//                  alert(userId)
                   var days=Cookies.get(userId+"days");
                   if (days==null){
                       axios.post("api/updateStatue/"+userId).then(res=>{
