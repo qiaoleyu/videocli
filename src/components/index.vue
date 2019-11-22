@@ -115,6 +115,7 @@
                                   @canplaythrough="onPlayerCanplaythrough($event)"
                                   @statechanged="playerStateChanged($event)"
                                   @ready="playerReadied"
+                                  :title="item.videoName"
                     >
                       <source
                         :src="item.videoUrl"
