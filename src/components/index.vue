@@ -34,10 +34,10 @@
                   </a>
                 </div>
 
-                <div style="float: left;width: 50px;height: 50px;line-height:50px;text-align: center">
-                  <span style="float: left;width: 100%;"><a href="/">番剧</a></span>
+                <div style="float: left;width: 50px;height: 50px;line-height:50px;text-align: center" v-for="(type,index) in types" v-bind="type.typeId">
+                  <div style="float: left;width: 100%;" @click="search1(type.typeName)">{{type.typeName}}</div>
                 </div>
-                <div style="float: left;width: 50px;height: 50px;line-height:50px;text-align: center">
+               <!-- <div style="float: left;width: 50px;height: 50px;line-height:50px;text-align: center">
                   <span style="float: left;width: 100%;"><a href="/">国创</a></span>
                 </div>
                 <div style="float: left;width: 50px;height: 50px;line-height:50px;text-align: center">
@@ -69,7 +69,7 @@
                 </div>
                 <div style="float: left;width: 50px;height: 50px;line-height:50px;text-align: center">
                   <span style="float: left;width: 100%;"><a href="/">直播</a></span>
-                </div>
+                </div>-->
               </el-col>
               <el-col :span="4">
 
@@ -995,10 +995,16 @@
         count2:'',
         count3:'',
         count4:'',
+        types:[]
       }
     },
     mounted(){
       this.user.userId=Cookies.get("userId")
+      //一级菜单
+      var url="api/findAllTypes"
+      axios.get(url).then(res=>{
+          this.types=res.data
+      })
       //推荐
       var url="api/findAllVideo"
       axios.get(url).then(res=>{
@@ -1286,6 +1292,14 @@
         var searchName=this.$refs.searchName.value
         if(searchName==''||searchName==null){
             searchName='null'
+        }
+        //alert(searchName)
+        this.$router.push('/searchVideo/'+searchName)
+      },
+      search1:function (name) {
+        var searchName=name
+        if(searchName==''||searchName==null){
+          searchName='null'
         }
         //alert(searchName)
         this.$router.push('/searchVideo/'+searchName)
