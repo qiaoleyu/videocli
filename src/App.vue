@@ -256,19 +256,7 @@
                    @mouseleave="leave(13)"
                    :style="n"
               ><el-badge :value="10" class="item" type="danger" >
-                <span type="info" style="color:black;cursor: pointer"><a @click="RequstMessage(user.userId)">消息</a></span>
-                <el-dialog
-                  title="系统消息"
-                  :visible.sync="dialogVisible"
-                  width="30%"
-                  :before-close="handleClose">
-                  <!--循环信息msg-->
-                  <span>{{msg.userName}}向您发起了通讯请求，是否同意</span>
-                  <span slot="footer" class="dialog-footer">
-                    <el-button @click="dialogVisible = false">取 消</el-button>
-                    <el-button type="primary" @click="toMessage(msg.userId)">确 定</el-button>
-                  </span>
-                </el-dialog>
+                <span type="info" style="color:black;cursor: pointer"><a @click="RequstMessage()">消息</a></span>
               </el-badge>
               </div>
             </div>
@@ -315,11 +303,7 @@ export default {
           userId:'',
           rechargeVip:'',
         },
-        msg:[{
-            userName:'',
-            userId:''
-        }],
-        dialogVisible:false
+        days:''
       }
   },
   mounted() {
@@ -348,25 +332,6 @@ export default {
     }
   },
   methods:{
-
-    RequstMessage:function (userId) {
-
-      axios.get("api/findMsg/"+userId).then(res=>{
-          if (res.data==null){
-              alert("没有系统消息哦")
-          }else {
-            this.dialogVisible=true;
-            this.msg=res.data;
-          }
-      })
-    },
-    toMessage:function(userId){
-        axios.get("api/deleteMsg/"+this.user.userId+"/"+userId).then(res=>{
-            /*删除redis缓存*/
-        })
-      this.dialogVisible=false;
-      this.$router.push("/chatMessage/"+userId);
-    },
     over:function (x) {
       if(x==1){
         this.active='background-color: orangered;border-radius: 0px 10px 0px 10px';
@@ -489,12 +454,15 @@ export default {
 
         if(this.radio1=="$15元/月"){
           this.pay.rechargeVip=15;
+          this.days=30;
         }
         if(this.radio1=="$50元/季"){
           this.pay.rechargeVip=50;
+          this.days=90;
         }
         if(this.radio1=="$200元/年"){
           this.pay.rechargeVip=200;
+          this.days=365;
         }
          if(this.user.userStatue==1){
            swal({
@@ -520,12 +488,14 @@ export default {
                      button: "确定",
                    });
                  }
+                 Cookies.set(this.user.userId+"days",this.days,{expires: this.days, path: '/userLogin'})
                })
              }
            }
            if(this.radio2=="支付宝支付") {
              axios.post("api/alipayPayForVip", this.pay).then(res => {
                this.$router.replace({path: '/applyText', query: {htmls: res.data}})
+               Cookies.set(this.user.userId+"days",this.days,{expires: this.days, path: '/userLogin'})
              })
            }
 

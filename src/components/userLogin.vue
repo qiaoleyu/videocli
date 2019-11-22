@@ -42,7 +42,7 @@
               </el-row>
               <el-row :gutter="10">
                 <el-col :span="4"  :offset="4" style="margin-bottom: 16px">
-                  <div style="width: 100px"><input type="checkbox" name="rememberme" value="yes"/>记住密码</div>
+                  <div style=" width: 100px"><input type="checkbox" name="rememberme" value="yes"/>记住密码</div>
                 </el-col>
                 <el-col :span="6" :offset="6" style="margin-bottom: 16px">
                 <a type="primary" plain @click="toCheck()" style="font-size: 16px;float: right;cursor: pointer;">忘记密码>></a>
@@ -282,8 +282,14 @@
                     message: '登录成功，欢迎操作其他业务！',
                     type: 'success'
                   });
-                  /*var userId=Cookies.get('userId');
-                  alert(userId)*/
+                  var userId=Cookies.get('userId');
+                  alert(userId)
+                  var days=Cookies.get(userId+"days");
+                  if (days==null){
+                      axios.post("api/updateStatue/"+userId).then(res=>{
+                          this.users=res.data;
+                      })
+                  }
                   this.$router.push("/");
                   this.$router.go(0);
                 })
