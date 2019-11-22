@@ -196,7 +196,7 @@
               <div style="height: 200px;float: left;width: 100%;border-radius: 10px"><router-link :to="{path:'/videoplay/'+video.videoId}">
                 <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
-                <video  width=100%  style="margin: auto;height:190px;border-radius: 10px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+                <video  width=100%  style="margin: auto;height:190px;border-radius: 10px"  :title="video.videoInfo"   class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
                   <source
                     :src="video.videoUrl"
                     type="video/mp4">
@@ -267,7 +267,7 @@
                       <div style="height: 140px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
                         <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
-                        <video  width=100%  style="margin: auto;height:130px;border-radius: 10px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+                        <video  width=100%  style="margin: auto;height:130px;border-radius: 10px"  :title="video.videoInfo"  class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
                           <source
                             :src="video.videoUrl"
                             type="video/mp4">
@@ -326,7 +326,7 @@
 
 
               <el-col :span="24">
-                <!--遍历排行-->
+                <!--遍历推荐排行-->
                 <el-row :gutter="10" style="height: 340px;background-color: #F5CED6;text-align: left;border-radius: 10px">
                   <el-col span="23" :offset="1" style="margin-top: 10px">
                     <marquee behavior="scroll" direction="up" height="320" scrolldelay="5">
@@ -337,7 +337,7 @@
                             <div style="height: 20px;width:20px;line-height: 20px;margin-top:5px;background-color: #EC8AA6;float: left;text-align: center;margin-right: 5%;border-radius: 2px;font-weight: bolder;color: white">
                               {{index+1}}
                             </div>
-                            <div style="height: 30px;line-height: 30px;float: left" >
+                            <div style="height: 30px;line-height: 30px;float: left" :title="video.videoInfo">
                              {{video.videoName}}
                             </div>
                             </router-link>
@@ -362,10 +362,10 @@
               <el-col :span="12">
                 <div style="width:150px;height: 40px;float:left;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 20px">
                   <div style="height: 40px;float: left;width: 40px;margin-right: 10px">
-                    <el-image src="../static/img/zhibo.jpg" style="width: 40px;height: 40px;cursor:pointer" title="直播"></el-image>
+                    <el-image src="../static/img/zhibo.jpg" style="width: 40px;height: 40px;cursor:pointer" title="娱乐"></el-image>
                   </div>
                   <div style="height: 40px;float: left;">
-                    <span>娱乐</span>
+                    <span>娱 乐</span>
                   </div>
                 </div>
                 <div style="height: 40px;float:left;font-size: 18px;font-weight: bolder;text-align: center;line-height: 40px">
@@ -385,14 +385,14 @@
             </el-row>
 
             <el-row :gutter="10">
-              <!--遍历直播-->
+              <!--遍历娱乐-->
                 <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> -->
                 <el-col :span="6"  v-for="(video,index) in video6" :key="video.videoId">
                   <!--<el-card style="height: 200px;margin-bottom: 10px;font-size:14px">-->
                     <div style="height: 140px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
                       <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
-                      <video  width=100%  style="margin: auto;height:130px;border-radius: 10px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+                      <video  width=100%  style="margin: auto;height:130px;border-radius: 10px" :title="video.videoInfo"   class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
                         <source
                           :src="video.videoUrl"
                           type="video/mp4">
@@ -458,7 +458,7 @@
                             <div style="height: 20px;width:20px;line-height: 20px;margin-top:5px;background-color: #EC8AA6;float: left;text-align: center;margin-right: 5%;border-radius: 2px;font-weight: bolder;color: white">
                               {{index+1}}
                             </div>
-                            <div style="height: 30px;line-height: 30px;float: left">
+                            <div style="height: 30px;line-height: 30px;float: left" :title="video.videoInfo">
                               {{video.videoName}}
                             </div>
                           </router-link>
@@ -474,7 +474,7 @@
         </el-row>
 
 
-        <!--视频分类-动漫-->
+        <!--视频分类-动画-->
         <el-row :gutter="10">
           <el-col :span="18">
 
@@ -482,7 +482,7 @@
               <el-col :span="12">
                 <div style="width:150px;height: 40px;float:left;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 20px">
                   <div style="height: 40px;float: left;width: 40px;margin-right: 10px">
-                    <el-image src="../static/img/dongman.jpg" style="width: 40px;height: 40px;cursor:pointer" title="动漫"></el-image>
+                    <el-image src="../static/img/dongman.jpg" style="width: 40px;height: 40px;cursor:pointer" title="动画"></el-image>
                   </div>
                   <div style="height: 40px;float: left;">
                     <span>动 画</span>
@@ -506,7 +506,7 @@
             </el-row>
 
             <el-row :gutter="10">
-              <!--遍历动漫-->
+              <!--遍历动画-->
 
               <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> -->
               <el-col :span="6"  v-for="(video,index) in video8" :key="video.videoId">
@@ -514,7 +514,7 @@
                   <div style="height: 140px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
                     <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
-                    <video  width=100%  style="margin: auto;height:130px;border-radius: 10px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+                    <video  width=100%  style="margin: auto;height:130px;border-radius: 10px"  :title="video.videoInfo"  class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
                       <source
                         :src="video.videoUrl"
                         type="video/mp4">
@@ -579,7 +579,7 @@
                             <div style="height: 20px;width:20px;line-height: 20px;margin-top:5px;background-color: #EC8AA6;float: left;text-align: center;margin-right: 5%;border-radius: 2px;font-weight: bolder;color: white">
                               {{index+1}}
                             </div>
-                            <div style="height: 30px;line-height: 30px;float: left">
+                            <div style="height: 30px;line-height: 30px;float: left" :title="video.videoInfo">
                               {{video.videoName}}
                             </div>
                           </router-link>
@@ -595,7 +595,7 @@
         </el-row>
 
 
-        <!--视频分类-游戏-->
+        <!--视频分类-TV剧-->
         <el-row :gutter="10">
           <el-col :span="18">
 
@@ -603,10 +603,10 @@
               <el-col :span="12">
                 <div style="width:150px;height: 40px;float:left;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 20px">
                   <div style="height: 40px;float: left;width: 40px;margin-right: 10px">
-                    <el-image src="../static/img/youxi.jpg" style="width: 40px;height: 40px;cursor:pointer" title="游戏"></el-image>
+                    <el-image src="../static/img/youxi.jpg" style="width: 40px;height: 40px;cursor:pointer" title="TV剧"></el-image>
                   </div>
                   <div style="height: 40px;float: left;">
-                    <span>TV</span>
+                    <span>TV剧</span>
                   </div>
                 </div>
                 <div style="height: 40px;float:left;font-size: 18px;font-weight: bolder;text-align: center;line-height: 40px">
@@ -635,7 +635,7 @@
                   <div style="height: 140px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
                     <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
-                    <video  width=100%  style="margin: auto;height:130px;border-radius: 10px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+                    <video  width=100%  style="margin: auto;height:130px;border-radius: 10px"  :title="video.videoInfo"  class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
                       <source
                         :src="video.videoUrl"
                         type="video/mp4">
@@ -701,7 +701,7 @@
                             <div style="height: 20px;width:20px;line-height: 20px;margin-top:5px;background-color: #EC8AA6;float: left;text-align: center;margin-right: 5%;border-radius: 2px;font-weight: bolder;color: white">
                               {{index+1}}
                             </div>
-                            <div style="height: 30px;line-height: 30px;float: left">
+                            <div style="height: 30px;line-height: 30px;float: left" :title="video.videoInfo">
                               {{video.videoName}}
                             </div>
                           </router-link>
@@ -716,7 +716,7 @@
           </el-col>
         </el-row>
 
-        <!--视频分类-音乐-->
+        <!--视频分类-影视-->
         <el-row :gutter="10">
           <el-col :span="18">
 
@@ -724,10 +724,10 @@
               <el-col :span="12">
                 <div style="width:150px;height: 40px;float:left;margin-bottom: 20px;line-height: 40px;font-weight: bolder;font-size: 20px">
                   <div style="height: 40px;float: left;width: 40px;margin-right: 10px">
-                    <el-image src="../static/img/yinyue.jpg" style="width: 40px;height: 40px;cursor:pointer" title="音乐舞蹈"></el-image>
+                    <el-image src="../static/img/yinyue.jpg" style="width: 40px;height: 40px;cursor:pointer" title="影视"></el-image>
                   </div>
                   <div style="height: 40px;float: left;">
-                    <span>影视</span>
+                    <span>影 视</span>
                   </div>
                 </div>
                 <div style="height: 40px;float:left;font-size: 18px;font-weight: bolder;text-align: center;line-height: 40px">
@@ -755,7 +755,7 @@
             </el-row>
 
             <el-row :gutter="10">
-              <!--遍历音乐舞蹈-->
+              <!--遍历影视-->
 
               <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> -->
               <el-col :span="6"  v-for="(video,index) in video10" :key="video.videoId">
@@ -763,7 +763,7 @@
                   <div style="height: 140px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
                     <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
-                    <video  width=100%  style="margin: auto;height:130px;border-radius: 10px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+                    <video  width=100%  style="margin: auto;height:130px;border-radius: 10px"  :title="video.videoInfo"  class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
                       <source
                         :src="video.videoUrl"
                         type="video/mp4">
@@ -829,7 +829,7 @@
                             <div style="height: 20px;width:20px;line-height: 20px;margin-top:5px;background-color: #EC8AA6;float: left;text-align: center;margin-right: 5%;border-radius: 2px;font-weight: bolder;color: white">
                               {{index+1}}
                             </div>
-                            <div style="height: 30px;line-height: 30px;float: left">
+                            <div style="height: 30px;line-height: 30px;float: left" :title="video.videoInfo">
                               {{video.videoName}}
                             </div>
                           </router-link>

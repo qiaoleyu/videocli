@@ -24,8 +24,8 @@
 
           <el-col :span="12" :offset="6">
             <NoButtonHeader></NoButtonHeader>
-            <el-card class="box-card" style="background-color: #FDFFF4">
-            <el-form :model="user" status-icon :rules="rules" ref="user" label-width="20%" style="width: 80%;margin: auto;margin-top: 10%" >
+            <el-card class="box-card" style="background-color: #FDFFF4;border-radius: 15px;opacity: 0.9">
+            <el-form :model="user" status-icon :rules="rules" ref="user" label-width="20%" style="width: 75%;margin: auto;margin-top: 5%;margin-bottom: 5%" >
               <el-row :gutter="10">
                 <el-col :span="24">
                 <el-form-item label="昵称：" prop="userName" style="font-size:25px;text-align: left;font-weight: bolder">
