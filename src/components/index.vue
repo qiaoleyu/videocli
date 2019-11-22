@@ -208,12 +208,12 @@
                   {{video.videoName}}
 
                 </div>
-                <div style="width:15%;float:left" @click="like(video.videoId)">
+                <div style="width:15%;float:left" @click="likeVideo(video.videoId)">
                   <el-tooltip content="点赞" >
                     <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
                   </el-tooltip>
                 </div>
-                <div style="width:15%;float:left" @click="favorite(video.videoId)">
+                <div style="width:15%;float:left" @click="favoriteVideo(video.videoId)">
                   <el-tooltip content="收藏" >
                     <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
                   </el-tooltip>
@@ -279,12 +279,12 @@
                           {{video.videoName}}
 
                         </div>
-                        <div style="width:15%;float:left" @click="like(video.videoId)">
+                        <div style="width:15%;float:left" @click="likeVideo(video.videoId)">
                           <el-tooltip content="点赞" >
                             <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
                           </el-tooltip>
                         </div>
-                        <div style="width:15%;float:left" @click="favorite(video.videoId)">
+                        <div style="width:15%;float:left" @click="favoriteVideo(video.videoId)">
                           <el-tooltip content="收藏" >
                             <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
                           </el-tooltip>
@@ -391,12 +391,12 @@
                         {{video.videoName}}
 
                       </div>
-                      <div style="width:15%;float:left" @click="like(video.videoId)">
+                      <div style="width:15%;float:left" @click="likeVideo(video.videoId)">
                         <el-tooltip content="点赞" >
                           <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
                         </el-tooltip>
                       </div>
-                      <div style="width:15%;float:left" @click="favorite(video.videoId)">
+                      <div style="width:15%;float:left" @click="favoriteVideo(video.videoId)">
                         <el-tooltip content="收藏" >
                           <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
                         </el-tooltip>
@@ -501,12 +501,12 @@
                     <div style="width:50%;float:left;">
                       {{video.videoName}}
                     </div>
-                    <div style="width:15%;float:left" @click="like(video.videoId)">
+                    <div style="width:15%;float:left" @click="likeVideo(video.videoId)">
                       <el-tooltip content="点赞" >
                         <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
                       </el-tooltip>
                     </div>
-                    <div style="width:15%;float:left" @click="favorite(video.videoId)">
+                    <div style="width:15%;float:left" @click="favoriteVideo(video.videoId)">
                       <el-tooltip content="收藏" >
                         <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
                       </el-tooltip>
@@ -611,12 +611,12 @@
                     <div style="width:50%;float:left;">
                       {{video.videoName}}
                     </div>
-                    <div style="width:15%;float:left" @click="like(video.videoId)">
+                    <div style="width:15%;float:left" @click="likeVideo(video.videoId)">
                       <el-tooltip content="点赞" >
                         <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
                       </el-tooltip>
                     </div>
-                    <div style="width:15%;float:left" @click="favorite(video.videoId)">
+                    <div style="width:15%;float:left" @click="favoriteVideo(video.videoId)">
                       <el-tooltip content="收藏" >
                         <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
                       </el-tooltip>
@@ -728,12 +728,12 @@
                     <div style="width:50%;float:left;">
                       {{video.videoName}}
                     </div>
-                    <div style="width:15%;float:left" @click="like(video.videoId)">
+                    <div style="width:15%;float:left" @click="likeVideo(video.videoId)">
                       <el-tooltip content="点赞" >
                         <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
                       </el-tooltip>
                     </div>
-                    <div style="width:15%;float:left" @click="favorite(video.videoId)">
+                    <div style="width:15%;float:left" @click="favoriteVideo(video.videoId)">
                       <el-tooltip content="收藏" >
                         <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
                       </el-tooltip>
