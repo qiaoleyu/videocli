@@ -35,7 +35,7 @@
                 </div>
 
                 <div style="float: left;width: 50px;height: 50px;line-height:50px;text-align: center" v-for="(type,index) in types" v-bind="type.typeId">
-                  <div style="float: left;width: 100%;" @click="search1(type.typeName)">{{type.typeName}}</div>
+                  <div style="float: left;width: 100%;" ><a @click="search1(type.typeName)">{{type.typeName}}</a></div>
                 </div>
                <!-- <div style="float: left;width: 50px;height: 50px;line-height:50px;text-align: center">
                   <span style="float: left;width: 100%;"><a href="/">国创</a></span>
@@ -98,14 +98,14 @@
             <template>
               <div style="margin-bottom: 10px">
                 <el-carousel :interval="5000" type="card" height="300px" width="800px">
-                  <el-carousel-item v-for="video in video11" v-bind:key="video.videoId">
+                  <el-carousel-item v-for="(item,index) in video11" :key="item.videoId">
 
                     <video class="video-js vjs-default-skin vjs-big-play-centered" playRate controls
                            style="height:100%"
                            :title="item.videoName"
                     >
                       <source
-                        :src="video.videoUrl"
+                        :src="item.videoUrl"
                         type="video/mp4">
                       >
                     </video>
@@ -116,40 +116,40 @@
 
 
                     <!--<video id=example-video width=90% height=300 style="margin:auto" class="video-js vjs-default-skin vjs-big-play-centered" controls title="王者荣耀播主视频">-->
-                      <!--<source-->
-                        <!--src="https://candy-jing.oss-cn-beijing.aliyuncs.com/01.mp4"-->
-                        <!--type="video/mp4"-->
-                      <!--&gt;-->
-                      <!--&lt;!&ndash;type="application/x-mpegURL"&ndash;&gt;-->
+                    <!--<source-->
+                    <!--src="https://candy-jing.oss-cn-beijing.aliyuncs.com/01.mp4"-->
+                    <!--type="video/mp4"-->
+                    <!--&gt;-->
+                    <!--&lt;!&ndash;type="application/x-mpegURL"&ndash;&gt;-->
                     <!--</video>-->
                   </el-carousel-item>
                 </el-carousel>
 
 
-              <!--<el-carousel :interval="5000" arrow="always" height="500px" width="100%">-->
+                <!--<el-carousel :interval="5000" arrow="always" height="500px" width="100%">-->
                 <!--<el-carousel-item v-for="item in 4" :key="item">-->
-                  <!--&lt;!&ndash;<router-link :to="{path:'/shopDetial/'+shop.shopId}">&ndash;&gt;-->
-                    <!--<video id=example-video width=90% height=500 style="margin:auto" class="video-js vjs-default-skin vjs-big-play-centered" controls>-->
-                      <!--<source-->
-                        <!--src="https://candy-jing.oss-cn-beijing.aliyuncs.com/01.mp4"-->
-                        <!--type="video/mp4"-->
-                        <!--&gt;-->
-                    <!--&lt;!&ndash;type="application/x-mpegURL"&ndash;&gt;-->
-                    <!--</video>-->
-                    <!--&lt;!&ndash;<div style="float:left;margin-top:10px">&ndash;&gt;-->
-                      <!--&lt;!&ndash;<input type="button"  onClick="switchvideo()" value="switch"/>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<router-link :to="{path:'/shopDetial/'+shop.shopId}">&ndash;&gt;-->
+                <!--<video id=example-video width=90% height=500 style="margin:auto" class="video-js vjs-default-skin vjs-big-play-centered" controls>-->
+                <!--<source-->
+                <!--src="https://candy-jing.oss-cn-beijing.aliyuncs.com/01.mp4"-->
+                <!--type="video/mp4"-->
+                <!--&gt;-->
+                <!--&lt;!&ndash;type="application/x-mpegURL"&ndash;&gt;-->
+                <!--</video>-->
+                <!--&lt;!&ndash;<div style="float:left;margin-top:10px">&ndash;&gt;-->
+                <!--&lt;!&ndash;<input type="button"  onClick="switchvideo()" value="switch"/>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
 
-                    <!--&lt;!&ndash;<div id="box" class="box" style="width:100%;margin:auto"></div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div style="float:left;margin-left:40px;margin-top:10px">&ndash;&gt;-->
-                      <!--&lt;!&ndash;<input type="text" id="txt" style="height:20px;width:250px"/>&ndash;&gt;-->
-                      <!--&lt;!&ndash;<button onclick="send()">发送弹幕</button>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div id="box" class="box" style="width:100%;margin:auto"></div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div style="float:left;margin-left:40px;margin-top:10px">&ndash;&gt;-->
+                <!--&lt;!&ndash;<input type="text" id="txt" style="height:20px;width:250px"/>&ndash;&gt;-->
+                <!--&lt;!&ndash;<button onclick="send()">发送弹幕</button>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
 
-                  <!--&lt;!&ndash;</router-link>&ndash;&gt;-->
+                <!--&lt;!&ndash;</router-link>&ndash;&gt;-->
                 <!--</el-carousel-item>-->
 
-              <!--</el-carousel>-->
+                <!--</el-carousel>-->
               </div>
             </template>
           </el-col>
@@ -181,40 +181,42 @@
           <!--<el-col :span="4" v-for="" v-bind:key="">-->
           <el-col :span="6"  v-for="(video,index) in video7" :key="video.videoId">
             <!--<el-card style="height: 200px;margin-bottom: 10px;font-size:14px">-->
-              <div style="height: 200px;float: left;width: 100%;border-radius: 10px"><router-link :to="{path:'/videoplay/'+video.videoId}">
-                <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
+            <div style="height: 200px;float: left;width: 100%;border-radius: 10px"><router-link :to="{path:'/videoplay/'+video.videoId}">
+              <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
-                <video  width=100%  style="margin: auto;height:190px;border-radius: 10px"  :title="video.videoInfo"   class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
-                  <source
-                    :src="video.videoUrl"
-                    type="video/mp4">
-                  <!--type="application/x-mpegURL"-->
-                </video>
-              </router-link>
+              <!-- <video  width=100%  style="margin: auto;height:190px;border-radius: 10px"  :title="video.videoInfo"   class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+                 <source
+                   :src="video.videoUrl"
+                   type="video/mp4">
+                 &lt;!&ndash;type="application/x-mpegURL"&ndash;&gt;
+               </video>-->
+              <img :src="video.videoPic" width="100%" height="200px" class="pic"/>
+
+            </router-link>
+
+            </div>
+            <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
+              <div style="width:50%;float:left;">
+                {{video.videoName}}
 
               </div>
-              <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
-                <div style="width:50%;float:left;">
-                  {{video.videoName}}
-
-                </div>
-                <div style="width:15%;float:left" @click="likeVideo(video.videoId)">
-                  <el-tooltip content="点赞" >
-                    <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
-                  </el-tooltip>
-                </div>
-                <div style="width:15%;float:left" @click="favoriteVideo(video.videoId)">
-                  <el-tooltip content="收藏" >
-                    <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
-                  </el-tooltip>
-                </div>
-                <div style="width:15%;float:left" @click="download(video.videoId)" >
-                  <!--dialogVisible = true,-->
-                  <el-tooltip content="下载" >
-                    <a class="el-icon-download" plain style="font-size: 18px"></a>
-                  </el-tooltip>
-                </div>
+              <div style="width:15%;float:left" @click="likeVideo(video.videoId)">
+                <el-tooltip content="点赞" >
+                  <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
+                </el-tooltip>
               </div>
+              <div style="width:15%;float:left" @click="favoriteVideo(video.videoId)">
+                <el-tooltip content="收藏" >
+                  <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
+                </el-tooltip>
+              </div>
+              <div style="width:15%;float:left" @click="download(video.videoId)" >
+                <!--dialogVisible = true,-->
+                <el-tooltip content="下载" >
+                  <a class="el-icon-download" plain style="font-size: 18px"></a>
+                </el-tooltip>
+              </div>
+            </div>
             <!--</el-card>-->
           </el-col>
 
@@ -236,12 +238,12 @@
                     <span>特别推荐</span>
                   </div>
                 </div>
-               <!-- <div style="height: 40px;float:left;font-size: 18px;font-weight: bolder;text-align: center;line-height: 40px">
-                  <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
-                    <el-menu-item index="1" @click="findTrend(0)">最新动态</el-menu-item>
-                    <el-menu-item index="2" @click="findLatest(0)">最新投稿</el-menu-item>
-                  </el-menu>
-                </div>-->
+                <!-- <div style="height: 40px;float:left;font-size: 18px;font-weight: bolder;text-align: center;line-height: 40px">
+                   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
+                     <el-menu-item index="1" @click="findTrend(0)">最新动态</el-menu-item>
+                     <el-menu-item index="2" @click="findLatest(0)">最新投稿</el-menu-item>
+                   </el-menu>
+                 </div>-->
 
               </el-col>
 
@@ -249,46 +251,46 @@
 
             <el-row :gutter="10">
               <!--遍历特别推荐-->
-                <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px">-->
-                  <el-col :span="6"  v-for="(video,index) in video5" :key="video.videoId">
-                    <!--<el-card style="height: 120px;margin-bottom: 10px;font-size:14px">-->
-                      <div style="height: 140px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
-                        <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
+              <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px">-->
+              <el-col :span="6"  v-for="(video,index) in video5" :key="video.videoId">
+                <!--<el-card style="height: 120px;margin-bottom: 10px;font-size:14px">-->
+                <div style="height: 140px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
+                  <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
-                        <video  width=100%  style="margin: auto;height:130px;border-radius: 10px"  :title="video.videoInfo"  class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
-                          <source
-                            :src="video.videoUrl"
-                            type="video/mp4">
-                          <!--type="application/x-mpegURL"-->
-                        </video>
-                      </router-link>
+                  <video  width=100%  style="margin: auto;height:130px;border-radius: 10px"  :title="video.videoInfo"  class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+                    <source
+                      :src="video.videoUrl"
+                      type="video/mp4">
+                    <!--type="application/x-mpegURL"-->
+                  </video>
+                </router-link>
 
-                      </div>
-                      <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
-                        <div style="width:50%;float:left;">
-                          {{video.videoName}}
+                </div>
+                <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
+                  <div style="width:50%;float:left;">
+                    {{video.videoName}}
 
-                        </div>
-                        <div style="width:15%;float:left" @click="likeVideo(video.videoId)">
-                          <el-tooltip content="点赞" >
-                            <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
-                          </el-tooltip>
-                        </div>
-                        <div style="width:15%;float:left" @click="favoriteVideo(video.videoId)">
-                          <el-tooltip content="收藏" >
-                            <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
-                          </el-tooltip>
-                        </div>
-                        <div style="width:15%;float:left" @click="download(video.videoId)" >
-                          <!--dialogVisible = true,-->
-                          <el-tooltip content="下载" >
-                            <a class="el-icon-download" plain style="font-size: 18px"></a>
-                          </el-tooltip>
-                        </div>
-                      </div>
-                    <!--</el-card>-->
-                  </el-col>
-                <!--</div>-->
+                  </div>
+                  <div style="width:15%;float:left" @click="likeVideo(video.videoId)">
+                    <el-tooltip content="点赞" >
+                      <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
+                    </el-tooltip>
+                  </div>
+                  <div style="width:15%;float:left" @click="favoriteVideo(video.videoId)">
+                    <el-tooltip content="收藏" >
+                      <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
+                    </el-tooltip>
+                  </div>
+                  <div style="width:15%;float:left" @click="download(video.videoId)" >
+                    <!--dialogVisible = true,-->
+                    <el-tooltip content="下载" >
+                      <a class="el-icon-download" plain style="font-size: 18px"></a>
+                    </el-tooltip>
+                  </div>
+                </div>
+                <!--</el-card>-->
+              </el-col>
+              <!--</div>-->
             </el-row>
 
           </el-col>
@@ -322,12 +324,12 @@
                         <el-row :gutter="10">
                           <el-col span="24">
                             <router-link :to="{path:'/videoplay/'+video.videoId}">
-                            <div style="height: 20px;width:20px;line-height: 20px;margin-top:5px;background-color: #EC8AA6;float: left;text-align: center;margin-right: 5%;border-radius: 2px;font-weight: bolder;color: white">
-                              {{index+1}}
-                            </div>
-                            <div style="height: 30px;line-height: 30px;float: left" :title="video.videoInfo">
-                             {{video.videoName}}
-                            </div>
+                              <div style="height: 20px;width:20px;line-height: 20px;margin-top:5px;background-color: #EC8AA6;float: left;text-align: center;margin-right: 5%;border-radius: 2px;font-weight: bolder;color: white">
+                                {{index+1}}
+                              </div>
+                              <div style="height: 30px;line-height: 30px;float: left" :title="video.videoInfo">
+                                {{video.videoName}}
+                              </div>
                             </router-link>
                           </el-col>
                         </el-row>
@@ -374,46 +376,46 @@
 
             <el-row :gutter="10">
               <!--遍历娱乐-->
-                <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> -->
-                <el-col :span="6"  v-for="(video,index) in video6" :key="video.videoId">
-                  <!--<el-card style="height: 200px;margin-bottom: 10px;font-size:14px">-->
-                    <div style="height: 140px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
-                      <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
+              <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> -->
+              <el-col :span="6"  v-for="(video,index) in video6" :key="video.videoId">
+                <!--<el-card style="height: 200px;margin-bottom: 10px;font-size:14px">-->
+                <div style="height: 140px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
+                  <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
-                      <video  width=100%  style="margin: auto;height:130px;border-radius: 10px" :title="video.videoInfo"   class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
-                        <source
-                          :src="video.videoUrl"
-                          type="video/mp4">
-                        <!--type="application/x-mpegURL"-->
-                      </video>
-                    </router-link>
+                  <video  width=100%  style="margin: auto;height:130px;border-radius: 10px" :title="video.videoInfo"   class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+                    <source
+                      :src="video.videoUrl"
+                      type="video/mp4">
+                    <!--type="application/x-mpegURL"-->
+                  </video>
+                </router-link>
 
-                    </div>
-                    <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
-                      <div style="width:50%;float:left;">
-                        {{video.videoName}}
+                </div>
+                <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
+                  <div style="width:50%;float:left;">
+                    {{video.videoName}}
 
-                      </div>
-                      <div style="width:15%;float:left" @click="likeVideo(video.videoId)">
-                        <el-tooltip content="点赞" >
-                          <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
-                        </el-tooltip>
-                      </div>
-                      <div style="width:15%;float:left" @click="favoriteVideo(video.videoId)">
-                        <el-tooltip content="收藏" >
-                          <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
-                        </el-tooltip>
-                      </div>
-                      <div style="width:15%;float:left" @click="download(video.videoId)" >
-                        <!--dialogVisible = true,-->
-                        <el-tooltip content="下载" >
-                          <a class="el-icon-download" plain style="font-size: 18px"></a>
-                        </el-tooltip>
-                      </div>
-                    </div>
-                  <!--</el-card>-->
-                </el-col>
-                <!--</div>-->
+                  </div>
+                  <div style="width:15%;float:left" @click="likeVideo(video.videoId)">
+                    <el-tooltip content="点赞" >
+                      <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
+                    </el-tooltip>
+                  </div>
+                  <div style="width:15%;float:left" @click="favoriteVideo(video.videoId)">
+                    <el-tooltip content="收藏" >
+                      <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
+                    </el-tooltip>
+                  </div>
+                  <div style="width:15%;float:left" @click="download(video.videoId)" >
+                    <!--dialogVisible = true,-->
+                    <el-tooltip content="下载" >
+                      <a class="el-icon-download" plain style="font-size: 18px"></a>
+                    </el-tooltip>
+                  </div>
+                </div>
+                <!--</el-card>-->
+              </el-col>
+              <!--</div>-->
             </el-row>
 
           </el-col>
@@ -499,39 +501,39 @@
               <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> -->
               <el-col :span="6"  v-for="(video,index) in video8" :key="video.videoId">
                 <!--<el-card style="height: 200px;margin-bottom: 10px;font-size:14px">-->
-                  <div style="height: 140px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
-                    <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
+                <div style="height: 140px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
+                  <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
-                    <video  width=100%  style="margin: auto;height:130px;border-radius: 10px"  :title="video.videoInfo"  class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
-                      <source
-                        :src="video.videoUrl"
-                        type="video/mp4">
-                      <!--type="application/x-mpegURL"-->
-                    </video>
-                  </router-link>
+                  <video  width=100%  style="margin: auto;height:130px;border-radius: 10px"  :title="video.videoInfo"  class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+                    <source
+                      :src="video.videoUrl"
+                      type="video/mp4">
+                    <!--type="application/x-mpegURL"-->
+                  </video>
+                </router-link>
 
+                </div>
+                <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
+                  <div style="width:50%;float:left;">
+                    {{video.videoName}}
                   </div>
-                  <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
-                    <div style="width:50%;float:left;">
-                      {{video.videoName}}
-                    </div>
-                    <div style="width:15%;float:left" @click="likeVideo(video.videoId)">
-                      <el-tooltip content="点赞" >
-                        <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
-                      </el-tooltip>
-                    </div>
-                    <div style="width:15%;float:left" @click="favoriteVideo(video.videoId)">
-                      <el-tooltip content="收藏" >
-                        <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
-                      </el-tooltip>
-                    </div>
-                    <div style="width:15%;float:left" @click="download(video.videoId)" >
-                      <!--dialogVisible = true,-->
-                      <el-tooltip content="下载" >
-                        <a class="el-icon-download" plain style="font-size: 18px"></a>
-                      </el-tooltip>
-                    </div>
+                  <div style="width:15%;float:left" @click="likeVideo(video.videoId)">
+                    <el-tooltip content="点赞" >
+                      <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
+                    </el-tooltip>
                   </div>
+                  <div style="width:15%;float:left" @click="favoriteVideo(video.videoId)">
+                    <el-tooltip content="收藏" >
+                      <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
+                    </el-tooltip>
+                  </div>
+                  <div style="width:15%;float:left" @click="download(video.videoId)" >
+                    <!--dialogVisible = true,-->
+                    <el-tooltip content="下载" >
+                      <a class="el-icon-download" plain style="font-size: 18px"></a>
+                    </el-tooltip>
+                  </div>
+                </div>
                 <!--</el-card>-->
               </el-col>
               <!--</div>-->
@@ -620,39 +622,39 @@
               <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> -->
               <el-col :span="6"  v-for="(video,index) in video9" :key="video.videoId">
                 <!--<el-card style="height: 200px;margin-bottom: 10px;font-size:14px">-->
-                  <div style="height: 140px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
-                    <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
+                <div style="height: 140px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
+                  <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
-                    <video  width=100%  style="margin: auto;height:130px;border-radius: 10px"  :title="video.videoInfo"  class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
-                      <source
-                        :src="video.videoUrl"
-                        type="video/mp4">
-                      <!--type="application/x-mpegURL"-->
-                    </video>
-                  </router-link>
+                  <video  width=100%  style="margin: auto;height:130px;border-radius: 10px"  :title="video.videoInfo"  class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+                    <source
+                      :src="video.videoUrl"
+                      type="video/mp4">
+                    <!--type="application/x-mpegURL"-->
+                  </video>
+                </router-link>
 
+                </div>
+                <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
+                  <div style="width:50%;float:left;">
+                    {{video.videoName}}
                   </div>
-                  <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
-                    <div style="width:50%;float:left;">
-                      {{video.videoName}}
-                    </div>
-                    <div style="width:15%;float:left" @click="likeVideo(video.videoId)">
-                      <el-tooltip content="点赞" >
-                        <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
-                      </el-tooltip>
-                    </div>
-                    <div style="width:15%;float:left" @click="favoriteVideo(video.videoId)">
-                      <el-tooltip content="收藏" >
-                        <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
-                      </el-tooltip>
-                    </div>
-                    <div style="width:15%;float:left" @click="download(video.videoId)" >
-                      <!--dialogVisible = true,-->
-                      <el-tooltip content="下载" >
-                        <a class="el-icon-download" plain style="font-size: 18px"></a>
-                      </el-tooltip>
-                    </div>
+                  <div style="width:15%;float:left" @click="likeVideo(video.videoId)">
+                    <el-tooltip content="点赞" >
+                      <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
+                    </el-tooltip>
                   </div>
+                  <div style="width:15%;float:left" @click="favoriteVideo(video.videoId)">
+                    <el-tooltip content="收藏" >
+                      <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
+                    </el-tooltip>
+                  </div>
+                  <div style="width:15%;float:left" @click="download(video.videoId)" >
+                    <!--dialogVisible = true,-->
+                    <el-tooltip content="下载" >
+                      <a class="el-icon-download" plain style="font-size: 18px"></a>
+                    </el-tooltip>
+                  </div>
+                </div>
                 <!--</el-card>-->
               </el-col>
               <!--</div>-->
@@ -734,11 +736,11 @@
               </el-col>
               <!--&lt;!&ndash;更多&ndash;&gt;-->
               <!--<el-col :span="6" :offset="6">-->
-                <!--<div class="grid-content" style="line-height: 40px;float: right;">-->
-                  <!--<el-tooltip content="更多" placement="bottom" effect="light">-->
-                    <!--<el-button class="el-icon-arrow-right" plain @click="next()"></el-button>-->
-                  <!--</el-tooltip>-->
-                <!--</div>-->
+              <!--<div class="grid-content" style="line-height: 40px;float: right;">-->
+              <!--<el-tooltip content="更多" placement="bottom" effect="light">-->
+              <!--<el-button class="el-icon-arrow-right" plain @click="next()"></el-button>-->
+              <!--</el-tooltip>-->
+              <!--</div>-->
               <!--</el-col>-->
             </el-row>
 
@@ -748,39 +750,39 @@
               <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> -->
               <el-col :span="6"  v-for="(video,index) in video10" :key="video.videoId">
                 <!--<el-card style="height: 200px;margin-bottom: 10px;font-size:14px">-->
-                  <div style="height: 140px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
-                    <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
+                <div style="height: 140px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
+                  <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
-                    <video  width=100%  style="margin: auto;height:130px;border-radius: 10px"  :title="video.videoInfo"  class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
-                      <source
-                        :src="video.videoUrl"
-                        type="video/mp4">
-                      <!--type="application/x-mpegURL"-->
-                    </video>
-                  </router-link>
+                  <video  width=100%  style="margin: auto;height:130px;border-radius: 10px"  :title="video.videoInfo"  class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+                    <source
+                      :src="video.videoUrl"
+                      type="video/mp4">
+                    <!--type="application/x-mpegURL"-->
+                  </video>
+                </router-link>
 
+                </div>
+                <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
+                  <div style="width:50%;float:left;">
+                    {{video.videoName}}
                   </div>
-                  <div style="height: 40px;float: left;line-height:100%;width: 100%;text-align: center">
-                    <div style="width:50%;float:left;">
-                      {{video.videoName}}
-                    </div>
-                    <div style="width:15%;float:left" @click="likeVideo(video.videoId)">
-                      <el-tooltip content="点赞" >
-                        <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
-                      </el-tooltip>
-                    </div>
-                    <div style="width:15%;float:left" @click="favoriteVideo(video.videoId)">
-                      <el-tooltip content="收藏" >
-                        <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
-                      </el-tooltip>
-                    </div>
-                    <div style="width:15%;float:left" @click="download(video.videoId)" >
-                      <!--dialogVisible = true,-->
-                      <el-tooltip content="下载" >
-                        <a class="el-icon-download" plain style="font-size: 18px"></a>
-                      </el-tooltip>
-                    </div>
+                  <div style="width:15%;float:left" @click="likeVideo(video.videoId)">
+                    <el-tooltip content="点赞" >
+                      <a  class="el-icon-star-off"  plain style="font-size: 18px"></a>
+                    </el-tooltip>
                   </div>
+                  <div style="width:15%;float:left" @click="favoriteVideo(video.videoId)">
+                    <el-tooltip content="收藏" >
+                      <a  class="el-icon-folder-opened" plain style="font-size: 18px"></a>
+                    </el-tooltip>
+                  </div>
+                  <div style="width:15%;float:left" @click="download(video.videoId)" >
+                    <!--dialogVisible = true,-->
+                    <el-tooltip content="下载" >
+                      <a class="el-icon-download" plain style="font-size: 18px"></a>
+                    </el-tooltip>
+                  </div>
+                </div>
                 <!--</el-card>-->
               </el-col>
               <!--</div>-->
@@ -948,7 +950,7 @@
           fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
           sources: [{
             type: "video/mp4", // 类型
-            src: '' // url地址
+            src: 'http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4' // url地址
           }],
           poster: '../static/img/bala.jpg', // 封面地址
           notSupportedMessage: '此视频暂无法播放，请稍后再试', // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
@@ -961,7 +963,7 @@
         },
 
         imageUrl: '',
-          input:'',
+        input:'',
         msg: 'Welcome video index',
         active:'',
         activeIndex: '1',
@@ -995,7 +997,6 @@
         count2:'',
         count3:'',
         count4:'',
-        types:[]
       }
     },
     mounted(){
@@ -1003,7 +1004,7 @@
       //一级菜单
       var url="api/findAllTypes"
       axios.get(url).then(res=>{
-          this.types=res.data
+        this.types=res.data
       })
       //推荐
       var url="api/findAllVideo"
@@ -1012,9 +1013,9 @@
         this.video5=res.data
       })
       //娱乐
-     var url="api/findFunById/"+7
+      var url="api/findFunById/"+7
       axios.get(url).then(res=>{
-          this.videos1=res.data
+        this.videos1=res.data
       })
       //动画
       var url="api/findFunById/"+1
@@ -1054,8 +1055,8 @@
       findTrend:function(typeId){
         axios.get("api/findByTrend/"+typeId).then(res=>{
           /*if (typeId==0){
-            this.video5=res.data;
-          }*/
+           this.video5=res.data;
+           }*/
           if (typeId==1){
             this.video8=res.data;
           }
@@ -1064,7 +1065,6 @@
           }
           if (typeId==5){
             this.video11=res.data;
-//            console.log(this.video11)
           }
           if (typeId==7){
             this.video6=res.data;
@@ -1079,9 +1079,9 @@
       },
       findLatest:function(typeId){
         axios.get("api/findByLatest/"+typeId).then(res=>{
-        /*  if (typeId==0){
-            this.video5=res.data;
-          }*/
+          /*  if (typeId==0){
+           this.video5=res.data;
+           }*/
           if (typeId==1){
             this.video8=res.data;
           }
@@ -1121,7 +1121,7 @@
       },
       //点赞
       like:function (videoId) {
-          //alert(666)
+        //alert(666)
         if(this.user.userId!=null){
           var url = "api/like/" + videoId
           axios.get(url).then(res => {
@@ -1215,29 +1215,29 @@
         }
 
       },
-        over:function (x) {
-            if(x==1){
-              this.active='background-color: orangered;border-radius: 0px 10px 0px 10px';
-            } if(x==2){
-              this.a='background-color: orangered;border-radius: 0px 10px 0px 10px';
-            } if(x==3){
-              this.b='background-color: orangered;border-radius: 0px 10px 0px 10px';
-            } if(x==4){
-              this.c='background-color: orangered;border-radius: 0px 10px 0px 10px';
-            } if(x==5){
-              this.d='background-color: orangered;border-radius: 0px 10px 0px 10px';
-            } if(x==6){
-              this.e='background-color: orangered;border-radius: 0px 10px 0px 10px';
-            } if(x==7){
-              this.f='background-color: orangered;border-radius: 0px 10px 0px 10px';
-            } if(x==8){
-              this.g='background-color: orangered;border-radius: 0px 10px 0px 10px';
-            }if(x==9){
-              this.h='background-color: orangered;border-radius: 0px 10px 0px 10px';
-            }if(x==11){
-            this.j='background-color: orangered;border-radius: 0px 10px 0px 10px';
-          }
-        },
+      over:function (x) {
+        if(x==1){
+          this.active='background-color: orangered;border-radius: 0px 10px 0px 10px';
+        } if(x==2){
+          this.a='background-color: orangered;border-radius: 0px 10px 0px 10px';
+        } if(x==3){
+          this.b='background-color: orangered;border-radius: 0px 10px 0px 10px';
+        } if(x==4){
+          this.c='background-color: orangered;border-radius: 0px 10px 0px 10px';
+        } if(x==5){
+          this.d='background-color: orangered;border-radius: 0px 10px 0px 10px';
+        } if(x==6){
+          this.e='background-color: orangered;border-radius: 0px 10px 0px 10px';
+        } if(x==7){
+          this.f='background-color: orangered;border-radius: 0px 10px 0px 10px';
+        } if(x==8){
+          this.g='background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }if(x==9){
+          this.h='background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }if(x==11){
+          this.j='background-color: orangered;border-radius: 0px 10px 0px 10px';
+        }
+      },
       leave:function (x) {
         if(x==1){
           this.active='';
@@ -1273,26 +1273,26 @@
       },
 //      个人中心-完善信息
       /*toUser:function () {
-        if (this.userId!=null) {
-          this.$router.push("/userDetial")
-        }else {
-          this.$message.error('还没登录哦，请登录后再试');
-          this.$router.push("/userLogin")
-        }
-      },*/
+       if (this.userId!=null) {
+       this.$router.push("/userDetial")
+       }else {
+       this.$message.error('还没登录哦，请登录后再试');
+       this.$router.push("/userLogin")
+       }
+       },*/
 //      修改密码
       /*toModify:function () {
-        if (this.userId!=null) {
-          this.$router.push("/updatePassword")
-        }else {
-          this.$message.error('还没登录哦，请登录后再试');
-          this.$router.push("/userLogin")
-        }
-      },*/
+       if (this.userId!=null) {
+       this.$router.push("/updatePassword")
+       }else {
+       this.$message.error('还没登录哦，请登录后再试');
+       this.$router.push("/userLogin")
+       }
+       },*/
       search:function () {
         var searchName=this.$refs.searchName.value
         if(searchName==''||searchName==null){
-            searchName='null'
+          searchName='null'
         }
         //alert(searchName)
         this.$router.push('/searchVideo/'+searchName)
@@ -1305,6 +1305,7 @@
         //alert(searchName)
         this.$router.push('/searchVideo/'+searchName)
       },
+
 
 
       // 播放回调
@@ -1366,7 +1367,7 @@
 
 
     }
-}
+  }
 </script>
 
 
@@ -1442,7 +1443,7 @@
 
 
   .el-row {
-    /*margin-bottom: 20px;*/
+  /*margin-bottom: 20px;*/
   &:last-child {
      margin-bottom: 0;
    }
@@ -1505,9 +1506,9 @@
     text-align: center;
   }
   /*.avatar {*/
-    /*width: 178px;*/
-    /*height: 178px;*/
-    /*display: block;*/
+  /*width: 178px;*/
+  /*height: 178px;*/
+  /*display: block;*/
   /*}*/
   .note{
     position: absolute;
@@ -1519,7 +1520,7 @@
   }
 
 
-/*文字滚屏*/
+  /*文字滚屏*/
   * {
     margin: 0;
     padding: 0;
@@ -1569,30 +1570,30 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-/*a {*/
+  h1, h2 {
+    font-weight: normal;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  /*a {*/
   /*color: #42b983;*/
-/*}*/
-a:link {
-  color: #000000;
-  text-decoration-line: none;
+  /*}*/
+  a:link {
+    color: #000000;
+    text-decoration-line: none;
 
-}
-a:hover {
-  color: red;
-}
+  }
+  a:hover {
+    color: red;
+  }
   .body{
     font-family: 楷体;
   }
-.header{ position:fixed; margin-top:0; width:99%;margin: auto ;z-index:9999; }
+  .header{ position:fixed; margin-top:0; width:99%;margin: auto ;z-index:9999; }
 </style>
