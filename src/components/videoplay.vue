@@ -285,7 +285,7 @@
                     src="video.videoUrl"
                     type="video/mp4">
                   >
-                  
+
                 </video-player>
 
 
@@ -1261,20 +1261,13 @@
       onPlayerPlay(player) {
         //console.log('player play!', player)
         /*开始播放则定时器启动，websocket连接，向后台请求弹幕数据*/
-        if (this.list[0].videoTime!=null){
-          player.currentTime(this.list[0].videoTime);
-        }
-
-        if (this.list[0].videoTime=player.currentTime){
-          this.playerOptions.loop=true;
-        }
 
         this.record.videoId=this.video.videoId;
         this.record.videoName=this.video.videoName;
         this.record.videoPic=this.video.videoPic;
         this.record.videoUrl=this.video.videoUrl;
         this.record.videoTime=player.currentTime();
-        axios.post("api/addRecord",this.record).then(res=> {
+        axios.post("api/changeRecord",this.record).then(res=> {
           if (res.data!=null){
               console.log("success");
           }
@@ -1282,6 +1275,10 @@
 
         if (this.list[0].videoTime!=null){
           player.currentTime(this.list[0].videoTime);
+        }
+
+        if (this.list[0].videoTime=player.currentTime){
+          this.playerOptions.loop=true;
         }
       },
 
@@ -1291,7 +1288,7 @@
         this.record.videoTime=player.currentTime();
 //        alert(player.currentTime())
 
-        axios.post("api/updateRecord",this.record).then(res=>{
+        axios.post("api/changeRecord",this.record).then(res=>{
           if (res.data!=null){
             console.log("success");
           }
