@@ -1064,7 +1064,101 @@
           }
         })
       },
+      //点赞
+      likeVideo:function (videoId) {
+        if(this.user.userId!=null){
+          var url = "api/like/" + videoId
+          axios.get(url).then(res => {
+            if (res.data != null) {
+              swal({
+                text: "点赞成功！",
+                icon: "success",
+                button: "确定",
+              });
+            }
+          })
+        }else{
+          swal({
+            text: "您还没有登录！",
+            icon: "info",
+            button: "确定",
+          });
+          this.$router.push("/userLogin")
+        }
+      },
 
+      //收藏
+      favoriteVideo:function (videoId) {
+        var userId=this.user.userId
+        if(this.user.userId!=null){
+          var url="api/favorite/"+userId+"/"+videoId
+          axios.get(url).then(res=>{
+            if(res.data=="1"){
+              swal({
+                text: "收藏成功！",
+                icon: "success",
+                button: "确定",
+              });
+            }else{
+              swal({
+                text: "您已经收藏过该视频了！",
+                icon: "info",
+                button: "确定",
+              });
+            }
+          })
+        }else {
+          swal({
+            text: "您还没有登录！",
+            icon: "info",
+            button: "确定",
+          });
+          this.$router.push("/userLogin")
+        }
+      },
+      download:function (videoId) {
+        if (this.user.userId != null) {
+          if(this.user.userStatue==1){
+//              swal({
+//                text: "下载中！请稍等！",
+////                loading: true,
+////                icon: "success",
+//              });
+            this.loading=true;
+            var url="api/download/"+id
+            axios.get(url).then(res=>{
+              if(res.data=="1"){
+                this.loading=false;
+                swal({
+                  text: "下载成功！请在您的桌面查看！",
+                  icon: "success",
+                  button: "确定",
+                });
+              }else{
+                swal({
+                  text: "下载失败！请检查您的网络！",
+                  icon: "info",
+                  button: "确定",
+                });
+              }
+            })
+          }else{
+            swal({
+              text: "对不起！您不是会员！无法下载！",
+              icon: "warning",
+              button: "确定",
+            });
+          }
+        }else{
+          swal({
+            text: "您还没有登录！",
+            icon: "info",
+            button: "确定",
+          });
+          this.$router.push("/userLogin")
+        }
+
+      },
         over:function (x) {
             if(x==1){
               this.active='background-color: orangered;border-radius: 0px 10px 0px 10px';
