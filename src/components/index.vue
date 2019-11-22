@@ -236,12 +236,12 @@
                     <span>特别推荐</span>
                   </div>
                 </div>
-                <div style="height: 40px;float:left;font-size: 18px;font-weight: bolder;text-align: center;line-height: 40px">
+               <!-- <div style="height: 40px;float:left;font-size: 18px;font-weight: bolder;text-align: center;line-height: 40px">
                   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
                     <el-menu-item index="1" @click="findTrend(0)">最新动态</el-menu-item>
                     <el-menu-item index="2" @click="findLatest(0)">最新投稿</el-menu-item>
                   </el-menu>
-                </div>
+                </div>-->
 
               </el-col>
 
@@ -1003,6 +1003,7 @@
       var url="api/findAllVideo"
       axios.get(url).then(res=>{
         this.videos=res.data
+        this.video5=res.data
       })
       //娱乐
      var url="api/findFunById/"+7
@@ -1046,9 +1047,9 @@
 
       findTrend:function(typeId){
         axios.get("api/findByTrend/"+typeId).then(res=>{
-          if (typeId==0){
+          /*if (typeId==0){
             this.video5=res.data;
-          }
+          }*/
           if (typeId==1){
             this.video8=res.data;
           }
@@ -1071,9 +1072,9 @@
       },
       findLatest:function(typeId){
         axios.get("api/findByLatest/"+typeId).then(res=>{
-          if (typeId==0){
+        /*  if (typeId==0){
             this.video5=res.data;
-          }
+          }*/
           if (typeId==1){
             this.video8=res.data;
           }
