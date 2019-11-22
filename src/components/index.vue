@@ -236,12 +236,12 @@
                     <span>特别推荐</span>
                   </div>
                 </div>
-                <div style="height: 40px;float:left;font-size: 18px;font-weight: bolder;text-align: center;line-height: 40px">
+               <!-- <div style="height: 40px;float:left;font-size: 18px;font-weight: bolder;text-align: center;line-height: 40px">
                   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
                     <el-menu-item index="1" @click="findTrend(0)">最新动态</el-menu-item>
                     <el-menu-item index="2" @click="findLatest(0)">最新投稿</el-menu-item>
                   </el-menu>
-                </div>
+                </div>-->
 
               </el-col>
 
@@ -317,7 +317,7 @@
                 <!--遍历推荐排行-->
                 <el-row :gutter="10" style="height: 340px;background-color: #F5CED6;text-align: left;border-radius: 10px">
                   <el-col span="23" :offset="1" style="margin-top: 10px">
-                    <!--<marquee behavior="scroll" direction="up" height="320" scrolldelay="5">-->
+                    <marquee behavior="scroll" direction="up" height="320" scrolldelay="5">
                       <div v-for="(video,index) in videos" v-bind="video.videoId" >
                         <el-row :gutter="10">
                           <el-col span="24">
@@ -332,7 +332,7 @@
                           </el-col>
                         </el-row>
                       </div>
-                    <!--</marquee>-->
+                    </marquee>
                   </el-col>
                 </el-row>
               </el-col>
@@ -615,7 +615,7 @@
             </el-row>
 
             <el-row :gutter="10">
-              <!--遍历动画-->
+              <!--遍历VT剧-->
 
               <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> -->
               <el-col :span="6"  v-for="(video,index) in video9" :key="video.videoId">
@@ -1003,6 +1003,7 @@
       var url="api/findAllVideo"
       axios.get(url).then(res=>{
         this.videos=res.data
+        this.video5=res.data
       })
       //娱乐
      var url="api/findFunById/"+7
@@ -1046,9 +1047,9 @@
 
       findTrend:function(typeId){
         axios.get("api/findByTrend/"+typeId).then(res=>{
-          if (typeId==0){
+          /*if (typeId==0){
             this.video5=res.data;
-          }
+          }*/
           if (typeId==1){
             this.video8=res.data;
           }
@@ -1072,9 +1073,9 @@
       },
       findLatest:function(typeId){
         axios.get("api/findByLatest/"+typeId).then(res=>{
-          if (typeId==0){
+        /*  if (typeId==0){
             this.video5=res.data;
-          }
+          }*/
           if (typeId==1){
             this.video8=res.data;
           }
