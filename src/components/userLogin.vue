@@ -8,7 +8,7 @@
           <router-link :to="{name:'index'}"><el-image src="../static/img/logo3.jpg" style="width:100%;" title="返回首页"></el-image></router-link>
         </div>
       </el-header>
-      <el-main style="width: 100%;margin: auto;padding: 0">
+      <el-main style="width: 100%;margin: auto;padding: 0;margin-top: 20px">
         <el-card style="width: 100%;height: 660px;background: url('../static/img/girl10.jpg') no-repeat center;background-size: cover;opacity: 0.9">
 
 
