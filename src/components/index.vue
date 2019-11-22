@@ -184,12 +184,14 @@
               <div style="height: 200px;float: left;width: 100%;border-radius: 10px"><router-link :to="{path:'/videoplay/'+video.videoId}">
                 <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
-                <video  width=100%  style="margin: auto;height:190px;border-radius: 10px"  :title="video.videoInfo"   class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+               <!-- <video  width=100%  style="margin: auto;height:190px;border-radius: 10px"  :title="video.videoInfo"   class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
                   <source
                     :src="video.videoUrl"
                     type="video/mp4">
-                  <!--type="application/x-mpegURL"-->
-                </video>
+                  &lt;!&ndash;type="application/x-mpegURL"&ndash;&gt;
+                </video>-->
+                <img :src="video.videoPic" width="100%" height="200px" class="pic"/>
+                
               </router-link>
 
               </div>
