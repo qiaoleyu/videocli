@@ -100,28 +100,15 @@
                 <el-carousel :interval="5000" type="card" height="300px" width="800px">
                   <el-carousel-item v-for="(item,index) in video11" :key="item.videoId">
 
-                    <video-player class="video-player vjs-custom-skin"
-                                  ref="videoPlayer"
-                                  :playsinline="true"
-                                  :options="playerOptions"
-                                  @play="onPlayerPlay($event)"
-                                  @pause="onPlayerPause($event)"
-                                  @ended="onPlayerEnded($event)"
-                                  @waiting="onPlayerWaiting($event)"
-                                  @playing="onPlayerPlaying($event)"
-                                  @loadeddata="onPlayerLoadeddata($event)"
-                                  @timeupdate="onPlayerTimeupdate($event)"
-                                  @canplay="onPlayerCanplay($event)"
-                                  @canplaythrough="onPlayerCanplaythrough($event)"
-                                  @statechanged="playerStateChanged($event)"
-                                  @ready="playerReadied"
-                                  :title="item.videoName"
+                    <video class="video-js vjs-default-skin vjs-big-play-centered" playRate controls
+                           style="height:100%"
+                           :title="item.videoName"
                     >
                       <source
                         :src="item.videoUrl"
                         type="video/mp4">
                       >
-                    </video-player>
+                    </video>
 
 
 
