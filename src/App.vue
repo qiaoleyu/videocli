@@ -255,7 +255,7 @@
                    @mousemove="over(13)"
                    @mouseleave="leave(13)"
                    :style="n"
-              ><el-badge :value="10" class="item" type="danger" >
+              ><el-badge :value="1" type="danger" >
                 <span type="info" style="color:black;cursor: pointer"><a @click="RequstMessage()">消息</a></span>
               </el-badge>
               </div>
