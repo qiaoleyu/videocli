@@ -317,7 +317,7 @@
                 <!--遍历推荐排行-->
                 <el-row :gutter="10" style="height: 340px;background-color: #F5CED6;text-align: left;border-radius: 10px">
                   <el-col span="23" :offset="1" style="margin-top: 10px">
-                    <!--<marquee behavior="scroll" direction="up" height="320" scrolldelay="5">-->
+                    <marquee behavior="scroll" direction="up" height="320" scrolldelay="5">
                       <div v-for="(video,index) in videos" v-bind="video.videoId" >
                         <el-row :gutter="10">
                           <el-col span="24">
@@ -332,7 +332,7 @@
                           </el-col>
                         </el-row>
                       </div>
-                    <!--</marquee>-->
+                    </marquee>
                   </el-col>
                 </el-row>
               </el-col>
