@@ -98,14 +98,14 @@
             <template>
               <div style="margin-bottom: 10px">
                 <el-carousel :interval="5000" type="card" height="300px" width="800px">
-                  <el-carousel-item v-for="(item,index) in video11" :key="item.videoId">
+                  <el-carousel-item v-for="video in video11" v-bind:key="video.videoId">
 
                     <video class="video-js vjs-default-skin vjs-big-play-centered" playRate controls
                            style="height:100%"
                            :title="item.videoName"
                     >
                       <source
-                        :src="item.videoUrl"
+                        :src="video.videoUrl"
                         type="video/mp4">
                       >
                     </video>
@@ -948,7 +948,7 @@
           fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
           sources: [{
             type: "video/mp4", // 类型
-            src: 'http://candy-jing.oss-cn-beijing.aliyuncs.com/111.mp4' // url地址
+            src: '' // url地址
           }],
           poster: '../static/img/bala.jpg', // 封面地址
           notSupportedMessage: '此视频暂无法播放，请稍后再试', // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
@@ -1057,6 +1057,7 @@
           }
           if (typeId==5){
             this.video11=res.data;
+//            console.log(this.video11)
           }
           if (typeId==7){
             this.video6=res.data;
