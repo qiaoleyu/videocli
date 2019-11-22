@@ -1,14 +1,17 @@
 <template>
-  <div class="hello" style="width: 100%;margin: auto">
+  <div class="hello" style="width: 100%;lef:0;margin: auto">
     <!--<h1>{{ msg }}</h1>-->
-    <el-container >
+    <el-container style="width: 100%">
       <!--导航栏-->
-      <el-header style="height: 80px">
+      <el-header style="height: 80px;padding: 0">
         <div style="width: 100%;margin: auto;">
           <router-link :to="{name:'index'}"><el-image src="../static/img/logo3.jpg" style="width:100%;" title="返回首页"></el-image></router-link>
         </div>
       </el-header>
-      <el-main style="width: 100%;margin: auto;">
+      <el-main style="width: 100%;margin: auto;padding: 0">
+        <el-card style="width: 100%;height: 660px;background: url('../static/img/girl10.jpg') no-repeat center;background-size: cover;opacity: 0.9">
+
+
         <el-row :gutter="10">
           <el-col :span="6" :offset="5" style="font-size: 14px;margin-bottom: 20px;margin-top: 20px">
             <hr>
@@ -21,52 +24,47 @@
           </el-col>
         </el-row>
         <el-row :gutter="10" style="height:460px;">
-          <el-col :span="12"style="font-size: 14px;height:100%;margin-bottom: 20px;border-right: solid 2px #d3dce6">
-            <!--<el-card class="box-card" style="background-color: #FDFFF4">-->
-              <el-image src="../static/img/girl3.jpeg" style="height: 460px;width: 100%;font-size: 25px" title="欢迎来到bala视频网站"></el-image>
-            <!--</el-card>-->
-          </el-col>
-          <el-col :span="12" >
+          <el-col :span="8" :offset="14">
             <NoButtonHeader></NoButtonHeader>
-            <el-card class="box-card" style="background-color: #FDFFF4">
+            <el-card class="box-card" style="opacity: 0.9;border-radius: 15px;height: 430px;margin-top: 30px;">
             <el-form :model="users" status-icon :rules="rules" ref="users" label-width="20%" style="width: 80%;margin: auto;margin-top: 10%" >
               <el-row :gutter="10">
                 <el-col :span="24">
                 <el-form-item label="账号：" prop="loginName" style="font-size:25px;text-align: left;font-weight: bolder">
-                  <el-input type="text" name="loginName" v-model="users.loginName" style="width: 340px" placeholder="昵称/邮箱/手机号"></el-input>
+                  <el-input type="text" name="loginName" v-model="users.loginName" style="width: 240px" placeholder="昵称/邮箱/手机号"></el-input>
                 </el-form-item><br>
                 <el-form-item label="密码：" prop="password" style="font-size:25px;text-align: left;font-weight: bolder" show-password>
-                  <el-input type="password" name="password" v-model="users.password" style="width: 340px" placeholder="请输入密码"></el-input>
+                  <el-input type="password" name="password" v-model="users.password" style="width: 240px" placeholder="请输入密码"></el-input>
                 </el-form-item><br>
                 </el-col>
               </el-row>
               <el-row :gutter="10">
-                <el-col :span="4"  :offset="4" style="margin-bottom: 16px">
+                <el-col :span="4"  :offset="2" >
                   <div style=" width: 100px"><input type="checkbox" name="rememberme" value="yes"/>记住密码</div>
                 </el-col>
-                <el-col :span="6" :offset="6" style="margin-bottom: 16px">
-                <a type="primary" plain @click="toCheck()" style="font-size: 16px;float: right;cursor: pointer;">忘记密码>></a>
+                <el-col :span="8" :offset="8" >
+                <a type="primary" plain @click="toCheck()" style="font-size: 16px;cursor: pointer;">忘记密码>></a>
                 </el-col>
               </el-row>
               <el-row :gutter="10">
-                <el-col :span="18" :offset="3" style="margin-top: 15%">
-                  <el-button type="primary" style="width: 28%" plain @click="login()">确认</el-button>
-                  <el-button type="primary" style="width: 28%" plain @click="toinsetUser()">注册</el-button>
-                  <el-button type="primary" style="width: 28%" plain @click="resetForm('user')">重置</el-button>
+                <el-col :span="20" :offset="2" style="margin-top: 10%">
+                  <el-button type="primary" style="width: 29%" plain @click="login()">确认</el-button>
+                  <el-button type="primary" style="width: 29%" plain @click="toinsetUser()">注册</el-button>
+                  <el-button type="primary" style="width: 29%" plain @click="resetForm('users')">重置</el-button>
                 </el-col>
               </el-row>
               <el-row :gutter="10">
-                <el-col :span="18" :offset="3">
+                <el-col :span="22" :offset="2">
                   <a href="" >
-                    <div style="width:40px;margin-top: 20px;float:left;margin-left: 10px">
+                    <div style="width:40px;margin-top: 20px;float:left;">
                       <el-image src="../static/img/qq.jpg" title="QQ"></el-image>
                     </div>
-                    <div style="width:40px;margin-top: 20px;float:left;line-height: 20px;margin-right: 30px">
+                    <div style="width:40px;margin-top: 20px;float:left;line-height: 20px;">
                       <span >QQ</span>
                     </div>
                   </a>
                   <a href="">
-                    <div style="width:40px;margin-top: 20px;float:left">
+                    <div style="width:40px;margin-top: 20px;float:left;margin-left: 30%">
                       <el-image src="../static/img/weixin1.jpg" title="微信"></el-image>
                     </div>
                     <div style="width:40px;margin-top: 20px;float:left">
@@ -79,6 +77,7 @@
             </el-card>
           </el-col>
         </el-row>
+        </el-card>
       </el-main>
 
       <el-footer>

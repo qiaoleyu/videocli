@@ -1,7 +1,7 @@
 <template>
-  <div class="hello" style="width: 95%;margin: auto">
+  <div class="hello" style="width: 100%;margin: auto">
     <!--<h1>{{ msg }}</h1>-->
-    <el-container >
+    <el-container style="width:100%">
       <!--导航栏-->
       <el-header style="height: 40px;margin-top: 80px">
         <div style="width: 100%;margin: auto;">
@@ -846,7 +846,7 @@
 
       </el-main>
 
-      <el-footer style="width:100%;height: 350px;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;">
+      <el-footer style="width:100%;height: 350px;background: #f5f5f5 url('../static/img/bg.jpg') no-repeat center;background-size: cover;padding: 0">
         <el-row :gutter="10"  style="margin-left: inherit;margin-right: inherit">
           <el-col :span="8"  >
             <div style="height: 120px;border-right: solid 1px white;margin-top: 5%;">
