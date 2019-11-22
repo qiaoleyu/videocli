@@ -636,7 +636,7 @@
                 </el-row>
 
                 <!--分页-->
-                <el-row :gutter="10" style="margin-top: 20px">
+                <el-row v-if="comments.total>0" :gutter="10" style="margin-top: 20px">
                   <el-col :span="24">
                     <el-pagination
                       background

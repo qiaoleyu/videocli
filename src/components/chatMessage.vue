@@ -137,6 +137,13 @@
               "ws://27517f29s2.zicp.vip/websocket/" + this.user.userId
 
             );
+            this.communication.userId=this.user.userId;
+            this.communication.userName=this.user.userName;
+            this.communication.userRid=this.user2.userId;
+            this.communication.userRname=this.user2.userName;
+            axios.post("api/sendMessage",this.communication).then(res=>{
+
+            })
           } else {
             alert("不支持建立socket连接");
           }

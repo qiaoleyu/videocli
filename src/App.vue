@@ -302,7 +302,8 @@ export default {
         pay:{
           userId:'',
           rechargeVip:'',
-        }
+        },
+        days:''
       }
   },
   mounted() {
@@ -453,12 +454,15 @@ export default {
 
         if(this.radio1=="$15元/月"){
           this.pay.rechargeVip=15;
+          this.days=30;
         }
         if(this.radio1=="$50元/季"){
           this.pay.rechargeVip=50;
+          this.days=90;
         }
         if(this.radio1=="$200元/年"){
           this.pay.rechargeVip=200;
+          this.days=365;
         }
          if(this.user.userStatue==1){
            swal({
@@ -484,12 +488,14 @@ export default {
                      button: "确定",
                    });
                  }
+                 Cookies.set(this.user.userId+"days",this.days,{expires: this.days, path: '/userLogin'})
                })
              }
            }
            if(this.radio2=="支付宝支付") {
              axios.post("api/alipayPayForVip", this.pay).then(res => {
                this.$router.replace({path: '/applyText', query: {htmls: res.data}})
+               Cookies.set(this.user.userId+"days",this.days,{expires: this.days, path: '/userLogin'})
              })
            }
 
