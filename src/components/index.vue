@@ -615,7 +615,7 @@
             </el-row>
 
             <el-row :gutter="10">
-              <!--遍历动画-->
+              <!--遍历VT剧-->
 
               <!--<div style="height: 120px;background-color: orangered;margin-bottom: 20px"> -->
               <el-col :span="6"  v-for="(video,index) in video9" :key="video.videoId">
