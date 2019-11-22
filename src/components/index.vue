@@ -169,8 +169,8 @@
         <!--视频标题-->
         <el-row :gutter="10">
           <el-col :span="24">
-            <div style="text-align: center;background: url('../static/img/girl2.jpeg') no-repeat;height: 40px;margin-bottom: 20px;line-height: 40px;border-radius: 10px">
-              <span>王者荣耀播主视频(轮播视频对应的标题)</span>
+            <div style="text-align: center;background: url('../static/img/logo3.jpg') no-repeat;height: 40px;margin-bottom: 20px;line-height: 40px;border-radius: 10px" class="box">
+              <span style="font-weight: bolder" class="animate">英雄联盟精彩视频（您的英雄时刻）</span>
             </div>
           </el-col>
         </el-row>
@@ -190,11 +190,11 @@
         <el-row :gutter="10">
           <!--<el-col :span="4" v-for="" v-bind:key="">-->
           <el-col :span="6"  v-for="(video,index) in video7" :key="video.videoId">
-            <el-card style="height: 200px;margin-bottom: 10px;font-size:14px">
-              <div style="height: 150px;float: left;width: 100%"><router-link :to="{path:'/videoplay/'+video.videoId}">
+            <!--<el-card style="height: 200px;margin-bottom: 10px;font-size:14px">-->
+              <div style="height: 200px;float: left;width: 100%;border-radius: 10px"><router-link :to="{path:'/videoplay/'+video.videoId}">
                 <!--<router-link :to="path:'/videoplay/'+video.videoUrl">-->
 
-                <video  width=100%  style="margin: auto;height:130px;border-radius: 10px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
+                <video  width=100%  style="margin: auto;height:190px;border-radius: 10px"    class="video-js vjs-default-skin vjs-big-play-centered" playRate controls>
                   <source
                     :src="video.videoUrl"
                     type="video/mp4">
@@ -225,7 +225,7 @@
                   </el-tooltip>
                 </div>
               </div>
-            </el-card>
+            <!--</el-card>-->
           </el-col>
 
         </el-row>
@@ -325,11 +325,24 @@
 
               <el-col :span="24">
                 <!--遍历排行-->
-                <el-row :gutter="10" style="height: 340px;background-color: greenyellow;text-align: left;border-radius: 10px">
-                  <el-col span="22" :offset="2" style="margin-top: 10px">
-                    <div v-for="(video,index) in videos" v-bind="video.videoId">
-                      <router-link :to="{path:'/videoplay/'+video.videoId}"><div style="height: 32px;line-height: 30px">{{video.videoName}}</div></router-link>
-                    </div>
+                <el-row :gutter="10" style="height: 340px;background-color: #F5CED6;text-align: left;border-radius: 10px">
+                  <el-col span="23" :offset="1" style="margin-top: 10px">
+                    <marquee behavior="scroll" direction="up" height="320" scrolldelay="5">
+                      <div v-for="(video,index) in videos" v-bind="video.videoId" >
+                        <el-row :gutter="10">
+                          <el-col span="24">
+                            <router-link :to="{path:'/videoplay/'+video.videoId}">
+                            <div style="height: 20px;width:20px;line-height: 20px;margin-top:5px;background-color: #EC8AA6;float: left;text-align: center;margin-right: 5%;border-radius: 2px;font-weight: bolder;color: white">
+                              {{index+1}}
+                            </div>
+                            <div style="height: 30px;line-height: 30px;float: left" >
+                             {{video.videoName}}
+                            </div>
+                            </router-link>
+                          </el-col>
+                        </el-row>
+                      </div>
+                    </marquee>
                   </el-col>
                 </el-row>
               </el-col>
@@ -434,10 +447,21 @@
               </el-col>
 
               <el-col :span="24">
-                <el-row :gutter="10" style="height: 340px;background-color: greenyellow;text-align: left;border-radius: 10px">
-                  <el-col span="22" :offset="2" style="margin-top: 10px">
+                <el-row :gutter="10" style="height: 340px;background-color: #F5CED6;text-align: left;border-radius: 10px">
+                  <el-col span="23" :offset="1" style="margin-top: 10px">
                     <div v-for="(video,index) in videos1" v-bind="video.videoId">
-                      <router-link :to="{path:'/videoplay/'+video.videoId}"><div style="height: 32px;line-height: 30px">{{video.videoName}}</div></router-link>
+                      <el-row :gutter="10">
+                        <el-col span="24">
+                          <router-link :to="{path:'/videoplay/'+video.videoId}">
+                            <div style="height: 20px;width:20px;line-height: 20px;margin-top:5px;background-color: #EC8AA6;float: left;text-align: center;margin-right: 5%;border-radius: 2px;font-weight: bolder;color: white">
+                              {{index+1}}
+                            </div>
+                            <div style="height: 30px;line-height: 30px;float: left">
+                              {{video.videoName}}
+                            </div>
+                          </router-link>
+                        </el-col>
+                      </el-row>
                     </div>
                   </el-col>
                 </el-row>
@@ -544,10 +568,21 @@
               </el-col>
 
               <el-col :span="24" >
-                <el-row :gutter="10" style="height: 340px;background-color: greenyellow;text-align: left;border-radius: 10px">
-                  <el-col span="22" :offset="2" style="margin-top: 10px">
+                <el-row :gutter="10" style="height: 340px;background-color: #F5CED6;text-align: left;border-radius: 10px">
+                  <el-col span="23" :offset="1" style="margin-top: 10px">
                     <div v-for="(video,index) in videos2" v-bind="video.videoId">
-                      <router-link :to="{path:'/videoplay/'+video.videoId}"><div style="height: 32px;line-height: 30px">{{video.videoName}}</div></router-link>
+                      <el-row :gutter="10">
+                        <el-col span="24">
+                          <router-link :to="{path:'/videoplay/'+video.videoId}">
+                            <div style="height: 20px;width:20px;line-height: 20px;margin-top:5px;background-color: #EC8AA6;float: left;text-align: center;margin-right: 5%;border-radius: 2px;font-weight: bolder;color: white">
+                              {{index+1}}
+                            </div>
+                            <div style="height: 30px;line-height: 30px;float: left">
+                              {{video.videoName}}
+                            </div>
+                          </router-link>
+                        </el-col>
+                      </el-row>
                     </div>
                   </el-col>
                 </el-row>
@@ -655,10 +690,21 @@
               </el-col>
 
               <el-col :span="24" >
-                <el-row :gutter="10" style="height: 340px;background-color: greenyellow;text-align: left;border-radius: 10px">
-                  <el-col span="22" :offset="2" style="margin-top: 10px">
+                <el-row :gutter="10" style="height: 340px;background-color: #F5CED6;text-align: left;border-radius: 10px">
+                  <el-col span="23" :offset="1" style="margin-top: 10px">
                     <div v-for="(video,index) in videos3" v-bind="video.videoId">
-                      <router-link :to="{path:'/videoplay/'+video.videoId}"><div style="height: 32px;line-height: 30px">{{video.videoName}}</div></router-link>
+                      <el-row :gutter="10">
+                        <el-col span="24">
+                          <router-link :to="{path:'/videoplay/'+video.videoId}">
+                            <div style="height: 20px;width:20px;line-height: 20px;margin-top:5px;background-color: #EC8AA6;float: left;text-align: center;margin-right: 5%;border-radius: 2px;font-weight: bolder;color: white">
+                              {{index+1}}
+                            </div>
+                            <div style="height: 30px;line-height: 30px;float: left">
+                              {{video.videoName}}
+                            </div>
+                          </router-link>
+                        </el-col>
+                      </el-row>
                     </div>
                   </el-col>
                 </el-row>
@@ -772,10 +818,21 @@
 
               <el-col :span="24">
 
-                <el-row :gutter="10" style="height: 340px;background-color: greenyellow;text-align: left;border-radius: 10px">
-                  <el-col span="22" :offset="2" style="margin-top: 10px">
+                <el-row :gutter="10" style="height: 340px;background-color: #F5CED6;text-align: left;border-radius: 10px">
+                  <el-col span="23" :offset="1" style="margin-top: 10px">
                     <div v-for="(video,index) in videos4" v-bind="video.videoId">
-                      <router-link :to="{path:'/videoplay/'+video.videoId}"><div style="height: 32px;line-height: 30px">{{video.videoName}}</div></router-link>
+                      <el-row :gutter="10">
+                        <el-col span="24">
+                          <router-link :to="{path:'/videoplay/'+video.videoId}">
+                            <div style="height: 20px;width:20px;line-height: 20px;margin-top:5px;background-color: #EC8AA6;float: left;text-align: center;margin-right: 5%;border-radius: 2px;font-weight: bolder;color: white">
+                              {{index+1}}
+                            </div>
+                            <div style="height: 30px;line-height: 30px;float: left">
+                              {{video.videoName}}
+                            </div>
+                          </router-link>
+                        </el-col>
+                      </el-row>
                     </div>
                   </el-col>
                 </el-row>
@@ -1359,6 +1416,54 @@
     left: 0;
     overflow-y: auto;
   }
+
+
+/*文字滚屏*/
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .box {
+    width: 100%;
+    margin: 0 auto;
+    border: 1px solid #ff6700;
+    overflow: hidden;
+
+  }
+
+  .animate {
+    padding-left: 20px;
+    font-size: 12px;
+    color: #000;
+    display: inline-block;
+    white-space: nowrap;
+    animation: 10s wordsLoop linear infinite normal;
+    font-size: 18px;
+  }
+
+  @keyframes wordsLoop {
+    0% {
+      transform: translateX(300px);
+      -webkit-transform: translateX(300px);
+    }
+    100% {
+      transform: translateX(-100%);
+      -webkit-transform: translateX(-100%);
+    }
+  }
+
+  @-webkit-keyframes wordsLoop {
+    0% {
+      transform: translateX(300px);
+      -webkit-transform: translateX(300px);
+    }
+    100% {
+      transform: translateX(-100%);
+      -webkit-transform: translateX(-100%);
+    }
+  }
+
 </style>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
