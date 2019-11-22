@@ -1065,7 +1065,8 @@
         })
       },
       //点赞
-      likeVideo:function (videoId) {
+      like:function (videoId) {
+          //alert(666)
         if(this.user.userId!=null){
           var url = "api/like/" + videoId
           axios.get(url).then(res => {
@@ -1088,7 +1089,7 @@
       },
 
       //收藏
-      favoriteVideo:function (videoId) {
+      favorite:function (videoId) {
         var userId=this.user.userId
         if(this.user.userId!=null){
           var url="api/favorite/"+userId+"/"+videoId
